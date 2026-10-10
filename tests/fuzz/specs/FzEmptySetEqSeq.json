@@ -1,0 +1,6 @@
+{
+ "bug": "compiled-incomparable-equality",
+ "found": "cloud campaign seed 166632353 (F166632353_4572), minimized by fuzz_spec's shrinker",
+ "summary": "(<<{}>>)[1] = I!W with v2 = <<>> read through an INSTANCE: TLC and the interpreter report 'Attempted to check equality of the set {} with the value <<>>', the compiled tier (here the JIT: TLX_PARANOID reports the successors differing) evaluates it",
+ "variant": "F166632353_4572"
+}

@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "13e129fdd6422c0e2211a494dd41912ff797e9dc050166862655a7d78d7b66f9",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "13e129fdd6422c0e2211a494dd41912ff797e9dc050166862655a7d78d7b66f9",
+    "counts": {
+      "depth": 81,
+      "distinct": 112929,
+      "generated": 422781,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:18:33",
+    "id": "479f3658ab63e2a2088521cb",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 6.516,
+      "instructions": null,
+      "rss_mib": 1178.6,
+      "wall_s": 3.887
+    },
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC",
+    "provenance": {
+      "adoption": {
+        "content_digest": "13e129fdd6422c0e2211a494dd41912ff797e9dc050166862655a7d78d7b66f9",
+        "matched_counts": {
+          "depth": 81,
+          "distinct": 112929,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Disruptor/MCDisruptor_MPMC/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/e2b1e8f541b2b74d58ebf4429e9426b6ef8c42a5bda3d2ad0da2a85b4c86d500.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        6.516
+      ],
+      "wall_s": [
+        3.887
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

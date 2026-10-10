@@ -1,0 +1,219 @@
+{
+  "key": {
+    "args": [
+      "-maxmem",
+      "256M"
+    ],
+    "cgroup_mib": null,
+    "content_digest": "abb96ca1561f298d777cdc5c98d14a56c1a6c72f61dbce6b9144265f2c80bb23",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "KeyValueStore/MCKVSSafetyMedium",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "cc56f0a6d85482f3a5259644",
+    "category": [
+      "beyond-memory",
+      "compiled",
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [
+        "-maxmem",
+        "256M"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "abb96ca1561f298d777cdc5c98d14a56c1a6c72f61dbce6b9144265f2c80bb23",
+    "counts": {
+      "depth": 22,
+      "distinct": 17220672,
+      "generated": 365609473,
+      "result": "success"
+    },
+    "date": "2026-10-11 02:08:24",
+    "evaluations": 120544704,
+    "fully_native": 120544704,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "509b5a5c6f7868875e0636b2",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 321.892,
+      "instructions": 1084433618421,
+      "rss_mib": 848.0,
+      "wall_s": 21.25
+    },
+    "mode": "-compile",
+    "model": "KeyValueStore/MCKVSSafetyMedium",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-2.json#/runs/large:KeyValueStore/MCKVSSafetyMedium:compile:16w:b81c8404",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/81f5fefae26a6cc2ef2cbd6a148e652b70ada68351449293ea00ba6b2f6e3b13.json"
+    },
+    "raw_result": {
+      "args": [
+        "-maxmem",
+        "256M"
+      ],
+      "category": [
+        "beyond-memory",
+        "compiled"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "abb96ca1561f298d777cdc5c98d14a56c1a6c72f61dbce6b9144265f2c80bb23",
+      "count_problems": [],
+      "cpu": [
+        319.717,
+        321.892,
+        326.616
+      ],
+      "depth": 22,
+      "distinct": 17220672,
+      "env": null,
+      "generated": 365609473,
+      "instructions": [
+        1083060418962,
+        1085875914639,
+        1084433618421
+      ],
+      "load": [
+        6.82,
+        13.91
+      ],
+      "median": 21.25,
+      "min": 21.245,
+      "mode": "compile",
+      "model": "KeyValueStore/MCKVSSafetyMedium",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 120544704,
+        "fully_native": 120544704,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 482.926612
+      },
+      "result": "success",
+      "rss_mib": [
+        848.0,
+        852.7,
+        842.1
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 319.717,
+          "depth": 22,
+          "distinct": 17220672,
+          "generated": 365609473,
+          "maxrss_mib": 848.0,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 21.245
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 321.892,
+          "depth": 22,
+          "distinct": 17220672,
+          "generated": 365609473,
+          "maxrss_mib": 852.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 21.25
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 326.616,
+          "depth": 22,
+          "distinct": 17220672,
+          "generated": 365609473,
+          "maxrss_mib": 842.1,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 21.566
+        }
+      ],
+      "tier": "large",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        21.245,
+        21.25,
+        21.566
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 366.354,
+          "depth": 22,
+          "distinct": 17220672,
+          "generated": 365609473,
+          "maxrss_mib": 828.7,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 120544704,
+            "fully_native": 120544704,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 482.926612
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 23.716
+        }
+      ],
+      "workers": 16
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        319.717,
+        321.892,
+        326.616
+      ],
+      "wall_s": [
+        21.245,
+        21.25,
+        21.566
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 482.926612,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 16
+  },
+  "schema_version": 2
+}

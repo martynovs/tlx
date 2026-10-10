@@ -1,0 +1,95 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 2723952727457232073 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/K7.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module K7
+Linting of module K7
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant Inv is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ x = << [a |-> 1, b |-> {1, 2}],
+   [a |-> 2, b |-> {2, 3}],
+   [a |-> 3, b |-> {3, 4}],
+   [a |-> 4, b |-> {4, 5}],
+   [a |-> 5, b |-> {5, 6}],
+   [a |-> 6, b |-> {6, 7}],
+   [a |-> 7, b |-> {7, 8}],
+   [a |-> 8, b |-> {8, 9}],
+   [a |-> 9, b |-> {9, 10}],
+   [a |-> 10, b |-> {10, 11}],
+   [a |-> 11, b |-> {11, 12}],
+   [a |-> 12, b |-> {12, 13}],
+   [a |-> 13, b |-> {13, 14}],
+   [a |-> 14, b |-> {14, 15}],
+   [a |-> 15, b |-> {15, 16}],
+   [a |-> 16, b |-> {16, 17}],
+   [a |-> 17, b |-> {17, 18}],
+   [a |-> 18, b |-> {18, 19}],
+   [a |-> 19, b |-> {19, 20}],
+   [a |-> 20, b |-> {20, 21}] >>
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 7, col 9 to line 7, col 33 of module K7>
+/\ x = << [a |-> 1, b |-> {1, 2}],
+   [a |-> 2, b |-> {2, 3}],
+   [a |-> 3, b |-> {3, 4}],
+   [a |-> 4, b |-> {4, 5}],
+   [a |-> 5, b |-> {5, 6}],
+   [a |-> 6, b |-> {6, 7}],
+   [a |-> 7, b |-> {7, 8}],
+   [a |-> 8, b |-> {8, 9}],
+   [a |-> 9, b |-> {9, 10}],
+   [a |-> 10, b |-> {10, 11}],
+   [a |-> 11, b |-> {11, 12}],
+   [a |-> 12, b |-> {12, 13}],
+   [a |-> 13, b |-> {13, 14}],
+   [a |-> 14, b |-> {14, 15}],
+   [a |-> 15, b |-> {15, 16}],
+   [a |-> 16, b |-> {16, 17}],
+   [a |-> 17, b |-> {17, 18}],
+   [a |-> 18, b |-> {18, 19}],
+   [a |-> 19, b |-> {19, 20}],
+   [a |-> 20, b |-> {20, 21}] >>
+/\ y = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(2) at <date>: 2 states generated (<rate> s/min), 2 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+2 states generated, 2 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 2.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

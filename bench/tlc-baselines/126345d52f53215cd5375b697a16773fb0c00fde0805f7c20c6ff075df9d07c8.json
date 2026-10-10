@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "e22ec41c5b87d9cbc7015cbac15ec5244f9e7fb31612f88e96ae595eb3cbcefd",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "GermanProtocol/MCGermanCMPWithMutex",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "e22ec41c5b87d9cbc7015cbac15ec5244f9e7fb31612f88e96ae595eb3cbcefd",
+    "counts": {
+      "depth": 19,
+      "distinct": 1107,
+      "generated": 3281,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:05:18",
+    "id": "91ca08eb39bb8442cca6af16",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.585,
+      "instructions": null,
+      "rss_mib": 166.2,
+      "wall_s": 0.507
+    },
+    "mode": "-tlc",
+    "model": "GermanProtocol/MCGermanCMPWithMutex",
+    "provenance": {
+      "adoption": {
+        "content_digest": "e22ec41c5b87d9cbc7015cbac15ec5244f9e7fb31612f88e96ae595eb3cbcefd",
+        "matched_counts": {
+          "depth": 19,
+          "distinct": 1107,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/GermanProtocol/MCGermanCMPWithMutex/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/126345d52f53215cd5375b697a16773fb0c00fde0805f7c20c6ff075df9d07c8.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        1.585
+      ],
+      "wall_s": [
+        0.507
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

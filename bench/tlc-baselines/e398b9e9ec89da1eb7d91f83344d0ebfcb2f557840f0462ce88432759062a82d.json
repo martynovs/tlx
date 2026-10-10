@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "4188c4204cac9d756b5765b54f4698a098e3d3754e8ef6a992473c86e5180acc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/SimpleMath/SimpleMath",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "4188c4204cac9d756b5765b54f4698a098e3d3754e8ef6a992473c86e5180acc",
+    "counts": {
+      "depth": 0,
+      "distinct": 0,
+      "generated": 0,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:18:42",
+    "id": "ea167722fe6d64b6e27eb4a2",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.939,
+      "instructions": null,
+      "rss_mib": 121.6,
+      "wall_s": 0.383
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/SimpleMath/SimpleMath",
+    "provenance": {
+      "adoption": {
+        "content_digest": "4188c4204cac9d756b5765b54f4698a098e3d3754e8ef6a992473c86e5180acc",
+        "matched_counts": {
+          "depth": 0,
+          "distinct": 0,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/SimpleMath/SimpleMath/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/e398b9e9ec89da1eb7d91f83344d0ebfcb2f557840f0462ce88432759062a82d.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        0.939
+      ],
+      "wall_s": [
+        0.383
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

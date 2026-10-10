@@ -1,0 +1,43 @@
+# exit 13
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 7320621635233953582 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/P1.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module P1
+Linting of module P1
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2140:3 @!@!@
+The subscript of the next-state relation specified by the specification
+does not seem to contain the state variable y
+@!@!@ENDMSG 2140 @!@!@
+@!@!@STARTMSG 2255:3 @!@!@
+The formula I2 is a state-level formula, but it was used as a PROPERTY (or PROPERTIES), where a temporal formula is typically expected. State-level formulas used as PROPERTY or PROPERTIES are only checked in the initial state. To verify that the formula I2 holds in all states of every behavior, use INVARIANT I2 instead. Alternatively, applying the "always" temporal operator ([]) to the state-level formula I2 changes it into a temporal formula, asserting that I2 holds in all states of every behavior. See https://explain.tlapl.us/invariants-and-properties for additional details.
+@!@!@ENDMSG 2255 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2108:1 @!@!@
+Property line 10, col 16 to line 10, col 24 of module P1 is violated by the initial state:
+/\ x = 0
+/\ y = 0
+
+@!@!@ENDMSG 2108 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

@@ -1,0 +1,4 @@
+{
+  "bug": "fixed-expression-regression",
+  "summary": "SetToSeq({(\"ab\" :> 2), EmptyBag, (\"\" :> 2)})"
+}

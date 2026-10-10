@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "ext/ccf/MCccfraft_1C3N",
+      "size": "large",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        },
+        {
+          "mode": "compile",
+          "workers": 16,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "note": "Industrial action composition",
+      "expect": {
+        "result": "success",
+        "source": "tlc-oracle",
+        "distinct": 675893,
+        "generated": 1848071,
+        "depth": 66
+      },
+      "tlc_1w_s": 743.53
+    },
+    {
+      "id": "bench/ReprMoveRange",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprRaftMongo",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprAccordChain",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprZab",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprBakery",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprKVS",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "KeyValueStore/MCKVSSafetyLarge",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "SlushProtocol/SlushLarge",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "TLC/TestMCReachability",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "c1cs/c1cs",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "detector_chan96/EnvironmentController",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "ewd998/EWD998",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    }
+  ],
+  "report": {
+    "stale_after_revisions": 20,
+    "corpus_scope": "all exhaustive/simulation configurations in the Examples manifests; unbounded generate uses fixed trace count"
+  }
+}

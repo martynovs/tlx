@@ -1,0 +1,19 @@
+[package]
+name = "tlx-eval"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tlx-base.workspace = true
+tlx-front.workspace = true
+tlx-live.workspace = true
+tlx-sema.workspace = true
+tlx-value.workspace = true
+tlx-runtime.workspace = true
+
+[dev-dependencies]
+tlx-testkit.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,87 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "487cd2b0265b9ddcd835d941b55f4248139c708d3d50b0e47e2d0637b5089b6d",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "FlashProtocol/MCFlashWithMutexLive",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "liveness",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "487cd2b0265b9ddcd835d941b55f4248139c708d3d50b0e47e2d0637b5089b6d",
+    "counts": {
+      "depth": 21,
+      "distinct": 8096,
+      "generated": 30196,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:05:27",
+    "id": "453af734d5e9ae04abc49bf8",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 35.019,
+      "instructions": null,
+      "rss_mib": 2811.4,
+      "wall_s": 2.966
+    },
+    "mode": "-tlc",
+    "model": "FlashProtocol/MCFlashWithMutexLive",
+    "provenance": {
+      "adoption": {
+        "content_digest": "487cd2b0265b9ddcd835d941b55f4248139c708d3d50b0e47e2d0637b5089b6d",
+        "matched_counts": {
+          "depth": 21,
+          "distinct": 8096,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/FlashProtocol/MCFlashWithMutexLive/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/e93f1b2b5d14d80f1cd4204676d177eee7299b5ffba58ad25cffd7214a14ffb4.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        35.019
+      ],
+      "wall_s": [
+        2.966
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

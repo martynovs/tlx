@@ -1,0 +1,126 @@
+//! Checking the behavior graph recorded during the search.
+
+use super::shape::{violated, violated_names, Shape};
+use super::{LiveInput, LiveResult, STUTTER};
+use crate::mem::RssGuard;
+use crate::{LiveGraph, Model, ModelError};
+
+/// Check every temporal property of `input` on the behavior graph `g`
+/// recorded during the search of `m` (on up to `workers` threads). A counterexample's states are rebuilt
+/// by re-executing `m` along its path; an error of `m` there (a layout miss
+/// of a compiled model: the interpreter checks again) or a path that does
+/// not follow the graph (a bug) is the result.
+pub(super) fn check_recorded<M: Model>(m: &M, input: &LiveInput, g: LiveGraph, workers: usize, guard: RssGuard) -> LiveResult<M::State> {
+    record_live_graph(&g);
+    let LiveGraph { init, fps, off, tgt, edge_pat, state_pat, state_pats, action_pats } = g;
+    let bits = |p: Vec<Box<[u64]>>| p.iter().map(|b| tlx_live::Bits::from_words(b)).collect();
+    let graph = tlx_live::Csr { init, off, tgt, edge_pat, state_pat, state_pats: bits(state_pats), action_pats: bits(action_pats) };
+    let (mut peak, mut err) = ((0, 0, 0), None);
+    for (i, (_, f)) in input.props.iter().enumerate() {
+        let mut st = tlx_live::CheckStats::default();
+        let r = tlx_live::check_lasso_csr_stats(&graph, f, &input.fairness, workers, &mut guard.product(&mut peak, &mut err), &mut st);
+        record_product(peak);
+        record_check(&st);
+        let Ok(r) = r else { return LiveResult::OutOfMemory(err.unwrap_or_default()) };
+        if let Err(cx) = r {
+            let lasso: Vec<(u32, u32)> = cx.prefix.iter().chain(&cx.cycle).copied().collect();
+            let path = match replay(m, &graph, &fps, &lasso) {
+                Ok(p) => p,
+                Err(e) => return LiveResult::Error(e),
+            };
+            let seq: Vec<(u32, &M::State, u32)> = lasso.iter().zip(&path).map(|(&(s, _), (st, a))| (s, st, *a)).collect();
+            let sh = Shape::new(&seq, cx.prefix.len());
+            let names = violated_names(input, &sh, &mut |k| Ok(graph.state_bits(lasso[sh.shown[k].pos].0).clone()), &mut |k| {
+                let (s, e) = lasso[sh.shown[k].leave];
+                Ok(graph.edge(s, e as usize).1.clone())
+            });
+            return violated(names, i, &seq, &sh);
+        }
+    }
+    LiveResult::Holds
+}
+
+/// The states along the path `lasso` (node, edge leaving it) of the recorded
+/// graph `g` of `m` (node fingerprints `fps`), each with the action of the
+/// edge leaving it: re-executed from the initial state, taking at each node
+/// the successor in the model the edge stands for (the edges of a state are
+/// its successors in the model in generation order, then the stuttering
+/// step), as error traces are rebuilt. An error if `m` fails or a state's
+/// fingerprint is not the node's (a bug: the graph is of this model).
+fn replay<M: Model>(m: &M, g: &tlx_live::Csr, fps: &[u64], lasso: &[(u32, u32)]) -> Result<Vec<(M::State, u32)>, ModelError> {
+    let lost = || ModelError::new("internal error: a counterexample of the recorded liveness graph cannot be replayed");
+    // (An error counts as a step out of the model: the search evaluated
+    // these steps without one, so the path is lost then, reported below.)
+    let in_model = |s: &M::State, t: &M::State| crate::admits(m, s, t).unwrap_or(false);
+    let first = fps[lasso.first().ok_or_else(lost)?.0 as usize];
+    let mut found = None;
+    m.init_states(&mut |s| {
+        if found.is_none() && m.fingerprint(&s) == first && matches!(m.constraint(&s), Ok(true)) {
+            found = Some(s);
+        }
+    })?;
+    let mut cur = found.ok_or_else(lost)?;
+    let mut path = Vec::with_capacity(lasso.len());
+    for &(s, e) in lasso {
+        let e = e as usize;
+        let (t, a) = if e + 1 == g.degree(s) {
+            (cur.clone(), STUTTER)
+        } else {
+            let (mut i, mut next) = (0, None);
+            m.successors(&cur, &mut |t, a| {
+                if in_model(&cur, &t) {
+                    if i == e {
+                        next = Some((t, a));
+                        return false;
+                    }
+                    i += 1;
+                }
+                true
+            })?;
+            next.ok_or_else(lost)?
+        };
+        if m.fingerprint(&t) != fps[g.edge(s, e).0 as usize] {
+            return Err(lost());
+        }
+        path.push((std::mem::replace(&mut cur, t), a));
+    }
+    Ok(path)
+}
+
+/// Record what checking one property did (`tlx_live::CheckStats`), for
+/// `-stats`: times add up over the properties, sizes are the largest.
+fn record_check(st: &tlx_live::CheckStats) {
+    use crate::stats;
+    if !stats::on() {
+        return;
+    }
+    stats::add_secs("liveness: tableau and product construction (thread-seconds)", std::time::Duration::from_secs_f64(st.build_secs));
+    stats::add_secs("liveness: SCC search and counterexample (thread-seconds)", std::time::Duration::from_secs_f64(st.search_secs));
+    stats::max_count("liveness: product parts (largest)", st.parts as u64);
+    stats::max_count("liveness: tableau states (largest)", st.tableau_states as u64);
+    stats::max_count("liveness: tableau waiting states, not built (largest)", st.waiting_states as u64);
+}
+
+/// Record the largest product graph (nodes, edges, bytes) for `-stats`.
+fn record_product(peak: (usize, usize, usize)) {
+    if crate::stats::on() && peak.2 > 0 {
+        use crate::stats::{self, Metric};
+        stats::set("liveness: product nodes (largest)", Metric::Count(peak.0 as u64));
+        stats::set("liveness: product edges (largest)", Metric::Count(peak.1 as u64));
+        stats::set(&format!("{}liveness product graph (largest, est.)", stats::MEMORY), Metric::Bytes(peak.2 as u64));
+    }
+}
+
+/// Record the size of the liveness behavior graph `g` recorded during the
+/// search (if on).
+fn record_live_graph(g: &LiveGraph) {
+    use crate::stats::{self, Metric};
+    if !stats::on() {
+        return;
+    }
+    stats::set("liveness: graph states", Metric::Count(g.len() as u64));
+    stats::set("liveness: graph edges", Metric::Count(g.tgt.len() as u64));
+    stats::set("liveness: state patterns", Metric::Count(g.state_pats.len() as u64));
+    stats::set("liveness: action patterns", Metric::Count(g.action_pats.len() as u64));
+    stats::set(&format!("{}liveness behavior graph (CSR)", stats::MEMORY), Metric::Bytes(g.bytes() as u64));
+}

@@ -1,0 +1,113 @@
+{
+  "key": {
+    "args": [
+      "-compile",
+      "-workers",
+      "1",
+      "-tlc"
+    ],
+    "cgroup_mib": null,
+    "content_digest": "1ba3cfc27083618a132725f52a0fce7a60162f67f84992427321ca2e2ac9b17a",
+    "env": {
+      "ba": {
+        "TLX_ESCAPE": "1",
+        "TLX_PRERUN_REUSE": "0"
+      },
+      "main": {
+        "TLX_PRERUN_REUSE": "0"
+      },
+      "native": {
+        "TLX_PRERUN_REUSE": "0",
+        "TLX_REPR_NATIVE": "1"
+      }
+    },
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Bakery-Boulangerie/MCBakery",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [
+        "-compile",
+        "-workers",
+        "1",
+        "-tlc"
+      ],
+      "cgroup_mib": null,
+      "env": {
+        "ba": {
+          "TLX_ESCAPE": "1",
+          "TLX_PRERUN_REUSE": "0"
+        },
+        "main": {
+          "TLX_PRERUN_REUSE": "0"
+        },
+        "native": {
+          "TLX_PRERUN_REUSE": "0",
+          "TLX_REPR_NATIVE": "1"
+        }
+      },
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "1ba3cfc27083618a132725f52a0fce7a60162f67f84992427321ca2e2ac9b17a",
+    "counts": {
+      "depth": 1,
+      "distinct": 655200,
+      "generated": 3403584,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:04:08",
+    "id": "0605f2e21946175d1d74e898",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 15.653,
+      "instructions": null,
+      "rss_mib": 2247.1,
+      "wall_s": 10.463
+    },
+    "mode": "-tlc",
+    "model": "Bakery-Boulangerie/MCBakery",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/repr-alternatives/large.json#/tlc_baseline/runs/Bakery-Boulangerie/MCBakery",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 1,
+        "requested": 3
+      },
+      "reused_from": "ac8bc22a88482564b4290836",
+      "source": "bench/tlc-baselines/a79acbdfc1738fe39f5ba80e7d7c555ea6ac23db3cad22215ca7bbfc069908c9.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        15.653
+      ],
+      "wall_s": [
+        10.463
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

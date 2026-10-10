@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "d523c2b7bc6453a3dc19f49b6f712a908eca8ac514bc4c093af245a6b531a38a",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/AsynchronousInterface/PrintValues",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "d523c2b7bc6453a3dc19f49b6f712a908eca8ac514bc4c093af245a6b531a38a",
+    "counts": {
+      "depth": 0,
+      "distinct": 0,
+      "generated": 0,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:47:13",
+    "id": "bc1833c7f29f8c3d55367c52",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.067,
+      "instructions": null,
+      "rss_mib": 126.9,
+      "wall_s": 0.421
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/AsynchronousInterface/PrintValues",
+    "provenance": {
+      "adoption": {
+        "content_digest": "d523c2b7bc6453a3dc19f49b6f712a908eca8ac514bc4c093af245a6b531a38a",
+        "matched_counts": {
+          "depth": 0,
+          "distinct": 0,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/AsynchronousInterface/PrintValues/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/524856528a9c1e54c5d282d603bcc7e07628990c5c88647d274bf930504e6fba.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        1.067
+      ],
+      "wall_s": [
+        0.421
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

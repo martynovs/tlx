@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "2b12b92e0ee8744b3f81622ed2d635d9953004775cc7b04c344f08181987352c",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "acp/ACP_NB_WRONG_TLC",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "2b12b92e0ee8744b3f81622ed2d635d9953004775cc7b04c344f08181987352c",
+    "counts": {
+      "depth": 13,
+      "distinct": 11852,
+      "generated": 59286,
+      "result": "safety failure"
+    },
+    "date": "2026-10-05 22:46:49",
+    "id": "8dafc3c8aa9bc0196120cd9f",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.356,
+      "instructions": null,
+      "rss_mib": 251.2,
+      "wall_s": 0.81
+    },
+    "mode": "-tlc",
+    "model": "acp/ACP_NB_WRONG_TLC",
+    "provenance": {
+      "adoption": {
+        "content_digest": "2b12b92e0ee8744b3f81622ed2d635d9953004775cc7b04c344f08181987352c",
+        "matched_counts": {
+          "depth": 13,
+          "distinct": 11852,
+          "result": "safety failure"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/acp/ACP_NB_WRONG_TLC/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/5db73455a2ed290fe9f03ad79456ed3de0ce7e3392725cc901f8df1ae03a29ea.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.356
+      ],
+      "wall_s": [
+        0.81
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

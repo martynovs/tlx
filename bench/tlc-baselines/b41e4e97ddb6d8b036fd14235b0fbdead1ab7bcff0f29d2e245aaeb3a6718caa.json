@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "90b51a9e52fcfe2e2ea6a80e821a8f49af85c3c999e5ea2db8bcf0fde2ac8b55",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Huang/Huang",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "90b51a9e52fcfe2e2ea6a80e821a8f49af85c3c999e5ea2db8bcf0fde2ac8b55",
+    "counts": {
+      "depth": 21,
+      "distinct": 81256,
+      "generated": 1165101,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:06:15",
+    "id": "50faa579f55a0c4b7b4809ef",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 98.259,
+      "instructions": null,
+      "rss_mib": 2864.0,
+      "wall_s": 7.575
+    },
+    "mode": "-tlc",
+    "model": "Huang/Huang",
+    "provenance": {
+      "adoption": {
+        "content_digest": "90b51a9e52fcfe2e2ea6a80e821a8f49af85c3c999e5ea2db8bcf0fde2ac8b55",
+        "matched_counts": {
+          "depth": 21,
+          "distinct": 81256,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Huang/Huang/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/b41e4e97ddb6d8b036fd14235b0fbdead1ab7bcff0f29d2e245aaeb3a6718caa.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        98.259
+      ],
+      "wall_s": [
+        7.575
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

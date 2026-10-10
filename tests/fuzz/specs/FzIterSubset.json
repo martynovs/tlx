@@ -1,0 +1,4 @@
+{
+  "bug": "fixed-expression-regression",
+  "summary": "(\\E x1 \\in {} : (\\A x2 \\in SUBSET UNION {{2}} : Contains(SelectSeq(<<FALSE, FALSE, FALSE>>, LAMBDA x3 : TRUE), Contains(<<>>, TRUE))))"
+}

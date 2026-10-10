@@ -1,0 +1,18 @@
+[package]
+name = "tlx-layout"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tlx-base.workspace = true
+tlx-value.workspace = true
+
+[dev-dependencies]
+# Representation-only fixtures (temporary directories, the PRNG); the
+# corpus round trips that sample states with the interpreter live in
+# `tlx-testkit` itself, so this crate never pulls the compiled tier.
+tlx-testkit.workspace = true
+
+[lints]
+workspace = true

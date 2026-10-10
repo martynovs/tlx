@@ -1,0 +1,5 @@
+{
+ "bug": "view-trace",
+ "found": "fuzz_spec seed 10 (F10_107), minimized by fuzz_spec's shrinker",
+ "summary": "under VIEW two initial states share a view and the second violates TypeOK (no state satisfies the CONSTRAINT): TLC reports the violating state, tlx the first state of the view class, which satisfies TypeOK"
+}

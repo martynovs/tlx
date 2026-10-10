@@ -1,0 +1,5 @@
+-generate num=3 -depth 5
+# deterministic
+# Layout misses in compiled mode (also in the pre-run's walks): the simulation
+# starts over.
+# env TLX_PRERUN=1 TLX_PRERUN_MS=0

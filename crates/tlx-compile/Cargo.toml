@@ -1,0 +1,31 @@
+[package]
+name = "tlx-compile"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tlx-base.workspace = true
+tlx-front.workspace = true
+tlx-sema.workspace = true
+tlx-value.workspace = true
+tlx-eval.workspace = true
+tlx-runtime.workspace = true
+tlx-layout.workspace = true
+tlx-native.workspace = true
+# Cranelift backend (`TLX_JIT`, docs/design.md §6.6).
+cranelift-codegen = { version = "0.132", optional = true }
+cranelift-frontend = { version = "0.132", optional = true }
+cranelift-jit = { version = "0.132", optional = true }
+cranelift-module = { version = "0.132", optional = true }
+cranelift-native = { version = "0.132", optional = true }
+
+[features]
+default = ["jit"]
+jit = ["dep:cranelift-codegen", "dep:cranelift-frontend", "dep:cranelift-jit", "dep:cranelift-module", "dep:cranelift-native"]
+
+[dev-dependencies]
+tlx-testkit = { workspace = true, features = ["models"] }
+
+[lints]
+workspace = true

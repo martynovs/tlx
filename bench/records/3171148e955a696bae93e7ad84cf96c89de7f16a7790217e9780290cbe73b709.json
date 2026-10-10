@@ -1,0 +1,119 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "676ed92832f783100a8e69a6d4df9559dc5359e2b24966b8e606e2e42fe9143f",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "676ed92832f783100a8e69a6d4df9559dc5359e2b24966b8e606e2e42fe9143f",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "skipped"
+    },
+    "date": "2026-10-11 00:39:48",
+    "id": "e76ae95531f07d2c8bcfd716",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": null,
+      "instructions": null,
+      "rss_mib": null,
+      "wall_s": null
+    },
+    "mode": "default",
+    "model": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:SpecifyingSystems/AdvancedExamples/MCInnerSerial:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 0,
+        "requested": 3
+      },
+      "source": "bench/records/3171148e955a696bae93e7ad84cf96c89de7f16a7790217e9780290cbe73b709.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "completed_samples": 0,
+      "content_digest": "676ed92832f783100a8e69a6d4df9559dc5359e2b24966b8e606e2e42fe9143f",
+      "count_problems": [],
+      "cpu": [],
+      "depth": null,
+      "distinct": null,
+      "env": null,
+      "generated": null,
+      "instructions": [],
+      "load": [
+        1.0,
+        1.0
+      ],
+      "median": 0,
+      "min": 0,
+      "mode": "default",
+      "model": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+      "result": "skipped",
+      "rss_mib": [],
+      "samples": [],
+      "skipped": "sample timeout",
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 600.466,
+          "maxrss_mib": 104.7,
+          "result": "timeout",
+          "wall_s": 600
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [],
+      "wall_s": []
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

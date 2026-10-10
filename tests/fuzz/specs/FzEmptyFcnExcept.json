@@ -1,0 +1,5 @@
+{
+ "bug": "d13-empty-function",
+ "found": "fuzz_spec seed 9 (F9_31), minimized by fuzz_spec's shrinker",
+ "summary": "VIEW [v1 EXCEPT !['c'] = 'c', ...] with v1 the empty function [x \\in {} |-> '']: TLC and the interpreter leave it unchanged, the compiled tier decodes it as <<>> and reports 'Attempted to access tuple at a non integral index' (docs/compat.md D-13 family: the encoding does not record how a domain was built)"
+}

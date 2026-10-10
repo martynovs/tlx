@@ -1,0 +1,7 @@
+{
+  "revision": "517f59c67a0a80ddaee0445c9c413d7fe45780c5",
+  "tracked_changes": "",
+  "binary_sha256": "3ca7d2d4f4f4e6743861b3be839eb1c6cb596d816f3360038e37e467ccabf4d6",
+  "observed_at": "2026-10-11T08:51:23+08:00",
+  "status": "in-progress checkpoint; no final batch verdict or receipt"
+}

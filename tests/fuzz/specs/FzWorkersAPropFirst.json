@@ -1,0 +1,5 @@
+{
+ "bug": "workers-action-property-first",
+ "found": "fuzz_spec seed 3 (F3_10), minimized by hand",
+ "summary": "under VIEW, a step violates an action property and its new successor an invariant: TLC reports the invariant (1 or 4 workers), tlx -workers 4 the action property"
+}

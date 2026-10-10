@@ -1,0 +1,5 @@
+{
+ "bug": "constant-view",
+ "found": "fuzz_spec seed 3 (F3_16, F3_38, F3_56), minimized by hand",
+ "summary": "a constant VIEW: TLC reports 'The view function View cannot be a constant.'; tlx succeeds"
+}

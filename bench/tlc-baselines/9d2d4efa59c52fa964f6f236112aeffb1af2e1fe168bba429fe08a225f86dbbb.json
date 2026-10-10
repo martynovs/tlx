@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "21addd2e664f23996a7ae933a1858e99d19ceb1a6b5447312878325f661517f4",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "MultiCarElevator/ElevatorSafetySmall",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "21addd2e664f23996a7ae933a1858e99d19ceb1a6b5447312878325f661517f4",
+    "counts": {
+      "depth": 36,
+      "distinct": 4122,
+      "generated": 14296,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:04:06",
+    "id": "afa40b16819d82a0ec5d88a5",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 5.291,
+      "instructions": null,
+      "rss_mib": 273.5,
+      "wall_s": 0.762
+    },
+    "mode": "-tlc",
+    "model": "MultiCarElevator/ElevatorSafetySmall",
+    "provenance": {
+      "adoption": {
+        "content_digest": "21addd2e664f23996a7ae933a1858e99d19ceb1a6b5447312878325f661517f4",
+        "matched_counts": {
+          "depth": 36,
+          "distinct": 4122,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/MultiCarElevator/ElevatorSafetySmall/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/9d2d4efa59c52fa964f6f236112aeffb1af2e1fe168bba429fe08a225f86dbbb.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        5.291
+      ],
+      "wall_s": [
+        0.762
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

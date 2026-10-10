@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "1757775aa61f3067f490ed9e73c8dde2f8b5c342f3e64e9de90df86417c87f13",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "MisraReachability/MCReachabilityTestRandomGraphs",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "1757775aa61f3067f490ed9e73c8dde2f8b5c342f3e64e9de90df86417c87f13",
+    "counts": {
+      "depth": 0,
+      "distinct": 0,
+      "generated": 0,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:29:32",
+    "id": "c90bdd1d91a278a2d2523628",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 3.163,
+      "instructions": null,
+      "rss_mib": 253.3,
+      "wall_s": 1.195
+    },
+    "mode": "-tlc",
+    "model": "MisraReachability/MCReachabilityTestRandomGraphs",
+    "provenance": {
+      "adoption": {
+        "content_digest": "1757775aa61f3067f490ed9e73c8dde2f8b5c342f3e64e9de90df86417c87f13",
+        "matched_counts": {
+          "depth": 0,
+          "distinct": 0,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/MisraReachability/MCReachabilityTestRandomGraphs/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/d7b866743c9d0a06a90acb2db9de7ebc04f0323a2e26839bfeb0dc78c84aefdd.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        3.163
+      ],
+      "wall_s": [
+        1.195
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

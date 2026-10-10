@@ -1,0 +1,5 @@
+{
+ "bug": "init-eval-error",
+ "found": "fuzz_spec seed 9 (F9_146), minimized by fuzz_spec's shrinker",
+ "summary": "the state predicate of a liveness property fails to evaluate: TLC reports the error while computing the initial states (2 distinct / 3 generated), tlx after exploring the state space (other counts)"
+}

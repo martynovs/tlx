@@ -1,0 +1,73 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "761a461caf2869f0307030e696150424b1b0909db6db51e64564090acf03e9d8",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpanningTree/SpanTreeRandom",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "761a461caf2869f0307030e696150424b1b0909db6db51e64564090acf03e9d8",
+    "counts": {
+      "depth": 6,
+      "distinct": 48072,
+      "generated": 730826,
+      "result": "success"
+    },
+    "date": "2026-10-07 16:03:50",
+    "id": "965b195f7bcd63462d4df0f9",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 18.578,
+      "instructions": null,
+      "rss_mib": 1524.6,
+      "wall_s": 14.012
+    },
+    "mode": "-tlc",
+    "model": "SpanningTree/SpanTreeRandom",
+    "provenance": {
+      "legacy": false,
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/c63d5e8de1182e80dcfd36c72ea23fa2cc0cbea4116fed57bc9feb07e1423d5a.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        18.578
+      ],
+      "wall_s": [
+        14.012
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

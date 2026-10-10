@@ -1,0 +1,25 @@
+# exit 77
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -7489456955975515550 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/TSRTautology.tla
+Semantic processing of module TSRTautology
+Linting of module TSRTautology
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2253:1 @!@!@
+Temporal formula is a tautology (its negation is unsatisfiable).
+@!@!@ENDMSG 2253 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

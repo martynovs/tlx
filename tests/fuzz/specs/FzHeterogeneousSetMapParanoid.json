@@ -1,0 +1,7 @@
+{
+ "summary": "{(1 :> \"b\" @@ 2 :> {0})[h] : h \\in DOMAIN (1 :> \"b\" @@ 2 :> {0})}",
+ "detail": "interp: ('err', 'Attempted to compare the set {0} with the value: \"b\"', 10); compile: paranoid: TLX_PARANOID: compiled code differs from the interpreter: invariant Inv_0 on state /\\ pc = 0 /\\ r_0 = 0 /\\ v_0_0 = <<\"b\", {0}>> the interpreter fails (Attempted to compare the set {0} with the value: \"b\" line 7, col 8 of module FuzzS) but compiled code gives true (crates/tlx-compile/src/enc/model.rs:1565:23) ",
+ "ctx": "inv",
+ "seed": 320011046,
+ "variant": "F1_84"
+}

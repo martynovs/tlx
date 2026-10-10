@@ -1,0 +1,211 @@
+{
+  "key": {
+    "args": [
+      "-tlc"
+    ],
+    "cgroup_mib": null,
+    "content_digest": "a17f28069248a00e743d89be5c8a2c9c3f30f2b71604fab7740c1bbc612f8d53",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "ext/mongo/MCMongoReplReconfig",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "28ea5005f96bee9c3ab4361a",
+    "category": [
+      "external",
+      "compiled",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [
+        "-tlc"
+      ],
+      "cgroup_mib": null,
+      "compatibility": true,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "a17f28069248a00e743d89be5c8a2c9c3f30f2b71604fab7740c1bbc612f8d53",
+    "counts": {
+      "depth": 30,
+      "distinct": 2413165,
+      "generated": 41496087,
+      "result": "success"
+    },
+    "date": "2026-10-11 02:08:24",
+    "evaluations": 114659475,
+    "fully_native": 114659475,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "391649e7df3077875e0bba37",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 47.933,
+      "instructions": 321620614562,
+      "rss_mib": 700.1,
+      "wall_s": 3.211
+    },
+    "mode": "-compile",
+    "model": "ext/mongo/MCMongoReplReconfig",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-2.json#/runs/large:ext/mongo/MCMongoReplReconfig:compile:16w:c5c6d052",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/32d832227aa7565d4db188b141e521eeba2ae325e07589347b6a0e35d827f2ee.json"
+    },
+    "raw_result": {
+      "args": [
+        "-tlc"
+      ],
+      "category": [
+        "external"
+      ],
+      "cgroup_mib": null,
+      "compatibility": true,
+      "content_digest": "a17f28069248a00e743d89be5c8a2c9c3f30f2b71604fab7740c1bbc612f8d53",
+      "count_problems": [],
+      "cpu": [
+        47.933,
+        47.973,
+        47.845
+      ],
+      "depth": 30,
+      "distinct": 2413165,
+      "env": null,
+      "generated": 41496087,
+      "instructions": [
+        321602250086,
+        321633891781,
+        321620614562
+      ],
+      "load": [
+        1.05,
+        3.43
+      ],
+      "median": 3.211,
+      "min": 3.176,
+      "mode": "compile",
+      "model": "ext/mongo/MCMongoReplReconfig",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 114659475,
+        "fully_native": 114659475,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 71.862816
+      },
+      "result": "success",
+      "rss_mib": [
+        655.1,
+        700.1,
+        722.1
+      ],
+      "samples": [
+        {
+          "compatibility": true,
+          "cpu_s": 47.933,
+          "depth": 30,
+          "distinct": 2413165,
+          "generated": 41496087,
+          "maxrss_mib": 655.1,
+          "result": "success",
+          "wall_s": 3.211
+        },
+        {
+          "compatibility": true,
+          "cpu_s": 47.973,
+          "depth": 30,
+          "distinct": 2413165,
+          "generated": 41496087,
+          "maxrss_mib": 700.1,
+          "result": "success",
+          "wall_s": 3.265
+        },
+        {
+          "compatibility": true,
+          "cpu_s": 47.845,
+          "depth": 30,
+          "distinct": 2413165,
+          "generated": 41496087,
+          "maxrss_mib": 722.1,
+          "result": "success",
+          "wall_s": 3.176
+        }
+      ],
+      "tier": "large",
+      "tlc_1w_s": 1163.6,
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        3.211,
+        3.265,
+        3.176
+      ],
+      "warmups": [
+        {
+          "compatibility": true,
+          "cpu_s": 55.313,
+          "depth": 30,
+          "distinct": 2413165,
+          "generated": 41496087,
+          "maxrss_mib": 680.5,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 114659475,
+            "fully_native": 114659475,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 71.862816
+          },
+          "result": "success",
+          "wall_s": 3.757
+        }
+      ],
+      "workers": 16
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        47.933,
+        47.973,
+        47.845
+      ],
+      "wall_s": [
+        3.211,
+        3.265,
+        3.176
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 71.862816,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 16
+  },
+  "schema_version": 2
+}

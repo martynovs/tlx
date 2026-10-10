@@ -1,0 +1,597 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 3874505096746535165 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/SPL1.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module SPL1
+Linting of module SPL1
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant Inv is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ x = 0
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 1
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 2
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 3
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 4
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 5
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 6
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 7
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 8
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 9
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 10
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 11
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 12
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 13
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 14
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 15
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 16
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 17
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 18
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 19
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 20
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 21
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 22
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 23
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 24
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 25
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 26
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 27
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 28
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 29
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 30
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 31
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 32
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 33
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 34
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 35
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 36
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 37
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+39: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 38
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+40: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 39
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+41: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 40
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+42: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 41
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+43: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 42
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+44: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 43
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+45: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 44
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+46: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 45
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+47: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 46
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+48: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 47
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+49: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 48
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+50: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 49
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+51: <Next line 7, col 12 to line 7, col 41 of module SPL1>
+/\ x = 50
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+52: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+53: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+54: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+55: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+56: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+57: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+58: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+59: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+60: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 9
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+61: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 10
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+62: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 11
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+63: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 12
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+64: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+65: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 14
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+66: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+67: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+68: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+69: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+70: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 19
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+71: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+72: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 21
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+73: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 22
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+74: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 23
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+75: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 24
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+76: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 25
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+77: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 26
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+78: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 27
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+79: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 28
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+80: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 29
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+81: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 30
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+82: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 31
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+83: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 32
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+84: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 33
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+85: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 34
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+86: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 35
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+87: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 36
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+88: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 37
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+89: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 38
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+90: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 39
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+91: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 40
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+92: <Next line 8, col 12 to line 8, col 41 of module SPL1>
+/\ x = 50
+/\ y = 41
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(92) at <date>: 6,412 states generated (<rate> s/min), 3,267 distinct states found (<rate> ds/min), 30 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+6412 states generated, 3267 distinct states found, 30 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 92.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

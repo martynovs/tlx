@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SDP_Verification/SDP_Attack_Spec/MC",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+    "counts": {
+      "depth": 11,
+      "distinct": 526,
+      "generated": 1103,
+      "result": "safety failure"
+    },
+    "date": "2026-10-05 22:09:47",
+    "id": "31ee224a7768ca1fccab5ce4",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 5.129,
+      "instructions": null,
+      "rss_mib": 357.2,
+      "wall_s": 0.949
+    },
+    "mode": "-tlc",
+    "model": "SDP_Verification/SDP_Attack_Spec/MC",
+    "provenance": {
+      "adoption": {
+        "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+        "matched_counts": {
+          "depth": 11,
+          "distinct": 526,
+          "result": "safety failure"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SDP_Verification/SDP_Attack_Spec/MC/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/ac83616273f2d63d3796d311ede61eca7f04577cae694b0275cb691656ac2248.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        5.129
+      ],
+      "wall_s": [
+        0.949
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

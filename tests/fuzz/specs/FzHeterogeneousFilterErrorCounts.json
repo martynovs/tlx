@@ -1,0 +1,32 @@
+{
+ "diffs": [
+  "generated"
+ ],
+ "env": {},
+ "features": "vars=mixed actions=1 heterogeneous=builder nodeadlock",
+ "flags": [
+  "-workers",
+  "1"
+ ],
+ "found": "fuzz_spec.py --seed 160145005 --start 44 --count 1",
+ "mode": "interp",
+ "note": "Explicit set operations must compare before emitting the successor (generated=1).",
+ "original_diffs": [
+  "generated"
+ ],
+ "shrink_secs": 14,
+ "shrink_tries": 32,
+ "tlc": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 1,
+  "result": "error"
+ },
+ "tlx": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 2,
+  "result": "error"
+ },
+ "variant": "F160145005_44"
+}

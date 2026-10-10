@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "1f8f507fdf391fc8759bfb7cddeab6ce3d1d54586a8e6ecd664e0b460db21102",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/CachingMemory/MCInternalMemory",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "1f8f507fdf391fc8759bfb7cddeab6ce3d1d54586a8e6ecd664e0b460db21102",
+    "counts": {
+      "depth": 10,
+      "distinct": 4408,
+      "generated": 21400,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:47:14",
+    "id": "963dfdd7142bd618b57f1651",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.198,
+      "instructions": null,
+      "rss_mib": 189.6,
+      "wall_s": 0.495
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/CachingMemory/MCInternalMemory",
+    "provenance": {
+      "adoption": {
+        "content_digest": "1f8f507fdf391fc8759bfb7cddeab6ce3d1d54586a8e6ecd664e0b460db21102",
+        "matched_counts": {
+          "depth": 10,
+          "distinct": 4408,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/CachingMemory/MCInternalMemory/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/c2967c1beb17a73edbe60116005538845f787343fa2568fb8eb0e80c8fa8b8fb.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.198
+      ],
+      "wall_s": [
+        0.495
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

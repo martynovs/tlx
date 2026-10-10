@@ -1,0 +1,29 @@
+# exit 255
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -6884712590363037216 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/TSXDnfLimit.tla
+Parsing file <tmp>/Integers.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Integers.tla)
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module TSXDnfLimit
+Linting of module TSXDnfLimit
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2213:1 @!@!@
+TLC cannot handle the temporal formula because it exceeds the maximum supported size in disjunctive normal form.
+@!@!@ENDMSG 2213 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

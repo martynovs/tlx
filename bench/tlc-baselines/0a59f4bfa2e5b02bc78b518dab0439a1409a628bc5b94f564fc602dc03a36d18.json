@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "867a60bff96b9fa85c210d7cb6cc7aad89187377c2e8143d9e34c44d6bd91d62",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Chameneos/Chameneos",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "867a60bff96b9fa85c210d7cb6cc7aad89187377c2e8143d9e34c44d6bd91d62",
+    "counts": {
+      "depth": 13,
+      "distinct": 34534,
+      "generated": 104697,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:04:20",
+    "id": "5b311a10815b9eb4fe92499f",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 3.97,
+      "instructions": null,
+      "rss_mib": 322.5,
+      "wall_s": 1.087
+    },
+    "mode": "-tlc",
+    "model": "Chameneos/Chameneos",
+    "provenance": {
+      "adoption": {
+        "content_digest": "867a60bff96b9fa85c210d7cb6cc7aad89187377c2e8143d9e34c44d6bd91d62",
+        "matched_counts": {
+          "depth": 13,
+          "distinct": 34534,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Chameneos/Chameneos/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/0a59f4bfa2e5b02bc78b518dab0439a1409a628bc5b94f564fc602dc03a36d18.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        3.97
+      ],
+      "wall_s": [
+        1.087
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "fb91ddb8c6b9d5f02fc74a550d3793d531ab57929fb5a7dbd390157a4ad04195",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "GermanProtocol/MCGermanControl",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "fb91ddb8c6b9d5f02fc74a550d3793d531ab57929fb5a7dbd390157a4ad04195",
+    "counts": {
+      "depth": 19,
+      "distinct": 735,
+      "generated": 1946,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:05:19",
+    "id": "1fd991847ed22906550cffe3",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.09,
+      "instructions": null,
+      "rss_mib": 193.7,
+      "wall_s": 0.539
+    },
+    "mode": "-tlc",
+    "model": "GermanProtocol/MCGermanControl",
+    "provenance": {
+      "adoption": {
+        "content_digest": "fb91ddb8c6b9d5f02fc74a550d3793d531ab57929fb5a7dbd390157a4ad04195",
+        "matched_counts": {
+          "depth": 19,
+          "distinct": 735,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/GermanProtocol/MCGermanControl/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/7dad4d24f612ab470425d1616aaa29916a244d9d80873ffd0d13e4fb3703847e.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.09
+      ],
+      "wall_s": [
+        0.539
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "f8411f7f55c9eee9a9c04511fae29fa6d19032107f1c362c61ef17b5cdc4a549",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "YoYo/MCYoYoPruning",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "f8411f7f55c9eee9a9c04511fae29fa6d19032107f1c362c61ef17b5cdc4a549",
+    "counts": {
+      "depth": 31,
+      "distinct": 102,
+      "generated": 157,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:18:47",
+    "id": "6e0401fa7ea0ce570dac6790",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 3.374,
+      "instructions": null,
+      "rss_mib": 242.9,
+      "wall_s": 0.782
+    },
+    "mode": "-tlc",
+    "model": "YoYo/MCYoYoPruning",
+    "provenance": {
+      "adoption": {
+        "content_digest": "f8411f7f55c9eee9a9c04511fae29fa6d19032107f1c362c61ef17b5cdc4a549",
+        "matched_counts": {
+          "depth": 31,
+          "distinct": 102,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/YoYo/MCYoYoPruning/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/a2b51e82d497cb18d4f3beb5c53c36cc30db338f37742d250d03c66f9d815618.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        3.374
+      ],
+      "wall_s": [
+        0.782
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

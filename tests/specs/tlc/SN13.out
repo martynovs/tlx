@@ -1,0 +1,74 @@
+# exit 255
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 969713758593750084 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/SN13.tla
+Parsing file <tmp>/Integers.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Integers.tla)
+Parsing file <tmp>/Bags.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Bags.tla)
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Bags
+Semantic processing of module SN13
+Linting of module SN13
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2266:1 @!@!@
+The first argument of BagOfAll should be an operator, but instead it is:
+2
+@!@!@ENDMSG 2266 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ b = (-2 :> 1)
+/\ n = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 10, col 9 to line 12, col 97 of module SN13>
+/\ b = (-1 :> 1)
+/\ n = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 10, column 9 to line 12, column 97 in SN13
+1. Line 10, column 12 to line 10, column 16 in SN13
+2. Line 11, column 12 to line 11, column 21 in SN13
+3. Line 12, column 12 to line 12, column 97 in SN13
+4. Line 12, column 17 to line 12, column 97 in SN13
+5. Line 12, column 66 to line 12, column 97 in SN13
+
+
+@!@!@ENDMSG 2103 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(2) at <date>: 2 states generated (<rate> s/min), 2 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+2 states generated, 2 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 2.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

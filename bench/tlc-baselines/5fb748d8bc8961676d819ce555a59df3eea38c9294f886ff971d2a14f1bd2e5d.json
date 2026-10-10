@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "de423d0b7f60065a7e10733d3d3e2e8e657d5ca6f5c69b6e8eea1bdfb5ae2cc0",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "byihive/VoucherIssue",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "de423d0b7f60065a7e10733d3d3e2e8e657d5ca6f5c69b6e8eea1bdfb5ae2cc0",
+    "counts": {
+      "depth": 11,
+      "distinct": 4199,
+      "generated": 26848,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:49:11",
+    "id": "5da5bfbb081867c92c7ab468",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 6.869,
+      "instructions": null,
+      "rss_mib": 408.4,
+      "wall_s": 0.85
+    },
+    "mode": "-tlc",
+    "model": "byihive/VoucherIssue",
+    "provenance": {
+      "adoption": {
+        "content_digest": "de423d0b7f60065a7e10733d3d3e2e8e657d5ca6f5c69b6e8eea1bdfb5ae2cc0",
+        "matched_counts": {
+          "depth": 11,
+          "distinct": 4199,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/byihive/VoucherIssue/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/5fb748d8bc8961676d819ce555a59df3eea38c9294f886ff971d2a14f1bd2e5d.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        6.869
+      ],
+      "wall_s": [
+        0.85
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

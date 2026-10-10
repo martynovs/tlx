@@ -1,0 +1,4 @@
+{
+  "bug": "fixed-expression-regression",
+  "summary": "(LET S2 == Range((1 :> {0})) IN IF \\E x1 \\in S2 : IsInjective((\"a\" :> (-3))) THEN CHOOSE x1 \\in S2 : IsInjective((\"a\" :> (-3))) ELSE {(-1)})"
+}

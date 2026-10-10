@@ -1,0 +1,105 @@
+["bench/ReprRaft"]
+source = "ext/vanlightly-raft/standard-raft-Raft"
+cfg = "bench/repr-configs/Raft.cfg"
+changes = { MaxElections = 1 }
+
+["bench/ReprRaftAddRemove"]
+source = "ext/vanlightly-raft/standard-raft-RaftWithReconfigAddRemove"
+cfg = "bench/repr-configs/RaftAddRemove.cfg"
+changes = {  }
+
+["bench/ReprRaftJoint"]
+source = "ext/vanlightly-raft/standard-raft-RaftWithReconfigJointConsensus"
+cfg = "bench/repr-configs/RaftJoint.cfg"
+changes = { MaxReconfigs = 1, Server = ["n1", "n2", "n3"], InitClusterSize = 2 }
+
+["bench/ReprKRaft"]
+source = "ext/vanlightly-raft/pull-raft-KRaft"
+cfg = "bench/repr-configs/KRaft.cfg"
+changes = { MaxElections = 1 }
+
+["bench/ReprPullRaft"]
+source = "ext/vanlightly-raft/pull-raft-PullRaft"
+cfg = "bench/repr-configs/PullRaft.cfg"
+changes = { MaxElections = 1 }
+
+["bench/ReprRaftFsync"]
+source = "ext/vanlightly-raft/raft-and-fsync-RaftFsync"
+cfg = "bench/repr-configs/RaftFsync.cfg"
+changes = { MaxElections = 1 }
+
+["bench/ReprCCFSingle"]
+source = "ext/ccf/MCSingleNode"
+cfg = "bench/repr-configs/CCFSingle.cfg"
+changes = { HistoryLimit = 4 }
+
+["bench/ReprCCFMulti"]
+source = "ext/ccf/MCMultiNode"
+cfg = "bench/repr-configs/CCFMulti.cfg"
+changes = { HistoryLimit = 4, ViewLimit = 2 }
+
+["bench/ReprCCFReads"]
+source = "ext/ccf/MCMultiNodeReads"
+cfg = "bench/repr-configs/CCFReads.cfg"
+changes = { HistoryLimit = 4, ViewLimit = 2 }
+
+["bench/ReprCCFMedium"]
+source = "ext/ccf/MCMultiNodeReadsNotLinearizable"
+cfg = "bench/repr-configs/CCFMedium.cfg"
+changes = { HistoryLimit = 5, ViewLimit = 2 }
+
+["bench/ReprMoveRange"]
+source = "ext/mongo/MCMoveRange"
+cfg = "bench/repr-configs/MoveRange.cfg"
+changes = { MIGRATIONS = 1 }
+
+["bench/ReprMongoReconfig"]
+source = "ext/mongo/MCMongoReplReconfig"
+cfg = "bench/repr-configs/MongoReconfig.cfg"
+changes = { MaxTerm = 2, MaxConfigVersion = 2, MaxCommittedEntries = 2, MaxLogLen = 1 }
+
+["bench/ReprRaftMongo"]
+source = "ext/mongo/MCRaftMongo"
+cfg = "bench/repr-configs/RaftMongo.cfg"
+changes = { MaxTerm = 2, MaxLogLen = 2, MaxClientWriteSize = 1 }
+
+["bench/ReprAccordKeys"]
+source = "ext/cassandra/Accord_baseline__keys_only"
+cfg = "bench/repr-configs/AccordKeys.cfg"
+changes = { NumTasks = 2 }
+
+["bench/ReprAccordChain"]
+source = "ext/cassandra/Accord_baseline__deep_chain"
+cfg = "bench/repr-configs/AccordChain.cfg"
+changes = { NumTasks = 3 }
+
+["bench/ReprAccordLoad"]
+source = "ext/cassandra/Accord_baseline_load__keys_only"
+cfg = "bench/repr-configs/AccordLoad.cfg"
+changes = { NumTasks = 2 }
+
+["bench/ReprZab"]
+source = "ext/alpha-zk/MC_tlx_Zab_new"
+cfg = "bench/repr-configs/Zab.cfg"
+changes = { MaxTransactionNum = 1, MaxRestarts = 0, MaxTimeoutFailures = 0 }
+wrapper = "bench/repr-configs/ReprZab.tla"
+
+["bench/ReprPaxosCommit"]
+source = "transaction_commit/PaxosCommit"
+cfg = "bench/repr-configs/ReprPaxosCommit.cfg"
+changes = { Ballot = [0] }
+
+["bench/ReprBakery"]
+source = "Bakery-Boulangerie/MCBakery"
+cfg = "bench/repr-configs/Bakery.cfg"
+changes = { MaxNat = 1, N = 1 }
+
+["bench/ReprLamportMutex"]
+source = "lamport_mutex/MCLamportMutex"
+cfg = "bench/repr-configs/LamportMutex.cfg"
+changes = { maxClock = 3 }
+
+["bench/ReprKVS"]
+source = "KeyValueStore/MCKVSSafetySmall"
+cfg = "bench/repr-configs/KVS.cfg"
+changes = { TxId = ["t1", "t2"] }

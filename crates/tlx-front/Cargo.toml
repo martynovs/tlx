@@ -1,0 +1,15 @@
+[package]
+name = "tlx-front"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tree-sitter = "0.27.0"
+tree-sitter-tlaplus = "1.5.0"
+
+[dev-dependencies]
+tlx-testkit.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,14 @@
+[package]
+name = "tlx-live"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tlx-base.workspace = true
+
+[dev-dependencies]
+tlx-testkit.workspace = true
+
+[lints]
+workspace = true

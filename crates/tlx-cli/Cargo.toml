@@ -1,0 +1,36 @@
+[package]
+name = "tlx-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "tlx"
+path = "src/main.rs"
+
+[dependencies]
+tlx-base.workspace = true
+tlx-front.workspace = true
+tlx-sema.workspace = true
+tlx-eval.workspace = true
+tlx-runtime.workspace = true
+tlx-compile.workspace = true
+tlx-live.workspace = true
+tlx-value.workspace = true
+mimalloc = "0.1.52"
+libc = "0.2"
+
+[features]
+# Cranelift backend (`TLX_JIT`, docs/design.md §6.6); on by default. The
+# `tlx-compile` dependency is taken without its defaults, so this feature is
+# what enables it here (a feature off the workspace turns it off everywhere).
+default = ["jit"]
+jit = ["tlx-compile/jit"]
+# -stats hooks compiled out (measuring their cost; `tlx -stats` reports nothing).
+no-stats = ["tlx-runtime/no-stats"]
+
+[dev-dependencies]
+tlx-testkit.workspace = true
+
+[lints]
+workspace = true

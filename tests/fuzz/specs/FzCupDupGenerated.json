@@ -1,0 +1,5 @@
+{
+ "bug": "compiled-cup-duplicates",
+ "found": "fuzz_spec seed 8 (F8_15), minimized by fuzz_spec's shrinker",
+ "summary": "x' \\in (S \\X T) \\cup {x} where x is in S \\X T: TLC and the interpreter enumerate the duplicate twice (3 generated states), the compiled tier once (2); TLX_PARANOID reports the successor lists differing"
+}

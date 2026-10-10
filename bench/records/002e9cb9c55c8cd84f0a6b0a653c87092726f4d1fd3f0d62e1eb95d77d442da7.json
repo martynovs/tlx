@@ -1,0 +1,122 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "d15d19d8de3f86c7cf0602d013435726744e85d0ba516923b53a162bd8d95c71",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "ext/vanlightly-kafka/kafka_replication_v3_5",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": null,
+    "category": [
+      "external",
+      "compiled",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "d15d19d8de3f86c7cf0602d013435726744e85d0ba516923b53a162bd8d95c71",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "skipped"
+    },
+    "date": "2026-10-11 07:21:34",
+    "id": "7605b3ef550248a9be5c19e4",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": null,
+      "instructions": null,
+      "rss_mib": null,
+      "wall_s": null
+    },
+    "mode": "-compile",
+    "model": "ext/vanlightly-kafka/kafka_replication_v3_5",
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-4.json#/runs/huge:ext/vanlightly-kafka/kafka_replication_v3_5:compile:16w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 0,
+        "requested": 3
+      },
+      "source": "bench/records/002e9cb9c55c8cd84f0a6b0a653c87092726f4d1fd3f0d62e1eb95d77d442da7.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "external"
+      ],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "completed_samples": 0,
+      "content_digest": "d15d19d8de3f86c7cf0602d013435726744e85d0ba516923b53a162bd8d95c71",
+      "count_problems": [],
+      "cpu": [],
+      "depth": null,
+      "distinct": null,
+      "env": null,
+      "generated": null,
+      "instructions": [],
+      "load": [
+        1.06,
+        1.06
+      ],
+      "median": 0,
+      "min": 0,
+      "mode": "compile",
+      "model": "ext/vanlightly-kafka/kafka_replication_v3_5",
+      "result": "skipped",
+      "rss_mib": [],
+      "samples": [],
+      "skipped": "sample timeout",
+      "tier": "huge",
+      "tlc_1w_s": 102.5,
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 1641.505,
+          "maxrss_mib": 736.4,
+          "result": "timeout",
+          "wall_s": 1800
+        }
+      ],
+      "workers": 16
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [],
+      "wall_s": []
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 16
+  },
+  "schema_version": 2
+}

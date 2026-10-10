@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "e5e8917bbef1f44382c12bc734eee6bbb565eaf982106f6ea770d4bba213a983",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "nbacc_ray97/nbacc_ray97",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "e5e8917bbef1f44382c12bc734eee6bbb565eaf982106f6ea770d4bba213a983",
+    "counts": {
+      "depth": 7,
+      "distinct": 3016,
+      "generated": 49592,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:25:19",
+    "id": "7028d83294d0207eb6e3078b",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.302,
+      "instructions": null,
+      "rss_mib": 261.9,
+      "wall_s": 0.668
+    },
+    "mode": "-tlc",
+    "model": "nbacc_ray97/nbacc_ray97",
+    "provenance": {
+      "adoption": {
+        "content_digest": "e5e8917bbef1f44382c12bc734eee6bbb565eaf982106f6ea770d4bba213a983",
+        "matched_counts": {
+          "depth": 7,
+          "distinct": 3016,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/nbacc_ray97/nbacc_ray97/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/b568e5175acaa57148afdeb75ca826aac858c67e80914be65817f75c433c8c3b.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.302
+      ],
+      "wall_s": [
+        0.668
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

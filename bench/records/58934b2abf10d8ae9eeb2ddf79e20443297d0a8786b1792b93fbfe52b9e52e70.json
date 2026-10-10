@@ -1,0 +1,206 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "37f214868efc4d2f5180ea05f4c30561eb207faaa352c7f5a773d01be8db0fbc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "ewd998/AsyncTerminationDetection",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "a17f5997fc843d70f422b38e",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "37f214868efc4d2f5180ea05f4c30561eb207faaa352c7f5a773d01be8db0fbc",
+    "counts": {
+      "depth": 14,
+      "distinct": 4097,
+      "generated": 53271,
+      "result": "success"
+    },
+    "date": "2026-10-11 04:55:45",
+    "evaluations": 208326,
+    "fully_native": 208326,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "9fb10a0f83f986dac96bc46c",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.092,
+      "instructions": 595404159,
+      "rss_mib": 38.7,
+      "wall_s": 0.092
+    },
+    "mode": "default",
+    "model": "ewd998/AsyncTerminationDetection",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-3.json#/runs/small:ewd998/AsyncTerminationDetection:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/58934b2abf10d8ae9eeb2ddf79e20443297d0a8786b1792b93fbfe52b9e52e70.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "37f214868efc4d2f5180ea05f4c30561eb207faaa352c7f5a773d01be8db0fbc",
+      "count_problems": [],
+      "cpu": [
+        0.092,
+        0.095,
+        0.092
+      ],
+      "depth": 14,
+      "distinct": 4097,
+      "env": null,
+      "generated": 53271,
+      "instructions": [
+        595404777,
+        595404159,
+        595403021
+      ],
+      "load": [
+        1.0,
+        1.0
+      ],
+      "median": 0.092,
+      "min": 0.092,
+      "mode": "default",
+      "model": "ewd998/AsyncTerminationDetection",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 208326,
+        "fully_native": 208326,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 0.055494
+      },
+      "result": "success",
+      "rss_mib": [
+        38.7,
+        38.6,
+        38.8
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.092,
+          "depth": 14,
+          "distinct": 4097,
+          "generated": 53271,
+          "maxrss_mib": 38.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.092
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.095,
+          "depth": 14,
+          "distinct": 4097,
+          "generated": 53271,
+          "maxrss_mib": 38.6,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.095
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.092,
+          "depth": 14,
+          "distinct": 4097,
+          "generated": 53271,
+          "maxrss_mib": 38.8,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.092
+        }
+      ],
+      "tier": "small",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.092,
+        0.095,
+        0.092
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.269,
+          "depth": 14,
+          "distinct": 4097,
+          "generated": 53271,
+          "maxrss_mib": 96.3,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 208326,
+            "fully_native": 208326,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 0.055494
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.268
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.092,
+        0.095,
+        0.092
+      ],
+      "wall_s": [
+        0.092,
+        0.095,
+        0.092
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.055494,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

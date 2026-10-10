@@ -1,0 +1,6 @@
+{
+ "bug": "compiled-incomparable-equality",
+ "found": "cloud campaign seed 129747164 (F129747164_1586), minimized by fuzz_spec's shrinker",
+ "summary": "0 # v1 with v1 = (m2 :> -1): TLC and the interpreter report 'Attempted to check equality of integer 0 with non-integer', the compiled tier evaluates it to TRUE",
+ "variant": "F129747164_1586"
+}

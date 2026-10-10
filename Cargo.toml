@@ -1,0 +1,54 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+tlx-front = { path = "crates/tlx-front" }
+tlx-sema = { path = "crates/tlx-sema" }
+tlx-value = { path = "crates/tlx-value" }
+tlx-eval = { path = "crates/tlx-eval" }
+tlx-runtime = { path = "crates/tlx-runtime" }
+tlx-layout = { path = "crates/tlx-layout" }
+# Without the defaults: `cargo check --workspace --no-default-features` must
+# really build every crate without the JIT (2026-10-07: the JIT-less build of
+# `tlx-compile` had rotted, and no command compiled it). `tlx-cli` turns the
+# JIT back on with its own default feature, `tlx-testkit` with `jit`.
+tlx-compile = { path = "crates/tlx-compile", default-features = false }
+tlx-native = { path = "crates/tlx-native" }
+tlx-live = { path = "crates/tlx-live" }
+tlx-testkit = { path = "crates/tlx-testkit" }
+tlx-base = { path = "crates/tlx-base" }
+
+# The lint set is declared once here; every crate opts in with `[lints]
+# workspace = true`. Default levels, minus the deliberate allows below.
+# `cargo clippy --workspace --release --all-targets` must report 0 warnings
+# (scripts/verify.py gates on it).
+[workspace.lints.rust]
+
+[workspace.lints.clippy]
+# Tuple/Option/Vec-of-closure types in the lowering and runtime plumbing read
+# better inline than behind a dozen one-use aliases.
+type_complexity = "allow"
+
+[profile.release]
+debug = 1
+codegen-units = 1
+lto = "thin"
+
+# The fast profile of the inner loop: release optimizations without the slow
+# steps (LTO, one codegen unit) and with incremental compilation. `cargo test
+# --profile test-release` and the correctness scripts (spectest, difftest, ...:
+# scripts/tlxlib.py build_tlx) build target/test-release/tlx with it; a
+# one-line change in tlx-eval rebuilds in ~3 s instead of ~90 s with
+# --release (docs/testing.md §3). Benchmarks and the build gate use release.
+[profile.test-release]
+inherits = "release"
+lto = false
+codegen-units = 16
+incremental = true
+debug = "line-tables-only"

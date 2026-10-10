@@ -1,0 +1,124 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -1787113776500741847 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/CMP75Rec.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Parsing file <tmp>/FiniteSets.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file <tmp>/Sequences.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Sequences.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module CMP75Rec
+Linting of module CMP75Rec
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant Inv is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ msgs = {}
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <SendH(h1) line 15, col 13 to line 15, col 73 of module CMP75Rec>
+/\ msgs = {[type |-> "P", vh |-> h1]}
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <SendH(h2) line 15, col 13 to line 15, col 73 of module CMP75Rec>
+/\ msgs = {[type |-> "P", vh |-> h1], [type |-> "P", vh |-> h2]}
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <SendH(h3) line 15, col 13 to line 15, col 73 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3] }
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <SendI(i1) line 16, col 13 to line 16, col 73 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3],
+  [type |-> "P", vi |-> i1] }
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <SendI(i2) line 16, col 13 to line 16, col 73 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3],
+  [type |-> "P", vi |-> i1],
+  [type |-> "P", vi |-> i2] }
+/\ got = {}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Rcv(h1,i1) line 19, col 3 to line 23, col 19 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3],
+  [type |-> "P", vi |-> i1],
+  [type |-> "P", vi |-> i2] }
+/\ got = {h1, i1}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Rcv(h2,i1) line 19, col 3 to line 23, col 19 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3],
+  [type |-> "P", vi |-> i1],
+  [type |-> "P", vi |-> i2] }
+/\ got = {h1, h2, i1}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Rcv(h3,i2) line 19, col 3 to line 23, col 19 of module CMP75Rec>
+/\ msgs = { [type |-> "P", vh |-> h1],
+  [type |-> "P", vh |-> h2],
+  [type |-> "P", vh |-> h3],
+  [type |-> "P", vi |-> i1],
+  [type |-> "P", vi |-> i2] }
+/\ got = {h1, h2, h3, i1, i2}
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(9) at <date>: 850 states generated (<rate> s/min), 126 distinct states found (<rate> ds/min), 14 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+850 states generated, 126 distinct states found, 14 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 9.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

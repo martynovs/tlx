@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "1ba3cfc27083618a132725f52a0fce7a60162f67f84992427321ca2e2ac9b17a",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Bakery-Boulangerie/MCBakery",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "1ba3cfc27083618a132725f52a0fce7a60162f67f84992427321ca2e2ac9b17a",
+    "counts": {
+      "depth": 1,
+      "distinct": 655200,
+      "generated": 3403584,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:04:15",
+    "id": "7e280a031d44bd950fafb910",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 25.095,
+      "instructions": null,
+      "rss_mib": 2248.1,
+      "wall_s": 6.825
+    },
+    "mode": "-tlc",
+    "model": "Bakery-Boulangerie/MCBakery",
+    "provenance": {
+      "adoption": {
+        "content_digest": "1ba3cfc27083618a132725f52a0fce7a60162f67f84992427321ca2e2ac9b17a",
+        "matched_counts": {
+          "depth": 1,
+          "distinct": 655200,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Bakery-Boulangerie/MCBakery/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/89e1688dd822a48a1e96186885b2c177482f0dd068fef71f69f6ef91a6f1994e.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        25.095
+      ],
+      "wall_s": [
+        6.825
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

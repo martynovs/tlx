@@ -1,0 +1,260 @@
+{
+ "_comment": [
+  "Known failures for scripts/verify.py (see its docstring for the matching rules). Every other failure is a",
+  "regression. 'flaky': may pass too; 'result': only failures where tlx reported this result kind match."
+ ],
+ "expected_failures": [
+  {
+   "suite": "corpus-*",
+   "id": "SpanningTree/SpanTreeRandom",
+   "flaky": true,
+   "reason": "RandomElement at constant level: TLC's default seed is random, so its graph (and counts) differ from run to run"
+  },
+  {
+   "suite": "corpus-*-w8",
+   "id": "DieHard/MCDieHardest",
+   "reason": "the spec ASSUMEs a single TLC worker"
+  },
+  {
+   "suite": "corpus-*-w8",
+   "id": "ext/etcd-raft/Traceetcdraft*",
+   "reason": "the trace validation spec ASSUMEs a single TLC worker (its TraceMatched property needs one)"
+  },
+  {
+   "suite": "corpus-*-w8",
+   "id": "ext/ccf/TraceMultiNodeReads_*",
+   "reason": "the trace validation spec ASSUMEs a single TLC worker"
+  },
+  {
+   "suite": "corpus-*-w8",
+   "id": "KnuthYao/SimKnuthYao",
+   "reason": "POSTCONDITION reads worker-0 registers; TLC fails too with several workers"
+  },
+  {
+   "suite": "corpus-*",
+   "id": "KnuthYao/SimKnuthYao",
+   "result": "error",
+   "flaky": true,
+   "reason": "the POSTCONDITION's Statistics!ChiSquare(..., \"0.2\") test rejects the generated sample in some runs (tlx evaluates it for real; TLC fails 1 run in 3 too)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "CheckpointCoordination/MCCheckpointCoordination",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "Bakery-Boulangerie/MCBoulanger",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "SlushProtocol/SlushMedium",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "cf1s-folklore/cf1s_folklore",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "KeyValueStore/MCKVSSafetySmall",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-interp*",
+   "id": "transaction_commit/PaxosCommit",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "interpreter-speed tiers (interpreter): timeout on the slowest models (more under load)"
+  },
+  {
+   "suite": "corpus-paranoid",
+   "id": "CheckpointCoordination/MCCheckpointCoordination",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "paranoid mode also runs the interpreter on every state: over 600 s"
+  },
+  {
+   "suite": "corpus-paranoid",
+   "id": "Bakery-Boulangerie/MCBoulanger",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "paranoid mode also runs the interpreter on every state: ~430 s on the M-series host, over 600 s on slower machines (cloud arm64 at -j 63)"
+  },
+  {
+   "suite": "corpus-paranoid",
+   "id": "SlushProtocol/SlushMedium",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "paranoid mode also runs the interpreter on every state (9.9M states): 580 s of the 600 s limit on cloud arm64 at -j 63 with native code (69 s without paranoid); an older run with the IR executor instead of C (the since-removed TLX_IR_INTERP=1) exceeded 600 s"
+  },
+  {
+   "suite": "spectest*-w8",
+   "id": "LZT1",
+   "flaky": true,
+   "reason": "with several workers, which of the level's two errors (the tableau predicate's \\div by 0, the invariant) is found first depends on timing; on main e730267 too (6 of 10 runs report the \\div error)"
+  },
+  {
+   "suite": "corpus-ext*-w8",
+   "id": "ext/pragmatic/specjuniorv1",
+   "flaky": true,
+   "reason": "two invariants are violated in the same BFS level: with several workers the one reported depends on the schedule (TLC -workers 8 reports either too)"
+  },
+  {
+   "suite": "corpus-ext-paranoid",
+   "id": "ext/mongo-repl-models/1_LearnCommitPointFromSyncSource_5_node_noinv",
+   "result": "timeout",
+   "flaky": true,
+   "reason": "paranoid mode also evaluates every state in the interpreter: slower than the suite's timeout on a busy machine"
+  },
+  {
+   "suite": "corpus-ext-large",
+   "id": "ext/neon/MCProposerAcceptor*",
+   "flaky": true,
+   "reason": "SYMMETRY: TLC with several workers reports different distinct counts from run to run (t3_l3: 17,936,089 and 17,936,128; c5: 46,952,133 and 46,952,052) and depth 48 where tlx -workers 16 reports 17,935,823 and depth 47; the multi-worker oracle is no exact reference (a 1-worker TLC run would settle it)"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzEmptyFcnExcept/paranoid",
+   "reason": "compiled-tier difference found by fuzz_spec (docs/compat.md D-13 family): an empty function built over {} is decoded as <<>>, so EXCEPT with a string key fails ('non integral index') where TLC leaves it unchanged"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorCounts/interp",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorCounts/compile",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorCounts/paranoid",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorCounts/recover",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorStats/interp",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorStats/compile",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorStats/paranoid",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorStats/recover",
+   "reason": "D-27: TLC diagnostic doInit(true) reuses its FPSet after an initial liveness error, changing counts or replacing the first error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzTlcActionTraceShort/interp",
+   "reason": "D-28: TLC diagnostic reconstruction aborts on another branch; TLC's action-property counterexample lacks the violating successor; tlx prints both states, so the trace lengths differ"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzTlcActionTraceShort/compile",
+   "reason": "D-28: TLC diagnostic reconstruction aborts on another branch; TLC's action-property counterexample lacks the violating successor; tlx prints both states, so the trace lengths differ"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzTlcActionTraceShort/paranoid",
+   "reason": "D-28: TLC diagnostic reconstruction aborts on another branch; TLC's action-property counterexample lacks the violating successor; tlx prints both states, so the trace lengths differ"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzTlcActionTraceShort/recover",
+   "reason": "D-28: TLC diagnostic reconstruction aborts on another branch; TLC's action-property counterexample lacks the violating successor; tlx prints both states, so the trace lengths differ"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLivePredErrorStats/w4",
+   "reason": "D-27: TLC diagnostic replay replaces the first liveness evaluation error with an invariant violation; tlx preserves the first error"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLiteralConstView/interp",
+   "reason": "D-29: TLC skips constant VIEW validation for a literal; tlx consistently rejects pure constant VIEW definitions"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLiteralConstView/compile",
+   "reason": "D-29: TLC skips constant VIEW validation for a literal; tlx consistently rejects pure constant VIEW definitions"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLiteralConstView/paranoid",
+   "reason": "D-29: TLC skips constant VIEW validation for a literal; tlx consistently rejects pure constant VIEW definitions"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLiteralConstView/w4",
+   "reason": "D-29: TLC skips constant VIEW validation for a literal; tlx consistently rejects pure constant VIEW definitions"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzLiteralConstView/recover",
+   "reason": "D-29: TLC skips constant VIEW validation for a literal; tlx consistently rejects pure constant VIEW definitions"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzHeterogeneousDifference/*",
+   "result": "success",
+   "reason": "D-31 (extends D-18): record, tuple and function values compare by domain and values; TLC rejects them depending on representation and normalization order"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzHeterogeneousFilterEquality/*",
+   "result": "success",
+   "reason": "D-31 (extends D-18): record, tuple and function values compare by domain and values; TLC rejects them depending on representation and normalization order"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzHeterogeneousInitialFingerprint/*",
+   "result": "success",
+   "reason": "D-31 (extends D-18): record, tuple and function values compare by domain and values; TLC rejects them depending on representation and normalization order"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzHeterogeneousSetConstruction/*",
+   "result": "success",
+   "reason": "D-31 (extends D-18): record, tuple and function values compare by domain and values; TLC rejects them depending on representation and normalization order"
+  },
+  {
+   "suite": "fuzz*",
+   "id": "replay/FzHeterogeneousUnion/*",
+   "result": "success",
+   "reason": "D-31 (extends D-18): record, tuple and function values compare by domain and values; TLC rejects them depending on representation and normalization order"
+  },
+  {
+   "suite": "spec*",
+   "id": "SN21",
+   "result": "deadlock",
+   "reason": "D-31: functions on distinct integer/string domains are unequal; TLC reports a representation-dependent comparison error"
+  }
+ ]
+}

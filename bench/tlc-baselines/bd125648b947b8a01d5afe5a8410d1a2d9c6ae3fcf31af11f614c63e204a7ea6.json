@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "4500f7411e769d3d7e8c0fcb66d85e79a717905773e9553c9ee0dfba7bdb6931",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "MultiPaxos-SMR/MultiPaxos_MC_small",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "4500f7411e769d3d7e8c0fcb66d85e79a717905773e9553c9ee0dfba7bdb6931",
+    "counts": {
+      "depth": 28,
+      "distinct": 343796,
+      "generated": 736012,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:46:40",
+    "id": "224ec25db147c9f6ca46b6f1",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 51.285,
+      "instructions": null,
+      "rss_mib": 2807.5,
+      "wall_s": 4.075
+    },
+    "mode": "-tlc",
+    "model": "MultiPaxos-SMR/MultiPaxos_MC_small",
+    "provenance": {
+      "adoption": {
+        "content_digest": "4500f7411e769d3d7e8c0fcb66d85e79a717905773e9553c9ee0dfba7bdb6931",
+        "matched_counts": {
+          "depth": 28,
+          "distinct": 343796,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/MultiPaxos-SMR/MultiPaxos_MC_small/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/bd125648b947b8a01d5afe5a8410d1a2d9c6ae3fcf31af11f614c63e204a7ea6.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        51.285
+      ],
+      "wall_s": [
+        4.075
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

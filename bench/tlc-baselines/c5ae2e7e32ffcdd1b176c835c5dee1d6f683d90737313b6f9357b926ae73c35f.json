@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "025a26c2b939514e7abc77dbf25ff821ed1810d2c6fc8fa6e57f9aaf345a7c3e",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "CheckpointCoordination/MCCheckpointCoordination",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "025a26c2b939514e7abc77dbf25ff821ed1810d2c6fc8fa6e57f9aaf345a7c3e",
+    "counts": {
+      "depth": 29,
+      "distinct": 901692,
+      "generated": 23112567,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:11:45",
+    "id": "2aa3b2ccfa651da0985b6767",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 276.632,
+      "instructions": null,
+      "rss_mib": 2767.8,
+      "wall_s": 257.964
+    },
+    "mode": "-tlc",
+    "model": "CheckpointCoordination/MCCheckpointCoordination",
+    "provenance": {
+      "adoption": {
+        "content_digest": "025a26c2b939514e7abc77dbf25ff821ed1810d2c6fc8fa6e57f9aaf345a7c3e",
+        "matched_counts": {
+          "depth": 29,
+          "distinct": 901692,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/CheckpointCoordination/MCCheckpointCoordination/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/c5ae2e7e32ffcdd1b176c835c5dee1d6f683d90737313b6f9357b926ae73c35f.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        276.632
+      ],
+      "wall_s": [
+        257.964
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

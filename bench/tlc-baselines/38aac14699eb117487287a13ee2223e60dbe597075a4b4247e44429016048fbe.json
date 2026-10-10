@@ -1,0 +1,87 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC_liveliness",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "liveness",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+    "counts": {
+      "depth": 61,
+      "distinct": 14365,
+      "generated": 44581,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:18:39",
+    "id": "5d191235bbca0c0dfb1ab111",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 10.105,
+      "instructions": null,
+      "rss_mib": 1152.9,
+      "wall_s": 1.211
+    },
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC_liveliness",
+    "provenance": {
+      "adoption": {
+        "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+        "matched_counts": {
+          "depth": 61,
+          "distinct": 14365,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Disruptor/MCDisruptor_MPMC_liveliness/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/38aac14699eb117487287a13ee2223e60dbe597075a4b4247e44429016048fbe.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        10.105
+      ],
+      "wall_s": [
+        1.211
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

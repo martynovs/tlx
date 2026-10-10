@@ -1,0 +1,33 @@
+{
+ "diffs": [
+  "paranoid"
+ ],
+ "env": {
+  "TLX_JIT": "1",
+  "TLX_PARANOID": "1"
+ },
+ "features": "vars=mixed/mixed actions=1 heterogeneous=cap nodeadlock",
+ "flags": [
+  "-compile",
+  "-workers",
+  "1"
+ ],
+ "found": "fuzz_spec.py --seed 1 --start 4 --count 1",
+ "mode": "paranoid",
+ "note": " interpreter)\ncompile: IR action properties: 0 lowered; IR nodes 0 (0 boxed, 0 interpreter)\ncompile: native code: 1/1 actions, 0/0 invariants, Init; mixed: 1 functions, 1 regions\ntlx: internal error: TLX_PARANOID: compiled code differs from the interpreter: action A1 on state\n/\\ r = 0\n/\\ vLeft = {}\nthe interpreter fails (Attempted to compare record:\n[a |-> 0, b |-> 1]\nwith non-record\n{}\nline 19, col 14 of module FzHeterogeneousIntersectionParanoid) but compiled code produced 1 successor(s):\n  vLeft = {}, r = {{}, [a |-> 0, b |-> 1]} (crates/tlx-compile/src/enc/model.rs:1404:13)\n",
+ "original_diffs": [
+  "paranoid"
+ ],
+ "shrink_secs": 2,
+ "shrink_tries": 25,
+ "tlc": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 2,
+  "result": "error"
+ },
+ "tlx": {
+  "result": "unknown"
+ },
+ "variant": "F1_4"
+}

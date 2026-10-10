@@ -1,0 +1,55 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -4351358142466098204 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/FzViewInitInvTrace.tla
+Parsing file <tmp>/Integers.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Integers.tla)
+Parsing file <tmp>/Sequences.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Sequences.tla)
+Parsing file <tmp>/FiniteSets.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file <tmp>/TLC.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/TLC.tla)
+Parsing file <tmp>/Bags.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Bags.tla)
+Parsing file <tmp>/FiniteSetsExt.tla (jar:file:<modules.jar>!/FiniteSetsExt.tla)
+Parsing file <tmp>/Functions.tla (jar:file:<modules.jar>!/Functions.tla)
+Parsing file <tmp>/SequencesExt.tla (jar:file:<modules.jar>!/SequencesExt.tla)
+Parsing file <tmp>/Folds.tla (jar:file:<modules.jar>!/Folds.tla)
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Bags
+Semantic processing of module Folds
+Semantic processing of module Functions
+Semantic processing of module FiniteSetsExt
+Semantic processing of module SequencesExt
+Semantic processing of module FzViewInitInvTrace
+Linting of module Folds
+Linting of module Functions
+Linting of module FiniteSetsExt
+Linting of module SequencesExt
+Linting of module FzViewInitInvTrace
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2107:1 @!@!@
+Invariant TypeOK is violated by the initial state:
+/\ v1 = 1
+/\ v2 = (m1 :> 2 @@ m3 :> 3)
+
+@!@!@ENDMSG 2107 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

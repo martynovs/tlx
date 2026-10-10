@@ -1,0 +1,4 @@
+{
+  "bug": "fixed-expression-regression",
+  "summary": "FoldRight(LAMBDA p, q : p - q, <<(-1), 2147483647>>, 0)"
+}

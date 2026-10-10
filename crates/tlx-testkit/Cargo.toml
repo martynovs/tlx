@@ -1,0 +1,65 @@
+[package]
+name = "tlx-testkit"
+description = "Shared helpers for tlx tests (dev-only, not published)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[features]
+default = []
+runtime = ["dep:tlx-runtime"]
+# Representation fixtures: random values of a layout `Shape`, with no model
+# tier at all (no compiler, parser, evaluator or runtime). Without any
+# feature the crate only depends on tlx-base (paths, temporary directories,
+# PRNG) and Unix libc (bounded subprocess management), so that low-level
+# crates can use it cheaply.
+values = ["dep:tlx-layout", "dep:tlx-value"]
+# Interpreter fixtures: loading a spec from a string and running it in the
+# interpreter tier, plus the bounded corpus state sampler. No compiled tier.
+interpreted = ["runtime", "dep:serde_json", "dep:tlx-front", "dep:tlx-sema", "dep:tlx-eval", "dep:tlx-value"]
+# Compiled differential fixtures: the IR-executor vs generated-C harness on
+# encoded states (`values` supplies the random states), with the interpreter
+# as the reference.
+compiled = ["interpreted", "values", "dep:tlx-compile", "dep:tlx-native"]
+# Back-compat aggregate: every model tier (interpreter and compiled).
+models = ["compiled"]
+# The Cranelift JIT as the native tier of the differential harness (TLX_JIT=1);
+# `models` alone is the JIT-less tier (the dependency is taken without defaults).
+jit = ["models", "tlx-compile/jit"]
+
+# Micro-benchmarks of hot paths (src/bin/microbench.rs).
+[[bin]]
+name = "microbench"
+required-features = ["models"]
+
+# Representation round trips over the corpus (`tests/layout_corpus.rs`,
+# `tests/layout_ser_corpus.rs`): they sample states in the interpreter tier and
+# exercise `tlx-layout` value/`Shape`/layout encoding, so they need the
+# interpreter fixtures (`interpreted`) and the `tlx-layout`/`tlx-value`
+# dependencies (`values`), never the compiled tier.
+[[test]]
+name = "layout_corpus"
+required-features = ["interpreted", "values"]
+
+[[test]]
+name = "layout_ser_corpus"
+required-features = ["interpreted", "values"]
+
+[dependencies]
+tlx-base.workspace = true
+serde_json = { version = "1", optional = true }
+tlx-front = { workspace = true, optional = true }
+tlx-sema = { workspace = true, optional = true }
+tlx-value = { workspace = true, optional = true }
+tlx-eval = { workspace = true, optional = true }
+tlx-runtime = { workspace = true, optional = true }
+tlx-layout = { workspace = true, optional = true }
+tlx-compile = { workspace = true, optional = true }
+tlx-native = { workspace = true, optional = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[lints]
+workspace = true

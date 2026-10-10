@@ -1,0 +1,5 @@
+{
+ "bug": "compiled-incomparable-equality",
+ "found": "cloud campaign seed 166632353 (F166632353_5673), minimized by hand",
+ "summary": "{} # (0 :> 3) in an action: TLC and the interpreter report an equality error, the compiled tier evaluates it to TRUE"
+}

@@ -1,0 +1,2 @@
+-simulate num=1 -depth 10 -seed 1
+# deterministic

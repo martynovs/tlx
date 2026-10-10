@@ -1,0 +1,5 @@
+{
+ "bug": "init-eval-error",
+ "found": "fuzz_spec seed 9 (F9_82), minimized by fuzz_spec's shrinker",
+ "summary": "a constant-level INVARIANT whose evaluation fails (Restrict applies (m3 :> 1) outside its domain) with two initial states: TLC's error counts 2 generated states, tlx's 1"
+}

@@ -1,0 +1,94 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -6298806257924601288 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/CMP80Seq.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Parsing file <tmp>/Sequences.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Sequences.tla)
+Parsing file <tmp>/FiniteSets.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/FiniteSets.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module CMP80Seq
+Linting of module CMP80Seq
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant Short is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ rk = (t1 :> {} @@ t2 :> {} @@ t3 :> {})
+/\ store = (k1 :> NoVal @@ k2 :> NoVal @@ k3 :> NoVal)
+/\ ops = (t1 :> <<>> @@ t2 :> <<>> @@ t3 :> <<>>)
+/\ pc = (t1 :> "start" @@ t2 :> "start" @@ t3 :> "start")
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Start(t1) line 20, col 13 to line 23, col 39 of module CMP80Seq>
+/\ rk = (t1 :> {k1, k2, k3} @@ t2 :> {} @@ t3 :> {})
+/\ store = (k1 :> NoVal @@ k2 :> NoVal @@ k3 :> NoVal)
+/\ ops = (t1 :> <<>> @@ t2 :> <<>> @@ t3 :> <<>>)
+/\ pc = (t1 :> "read" @@ t2 :> "start" @@ t3 :> "start")
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Read(t1) line 25, col 12 to line 28, col 37 of module CMP80Seq>
+/\ rk = (t1 :> {k1, k2, k3} @@ t2 :> {} @@ t3 :> {})
+/\ store = (k1 :> NoVal @@ k2 :> NoVal @@ k3 :> NoVal)
+/\ ops = ( t1 :>
+      << [op |-> "read", key |-> k1, value |-> NoVal],
+         [op |-> "read", key |-> k2, value |-> NoVal],
+         [op |-> "read", key |-> k3, value |-> NoVal] >> @@
+  t2 :> <<>> @@
+  t3 :> <<>> )
+/\ pc = (t1 :> "write" @@ t2 :> "start" @@ t3 :> "start")
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Write(t1) line 30, col 13 to line 34, col 27 of module CMP80Seq>
+/\ rk = (t1 :> {k1, k2, k3} @@ t2 :> {} @@ t3 :> {})
+/\ store = (k1 :> t1 @@ k2 :> t1 @@ k3 :> t1)
+/\ ops = ( t1 :>
+      << [op |-> "read", key |-> k1, value |-> NoVal],
+         [op |-> "read", key |-> k2, value |-> NoVal],
+         [op |-> "read", key |-> k3, value |-> NoVal],
+         [op |-> "write", key |-> k1, value |-> t1],
+         [op |-> "write", key |-> k2, value |-> t1],
+         [op |-> "write", key |-> k3, value |-> t1] >> @@
+  t2 :> <<>> @@
+  t3 :> <<>> )
+/\ pc = (t1 :> "done" @@ t2 :> "start" @@ t3 :> "start")
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(4) at <date>: 1,184 states generated (<rate> s/min), 659 distinct states found (<rate> ds/min), 545 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+1184 states generated, 659 distinct states found, 545 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 4.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

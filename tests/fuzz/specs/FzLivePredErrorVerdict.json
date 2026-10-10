@@ -1,0 +1,6 @@
+{
+ "bug": "liveness-eval-error",
+ "found": "cloud campaign seed 129747164 (F129747164_3723), minimized by fuzz_spec's shrinker",
+ "summary": "a liveness predicate fails to evaluate (Restrict(v2, {1}) outside DOMAIN v2) while a step violates [][FALSE]_vars: with one worker TLC reports the action property (it evaluates the liveness predicates later for that state), tlx the evaluation error",
+ "variant": "F129747164_3723"
+}

@@ -1,0 +1,114 @@
+{
+ "_comment": [
+  "Differences between tlx and TLC on TLC's own regression suite (scripts/tlcsuite.py), by case name",
+  "(the JUnit test class). `id` may be a glob, `result` restricts an entry to failures where tlx reported",
+  "that result kind, `flaky` entries may pass too (timeouts under load). Regenerate with",
+  "`scripts/tlcsuite.py --update-expected` and edit the new reasons."
+ ],
+ "expected_failures": [
+  {
+   "id": "CdotWithContextDTest",
+   "result": "init property failure",
+   "reason": "documented difference docs/compat.md D-19 (\\cdot follows the TLA+ definition)"
+  },
+  {
+   "id": "ContinueTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -continue (outside the contract)"
+  },
+  {
+   "id": "DepthFirstDieHardTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -dfid (outside the contract)"
+  },
+  {
+   "id": "DepthFirstErrorTraceTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -dfid (outside the contract)"
+  },
+  {
+   "id": "DepthFirstTerminate",
+   "result": "unknown",
+   "reason": "TLC command-line option -dfid (outside the contract)"
+  },
+  {
+   "id": "DetlefsTest",
+   "result": "timeout",
+   "reason": "tlx's interpreter needs ~40 s CPU (SYMMETRY: canonicalizing every state over 48 permutations dominates; TLC 18 s, tlx -compile 7 s): a timeout under load",
+   "flaky": true
+  },
+  {
+   "id": "DistributedDoInitFunctorInvariantContinueTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -continue (outside the contract)"
+  },
+  {
+   "id": "DoInitFunctorInvariantContinueTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -continue (outside the contract)"
+  },
+  {
+   "id": "ExamplesLiveHourClockTest",
+   "result": "timeout",
+   "reason": "tlx-live's tableau (Automaton::for_negation) for ClockSettles == \\E n \\in 1..12 : <>[](hr = n) grows exponentially with the 12 []<> conjuncts of the negation (12 s, TLC 0.3 s): a timeout under load",
+   "flaky": true
+  },
+  {
+   "id": "Github648Test",
+   "result": "success",
+   "reason": "RandomElement in the spec: counts depend on TLC's random seed (TLC itself varies between runs)",
+   "flaky": true
+  },
+  {
+   "id": "Github757Test",
+   "result": "unknown",
+   "reason": "TLC's -dumpTrace formats of state files (outside the contract)"
+  },
+  {
+   "id": "Github766SimulateTest",
+   "result": "unknown",
+   "reason": "TLC's -dumpTrace formats of state files (outside the contract)"
+  },
+  {
+   "id": "Github766Test",
+   "result": "unknown",
+   "reason": "TLC's -dumpTrace formats of state files (outside the contract)"
+  },
+  {
+   "id": "Github858Test",
+   "result": "unknown",
+   "reason": "TLC error, tlx unknown (Error: Error: more than one input files:  and EWD998.tla)"
+  },
+  {
+   "id": "InvParameterizedATest",
+   "result": "unknown",
+   "reason": "TLC command-line option -invlevel (outside the contract)"
+  },
+  {
+   "id": "JsonTest",
+   "result": "error",
+   "reason": "documented difference docs/compat.md D-21 (ToJsonObject of a sequence built by a function constructor: TLC answers by representation)"
+  },
+  {
+   "id": "PcalPaxosTest",
+   "result": "timeout",
+   "reason": "tlx did not finish in time (TLC: success)",
+   "flaky": true
+  },
+  {
+   "id": "TraceWithLargeSetOfInitialStatesTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -maxSetSize (outside the contract)"
+  },
+  {
+   "id": "UserModuleOverrideTest",
+   "result": "liveness failure",
+   "reason": "a Java class next to the spec (UserModuleOverride.class) overrides Get: tlx cannot run Java code, so it evaluates the TLA+ definition"
+  },
+  {
+   "id": "ViewMapTest",
+   "result": "unknown",
+   "reason": "TLC command-line option -view (outside the contract)"
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+# Layout misses in compiled mode, no states retained: the search starts over.
+# env TLX_PRERUN=1 TLX_RETAIN_MB=0

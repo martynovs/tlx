@@ -1,0 +1,10 @@
+{
+ "bug": "heterogeneous-union-comparison",
+ "summary": "Cardinality({[a |-> 1, b |-> 2], <<1>>} \\cup {[a |-> 1, b |-> 2]}) must report the record/non-record comparison error",
+ "tlc": {
+  "result": "error",
+  "generated": 1,
+  "distinct": 1,
+  "depth": 1
+ }
+}

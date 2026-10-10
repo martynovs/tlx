@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "GameOfLife/GameOfLife",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+    "counts": {
+      "depth": 1,
+      "distinct": 65536,
+      "generated": 131072,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:05:17",
+    "id": "d1a8627cb1b86f93cc286f02",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 28.964,
+      "instructions": null,
+      "rss_mib": 2707.9,
+      "wall_s": 2.438
+    },
+    "mode": "-tlc",
+    "model": "GameOfLife/GameOfLife",
+    "provenance": {
+      "adoption": {
+        "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+        "matched_counts": {
+          "depth": 1,
+          "distinct": 65536,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/GameOfLife/GameOfLife/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/b93a9a023ad735a888604ec2132bc7c78fb39bb90269302975cae690d3375388.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        28.964
+      ],
+      "wall_s": [
+        2.438
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

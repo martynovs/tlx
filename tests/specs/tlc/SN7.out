@@ -1,0 +1,50 @@
+# exit 75
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -7291773111357660898 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/SN7.tla
+Semantic processing of module SN7
+Linting of module SN7
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 1000:1 @!@!@
+Attempted to compare equality of boolean FALSE with non-boolean:
+{}
+@!@!@ENDMSG 1000 @!@!@
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 7, column 9 to line 7, column 42 in SN7
+1. Line 7, column 9 to line 7, column 27 in SN7
+2. Line 7, column 9 to line 7, column 17 in SN7
+3. Line 7, column 22 to line 7, column 27 in SN7
+4. Line 7, column 32 to line 7, column 42 in SN7
+5. Line 7, column 37 to line 7, column 41 in SN7
+
+
+@!@!@ENDMSG 2103 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(1) at <date>: 0 states generated (<rate> s/min), 0 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+0 states generated, 0 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 0.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

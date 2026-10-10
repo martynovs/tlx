@@ -1,0 +1,4 @@
+{
+ "bug": "heterogeneous-lazy-membership",
+ "summary": "TLC membership matches 0 before comparing a record; tlx eagerly compares set elements and errors"
+}

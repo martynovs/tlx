@@ -1,0 +1,8 @@
+# Pin the compiler so that every machine (dev laptops, CI, the cloud
+# verification instance) builds with the same rustc: a newer release may warn
+# where this one does not, and the build gate treats any warning as an error.
+# scripts/cloud_verify.py reads this file for the toolchain it installs.
+[toolchain]
+channel = "1.93.0"
+profile = "minimal"
+components = ["rustfmt", "clippy"]

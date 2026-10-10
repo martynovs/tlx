@@ -1,0 +1,204 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "e94b98857212b944451d8a9f8482cf83d8a2d58ea91dedce1d90ca6ddda697fe",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "MisraReachability/MCReachabilityTestAllGraphs",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "19c4889e3de38a771c687547",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "e94b98857212b944451d8a9f8482cf83d8a2d58ea91dedce1d90ca6ddda697fe",
+    "counts": {
+      "depth": 0,
+      "distinct": 0,
+      "generated": 0,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 0,
+    "fully_native": 0,
+    "host_calls": 0,
+    "host_s": 0,
+    "id": "1c3c31a79e9f420014c56415",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.19,
+      "instructions": 1550775463,
+      "rss_mib": 49.0,
+      "wall_s": 0.19
+    },
+    "mode": "default",
+    "model": "MisraReachability/MCReachabilityTestAllGraphs",
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:MisraReachability/MCReachabilityTestAllGraphs:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/c5956c928717e54da06747e95739250b09fe548c50e2e6912afa0fae426023f7.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "e94b98857212b944451d8a9f8482cf83d8a2d58ea91dedce1d90ca6ddda697fe",
+      "count_problems": [],
+      "cpu": [
+        0.189,
+        0.19,
+        0.19
+      ],
+      "depth": 0,
+      "distinct": 0,
+      "env": null,
+      "generated": 0,
+      "instructions": [
+        1550775211,
+        1550775463,
+        1550777042
+      ],
+      "load": [
+        1.0,
+        1.0
+      ],
+      "median": 0.19,
+      "min": 0.189,
+      "mode": "default",
+      "model": "MisraReachability/MCReachabilityTestAllGraphs",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 0,
+        "fully_native": 0,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": null,
+        "native_share": null,
+        "search_thread_s_est": 0.0
+      },
+      "result": "success",
+      "rss_mib": [
+        49.0,
+        49.0,
+        49.0
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.189,
+          "depth": 0,
+          "distinct": 0,
+          "generated": 0,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.189
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.19,
+          "depth": 0,
+          "distinct": 0,
+          "generated": 0,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.191
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.19,
+          "depth": 0,
+          "distinct": 0,
+          "generated": 0,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.19
+        }
+      ],
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.189,
+        0.191,
+        0.19
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.183,
+          "depth": 0,
+          "distinct": 0,
+          "generated": 0,
+          "maxrss_mib": 49.0,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 0,
+            "fully_native": 0,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": null,
+            "native_share": null,
+            "search_thread_s_est": 0.0
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.183
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.189,
+        0.19,
+        0.19
+      ],
+      "wall_s": [
+        0.189,
+        0.191,
+        0.19
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.0,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

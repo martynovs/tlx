@@ -1,0 +1,5 @@
+{
+ "bug": "startup-eval-error",
+ "found": "cloud campaign seed 166632353 (F166632353_3925), minimized by fuzz_spec's shrinker",
+ "summary": "a constant subformula of a temporal property fails to evaluate (Restrict applies (-2 :> -1) at 1): TLC reports the error before the search, tlx succeeds (no initial state)"
+}

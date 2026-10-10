@@ -1,0 +1,304 @@
+# tlx
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+**Native-code model checking for TLA+, written in Rust.**
+
+tlx reads TLA+ specifications (`.tla`) and TLC configuration files (`.cfg`), explores their
+reachable states, and checks safety and liveness properties. It compiles models to native code
+and uses an interpreter for expressions or actions it cannot compile. Java is not needed to run it.
+
+The initial benchmark snapshot shows a **9.27× median speedup over TLC in single-worker
+default mode**, across 184 completed configurations with matching TLC baselines.
+
+| Execution mode | Workers | Matched configurations | Median TLC / tlx wall time |
+|---|---:|---:|---:|
+| Default | 1 | 184 | **9.27×** |
+| Compiled | 1 | 51 | **7.30×** |
+| Compiled | 16 | 23 | **11.14×** |
+
+These measurements use Tencent SA5.4XLARGE32 instances (AMD EPYC 9754, 16 vCPU, 32 GB),
+one warm-up and three timed tlx repetitions. Times exclude warm-up; each ratio uses the same
+input, machine class and worker count as its TLC baseline. The mode cohorts differ.
+Incomplete runs and expectation mismatches are excluded. See the
+[full performance report](docs/performance.md) and [initial benchmark issues](docs/issues.md)
+for coverage, slower cases and unresolved results.
+
+The main sources of this performance are:
+
+- **Specialization for each model.** Configuration constants are folded and action instances
+  become dedicated native functions, reducing repeated expression evaluation and dynamic dispatch.
+- **Compact state representations.** Where value shapes permit, flat word arrays, bitsets and
+  specialized collection layouts reduce allocation and make equality and fingerprinting cheaper.
+- **Parallel state-space exploration.** Level-synchronous workers share an atomic fingerprint
+  table, supporting concurrent successor generation and duplicate detection.
+
+The [architecture](docs/design.md) explains these mechanisms and the guarded interpreter fallback.
+The measurements compare complete implementations; they do not isolate each mechanism's contribution.
+
+TLC is the semantic oracle. In TLC-compatible mode (`-tlc`), verdicts, violated names, state counts,
+depth and shortest safety-counterexample length must match the compatibility contract. The default
+mode may use optimizations TLC does not have; it preserves verdicts and the validity of
+counterexamples. [docs/compat.md](docs/compat.md) section 0 owns this distinction and its exceptions.
+
+## Quick start
+
+Supported platforms are macOS arm64 (Apple Silicon) and Linux x86_64 / arm64; Windows is not
+supported. [docs/usage.md](docs/usage.md#1-installation) owns the installation requirements:
+
+- Rust through [rustup](https://rustup.rs); [rust-toolchain.toml](rust-toolchain.toml) pins 1.93.0.
+- A C compiler available as `cc` (clang or gcc; override with `CC`). It builds the tree-sitter
+  dependency and, at run time, generated C code. If the C compiler is unavailable at run time,
+  the default build can keep using the JIT.
+- Java is **not** needed to build or run tlx. Running TLC or SANY for comparison requires Java.
+
+Download or clone these sources, then run from the repository root:
+
+```sh
+cargo build --release                  # binary: target/release/tlx
+export PATH="$PWD/target/release:$PATH" # use this build in the current shell
+# Optional: cargo install --path crates/tlx-cli
+```
+
+The repository includes a three-state cyclic model and its configuration. Check it without
+fetching any test dependencies:
+
+```sh
+tlx check tests/specs/A1.tla
+```
+
+Selected output (startup and timing lines omitted):
+
+```text
+Model checking completed. No error has been found.
+4 states generated, 3 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 3.
+```
+
+To write your own first model, follow the [Counter walkthrough](docs/usage.md#2-first-run):
+a complete module and configuration, a passing run, and then a violated invariant.
+
+### A counterexample
+
+For a larger example, fetch the test dependencies from the repository root:
+
+```sh
+scripts/fetch-deps.sh
+```
+
+This downloads the tlaplus/Examples corpus into `third_party/Examples`, together with TLC and
+module dependencies used by the test scripts. DieHard asks whether the jug puzzle can be solved;
+finding a solution violates its `NotSolved` invariant. These are output excerpts from runs on
+macOS arm64; startup, timing and other progress lines are omitted.
+
+```
+$ cd third_party/Examples/specifications/DieHard
+$ tlx check DieHard.tla
+tlx version 0.1.0
+compile: native code: 6/6 actions, 2/2 invariants, Init
+Error: Invariant NotSolved is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ big = 0
+/\ small = 0
+
+State 2: <FillBigJug line 68, col 18 to line 69, col 34 of module DieHard>
+/\ big = 5
+/\ small = 0
+
+State 3: <BigToSmall line 97, col 15 to line 98, col 48 of module DieHard>
+/\ big = 2
+/\ small = 3
+
+State 4: <EmptySmallJug line 71, col 18 to line 72, col 30 of module DieHard>
+/\ big = 2
+/\ small = 0
+
+State 5: <BigToSmall line 97, col 15 to line 98, col 48 of module DieHard>
+/\ big = 0
+/\ small = 2
+
+State 6: <FillBigJug line 68, col 18 to line 69, col 34 of module DieHard>
+/\ big = 5
+/\ small = 2
+
+State 7: <BigToSmall line 97, col 15 to line 98, col 48 of module DieHard>
+/\ big = 4
+/\ small = 3
+
+73 states generated, 14 distinct states found, 1 states left on queue.
+The depth of the complete state graph search is 7.
+```
+
+This run exits with code 12 (invariant violation). A passing run exits with 0. From the DieHard
+directory, check DiningPhilosophers with 5 philosophers, safety and liveness, on all available cores:
+
+```
+$ cd ../DiningPhilosophers
+$ tlx check DiningPhilosophers.tla -workers auto
+Model checking completed. No error has been found.
+336 states generated, 67 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 29.
+$ cd ../../../..
+```
+
+The last command returns to the repository root.
+
+## Usage essentials
+
+For your own model (`Spec.tla` with `Spec.cfg`), or the user guide's Counter example:
+
+```sh
+tlx check Spec.tla                             # uses Spec.cfg next to Spec.tla (compiled tier)
+tlx check Counter.tla -config Counter-spec.cfg # another configuration file (user guide, section 2)
+tlx check Spec.tla -workers auto               # level-synchronous parallel BFS on all cores
+tlx check Spec.tla -interp                     # the interpreter only (tlx's semantic reference)
+tlx check Spec.tla -tlc                        # TLC-compatible results (counts, depth, traces)
+tlx check Spec.tla -simulate num=100 -depth 50 -seed 1   # random simulation
+tlx check Spec.tla -checkpoint 10 -metadir DIR           # checkpoint every 10 minutes
+tlx check Spec.tla -recover DIR                          # continue an interrupted run
+tlx check Spec.tla -I path/to/modules       # extra module search path
+tlx check -h                                # every option
+```
+
+The supported options generally follow TLC's spelling and meaning (single dash; `-deadlock`
+*disables* deadlock checking, as in TLC). Also available: `-tool` (TLC's `@!@!@STARTMSG` message format),
+`-dump` / `-dumpTrace` (state graph and counterexample export), `-coverage`, `-stats`
+(where the time went), `-generate`, `-maxmem` and disk spilling for large state spaces.
+Builds of generated code are cached in `~/.cache/tlx`.
+
+Full references: [docs/usage.md](docs/usage.md) (user guide: a self-contained first-run
+tutorial, compiled mode, output and exit codes, troubleshooting) and
+[docs/configuration.md](docs/configuration.md) (every command-line option and `TLX_*`
+environment variable).
+
+## Compatibility with TLC
+
+The contract has three tiers ([docs/compat.md](docs/compat.md) section 0):
+
+1. **Verdicts**: the kind of result, the names of violated invariants, properties and
+   postconditions, whether a spec or config is accepted. Must match exactly.
+2. **State space**: generated and distinct counts, search depth, length of the shortest safety
+   counterexample, and the semantics of the language and modules. Must match exactly.
+3. **Incidental choices**: which of several equally short counterexamples, the shape of a liveness
+   lasso, error class and exit code, print order. Counterexamples must be valid; other differences
+   must not affect tiers 1 and 2.
+
+Tiers 1 and 2 are promised in `-tlc` mode at `-workers 1`, subject to the documented differences
+in [docs/compat.md](docs/compat.md). The default mode preserves verdicts and counterexample validity.
+With several workers, the choice of a valid safety violation at the same BFS level and the
+counts, depth and trace length at an early stop are tier 3. Liveness-failure counts and depth
+are timing-dependent even with one worker. Section 0 of that document owns these boundaries.
+
+Supported: the `.cfg` keywords `CONSTANT(S)`, `INIT`/`NEXT`, `SPECIFICATION`, `INVARIANT(S)`,
+`PROPERTY`, `CONSTRAINT(S)`, `ACTION_CONSTRAINT(S)`, `SYMMETRY`, `VIEW`, `ALIAS`, `POSTCONDITION`,
+`CHECK_DEADLOCK`; temporal properties with `WF`/`SF` fairness; the standard modules (Naturals,
+Integers, Sequences, FiniteSets, Bags, TLC, TLCExt, Randomization, Json, ...) and the
+CommunityModules. Support and limitations for individual operators, including native counterparts
+of TLC's Java operators, are listed in [docs/features.md](docs/features.md).
+
+Known limitations ([docs/compat.md](docs/compat.md) section 5): real numbers and temporal
+quantifiers (`\EE`, `\AA`) are not supported (as in TLC); PlusCal is not translated (check the
+generated TLA+); some TLC options (`-continue`, `-difftrace`, `-fp`, ...) are not implemented;
+liveness checking needs memory for the behavior graph; `-coverage` reports per action only.
+
+## Performance
+
+[docs/performance.md](docs/performance.md) is the shipped performance report. It gives median
+TLC/tlx wall-time ratios and ranges by model cohort, machine, mode and worker count, with the
+record identities and measurement conditions. Results vary by workload; some reported ratios
+are below 1, meaning tlx was slower than TLC.
+
+The current configurations, measurement records and report policy are tracked in
+[bench/](bench/README.md), so a fresh clone can reproduce the report and inspect its evidence.
+Raw run histories, superseded data and backup snapshots are archived outside the published tree. The
+[initial benchmark issues](docs/issues.md) document exclusions and unfinished work;
+[docs/benchmarking.md](docs/benchmarking.md) owns the protocol and tooling.
+
+## How it works
+
+```
+ .tla ─► tree-sitter-tlaplus ─► surface AST ─► semantic analysis ─► HIR     (tlx-front, tlx-sema)
+ .cfg ─► cfg parser ───────────────────────────────────────────────┘
+                                                                    │
+              ┌─────────────────────────────────────────────────────┴────────────┐
+              ▼                                                                  ▼
+   interpreter (tlx-eval), -interp                           compiled tier (default): pre-run infers value shapes
+   reference semantics                                       ─► fixed-size layout ─► typed IR (tlx-layout, tlx-compile)
+              │                                              ─► closure executor │ Cranelift JIT │ C via cc + dlopen
+              │                                              ─► per-(state, action) fallback to the interpreter
+              └───────────────────────────┬──────────────────────────────────────┘
+                                          ▼
+          tlx-runtime: BFS / parallel workers / fingerprint set / traces / checkpoints / simulation
+                       liveness (tlx-live) ─► TLC-style report (tlx-cli)
+```
+
+- The front end uses [tree-sitter-tlaplus](https://github.com/tlaplus-community/tree-sitter-tlaplus);
+  a semantic layer re-implements SANY's name resolution, scoping and level checking.
+- The interpreter (`-interp`) is the reference implementation of TLC's semantics.
+- The compiled tier is the default (`-compile` selects it explicitly): a short interpreted pre-run
+  infers variable shapes; the spec is lowered to a typed IR over fixed-size encoded states. A layout
+  miss widens the layout and resumes or restarts the search; anything that cannot be lowered runs
+  in the interpreter.
+- Three executors share one IR and one ABI: a closure executor, a Cranelift JIT, and generated C built by
+  `cc` in the background and loaded with `dlopen`. The generated library can replace JIT code
+  during the search and is cached for later runs.
+- In *mixed mode*, a subtree that C cannot express becomes a host region evaluated by the closure
+  executor, so one unsupported expression does not force the whole action back to the interpreter.
+- The search runtime is generic over a `Model` trait, so the interpreter and the compiled model
+  share the same parallel BFS, counterexample reconstruction and liveness checker.
+
+Details: [docs/design.md](docs/design.md) (executor tiering in section 6.6),
+[docs/mixed-mode.md](docs/mixed-mode.md), [docs/scale.md](docs/scale.md) (memory and disk).
+
+## Project status
+
+Version 0.1.0 ([Cargo.toml](Cargo.toml)). TLC is the semantic oracle: results are compared with TLC on the
+`tests/specs` suite (small specs, each targeting one semantic point) and on the tlaplus/Examples
+corpus (see Testing). Expect rough edges: some error messages are worded differently from TLC's
+and some TLC options are missing.
+
+## Testing
+
+```sh
+cargo test --profile test-release -q --no-fail-fast  # unit and integration tests
+scripts/fetch-deps.sh                                # test dependencies: Examples corpus, TLC jar, modules
+python3 scripts/spectest.py --extra=-compile         # tests/specs against TLC results, compiled tier
+python3 scripts/spectest.py                          # the same in the interpreter (-interp)
+```
+
+The Rust tests need no Java. `spectest.py` compares against the TLC output shipped in
+`tests/specs/tlc`; refreshing that output or validating an uncached, differing counterexample
+needs Java 21 and the TLC jar. Without Java, a trace that needs validation is reported as
+unvalidated. The parity tests select `-tlc` and default to `-interp`; `--extra=-compile` selects
+the compiled tier. `TLX_PARANOID=1` checks compiled execution against the interpreter.
+
+The broader tlaplus/Examples differential tests also need a generated TLC oracle; fetching the
+models alone does not provide it. [docs/testing.md](docs/testing.md) owns the test tiers and
+corpus-oracle setup. Known differences are documented in [docs/compat.md](docs/compat.md) and
+tracked in [tests/expected_failures.json](tests/expected_failures.json).
+
+## Contributing
+
+Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). In short: keep
+`cargo fmt --all` and `cargo clippy --workspace --release --all-targets` clean, and run the tests
+above. Changes must not alter results (tiers 1 and 2) or performance without saying so.
+
+## License
+
+[MIT](LICENSE).
+
+## Acknowledgments
+
+- TLA+ and TLC by Leslie Lamport and the [tlaplus](https://github.com/tlaplus) project: the
+  language, the reference model checker that tlx is compared against, and the
+  [tlaplus/Examples](https://github.com/tlaplus/Examples) corpus used for testing.
+- [tree-sitter-tlaplus](https://github.com/tlaplus-community/tree-sitter-tlaplus) for the grammar.
+- [TLA+ CommunityModules](https://github.com/tlaplus/CommunityModules): vendored under
+  `crates/tlx-sema/modules/community`; the standard modules are under `crates/tlx-sema/modules/stdlib`.
+- The Apalache modules (`Apalache.tla`, `Variants.tla`, `Option.tla`), used in tests.
+- [Cranelift](https://cranelift.dev/) for the JIT backend.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for private vulnerability reporting and guidance on running untrusted models.

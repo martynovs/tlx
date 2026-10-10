@@ -1,0 +1,66 @@
+# exit 255
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 4356857860999227684 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/HeterogeneousMembershipEval.tla
+Parsing file <tmp>/Integers.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Integers.tla)
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module HeterogeneousMembershipEval
+Linting of module HeterogeneousMembershipEval
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2179:1 @!@!@
+The second argument of \div is 0.
+@!@!@ENDMSG 2179 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ n = 0
+/\ r = FALSE
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 5, column 9 to line 5, column 52 in HeterogeneousMembershipEval
+1. Line 5, column 9 to line 5, column 14 in HeterogeneousMembershipEval
+2. Line 5, column 19 to line 5, column 52 in HeterogeneousMembershipEval
+3. Line 5, column 25 to line 5, column 51 in HeterogeneousMembershipEval
+4. Line 5, column 31 to line 5, column 51 in HeterogeneousMembershipEval
+5. Line 5, column 35 to line 5, column 50 in HeterogeneousMembershipEval
+6. Line 5, column 42 to line 5, column 49 in HeterogeneousMembershipEval
+
+
+@!@!@ENDMSG 2103 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(1) at <date>: 1 states generated (<rate> s/min), 1 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+1 states generated, 1 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 1.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

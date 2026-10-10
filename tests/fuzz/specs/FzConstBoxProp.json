@@ -1,0 +1,5 @@
+{
+ "bug": "box-property-name",
+ "found": "fuzz_spec seed 3 (F3_21), minimized by hand",
+ "summary": "PROPERTY [](FALSE): TLC reports 'Invariant FALSE is violated' (the name is the formula); tlx names Prop"
+}

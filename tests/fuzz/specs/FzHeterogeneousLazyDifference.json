@@ -1,0 +1,38 @@
+{
+ "diffs": [
+  "result",
+  "distinct",
+  "generated",
+  "depth"
+ ],
+ "env": {},
+ "features": "vars=mixed actions=1 heterogeneous=difference nodeadlock",
+ "flags": [
+  "-workers",
+  "1"
+ ],
+ "found": "fuzz_spec.py --seed 160145005 --start 8 --count 1",
+ "mode": "interp",
+ "note": "",
+ "original_diffs": [
+  "result",
+  "distinct",
+  "generated",
+  "depth"
+ ],
+ "shrink_secs": 10,
+ "shrink_tries": 14,
+ "tlc": {
+  "depth": 2,
+  "distinct": 2,
+  "generated": 3,
+  "result": "success"
+ },
+ "tlx": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 1,
+  "result": "error"
+ },
+ "variant": "F160145005_8"
+}

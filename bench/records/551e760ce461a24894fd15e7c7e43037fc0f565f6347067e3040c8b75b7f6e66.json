@@ -1,0 +1,206 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "bfb0544430888135978ed1261d572280d0fe487da6313ddf452379775ffeb73a",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "CoffeeCan/CoffeeCan1000Beans",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "adde1efbe0d7dc8d71c67302",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "bfb0544430888135978ed1261d572280d0fe487da6313ddf452379775ffeb73a",
+    "counts": {
+      "depth": 1,
+      "distinct": 501500,
+      "generated": 2000002,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 9009006,
+    "fully_native": 9009006,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "f999a61760e2567883d15ddb",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.443,
+      "instructions": 12969899236,
+      "rss_mib": 120.2,
+      "wall_s": 1.443
+    },
+    "mode": "default",
+    "model": "CoffeeCan/CoffeeCan1000Beans",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:CoffeeCan/CoffeeCan1000Beans:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/551e760ce461a24894fd15e7c7e43037fc0f565f6347067e3040c8b75b7f6e66.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "bfb0544430888135978ed1261d572280d0fe487da6313ddf452379775ffeb73a",
+      "count_problems": [],
+      "cpu": [
+        1.453,
+        1.443,
+        1.443
+      ],
+      "depth": 1,
+      "distinct": 501500,
+      "env": null,
+      "generated": 2000002,
+      "instructions": [
+        12969899236,
+        12969890722,
+        12969904175
+      ],
+      "load": [
+        1.33,
+        1.3
+      ],
+      "median": 1.443,
+      "min": 1.441,
+      "mode": "default",
+      "model": "CoffeeCan/CoffeeCan1000Beans",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 9009006,
+        "fully_native": 9009006,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 1.811483
+      },
+      "result": "success",
+      "rss_mib": [
+        119.8,
+        120.2,
+        120.2
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 1.453,
+          "depth": 1,
+          "distinct": 501500,
+          "generated": 2000002,
+          "maxrss_mib": 119.8,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.465
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 1.443,
+          "depth": 1,
+          "distinct": 501500,
+          "generated": 2000002,
+          "maxrss_mib": 120.2,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.441
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 1.443,
+          "depth": 1,
+          "distinct": 501500,
+          "generated": 2000002,
+          "maxrss_mib": 120.2,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.443
+        }
+      ],
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        1.465,
+        1.441,
+        1.443
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 1.842,
+          "depth": 1,
+          "distinct": 501500,
+          "generated": 2000002,
+          "maxrss_mib": 111.9,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 9009006,
+            "fully_native": 9009006,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 1.811483
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.84
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        1.453,
+        1.443,
+        1.443
+      ],
+      "wall_s": [
+        1.465,
+        1.441,
+        1.443
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 1.811483,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

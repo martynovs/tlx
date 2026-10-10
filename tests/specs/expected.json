@@ -1,0 +1,3544 @@
+{
+ "A1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "AP1": {
+  "depth": 4,
+  "distinct": 7,
+  "exit": 0,
+  "generated": 8,
+  "result": "success",
+  "violated": null
+ },
+ "AS1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "AS2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "B10": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "B11": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "B11b": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "B12": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "B2": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "B3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "B4": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "B5": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 12,
+  "generated": 3,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "B6": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "B7": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "B8": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "B9": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "BG1": {
+  "depth": 5,
+  "distinct": 9,
+  "exit": 0,
+  "generated": 17,
+  "result": "success",
+  "violated": null
+ },
+ "BG2": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "C1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "C2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "C3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": null,
+  "result": "init property failure",
+  "violated": "P"
+ },
+ "C4": {
+  "depth": 1,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "C5": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "C6": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "C7": {
+  "depth": 12,
+  "distinct": 7200,
+  "exit": 0,
+  "generated": 98641,
+  "result": "success",
+  "violated": null
+ },
+ "C8": {
+  "depth": 16,
+  "distinct": 63488,
+  "exit": 0,
+  "generated": 654210,
+  "result": "success",
+  "violated": null
+ },
+ "C89Fold": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "C9": {
+  "depth": 12,
+  "distinct": 73232,
+  "exit": 0,
+  "generated": 1026427,
+  "result": "success",
+  "violated": null
+ },
+ "CC1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "CG1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "CG2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 75,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "CG3": {
+  "depth": 13,
+  "distinct": 13,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "CG4": {
+  "depth": 14,
+  "distinct": 730,
+  "exit": 0,
+  "generated": 3161,
+  "result": "success",
+  "violated": null
+ },
+ "CKP1": {
+  "depth": 61,
+  "distinct": 961,
+  "exit": 13,
+  "generated": 1862,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "Bad"
+ },
+ "CKP2": {
+  "depth": 28,
+  "distinct": 2178,
+  "exit": 12,
+  "generated": 5396,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "CKP3": {
+  "depth": 91,
+  "distinct": 1891,
+  "exit": 0,
+  "generated": 3691,
+  "result": "success",
+  "violated": null
+ },
+ "CMP73A": {
+  "depth": 3,
+  "distinct": 8,
+  "exit": 13,
+  "generated": 10,
+  "result": "property failure",
+  "violated": "Short"
+ },
+ "CMP73B": {
+  "depth": 6,
+  "distinct": 225,
+  "exit": 0,
+  "generated": 601,
+  "result": "success",
+  "violated": null
+ },
+ "CMP75Rec": {
+  "depth": 9,
+  "distinct": 126,
+  "exit": 12,
+  "generated": 850,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "CMP75Slide": {
+  "depth": 21,
+  "distinct": 1075,
+  "exit": 12,
+  "generated": 4910,
+  "result": "safety failure",
+  "violated": "Goal"
+ },
+ "CMP75Sub": {
+  "depth": 5,
+  "distinct": 75,
+  "exit": 0,
+  "generated": 369,
+  "result": "success",
+  "violated": null
+ },
+ "CMP80Net": {
+  "depth": 31,
+  "distinct": 4608,
+  "exit": 13,
+  "generated": 23809,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "Served"
+ },
+ "CMP80Seq": {
+  "depth": 4,
+  "distinct": 659,
+  "exit": 12,
+  "generated": 1184,
+  "result": "safety failure",
+  "violated": "Short"
+ },
+ "CMP81Fold": {
+  "depth": 9,
+  "distinct": 2028,
+  "exit": 12,
+  "generated": 5845,
+  "result": "safety failure",
+  "violated": "Order"
+ },
+ "CMP82Sort": {
+  "depth": 7,
+  "distinct": 501,
+  "exit": 13,
+  "generated": 825,
+  "result": "liveness failure",
+  "violated": "Moves"
+ },
+ "CMPY1": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "CMPY2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "CPOnceArg": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "CS91A": {
+  "depth": 5,
+  "distinct": 4681,
+  "exit": 0,
+  "generated": 4681,
+  "result": "success",
+  "violated": null
+ },
+ "CS91B": {
+  "depth": 1501,
+  "distinct": 1501,
+  "exit": 0,
+  "generated": 1501,
+  "result": "success",
+  "violated": null
+ },
+ "CausalOrderTLC": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "DyrReduce1": {
+  "depth": 9,
+  "distinct": 45,
+  "exit": 0,
+  "generated": 181,
+  "result": "success",
+  "violated": null
+ },
+ "DyrReduce2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "DyrReduce3": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "E1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 150,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "E2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 76,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "E3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "E4": {
+  "depth": null,
+  "distinct": null,
+  "exit": 150,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "E5": {
+  "depth": null,
+  "distinct": null,
+  "exit": 150,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC4": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC5": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EC6": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "EK1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "EK2": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "EK3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "EK4": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "EK5": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "EK6": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 75,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "EmptyMapExcept": {
+  "depth": 2,
+  "distinct": 3,
+  "exit": 75,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "ErrNatives": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "FIXDSymViewCommunity": {
+  "depth": 3,
+  "distinct": 10,
+  "exit": 0,
+  "generated": 270,
+  "result": "success",
+  "violated": null
+ },
+ "FIXDSymViewOrder": {
+  "depth": 3,
+  "distinct": 7,
+  "exit": 0,
+  "generated": 26,
+  "result": "success",
+  "violated": null
+ },
+ "FS1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "FS2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FS3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FS4": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FZ1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FZ2": {
+  "depth": 1,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "FZ3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "FZ4": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "FZ5": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FZ6": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstBoxProp": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "FALSE"
+ },
+ "FzConstConstrFalse": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstInvErrorCounts": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstInvFalse": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstTemporalError": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstView": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "FzConstrNoInitDepth": {
+  "depth": 1,
+  "distinct": 0,
+  "exit": 0,
+  "generated": 1,
+  "result": "success",
+  "violated": null
+ },
+ "FzLivePredErrorCounts": {
+  "depth": 1,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "FzLivePredErrorStats": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "safety failure",
+  "violated": "Inv1"
+ },
+ "FzLivePredErrorVerdict": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 2,
+  "result": "property failure",
+  "violated": "AProp1"
+ },
+ "FzViewAPropTrace": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 13,
+  "generated": 3,
+  "result": "property failure",
+  "violated": "AProp1"
+ },
+ "FzViewInitInvTrace": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "TypeOK"
+ },
+ "FzWorkersAPropFirst": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "G1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 101,
+  "result": "success",
+  "violated": null
+ },
+ "G2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "G3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 121,
+  "result": "success",
+  "violated": null
+ },
+ "HeterogeneousMembershipEval": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "IR1": {
+  "depth": 4,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 8,
+  "result": "success",
+  "violated": null
+ },
+ "IR2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "IR3": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "IS1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "IS2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 75,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "InPlaceExcept": {
+  "depth": 15,
+  "distinct": 33792,
+  "exit": 0,
+  "generated": 476161,
+  "result": "success",
+  "violated": null
+ },
+ "InjectiveRecord": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "JA1": {
+  "depth": 15,
+  "distinct": 3410,
+  "exit": 0,
+  "generated": 24697,
+  "result": "success",
+  "violated": null
+ },
+ "JA2": {
+  "depth": 11,
+  "distinct": 67,
+  "exit": 0,
+  "generated": 285,
+  "result": "success",
+  "violated": null
+ },
+ "JitcMsgFilter": {
+  "depth": 6,
+  "distinct": 3728,
+  "exit": 11,
+  "generated": 18480,
+  "result": "deadlock",
+  "violated": null
+ },
+ "K1": {
+  "depth": 4,
+  "distinct": 8,
+  "exit": 13,
+  "generated": 9,
+  "result": "property failure",
+  "violated": "Mono"
+ },
+ "K10": {
+  "depth": null,
+  "distinct": null,
+  "exit": 75,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "K11": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "K12": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "K2": {
+  "depth": 5,
+  "distinct": 12,
+  "exit": 11,
+  "generated": 19,
+  "result": "deadlock",
+  "violated": null
+ },
+ "K3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "K4": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "P1 and P2"
+ },
+ "K5": {
+  "depth": 3,
+  "distinct": 24,
+  "exit": 12,
+  "generated": 45,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "K6": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 14,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "K7": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "K8": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "K9": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "L1": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Reach"
+ },
+ "L10": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "L11": {
+  "depth": 5,
+  "distinct": 9,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "L12": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "L2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "L3": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "Prop"
+ },
+ "L4": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "L5": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 7,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "L6": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "L7": {
+  "depth": 4,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "L8": {
+  "depth": 4,
+  "distinct": 8,
+  "exit": 13,
+  "generated": 13,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "AllDone"
+ },
+ "L9": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LC1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC10": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC3": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC4": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC5": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC6": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC7": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC8": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LC9": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "P"
+ },
+ "LClockSettles8": {
+  "depth": 8,
+  "distinct": 8,
+  "exit": 13,
+  "generated": 9,
+  "result": "liveness failure",
+  "violated": "ClockSettles"
+ },
+ "LE1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 255,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "LE2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 255,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "LE3": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 255,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "LF1": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LF10": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LF11": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LF2": {
+  "depth": 4,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 9,
+  "result": "success",
+  "violated": null
+ },
+ "LF3": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "LF4": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 255,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "LF5": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 255,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "LF6": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 14,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "LF7": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "LF8": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 255,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "LF9": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LI1": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "LM1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P8 and P7"
+ },
+ "LM2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "P3, Both, and P1"
+ },
+ "LM3": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "P1, P3, P5, and P7"
+ },
+ "LM4": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "Q2, Q4, and Q5"
+ },
+ "LM5": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "R1, R2, and R3"
+ },
+ "LM6": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": 11,
+  "result": "liveness failure",
+  "violated": "P1, P3, and P7"
+ },
+ "LS3": {
+  "depth": 7,
+  "distinct": 7,
+  "exit": 0,
+  "generated": 8,
+  "result": "success",
+  "violated": null
+ },
+ "LS4": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "LS5": {
+  "depth": 30006,
+  "distinct": 30006,
+  "exit": 0,
+  "generated": 30006,
+  "result": "success",
+  "violated": null
+ },
+ "LS6": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "LSH1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "LV3A1": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 12,
+  "generated": 6,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LV3A2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 11,
+  "generated": 4,
+  "result": "deadlock",
+  "violated": null
+ },
+ "LV3B1": {
+  "depth": 8,
+  "distinct": 8,
+  "exit": 13,
+  "generated": 9,
+  "result": "liveness failure",
+  "violated": "P4"
+ },
+ "LV3B2": {
+  "depth": 8,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 9,
+  "result": "success",
+  "violated": null
+ },
+ "LV3C1": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Live"
+ },
+ "LVM1": {
+  "depth": 6,
+  "distinct": 20,
+  "exit": 0,
+  "generated": 35,
+  "result": "success",
+  "violated": null
+ },
+ "LVM2": {
+  "depth": 6,
+  "distinct": 20,
+  "exit": 13,
+  "generated": 35,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LX1": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 13,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LX10": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 255,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "LX11": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "LX2": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "LX4": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "LX5": {
+  "depth": 5,
+  "distinct": 9,
+  "exit": 0,
+  "generated": 9,
+  "result": "success",
+  "violated": null
+ },
+ "LX6": {
+  "depth": 1,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "LX7": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LX8": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "LX9": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "LZ1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 11,
+  "generated": 3,
+  "result": "deadlock",
+  "violated": null
+ },
+ "LZ2": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "LZE1": {
+  "depth": 4,
+  "distinct": 7,
+  "exit": 12,
+  "generated": 8,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LZE2": {
+  "depth": 4,
+  "distinct": 7,
+  "exit": 12,
+  "generated": 8,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LZE3": {
+  "depth": 4,
+  "distinct": 7,
+  "exit": 12,
+  "generated": 8,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LZE4": {
+  "depth": 3,
+  "distinct": 5,
+  "exit": 12,
+  "generated": 5,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LZE5": {
+  "depth": 4,
+  "distinct": 7,
+  "exit": 12,
+  "generated": 8,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LZE6": {
+  "depth": 8,
+  "distinct": 11,
+  "exit": 12,
+  "generated": 12,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LZF1": {
+  "depth": 4,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 11,
+  "result": "success",
+  "violated": null
+ },
+ "LZF2": {
+  "depth": 4,
+  "distinct": 6,
+  "exit": 13,
+  "generated": 11,
+  "result": "liveness failure",
+  "violated": "Live2"
+ },
+ "LZI1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LZI2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LZI3": {
+  "depth": 2,
+  "distinct": 83,
+  "exit": 12,
+  "generated": 99,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LZS1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "LZS2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": 2,
+  "result": "liveness failure",
+  "violated": null
+ },
+ "LZT1": {
+  "depth": 5,
+  "distinct": 9,
+  "exit": 255,
+  "generated": 9,
+  "result": "error",
+  "violated": null
+ },
+ "LZT2": {
+  "depth": 5,
+  "distinct": 9,
+  "exit": 12,
+  "generated": 9,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "LazySelectedFunction": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "LevelActionConstraint": {
+  "depth": 4,
+  "distinct": 9,
+  "exit": 0,
+  "generated": 17,
+  "result": "success",
+  "violated": null
+ },
+ "LiveQueue": {
+  "depth": 2,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LiveQueueView": {
+  "depth": 2,
+  "distinct": 3,
+  "exit": 12,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "LiveTraceMatched": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "LiveTraceMatchedFail": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "TraceMatched"
+ },
+ "LzBigRandomSubset": {
+  "depth": 1,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "LzFiniteFilter": {
+  "depth": null,
+  "distinct": null,
+  "exit": 10,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "LzRecCycleInit": {
+  "depth": 0,
+  "distinct": 0,
+  "exit": 75,
+  "generated": 0,
+  "result": "error",
+  "violated": null
+ },
+ "LzRecCycleNext": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 255,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "LzRecTemporal": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "PropViolated"
+ },
+ "LzRecTemporalLoop": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "LzSetAlgebra": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "M1": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "M2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 10,
+  "generated": 4,
+  "result": "postcondition failure",
+  "violated": "Post"
+ },
+ "M3": {
+  "depth": 51,
+  "distinct": 51,
+  "exit": 0,
+  "generated": 51,
+  "result": "success",
+  "violated": null
+ },
+ "M4": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 10,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "MX1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 16,
+  "result": "success",
+  "violated": null
+ },
+ "MX2": {
+  "depth": 5,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 15,
+  "result": "success",
+  "violated": null
+ },
+ "MX3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": 3,
+  "result": "postcondition failure",
+  "violated": "Post"
+ },
+ "MX4": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "MemoCallReads": {
+  "depth": 1,
+  "distinct": 27,
+  "exit": 0,
+  "generated": 84,
+  "result": "success",
+  "violated": null
+ },
+ "MemoFcnDomain": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "N1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "NeonCommunityOps": {
+  "depth": 10,
+  "distinct": 1895,
+  "exit": 0,
+  "generated": 10774,
+  "result": "success",
+  "violated": null
+ },
+ "NeonInvOutside": {
+  "depth": 5,
+  "distinct": 15,
+  "exit": 12,
+  "generated": 31,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "NeonInvOutsideLevel": {
+  "depth": 4,
+  "distinct": 6,
+  "exit": 12,
+  "generated": 11,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "NeonInvOutsideOk": {
+  "depth": 13,
+  "distinct": 49,
+  "exit": 0,
+  "generated": 134,
+  "result": "success",
+  "violated": null
+ },
+ "NeonLowering": {
+  "depth": 9,
+  "distinct": 630,
+  "exit": 0,
+  "generated": 2056,
+  "result": "success",
+  "violated": null
+ },
+ "NeonMaxEmpty": {
+  "depth": 3,
+  "distinct": 4,
+  "exit": 76,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "O1": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "O2": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "O3": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 2,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "OvrEntryAnon": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 10,
+  "result": "success",
+  "violated": null
+ },
+ "OvrEntryLet": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 12,
+  "generated": 8,
+  "result": "safety failure",
+  "violated": "Bounded"
+ },
+ "OvrEntryLocal": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "OvrEntryM": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "OvrEntryMod": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "OvrEntryVal": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 10,
+  "result": "success",
+  "violated": null
+ },
+ "OvrInst": {
+  "depth": 3,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "OvrInstDirect": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Direct"
+ },
+ "P1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": null,
+  "result": "init property failure",
+  "violated": "line 10, col 16 to line 10, col 24 of module P1"
+ },
+ "P2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": null,
+  "result": "init property failure",
+  "violated": "Init2"
+ },
+ "PC1": {
+  "depth": 38,
+  "distinct": 23131,
+  "exit": 0,
+  "generated": 79972,
+  "result": "success",
+  "violated": null
+ },
+ "PC2": {
+  "depth": 82,
+  "distinct": 427529,
+  "exit": 12,
+  "generated": 4243978,
+  "result": "safety failure",
+  "violated": "TypeOK"
+ },
+ "PH1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "PH2": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "PH3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "ParallelDeadlockDepth": {
+  "depth": 3,
+  "distinct": 192,
+  "exit": 11,
+  "generated": 192,
+  "result": "deadlock",
+  "violated": null
+ },
+ "PredIntRange": {
+  "depth": 5,
+  "distinct": 40,
+  "exit": 12,
+  "generated": 46,
+  "result": "safety failure",
+  "violated": "Coarse"
+ },
+ "PredMemberCup": {
+  "depth": 7,
+  "distinct": 665,
+  "exit": 12,
+  "generated": 2053,
+  "result": "safety failure",
+  "violated": "NoE"
+ },
+ "RF1": {
+  "depth": 27,
+  "distinct": 3721,
+  "exit": 0,
+  "generated": 10859,
+  "result": "success",
+  "violated": null
+ },
+ "RF2": {
+  "depth": 9,
+  "distinct": 9,
+  "exit": 76,
+  "generated": 9,
+  "result": "error",
+  "violated": null
+ },
+ "RG1": {
+  "depth": 0,
+  "distinct": 0,
+  "exit": 75,
+  "generated": 0,
+  "result": "error",
+  "violated": null
+ },
+ "RL1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "RL2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "RL3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "RN1": {
+  "depth": 6,
+  "distinct": 51,
+  "exit": 0,
+  "generated": 250,
+  "result": "success",
+  "violated": null
+ },
+ "RN2": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "RS1": {
+  "depth": 11,
+  "distinct": 35,
+  "exit": 0,
+  "generated": 59,
+  "result": "success",
+  "violated": null
+ },
+ "RS2": {
+  "depth": 11,
+  "distinct": 35,
+  "exit": 0,
+  "generated": 59,
+  "result": "success",
+  "violated": null
+ },
+ "RS3": {
+  "depth": 11,
+  "distinct": 35,
+  "exit": 0,
+  "generated": 59,
+  "result": "success",
+  "violated": null
+ },
+ "RS4": {
+  "depth": 11,
+  "distinct": 35,
+  "exit": 0,
+  "generated": 59,
+  "result": "success",
+  "violated": null
+ },
+ "RS5": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "RT44View": {
+  "depth": 7,
+  "distinct": 27,
+  "exit": 13,
+  "generated": 82,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "Live1"
+ },
+ "RecordSetOrder": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "RegsAllGet": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "ReprAlias": {
+  "depth": 5,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 10,
+  "result": "success",
+  "violated": null
+ },
+ "ReprChooseOrder": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "ReprEmptyFcn": {
+  "depth": 5,
+  "distinct": 10,
+  "exit": 0,
+  "generated": 11,
+  "result": "success",
+  "violated": null
+ },
+ "ReprExceptEffects": {
+  "depth": 3,
+  "distinct": 7,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "ReprExceptError": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "ReprLazyUnion": {
+  "depth": 2,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "ReprMissingPath": {
+  "depth": 3,
+  "distinct": 10,
+  "exit": 0,
+  "generated": 10,
+  "result": "success",
+  "violated": null
+ },
+ "S1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": 21,
+  "result": "liveness failure",
+  "violated": "Never7"
+ },
+ "S2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 11,
+  "result": "success",
+  "violated": null
+ },
+ "S3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "Reach3"
+ },
+ "S4": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 151,
+  "result": "success",
+  "violated": null
+ },
+ "S5": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 14,
+  "result": "success",
+  "violated": null
+ },
+ "S6": {
+  "depth": null,
+  "distinct": null,
+  "exit": 11,
+  "generated": 5,
+  "result": "deadlock",
+  "violated": null
+ },
+ "SA1": {
+  "depth": 3,
+  "distinct": 7,
+  "exit": 12,
+  "generated": 10,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SA2": {
+  "depth": 3,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 5,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SA20": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "SA21": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SA22": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SA23": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SA24": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SA25": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SA3": {
+  "depth": 5,
+  "distinct": 10,
+  "exit": 12,
+  "generated": 16,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SA4": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 12,
+  "generated": 6,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SA5": {
+  "depth": 5,
+  "distinct": 10,
+  "exit": 12,
+  "generated": 16,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SAL1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SAL2": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 13,
+  "generated": 4,
+  "result": "liveness failure",
+  "violated": "Prop"
+ },
+ "SJ1": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 7,
+  "result": "success",
+  "violated": null
+ },
+ "SJ2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SJ3": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SJ4": {
+  "depth": 1,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 8,
+  "result": "success",
+  "violated": null
+ },
+ "SM1": {
+  "depth": 5,
+  "distinct": 16,
+  "exit": 0,
+  "generated": 34,
+  "result": "success",
+  "violated": null
+ },
+ "SM2": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SM3": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "SM4": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SM5": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN1": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 11,
+  "generated": 4,
+  "result": "deadlock",
+  "violated": null
+ },
+ "SN10": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 76,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "SN11": {
+  "depth": 5,
+  "distinct": 15,
+  "exit": 0,
+  "generated": 21,
+  "result": "success",
+  "violated": null
+ },
+ "SN12": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SN13": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN14": {
+  "depth": 3,
+  "distinct": 12,
+  "exit": 75,
+  "generated": 12,
+  "result": "error",
+  "violated": null
+ },
+ "SN15": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN16": {
+  "depth": 2,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "SN17": {
+  "depth": 1,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "SN18": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN19": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN2": {
+  "depth": 1,
+  "distinct": 4,
+  "exit": 75,
+  "generated": 7,
+  "result": "error",
+  "violated": null
+ },
+ "SN20": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 11,
+  "generated": 5,
+  "result": "deadlock",
+  "violated": null
+ },
+ "SN21": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "SN22": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "SN23": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 76,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "SN24": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN25": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 76,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN26": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SN3": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 28,
+  "result": "success",
+  "violated": null
+ },
+ "SN4": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN5": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "SN6": {
+  "depth": 2,
+  "distinct": 576,
+  "exit": 0,
+  "generated": 1920,
+  "result": "success",
+  "violated": null
+ },
+ "SN7": {
+  "depth": 0,
+  "distinct": 0,
+  "exit": 75,
+  "generated": 0,
+  "result": "error",
+  "violated": null
+ },
+ "SN8": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 76,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "SN9": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 76,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "SPL1": {
+  "depth": 92,
+  "distinct": 3267,
+  "exit": 12,
+  "generated": 6412,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "SPL2": {
+  "depth": 79,
+  "distinct": 1600,
+  "exit": 13,
+  "generated": 3201,
+  "result": "liveness failure",
+  "trace_random": true,
+  "violated": "Prop"
+ },
+ "SPL3": {
+  "depth": 79,
+  "distinct": 1600,
+  "exit": 0,
+  "generated": 3201,
+  "result": "success",
+  "violated": null
+ },
+ "SQS1": {
+  "depth": 46,
+  "distinct": 100000,
+  "exit": 0,
+  "generated": 459001,
+  "result": "success",
+  "violated": null
+ },
+ "SQS2": {
+  "depth": 40,
+  "distinct": 99569,
+  "exit": 12,
+  "generated": 447783,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "ST1": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "ST2": {
+  "depth": 0,
+  "distinct": 0,
+  "exit": 75,
+  "generated": 0,
+  "result": "error",
+  "violated": null
+ },
+ "STK1": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "STK2": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 255,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "STK3": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 255,
+  "generated": 3,
+  "result": "error",
+  "violated": null
+ },
+ "SW1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "SW2": {
+  "depth": 49,
+  "distinct": 1753,
+  "exit": 0,
+  "generated": 3361,
+  "result": "success",
+  "violated": null
+ },
+ "SW3": {
+  "depth": 49,
+  "distinct": 1753,
+  "exit": 0,
+  "generated": 3361,
+  "result": "success",
+  "violated": null
+ },
+ "SX1": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "SYMVFRecBag": {
+  "depth": 18,
+  "distinct": 1162,
+  "exit": 0,
+  "generated": 13952,
+  "result": "success",
+  "violated": null
+ },
+ "SYMVFRecBagSym": {
+  "depth": 15,
+  "distinct": 17721,
+  "exit": 0,
+  "generated": 212660,
+  "result": "success",
+  "violated": null
+ },
+ "SetDifferenceComparisonEffects": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "StartupConstraintTypeError": {
+  "depth": 1,
+  "distinct": 0,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "StartupInvariantTypeError": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SubsetEagerFilterError": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "SymCheckChoose": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "SymCheckSound": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "T1": {
+  "depth": 8,
+  "distinct": 37,
+  "exit": 0,
+  "generated": 77,
+  "result": "success",
+  "violated": null
+ },
+ "T2": {
+  "depth": 4,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "T3": {
+  "depth": null,
+  "distinct": null,
+  "exit": 0,
+  "generated": 201,
+  "result": "success",
+  "violated": null
+ },
+ "T4": {
+  "depth": 7,
+  "distinct": 19,
+  "exit": 12,
+  "generated": 28,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "TSFCfgOps": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "TSFEmbed": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "TSFNest": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "TSFNestOrder": {
+  "depth": null,
+  "distinct": null,
+  "exit": 150,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSFOpTable": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 12,
+  "generated": 3,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "TSFPossible": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 10,
+  "generated": 5,
+  "result": "postcondition failure",
+  "violated": "Wrap"
+ },
+ "TSFPossibleOk": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "TSFPost": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 10,
+  "generated": 4,
+  "result": "postcondition failure",
+  "violated": "Post2"
+ },
+ "TSFPostConst": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 255,
+  "generated": 4,
+  "result": "error",
+  "violated": null
+ },
+ "TSFPropForall": {
+  "depth": 7,
+  "distinct": 7,
+  "exit": 13,
+  "generated": 7,
+  "result": "property failure",
+  "violated": "line 11, col 27 to line 11, col 38 of module TSFPropForall"
+ },
+ "TSFPropNames": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 13,
+  "generated": 5,
+  "result": "property failure",
+  "violated": "line 13, col 20 to line 13, col 31 of module TSFPropNames"
+ },
+ "TSFPropWrap": {
+  "depth": 6,
+  "distinct": 6,
+  "exit": 12,
+  "generated": 6,
+  "result": "safety failure",
+  "violated": "Q"
+ },
+ "TSFRecField": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "TSFSpecInst": {
+  "depth": 1,
+  "distinct": 7,
+  "exit": 0,
+  "generated": 14,
+  "result": "success",
+  "violated": null
+ },
+ "TSFSpecTrivial": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSFSpecWrap": {
+  "depth": 12,
+  "distinct": 12,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "TSRCdotAfter": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 3,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "TSRCdotChained": {
+  "depth": 2,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 9,
+  "result": "success",
+  "violated": null
+ },
+ "TSRCdotFrame": {
+  "depth": 2,
+  "distinct": 3,
+  "exit": 0,
+  "generated": 9,
+  "result": "success",
+  "violated": null
+ },
+ "TSRCdotFrameFixed": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 1,
+  "result": "success",
+  "violated": null
+ },
+ "TSRCdotProp": {
+  "depth": 3,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 10,
+  "result": "safety failure",
+  "violated": "Inv2"
+ },
+ "TSREarlySafety": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 12,
+  "generated": 5,
+  "result": "liveness failure",
+  "violated": "AtMostOnce"
+ },
+ "TSREnabledInst": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "TSREnabledInst2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Invariant1"
+ },
+ "TSREnabledInstExpr": {
+  "depth": 6,
+  "distinct": 12,
+  "exit": 0,
+  "generated": 18,
+  "result": "success",
+  "violated": null
+ },
+ "TSRNoInit": {
+  "depth": 0,
+  "distinct": 0,
+  "exit": 0,
+  "generated": 0,
+  "result": "success",
+  "violated": null
+ },
+ "TSRNoInitTrue": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSRPropConj": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "property failure",
+  "violated": "line 8, col 19 to line 8, col 30 of module TSRPropConj"
+ },
+ "TSRPropConjDef": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "property failure",
+  "violated": "A"
+ },
+ "TSRPropForall": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 13,
+  "generated": 5,
+  "result": "property failure",
+  "violated": "line 10, col 27 to line 10, col 47 of module TSRPropForall"
+ },
+ "TSRPropForallInv": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 4,
+  "result": "safety failure",
+  "violated": "line 8, col 27 to line 8, col 39 of module TSRPropForallInv"
+ },
+ "TSRSubstTLCGet": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSRSubstVar": {
+  "depth": null,
+  "distinct": null,
+  "exit": 151,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSRTautology": {
+  "depth": null,
+  "distinct": null,
+  "exit": 77,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSRTautologyForall": {
+  "depth": null,
+  "distinct": null,
+  "exit": 77,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSXDnfLimit": {
+  "depth": null,
+  "distinct": null,
+  "exit": 255,
+  "generated": null,
+  "result": "error",
+  "violated": null
+ },
+ "TSXEnabledArg": {
+  "depth": 2,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "TSXErrTexts": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "TSXKSubset": {
+  "depth": 2,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 21,
+  "result": "success",
+  "violated": null
+ },
+ "TSXLetTarget": {
+  "depth": 3,
+  "distinct": 6,
+  "exit": 0,
+  "generated": 14,
+  "result": "success",
+  "violated": null
+ },
+ "TSXLevelPrimed": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "TSXPropParam": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 2,
+  "result": "property failure",
+  "violated": "x2"
+ },
+ "TSXPropParam2": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 2,
+  "result": "property failure",
+  "violated": "def_arg"
+ },
+ "TSXTLCCache": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "TU1": {
+  "depth": 7,
+  "distinct": 337,
+  "exit": 0,
+  "generated": 639,
+  "result": "success",
+  "violated": null
+ },
+ "TU2": {
+  "depth": 6,
+  "distinct": 182,
+  "exit": 12,
+  "generated": 402,
+  "result": "safety failure",
+  "violated": "Small"
+ },
+ "TVShape": {
+  "depth": 19,
+  "distinct": 37,
+  "exit": 0,
+  "generated": 549,
+  "result": "success",
+  "violated": null
+ },
+ "TVShapeBad": {
+  "depth": 9,
+  "distinct": 17,
+  "exit": 10,
+  "generated": 227,
+  "result": "postcondition failure",
+  "violated": "TraceAccepted"
+ },
+ "TraceConstr": {
+  "depth": 7,
+  "distinct": 27,
+  "exit": 0,
+  "generated": 33,
+  "result": "success",
+  "violated": null
+ },
+ "TraceOp": {
+  "depth": 7,
+  "distinct": 27,
+  "exit": 0,
+  "generated": 33,
+  "result": "success",
+  "violated": null
+ },
+ "TraceOpView": {
+  "depth": 5,
+  "distinct": 8,
+  "exit": 0,
+  "generated": 13,
+  "result": "success",
+  "violated": null
+ },
+ "US1": {
+  "depth": 5,
+  "distinct": 5,
+  "exit": 12,
+  "generated": 5,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "US2": {
+  "depth": null,
+  "distinct": null,
+  "exit": 12,
+  "generated": null,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "US3": {
+  "depth": 4,
+  "distinct": 8,
+  "exit": 12,
+  "generated": 8,
+  "result": "safety failure",
+  "violated": "Done"
+ },
+ "US4": {
+  "depth": 5,
+  "distinct": 14,
+  "exit": 12,
+  "generated": 16,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "US5": {
+  "depth": 5,
+  "distinct": 16,
+  "exit": 12,
+  "generated": 16,
+  "result": "safety failure",
+  "violated": "Done"
+ },
+ "UnionAssignmentComparisonError": {
+  "depth": 1,
+  "distinct": 2,
+  "exit": 75,
+  "generated": 2,
+  "result": "error",
+  "violated": null
+ },
+ "UnionComparisonError": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "UnionSubsetComparison": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "UnionTailComparison": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 75,
+  "generated": 1,
+  "result": "error",
+  "violated": null
+ },
+ "V1": {
+  "depth": 8,
+  "distinct": 30,
+  "exit": 0,
+  "generated": 75,
+  "result": "success",
+  "violated": null
+ },
+ "V2": {
+  "depth": 14,
+  "distinct": 146,
+  "exit": 0,
+  "generated": 366,
+  "result": "success",
+  "violated": null
+ },
+ "V3": {
+  "depth": 1,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 6,
+  "result": "success",
+  "violated": null
+ },
+ "V4": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 0,
+  "generated": 5,
+  "result": "success",
+  "violated": null
+ },
+ "V5": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "VF1": {
+  "depth": 3,
+  "distinct": 381,
+  "exit": 0,
+  "generated": 1452,
+  "result": "success",
+  "violated": null
+ },
+ "VG1": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "VG2": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "VL1": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 0,
+  "generated": 3,
+  "result": "success",
+  "violated": null
+ },
+ "VL2": {
+  "depth": 2,
+  "distinct": 2,
+  "exit": 13,
+  "generated": 3,
+  "result": "liveness failure",
+  "violated": "Live"
+ },
+ "VL3": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 2,
+  "result": "success",
+  "violated": null
+ },
+ "VL4": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 13,
+  "generated": 2,
+  "result": "liveness failure",
+  "violated": "Live"
+ },
+ "VL5": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 0,
+  "generated": 4,
+  "result": "success",
+  "violated": null
+ },
+ "VL6": {
+  "depth": null,
+  "distinct": null,
+  "exit": 13,
+  "generated": 11,
+  "result": "liveness failure",
+  "violated": "Live"
+ },
+ "VR1": {
+  "depth": 29,
+  "distinct": 2181,
+  "exit": 0,
+  "generated": 5416,
+  "result": "success",
+  "violated": null
+ },
+ "VR2": {
+  "depth": 14,
+  "distinct": 688,
+  "exit": 0,
+  "generated": 2423,
+  "result": "success",
+  "violated": null
+ },
+ "VR3": {
+  "depth": 29,
+  "distinct": 2181,
+  "exit": 0,
+  "generated": 5416,
+  "result": "success",
+  "violated": null
+ },
+ "ViewConcretePath": {
+  "depth": 4,
+  "distinct": 4,
+  "exit": 12,
+  "generated": 8,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "ViewSymAPropTrace": {
+  "depth": 1,
+  "distinct": 1,
+  "exit": 13,
+  "generated": 4,
+  "result": "property failure",
+  "violated": "AProp"
+ },
+ "ViewTracePath": {
+  "depth": 3,
+  "distinct": 3,
+  "exit": 12,
+  "generated": 3,
+  "result": "safety failure",
+  "violated": "Inv"
+ },
+ "Y1": {
+  "depth": 15,
+  "distinct": 7894,
+  "exit": 0,
+  "generated": 35938,
+  "result": "success",
+  "violated": null
+ }
+}

@@ -1,0 +1,210 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "SlidingPuzzles/SlidingPuzzles",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "07ca7d955fbd757f13e82ce8",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+    "counts": {
+      "depth": 117,
+      "distinct": 24005,
+      "generated": 81561,
+      "result": "safety failure"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 71938,
+    "fully_native": 48008,
+    "host_calls": 128899,
+    "host_s": 0.213602014,
+    "host_time_share": 0.5392220079266907,
+    "id": "8d832fc6ce2681c16fcbc5d2",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.498,
+      "instructions": 23699937594,
+      "rss_mib": 384.8,
+      "wall_s": 2.498
+    },
+    "mode": "default",
+    "model": "SlidingPuzzles/SlidingPuzzles",
+    "native_share": 0.6673524423809392,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/small:SlidingPuzzles/SlidingPuzzles:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/a8ed10d140f8fba8ed1182f63634a21e5461677c979116a93083a6d7d76ff6cc.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+      "count_problems": [],
+      "cpu": [
+        2.556,
+        2.498,
+        2.486
+      ],
+      "depth": 117,
+      "distinct": 24005,
+      "env": null,
+      "generated": 81561,
+      "instructions": [
+        25628577741,
+        23637602619,
+        23699937594
+      ],
+      "load": [
+        1.15,
+        1.13
+      ],
+      "median": 2.498,
+      "min": 2.485,
+      "mode": "default",
+      "model": "SlidingPuzzles/SlidingPuzzles",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 71938,
+        "fully_native": 48008,
+        "host_calls": 128899,
+        "host_time_s": 0.213602014,
+        "host_time_share": 0.5392220079266907,
+        "native_share": 0.6673524423809392,
+        "search_thread_s_est": 0.39613
+      },
+      "result": "safety failure",
+      "rss_mib": [
+        384.8,
+        385.1,
+        384.7
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 2.556,
+          "depth": 117,
+          "distinct": 24005,
+          "generated": 81561,
+          "maxrss_mib": 384.8,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "KlotskiGoal",
+          "wall_s": 2.567
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 2.498,
+          "depth": 117,
+          "distinct": 24005,
+          "generated": 81561,
+          "maxrss_mib": 385.1,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "KlotskiGoal",
+          "wall_s": 2.498
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 2.486,
+          "depth": 117,
+          "distinct": 24005,
+          "generated": 81561,
+          "maxrss_mib": 384.7,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "KlotskiGoal",
+          "wall_s": 2.485
+        }
+      ],
+      "tier": "small",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        2.567,
+        2.498,
+        2.485
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 2.793,
+          "depth": 117,
+          "distinct": 24005,
+          "generated": 81561,
+          "maxrss_mib": 385.0,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 71938,
+            "fully_native": 48008,
+            "host_calls": 128899,
+            "host_time_s": 0.213602014,
+            "host_time_share": 0.5392220079266907,
+            "native_share": 0.6673524423809392,
+            "search_thread_s_est": 0.39613
+          },
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "KlotskiGoal",
+          "wall_s": 2.791
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        2.556,
+        2.498,
+        2.486
+      ],
+      "wall_s": [
+        2.567,
+        2.498,
+        2.485
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.39613,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

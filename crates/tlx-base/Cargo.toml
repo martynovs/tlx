@@ -1,0 +1,21 @@
+[package]
+name = "tlx-base"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Shared infrastructure of tlx with no TLA+ semantics (hashing, RNG, bytes, parallelism, stacks, knobs, diagnostics)"
+
+[dependencies]
+libc = "0.2"
+parking_lot = "0.12.5"
+rustc-hash = "2.1"
+
+[dev-dependencies]
+mimalloc = "0.1.52"
+
+[lints]
+workspace = true
+
+[[test]]
+name = "stack_overflow"
+harness = false

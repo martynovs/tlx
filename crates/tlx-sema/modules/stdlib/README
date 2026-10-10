@@ -1,0 +1,2 @@
+Standard modules copied from tla2tools.jar (tlaplus/tlaplus, MIT license).
+They are parsed like ordinary modules; selected operators are overridden by native builtins.

@@ -1,0 +1,76 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "c11afebba09329de45e9603c22bb50d4b65ef965ebe32a725f7000d6e33599db",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "ext/alpha-zk/MC_tlx_Zab_new",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "external",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "c11afebba09329de45e9603c22bb50d4b65ef965ebe32a725f7000d6e33599db",
+    "counts": {
+      "depth": 54,
+      "distinct": 1057386,
+      "generated": 2475698,
+      "result": "success"
+    },
+    "date": "2026-10-08 15:54:39",
+    "id": "d6a777653e7e90673154b679",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 466.932,
+      "instructions": null,
+      "rss_mib": 5609.5,
+      "wall_s": 30.917
+    },
+    "mode": "-tlc",
+    "model": "ext/alpha-zk/MC_tlx_Zab_new",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/ext/alpha-zk/MC_tlx_Zab_new/runs/16",
+      "pointer": "/measurement",
+      "reused_from": "d6a777653e7e90673154b679",
+      "source": "bench/tlc-baselines/de9e31b17467ead1630184a05dd7a6ca1a8e479ba7108752345bcc1a7605f426.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        466.932
+      ],
+      "wall_s": [
+        30.917
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

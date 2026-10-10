@@ -1,0 +1,30 @@
+{
+  "frozen_at": "2026-10-11T08:51:23+08:00",
+  "measured_revision": "517f59c67a0a80ddaee0445c9c413d7fe45780c5",
+  "crates_tree": "90c32255b973c17ea2a12c3b94feadff3f3c3d5b",
+  "phases": [
+    {
+      "batch": 1,
+      "evidence": "final receipt"
+    },
+    {
+      "batch": 2,
+      "evidence": "final receipt"
+    },
+    {
+      "batch": 3,
+      "evidence": "final receipt"
+    },
+    {
+      "batch": 4,
+      "evidence": "in-progress checkpoint"
+    },
+    {
+      "batch": 5,
+      "evidence": "in-progress checkpoint"
+    }
+  ],
+  "complete_configurations": 279,
+  "configured_runs": 299,
+  "canonical_tlx_records": 300
+}

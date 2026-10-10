@@ -1,0 +1,496 @@
+# exit 13 trace-random
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -4725803883698212071 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/CKP1.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Parsing file <tmp>/Sequences.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Sequences.tla)
+Parsing file <tmp>/TLC.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/TLC.tla)
+Parsing file <tmp>/FiniteSets.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/FiniteSets.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module CKP1
+Linting of module CKP1
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(61) at <date>: 1,862 states generated, 961 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking temporal properties for the complete state space with 961 total distinct states at (<date>)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal property Bad was violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ s = "n0"
+/\ x = 0
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n1000"
+/\ x = 1
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n2000"
+/\ x = 2
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n2001"
+/\ x = 2
+/\ y = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n2002"
+/\ x = 2
+/\ y = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n3002"
+/\ x = 3
+/\ y = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n3003"
+/\ x = 3
+/\ y = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n4003"
+/\ x = 4
+/\ y = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n4004"
+/\ x = 4
+/\ y = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n5004"
+/\ x = 5
+/\ y = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n5005"
+/\ x = 5
+/\ y = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n6005"
+/\ x = 6
+/\ y = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n6006"
+/\ x = 6
+/\ y = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n7006"
+/\ x = 7
+/\ y = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n7007"
+/\ x = 7
+/\ y = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n8007"
+/\ x = 8
+/\ y = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n9007"
+/\ x = 9
+/\ y = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n9008"
+/\ x = 9
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n10008"
+/\ x = 10
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n11008"
+/\ x = 11
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n12008"
+/\ x = 12
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n12009"
+/\ x = 12
+/\ y = 9
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n13009"
+/\ x = 13
+/\ y = 9
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n13010"
+/\ x = 13
+/\ y = 10
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n14010"
+/\ x = 14
+/\ y = 10
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n14011"
+/\ x = 14
+/\ y = 11
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n14012"
+/\ x = 14
+/\ y = 12
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n15012"
+/\ x = 15
+/\ y = 12
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n15013"
+/\ x = 15
+/\ y = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n16013"
+/\ x = 16
+/\ y = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n17013"
+/\ x = 17
+/\ y = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n17014"
+/\ x = 17
+/\ y = 14
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n17015"
+/\ x = 17
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n18015"
+/\ x = 18
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n19015"
+/\ x = 19
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n20015"
+/\ x = 20
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n20016"
+/\ x = 20
+/\ y = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n21016"
+/\ x = 21
+/\ y = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+39: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n22016"
+/\ x = 22
+/\ y = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+40: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n22017"
+/\ x = 22
+/\ y = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+41: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n23017"
+/\ x = 23
+/\ y = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+42: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n24017"
+/\ x = 24
+/\ y = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+43: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n24018"
+/\ x = 24
+/\ y = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+44: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n25018"
+/\ x = 25
+/\ y = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+45: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n26018"
+/\ x = 26
+/\ y = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+46: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n26019"
+/\ x = 26
+/\ y = 19
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+47: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n27019"
+/\ x = 27
+/\ y = 19
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+48: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n27020"
+/\ x = 27
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+49: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n28020"
+/\ x = 28
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+50: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n29020"
+/\ x = 29
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+51: <Next line 8, col 12 to line 8, col 81 of module CKP1>
+/\ s = "n30020"
+/\ x = 30
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+52: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30021"
+/\ x = 30
+/\ y = 21
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+53: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30022"
+/\ x = 30
+/\ y = 22
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+54: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30023"
+/\ x = 30
+/\ y = 23
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+55: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30024"
+/\ x = 30
+/\ y = 24
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+56: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30025"
+/\ x = 30
+/\ y = 25
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+57: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30026"
+/\ x = 30
+/\ y = 26
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+58: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30027"
+/\ x = 30
+/\ y = 27
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+59: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30028"
+/\ x = 30
+/\ y = 28
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+60: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30029"
+/\ x = 30
+/\ y = 29
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+61: <Next line 9, col 12 to line 9, col 81 of module CKP1>
+/\ s = "n30030"
+/\ x = 30
+/\ y = 30
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2122:4 @!@!@
+1: Back to state: <Next line 10, col 12 to line 10, col 60 of module CKP1>
+
+@!@!@ENDMSG 2122 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in <time> at <date>
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(61) at <date>: 1,862 states generated (<rate> s/min), 961 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+1862 states generated, 961 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 61.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

@@ -1,0 +1,5208 @@
+{
+ "version": 1,
+ "models": [
+  {
+   "id": "TeachingConcurrency/SimpleRegular",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "interp",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 277726,
+    "generated": 1454776,
+    "depth": 25
+   },
+   "tlc_1w_s": 3.3,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "GameOfLife/GameOfLife",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 65536,
+    "generated": 131072,
+    "depth": 1
+   },
+   "tlc_1w_s": 9.6,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "bench/ClockSettles",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "note": "liveness tableau stress (LiveHourClock, ClockSettles)",
+   "expect": {
+    "result": "liveness failure",
+    "distinct": 12,
+    "source": "tlc-bench"
+   },
+   "category": [
+    "corpus",
+    "liveness"
+   ]
+  },
+  {
+   "id": "ext/cassandra/Accord_baseline__two_lockers_live",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "interp",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "note": "Cassandra Accord, liveness",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 1128,
+    "generated": 1404,
+    "depth": 7
+   },
+   "tlc_1w_s": 0.7,
+   "category": [
+    "external",
+    "liveness"
+   ]
+  },
+  {
+   "id": "ext/vanlightly-raft/standard-raft-Raft",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "interp",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "note": "Vanlightly Raft; the adaptive tier chooser moves its verdict, so a judgement pins it (--pin-adapt)",
+   "expect": {
+    "result": "deadlock",
+    "source": "tlc-oracle"
+   },
+   "tlc_1w_s": 3.7,
+   "category": [
+    "external"
+   ],
+   "pin_adapt": true
+  },
+  {
+   "id": "ext/ccf/MCSingleNode",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "interp",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "note": "CCF",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 63449,
+    "generated": 88557,
+    "depth": 15
+   },
+   "tlc_1w_s": 3.2,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/neon/MCProposerAcceptorStatic_p2_a3_t2_l2",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 120,
+   "note": "Neon safekeeper; non-equivariant SYMMETRY: counts exact at 1 worker only",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 61403,
+    "generated": 893167,
+    "depth": 30
+   },
+   "tlc_1w_s": 12.5,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ewd998/EWD998PCal",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 321370,
+    "generated": 2808396,
+    "depth": 47
+   },
+   "tlc_1w_s": 26.1,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "btree/MCbtree",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 374727,
+    "generated": 2820091,
+    "depth": 38
+   },
+   "tlc_1w_s": 31.2,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "MultiPaxos-SMR/MultiPaxos_MC_small",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 343796,
+    "generated": 736012,
+    "depth": 28
+   },
+   "tlc_1w_s": 29.0,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "transaction_commit/PaxosCommit",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 1321761,
+    "generated": 16959159,
+    "depth": 28
+   },
+   "tlc_1w_s": 138.3,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "ext/vanlightly-raft/pull-raft-KRaft",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "Vanlightly KRaft; the adaptive tier chooser moves its verdict, so a judgement pins it (--pin-adapt)",
+   "expect": {
+    "result": "deadlock",
+    "source": "tlc-oracle"
+   },
+   "tlc_1w_s": 8.1,
+   "category": [
+    "external"
+   ],
+   "pin_adapt": true
+  },
+  {
+   "id": "ext/mongo/MCMoveRange",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "MongoDB",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 220597,
+    "generated": 527042,
+    "depth": 26
+   },
+   "tlc_1w_s": 19.5,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/ccf/MCSingleNodeReads",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "CCF",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 210806,
+    "generated": 281317,
+    "depth": 15
+   },
+   "tlc_1w_s": 9.3,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/cassandra/Accord_baseline__deep_chain",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "Cassandra Accord, original deep-chain safety configuration",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 179712,
+    "generated": 214191,
+    "depth": 9
+   },
+   "tlc_1w_s": 66.982,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/cassandra/Accord_baseline__deep_chain_live",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "Cassandra Accord, liveness",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 179712,
+    "generated": 214191,
+    "depth": 9
+   },
+   "tlc_1w_s": 95.6,
+   "category": [
+    "external",
+    "liveness"
+   ]
+  },
+  {
+   "id": "ext/mongo/MCRaftMongo",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "MongoDB RaftMongo with liveness (TLC 1w: 89 min)",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 371368,
+    "generated": 5398516,
+    "depth": 21
+   },
+   "tlc_1w_s": 5333.9,
+   "category": [
+    "external",
+    "liveness"
+   ]
+  },
+  {
+   "id": "bench/ReplicatedLog4x3",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 300,
+   "note": "liveness with 13 <>[] obligations",
+   "expect": {
+    "result": "success",
+    "distinct": 35245,
+    "source": "tlx-pinned"
+   },
+   "category": [
+    "corpus",
+    "liveness"
+   ]
+  },
+  {
+   "id": "Bakery-Boulangerie/MCBoulanger",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 7866982,
+    "generated": 63482135,
+    "depth": 84
+   },
+   "tlc_1w_s": 140.2,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "KeyValueStore/MCKVSSafetySmall",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 3409605,
+    "generated": 56349379,
+    "depth": 23
+   },
+   "tlc_1w_s": 296.5,
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "ext/alpha-zk/MC_tlx_Zab_new",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Zab",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 1057386,
+    "generated": 2475698,
+    "depth": 54
+   },
+   "tlc_1w_s": 349.1,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/ccf/MCMultiNode",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "CCF",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 1546226,
+    "generated": 3896264,
+    "depth": 15
+   },
+   "tlc_1w_s": 138.7,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/mongo/MCMongoReplReconfig",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "MongoDB",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 2413165,
+    "generated": 41496087,
+    "depth": 30
+   },
+   "tlc_1w_s": 1163.6,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "ext/vanlightly-kafka/kafka_replication_v3_5",
+   "size": "huge",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Vanlightly Kafka",
+   "expect": {
+    "result": "deadlock",
+    "source": "tlc-oracle"
+   },
+   "tlc_1w_s": 102.5,
+   "category": [
+    "external"
+   ]
+  },
+  {
+   "id": "bench/FlexibleRaftReduced5",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Vanlightly FlexibleRaft, 5 servers, SYMMETRY+VIEW",
+   "expect": {
+    "result": "success",
+    "source": "tlx-pinned",
+    "distinct": 137335
+   },
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "bench/RaftMongoT4",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 600,
+   "note": "MongoDB RaftMongo, four terms, liveness",
+   "expect": {
+    "result": "success",
+    "distinct": 1572408,
+    "source": "tlx-pinned"
+   },
+   "category": [
+    "corpus",
+    "liveness"
+   ]
+  },
+  {
+   "id": "bench/MCLamportMutex_clock14",
+   "size": "huge",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 1,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 2,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 4,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 8,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    }
+   ],
+   "timeout_s": 600,
+   "note": "scaling configuration",
+   "expect": {
+    "result": "success",
+    "distinct": 24437868,
+    "source": "tlc-bench"
+   },
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "KeyValueStore/MCKVSSafetyMedium",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 1,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 2,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 4,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 8,
+     "category": [
+      "scaling",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-maxmem",
+      "256M"
+     ],
+     "category": [
+      "beyond-memory",
+      "compiled"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-maxmem",
+      "256M"
+     ],
+     "cgroup_mib": 1024,
+     "category": [
+      "beyond-memory",
+      "compiled"
+     ]
+    }
+   ],
+   "timeout_s": 600,
+   "note": "SYMMETRY; scaling configuration",
+   "expect": {
+    "result": "success",
+    "distinct": 17220672,
+    "source": "tlc-bench"
+   },
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "MultiPaxos-SMR/MultiPaxos_MC",
+   "size": "huge",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 900,
+   "note": "scaling configuration",
+   "expect": {
+    "result": "success",
+    "distinct": 37078209,
+    "source": "tlc-bench"
+   },
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "bench/cf1s_folklore_N5",
+   "size": "huge",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 16
+    },
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "timeout_s": 900,
+   "note": "scaling configuration",
+   "expect": {
+    "result": "success",
+    "distinct": 211807892,
+    "source": "tlc-bench"
+   },
+   "category": [
+    "corpus"
+   ]
+  },
+  {
+   "id": "Bakery-Boulangerie/MCBakery",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 655200,
+    "generated": 3403584,
+    "depth": 1
+   }
+  },
+  {
+   "id": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_1/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_2/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "Chameneos/Chameneos",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 34534,
+    "generated": 104697,
+    "depth": 13
+   }
+  },
+  {
+   "id": "CheckpointCoordination/MCCheckpointCoordination",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 901692,
+    "generated": 23112567,
+    "depth": 29
+   }
+  },
+  {
+   "id": "CheckpointCoordination/MCCheckpointCoordinationFailure",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 88152,
+    "generated": 1302999,
+    "depth": 12
+   }
+  },
+  {
+   "id": "CigaretteSmokers/CigaretteSmokers",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 6,
+    "generated": 15,
+    "depth": 2
+   }
+  },
+  {
+   "id": "CoffeeCan/CoffeeCan1000Beans",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 501500,
+    "generated": 2000002,
+    "depth": 1
+   }
+  },
+  {
+   "id": "CoffeeCan/CoffeeCan100Beans",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 5150,
+    "generated": 20002,
+    "depth": 1
+   }
+  },
+  {
+   "id": "CoffeeCan/CoffeeCan3000Beans",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "DieHard/DieHard",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 14,
+    "generated": 73,
+    "depth": 7
+   }
+  },
+  {
+   "id": "DieHard/MCDieHarder",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 14,
+    "generated": 73,
+    "depth": 7
+   }
+  },
+  {
+   "id": "DieHard/MCDieHardest",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 11566,
+    "generated": 140897,
+    "depth": 12
+   }
+  },
+  {
+   "id": "DiningPhilosophers/DiningPhilosophers",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 67,
+    "generated": 336,
+    "depth": 29
+   }
+  },
+  {
+   "id": "Disruptor/MCDisruptor_MPMC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 112929,
+    "generated": 422781,
+    "depth": 81
+   }
+  },
+  {
+   "id": "Disruptor/MCDisruptor_MPMC_liveliness",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 14365,
+    "generated": 44581,
+    "depth": 61
+   }
+  },
+  {
+   "id": "Disruptor/MCDisruptor_SPMC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 8496,
+    "generated": 28049,
+    "depth": 82
+   }
+  },
+  {
+   "id": "FiniteMonotonic/MCCRDT",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 25000,
+    "generated": 1350001,
+    "depth": 16
+   }
+  },
+  {
+   "id": "FiniteMonotonic/MCDistributedReplicatedLog",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "liveness failure",
+    "distinct": 37,
+    "generated": 271,
+    "depth": 4
+   }
+  },
+  {
+   "id": "FiniteMonotonic/MCReplicatedLog",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1363,
+    "generated": 17425,
+    "depth": 13
+   }
+  },
+  {
+   "id": "FlashProtocol/MCFlashWithMutex",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2024,
+    "generated": 7552,
+    "depth": 21
+   }
+  },
+  {
+   "id": "FlashProtocol/MCFlashWithMutexLive",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 8096,
+    "generated": 30196,
+    "depth": 21
+   }
+  },
+  {
+   "id": "GermanProtocol/MCGermanCMPWithMutex",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1107,
+    "generated": 3281,
+    "depth": 19
+   }
+  },
+  {
+   "id": "GermanProtocol/MCGermanControl",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 735,
+    "generated": 1946,
+    "depth": 19
+   }
+  },
+  {
+   "id": "GermanProtocol/MCGermanData",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 852,
+    "generated": 2493,
+    "depth": 19
+   }
+  },
+  {
+   "id": "Huang/Huang",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 81256,
+    "generated": 1165101,
+    "depth": 21
+   }
+  },
+  {
+   "id": "KeyValueStore/MCKVSSafetyLarge",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "KeyValueStore/MCKVsnap",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 32293,
+    "generated": 63082,
+    "depth": 13
+   }
+  },
+  {
+   "id": "KnuthYao/SimKnuthYao",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "LearnProofs/MCFindHighest",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 742,
+    "generated": 1523,
+    "depth": 5
+   }
+  },
+  {
+   "id": "LeastCircularSubstring/MCLeastCircularSubstringMedium",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1007232,
+    "generated": 1017073,
+    "depth": 131
+   }
+  },
+  {
+   "id": "LeastCircularSubstring/MCLeastCircularSubstringSmall",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 8554,
+    "generated": 8681,
+    "depth": 95
+   }
+  },
+  {
+   "id": "LoopInvariance/MCBinarySearch",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 27953,
+    "generated": 34383,
+    "depth": 6
+   }
+  },
+  {
+   "id": "LoopInvariance/MCQuicksort",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4548,
+    "generated": 11223,
+    "depth": 9
+   }
+  },
+  {
+   "id": "Majority/MCMajority",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2733,
+    "generated": 3459,
+    "depth": 6
+   }
+  },
+  {
+   "id": "MisraReachability/MCParReach",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 393,
+    "generated": 747,
+    "depth": 18
+   }
+  },
+  {
+   "id": "MisraReachability/MCReachabilityTestAllGraphs",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "MisraReachability/MCReachabilityTestRandomGraphs",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "MisraReachability/MCReachable",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "MissionariesAndCannibals/MissionariesAndCannibals",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 61,
+    "generated": 225,
+    "depth": 12
+   }
+  },
+  {
+   "id": "Moving_Cat_Puzzle/CatEvenBoxes",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 48,
+    "generated": 128,
+    "depth": 1
+   }
+  },
+  {
+   "id": "Moving_Cat_Puzzle/CatOddBoxes",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 30,
+    "generated": 78,
+    "depth": 1
+   }
+  },
+  {
+   "id": "MultiCarElevator/ElevatorLivenessLarge",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "MultiCarElevator/ElevatorLivenessMedium",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4122,
+    "generated": 14296,
+    "depth": 36
+   }
+  },
+  {
+   "id": "MultiCarElevator/ElevatorSafetyLarge",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "MultiCarElevator/ElevatorSafetyMedium",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "MultiCarElevator/ElevatorSafetySmall",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4122,
+    "generated": 14296,
+    "depth": 36
+   }
+  },
+  {
+   "id": "N-Queens/Queens.toolbox/FourQueens/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 40,
+    "generated": 62,
+    "depth": 5
+   }
+  },
+  {
+   "id": "N-Queens/QueensPluscal.toolbox/FourQueens/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 40,
+    "generated": 62,
+    "depth": 5
+   }
+  },
+  {
+   "id": "NanoBlockchain/MCNanoLarge",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "NanoBlockchain/MCNanoMedium",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 530587,
+    "generated": 1120079,
+    "depth": 11
+   }
+  },
+  {
+   "id": "NanoBlockchain/MCNanoSmall",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3003,
+    "generated": 6083,
+    "depth": 7
+   }
+  },
+  {
+   "id": "Paxos/MCConsensus",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4,
+    "generated": 7,
+    "depth": 1
+   }
+  },
+  {
+   "id": "Paxos/MCPaxos",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 25,
+    "generated": 82,
+    "depth": 9
+   }
+  },
+  {
+   "id": "Paxos/MCVoting",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 77,
+    "generated": 451,
+    "depth": 11
+   }
+  },
+  {
+   "id": "PaxosHowToWinATuringAward/MCConsensus",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4,
+    "generated": 4,
+    "depth": 2
+   }
+  },
+  {
+   "id": "PaxosHowToWinATuringAward/MCPaxosSmall",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 185369,
+    "generated": 1361380,
+    "depth": 25
+   }
+  },
+  {
+   "id": "PaxosHowToWinATuringAward/MCPaxosTiny",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3921,
+    "generated": 23563,
+    "depth": 17
+   }
+  },
+  {
+   "id": "PaxosHowToWinATuringAward/MCVoting",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 6752,
+    "generated": 41017,
+    "depth": 16
+   }
+  },
+  {
+   "id": "Prisoners/Prisoners",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 214,
+    "generated": 860,
+    "depth": 14
+   }
+  },
+  {
+   "id": "Prisoners_Single_Switch/Prisoner",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 16,
+    "generated": 49,
+    "depth": 5
+   }
+  },
+  {
+   "id": "Prisoners_Single_Switch/PrisonerLightUnknown",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 62,
+    "generated": 188,
+    "depth": 10
+   }
+  },
+  {
+   "id": "Prisoners_Single_Switch/PrisonerSolo",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2,
+    "generated": 3,
+    "depth": 2
+   }
+  },
+  {
+   "id": "Prisoners_Single_Switch/PrisonerSoloLightUnknown",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4,
+    "generated": 6,
+    "depth": 2
+   }
+  },
+  {
+   "id": "ReadersWriters/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 21527,
+    "generated": 59674,
+    "depth": 13
+   }
+  },
+  {
+   "id": "SDP_Verification/SDP_Attack_New_Solution_Spec/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2881,
+    "generated": 6826,
+    "depth": 21
+   }
+  },
+  {
+   "id": "SDP_Verification/SDP_Attack_Spec/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 526,
+    "generated": 1103,
+    "depth": 11
+   }
+  },
+  {
+   "id": "SimplifiedFastPaxos/FastPaxos",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 25617,
+    "generated": 320053,
+    "depth": 22
+   }
+  },
+  {
+   "id": "SimplifiedFastPaxos/Paxos",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1207,
+    "generated": 13290,
+    "depth": 22
+   }
+  },
+  {
+   "id": "SingleLaneBridge/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3605,
+    "generated": 20181,
+    "depth": 29
+   }
+  },
+  {
+   "id": "SlidingPuzzles/SlidingPuzzles",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 24005,
+    "generated": 81561,
+    "depth": 117
+   }
+  },
+  {
+   "id": "SlidingPuzzles/SlidingPuzzles_anim",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 24005,
+    "generated": 81561,
+    "depth": 117
+   }
+  },
+  {
+   "id": "SlushProtocol/SlushLarge",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "SlushProtocol/SlushMedium",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 9886336,
+    "generated": 65138523,
+    "depth": 90
+   }
+  },
+  {
+   "id": "SlushProtocol/SlushSmall",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 274678,
+    "generated": 1621541,
+    "depth": 43
+   }
+  },
+  {
+   "id": "SpanningTree/SpanTree",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1236,
+    "generated": 10278,
+    "depth": 5
+   }
+  },
+  {
+   "id": "SpanningTree/SpanTreeRandom",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 33316,
+    "generated": 474921,
+    "depth": 6
+   }
+  },
+  {
+   "id": "SpanningTree/SpanTreeTest4Nodes",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3984,
+    "generated": 21784,
+    "depth": 4
+   }
+  },
+  {
+   "id": "SpanningTree/SpanTreeTest5Nodes",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "SpecifyingSystems/AdvancedExamples/MCInnerSequential",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3528,
+    "generated": 24368,
+    "depth": 9
+   }
+  },
+  {
+   "id": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "SpecifyingSystems/AsynchronousInterface/AsynchInterface",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 30,
+    "depth": 2
+   }
+  },
+  {
+   "id": "SpecifyingSystems/AsynchronousInterface/Channel",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 30,
+    "depth": 2
+   }
+  },
+  {
+   "id": "SpecifyingSystems/AsynchronousInterface/PrintValues",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "SpecifyingSystems/CachingMemory/MCInternalMemory",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4408,
+    "generated": 21400,
+    "depth": 10
+   }
+  },
+  {
+   "id": "SpecifyingSystems/CachingMemory/MCWriteThroughCache",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 5196,
+    "generated": 28170,
+    "depth": 18
+   }
+  },
+  {
+   "id": "SpecifyingSystems/FIFO/MCInnerFIFO",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3864,
+    "generated": 9660,
+    "depth": 11
+   }
+  },
+  {
+   "id": "SpecifyingSystems/HourClock/HourClock",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 24,
+    "depth": 1
+   }
+  },
+  {
+   "id": "SpecifyingSystems/HourClock/HourClock2",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 24,
+    "depth": 1
+   }
+  },
+  {
+   "id": "SpecifyingSystems/Liveness/LiveHourClock",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 24,
+    "depth": 1
+   }
+  },
+  {
+   "id": "SpecifyingSystems/Liveness/MCLiveInternalMemory",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4408,
+    "generated": 21400,
+    "depth": 10
+   }
+  },
+  {
+   "id": "SpecifyingSystems/Liveness/MCLiveWriteThroughCache",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 5196,
+    "generated": 28170,
+    "depth": 18
+   }
+  },
+  {
+   "id": "SpecifyingSystems/RealTime/MCRealTimeHourClock",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "liveness failure",
+    "distinct": 216,
+    "generated": 696,
+    "depth": 2
+   }
+  },
+  {
+   "id": "SpecifyingSystems/SimpleMath/SimpleMath",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "SpecifyingSystems/TLC/ABCorrectness",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 20,
+    "generated": 36,
+    "depth": 3
+   }
+  },
+  {
+   "id": "SpecifyingSystems/TLC/MCAlternatingBit",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 240,
+    "generated": 1392,
+    "depth": 10
+   }
+  },
+  {
+   "id": "Stones/Stones",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "TLC/TestGraphs",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2590,
+    "generated": 2790,
+    "depth": 51
+   }
+  },
+  {
+   "id": "TLC/TestMCReachability",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "TeachingConcurrency/Simple",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 723,
+    "generated": 1842,
+    "depth": 11
+   }
+  },
+  {
+   "id": "TransitiveClosure/TransitiveClosure",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "TwoPhase/MCTwoPhase",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4,
+    "generated": 5,
+    "depth": 4
+   }
+  },
+  {
+   "id": "YoYo/MCYoYoNoPruning",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 60,
+    "generated": 110,
+    "depth": 19
+   }
+  },
+  {
+   "id": "YoYo/MCYoYoPruning",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 102,
+    "generated": 157,
+    "depth": 31
+   }
+  },
+  {
+   "id": "YoYo/YoYoAllGraphs",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 26731,
+    "generated": 48535,
+    "depth": 39
+   }
+  },
+  {
+   "id": "aba-asyn-byz/aba_asyn_byz",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "acp/ACP_NB_TLC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4284,
+    "generated": 23988,
+    "depth": 19
+   }
+  },
+  {
+   "id": "acp/ACP_NB_WRONG_TLC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 11852,
+    "generated": 59286,
+    "depth": 13
+   }
+  },
+  {
+   "id": "acp/ACP_SB_TLC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 54944,
+    "generated": 218352,
+    "depth": 21
+   }
+  },
+  {
+   "id": "allocator/AllocatorImplementation",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 17701,
+    "generated": 64414,
+    "depth": 16
+   }
+  },
+  {
+   "id": "allocator/AllocatorRefinement",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1690,
+    "generated": 5854,
+    "depth": 7
+   }
+  },
+  {
+   "id": "allocator/SchedulingAllocator",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1690,
+    "generated": 5854,
+    "depth": 7
+   }
+  },
+  {
+   "id": "allocator/SimpleAllocator",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 400,
+    "generated": 1633,
+    "depth": 6
+   }
+  },
+  {
+   "id": "barriers/Barrier",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 64,
+    "generated": 194,
+    "depth": 7
+   }
+  },
+  {
+   "id": "barriers/Barriers",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 29279,
+    "generated": 104515,
+    "depth": 93
+   }
+  },
+  {
+   "id": "bcastByz/bcastByz",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 14424,
+    "generated": 227344,
+    "depth": 7
+   }
+  },
+  {
+   "id": "bcastByz/bcastByzNoBcast",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 45,
+    "generated": 90,
+    "depth": 1
+   }
+  },
+  {
+   "id": "bcastFolklore/bcastFolklore",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "bosco/bosco",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "braf/BufferedRandomAccessFile",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3316,
+    "generated": 128581,
+    "depth": 10
+   }
+  },
+  {
+   "id": "btree/kvstore",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2641,
+    "generated": 28585,
+    "depth": 9
+   }
+  },
+  {
+   "id": "byihive/VoucherCancel",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4199,
+    "generated": 26848,
+    "depth": 11
+   }
+  },
+  {
+   "id": "byihive/VoucherIssue",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4199,
+    "generated": 26848,
+    "depth": 11
+   }
+  },
+  {
+   "id": "byihive/VoucherLifeCycle",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 64,
+    "generated": 193,
+    "depth": 7
+   }
+  },
+  {
+   "id": "byihive/VoucherRedeem",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4199,
+    "generated": 26848,
+    "depth": 11
+   }
+  },
+  {
+   "id": "byihive/VoucherTransfer",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4197,
+    "generated": 26848,
+    "depth": 11
+   }
+  },
+  {
+   "id": "byzpaxos/BPConProof",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "byzpaxos/Consensus",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4,
+    "generated": 4,
+    "depth": 2
+   }
+  },
+  {
+   "id": "byzpaxos/PConProof",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "byzpaxos/VoteProof",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 6962,
+    "generated": 318877,
+    "depth": 14
+   }
+  },
+  {
+   "id": "c1cs/c1cs",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "cf1s-folklore/cf1s_folklore",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 2057174,
+    "generated": 22438432,
+    "depth": 25
+   }
+  },
+  {
+   "id": "chang_roberts/MCChangRoberts",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 137,
+    "generated": 227,
+    "depth": 10
+   }
+  },
+  {
+   "id": "dag-consensus/BlockDagTest",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "dag-consensus/TLCSailfish1",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 109604,
+    "generated": 314144,
+    "depth": 16
+   }
+  },
+  {
+   "id": "dag-consensus/TLCSailfish2",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "detector_chan96/EnvironmentController",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "dijkstra-mutex/DijkstraMutex.toolbox/LSpec-model/MC",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 90882,
+    "generated": 282810,
+    "depth": 54
+   }
+  },
+  {
+   "id": "dijkstra-mutex/DijkstraMutex.toolbox/Safety-4-processors/MC",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "diskpaxos/MC_HDiskSynod",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "echo/MCEcho",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 75,
+    "generated": 116,
+    "depth": 16
+   }
+  },
+  {
+   "id": "ewd426/SimTokenRing",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd426/TokenRing",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 46656,
+    "generated": 248832,
+    "depth": 1
+   }
+  },
+  {
+   "id": "ewd687a/EWD687a_anim",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": null,
+    "generated": null,
+    "depth": null
+   }
+  },
+  {
+   "id": "ewd687a/MCEWD687a",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 18028,
+    "generated": 137161,
+    "depth": 27
+   }
+  },
+  {
+   "id": "ewd840/EWD840",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 302,
+    "generated": 2001,
+    "depth": 9
+   }
+  },
+  {
+   "id": "ewd840/EWD840_anim",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": null,
+    "generated": null,
+    "depth": null
+   }
+  },
+  {
+   "id": "ewd840/EWD840_json",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1566,
+    "generated": 15986,
+    "depth": 12
+   }
+  },
+  {
+   "id": "ewd840/SyncTerminationDetection",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 129,
+    "generated": 3722,
+    "depth": 1
+   }
+  },
+  {
+   "id": "ewd998/AsyncTerminationDetection",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 4097,
+    "generated": 53271,
+    "depth": 14
+   }
+  },
+  {
+   "id": "ewd998/EWD998",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/EWD998Small",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/EWD998Chan",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/EWD998ChanID",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 14,
+    "generated": 15,
+    "depth": 14
+   }
+  },
+  {
+   "id": "ewd998/EWD998ChanID_export",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/EWD998ChanID_shiviz",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/EWD998ChanTrace",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "error",
+    "distinct": null,
+    "generated": null,
+    "depth": null
+   }
+  },
+  {
+   "id": "ewd998/SmokeEWD998",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ewd998/SmokeEWD998_SC",
+   "size": "medium",
+   "timeout_s": 600,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "glowingRaccoon/clean",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 63,
+    "generated": 99,
+    "depth": 10
+   }
+  },
+  {
+   "id": "glowingRaccoon/product",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 305,
+    "generated": 376,
+    "depth": 23
+   }
+  },
+  {
+   "id": "glowingRaccoon/stages",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 83,
+    "generated": 93,
+    "depth": 23
+   }
+  },
+  {
+   "id": "lamport_mutex/MCLamportMutex",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 724274,
+    "generated": 2729079,
+    "depth": 61
+   }
+  },
+  {
+   "id": "locks_auxiliary_vars/Lock",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 12,
+    "generated": 21,
+    "depth": 5
+   }
+  },
+  {
+   "id": "locks_auxiliary_vars/LockHS",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 28,
+    "generated": 41,
+    "depth": 10
+   }
+  },
+  {
+   "id": "locks_auxiliary_vars/Peterson",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 42,
+    "generated": 77,
+    "depth": 11
+   }
+  },
+  {
+   "id": "nbacc_ray97/nbacc_ray97",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 3016,
+    "generated": 49592,
+    "depth": 7
+   }
+  },
+  {
+   "id": "nbacg_guer01/nbacg_guer01",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 24922,
+    "generated": 159538,
+    "depth": 16
+   }
+  },
+  {
+   "id": "spanning/MC_spanning",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 5,
+    "generated": 19,
+    "depth": 3
+   }
+  },
+  {
+   "id": "sums_even/MC_sums_even",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 0,
+    "generated": 0,
+    "depth": 0
+   }
+  },
+  {
+   "id": "tcp/MCtcp",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1182,
+    "generated": 6322,
+    "depth": 14
+   }
+  },
+  {
+   "id": "tower_of_hanoi/Hanoi.toolbox/Model_1/MC",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 233,
+    "generated": 768,
+    "depth": 32
+   }
+  },
+  {
+   "id": "tower_of_hanoi/Hanoi_anim",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "safety failure",
+    "distinct": 25,
+    "generated": 80,
+    "depth": 8
+   }
+  },
+  {
+   "id": "transaction_commit/2PCwithBTM",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 1245,
+    "generated": 5841,
+    "depth": 15
+   }
+  },
+  {
+   "id": "transaction_commit/TCommit",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 34,
+    "generated": 94,
+    "depth": 7
+   }
+  },
+  {
+   "id": "transaction_commit/TwoPhase",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "corpus"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 288,
+    "generated": 1146,
+    "depth": 11
+   }
+  },
+  {
+   "id": "ext/ccf/TraceMultiNodeReads_ElectionNoRollback",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "external",
+    "trace-validation"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 19,
+    "generated": 19,
+    "depth": 18
+   }
+  },
+  {
+   "id": "ext/ccf/TraceMultiNodeReads_RollbackSameSeqno",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "external",
+    "trace-validation"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "expect": {
+    "source": "tlc-oracle",
+    "result": "success",
+    "distinct": 22,
+    "generated": 22,
+    "depth": 21
+   }
+  },
+  {
+   "id": "ext/etcd-raft/Traceetcdraft_400",
+   "size": "small",
+   "timeout_s": 120,
+   "category": [
+    "external",
+    "trace-validation"
+   ],
+   "runs": [
+    {
+     "mode": "default",
+     "workers": 1
+    },
+    {
+     "mode": "compile",
+     "workers": 1
+    }
+   ],
+   "expect": {
+    "source": "unpinned"
+   }
+  },
+  {
+   "id": "ext/ccf/MCMultiNodeReads",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Industrial replication and history",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 2793475,
+    "generated": 6962866,
+    "depth": 15
+   },
+   "tlc_1w_s": 237.047
+  },
+  {
+   "id": "ext/mongo/MCTxnsMoveRange",
+   "size": "medium",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Industrial replication and history",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 423490,
+    "generated": 1238092,
+    "depth": 14
+   },
+   "tlc_1w_s": 15.44
+  },
+  {
+   "id": "ext/mongo/MCRaftMongoReplTimestamp",
+   "size": "large",
+   "timeout_s": 600,
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "expect": {
+    "result": "success",
+    "distinct": 5670386,
+    "generated": 96417413,
+    "depth": 34,
+    "source": "tlc-oracle"
+   }
+  },
+  {
+   "id": "ext/ccf/MCccfraft_1C3N",
+   "size": "large",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    },
+    {
+     "mode": "compile",
+     "workers": 16,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 600,
+   "note": "Industrial action composition",
+   "expect": {
+    "result": "success",
+    "source": "tlc-oracle",
+    "distinct": 675893,
+    "generated": 1848071,
+    "depth": 66
+   },
+   "tlc_1w_s": 743.53
+  },
+  {
+   "id": "bench/ReprRaft",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprRaftAddRemove",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprRaftJoint",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprKRaft",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprPullRaft",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprRaftFsync",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprCCFSingle",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprCCFMulti",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprCCFReads",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprCCFMedium",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprMoveRange",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprMongoReconfig",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprRaftMongo",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprAccordKeys",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprAccordChain",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprAccordLoad",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprZab",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprPaxosCommit",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprBakery",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprLamportMutex",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  },
+  {
+   "id": "bench/ReprKVS",
+   "size": "small",
+   "runs": [
+    {
+     "mode": "compile",
+     "workers": 1,
+     "args": [
+      "-tlc"
+     ]
+    }
+   ],
+   "timeout_s": 120,
+   "expect": {
+    "source": "unpinned"
+   },
+   "category": [
+    "representation"
+   ],
+   "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+  }
+ ],
+ "report": {
+  "stale_after_revisions": 20,
+  "corpus_scope": "all exhaustive/simulation configurations in the Examples manifests; unbounded generate uses fixed trace count"
+ }
+}

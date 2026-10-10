@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "430fb62aeaef7d722abc7f436c0dada032046723eca74734e8bb8246a8584257",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "btree/kvstore",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "430fb62aeaef7d722abc7f436c0dada032046723eca74734e8bb8246a8584257",
+    "counts": {
+      "depth": 9,
+      "distinct": 2641,
+      "generated": 28585,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:49:08",
+    "id": "606ec1638dd5aa4767233303",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.925,
+      "instructions": null,
+      "rss_mib": 200.1,
+      "wall_s": 0.525
+    },
+    "mode": "-tlc",
+    "model": "btree/kvstore",
+    "provenance": {
+      "adoption": {
+        "content_digest": "430fb62aeaef7d722abc7f436c0dada032046723eca74734e8bb8246a8584257",
+        "matched_counts": {
+          "depth": 9,
+          "distinct": 2641,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/btree/kvstore/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/5bd1cd446fffbf1e01111e5d4af0e47ea854393b202d32b2cd561434b2b04136.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        1.925
+      ],
+      "wall_s": [
+        0.525
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

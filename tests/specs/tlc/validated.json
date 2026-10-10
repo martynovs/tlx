@@ -1,0 +1,146 @@
+{
+ "01a37e2aa05a24e11e92": [
+  "valid",
+  ""
+ ],
+ "099bf04a430975987159": [
+  "valid",
+  ""
+ ],
+ "0a3918165237549fdcd2": [
+  "valid",
+  ""
+ ],
+ "103684683fc0c9d5dd09": [
+  "valid",
+  ""
+ ],
+ "105b9c166b227c7e1a79": [
+  "valid",
+  ""
+ ],
+ "1c132ae788911fd3475f": [
+  "valid",
+  ""
+ ],
+ "209c1df4da57d57d1104": [
+  "valid",
+  ""
+ ],
+ "2a77df532683f7c54b07": [
+  "valid",
+  ""
+ ],
+ "2c09672a80df83c46c4b": [
+  "invalid",
+  "TLC: {'result': 'deadlock', 'violated': None} (expected {'result': 'safety failure', 'violated': 'tlx_Reached'})"
+ ],
+ "385d59e07794bb1f3a89": [
+  "valid",
+  ""
+ ],
+ "39a807da095291e1d07b": [
+  "valid",
+  ""
+ ],
+ "3e4917c40fa59dd957af": [
+  "valid",
+  ""
+ ],
+ "3f55c05116d81ef75317": [
+  "invalid",
+  "TLC: {'result': 'error'} (expected {'result': 'success'}) Error: Action property line 14, col 17 to line 14, col 29 of module RT44View is violated.\nError: The behavior up to this point is:\n1: <Initial predicate>\n/\\ c = <<0, 0, 0>>\n/\\ h = 0\n/\\ tlx_pc = 1\n\n2: <tlx_Next line 13, col 13 to line 13, col 89 of module tlxTC>\n/\\ c = <<0, 1, 0>>\n/\\ h = 2\n/\\ tlx_pc = 2\n\n3: <tlx_Next line 13, col 13 to line 13, col 89 of module tlxTC>\n/\\ c = <<0, 1, 1>>\n/\\ h = 0\n/\\ tlx_pc = 3\n\n4: <tlx_Next line 13, col 13 to line 13, col 89 of module tlxTC>\n/\\ c = <<0, 1, 2>>\n/\\"
+ ],
+ "4b37c3bbb277acaea25f": [
+  "valid",
+  ""
+ ],
+ "4c6165e9505804fd851b": [
+  "valid",
+  ""
+ ],
+ "50099a615c2791fe5b0f": [
+  "valid",
+  ""
+ ],
+ "567c54ee18346352efde": [
+  "valid",
+  ""
+ ],
+ "5794f9ca265b7a270fce": [
+  "valid",
+  ""
+ ],
+ "5901f0689a55172f3a4b": [
+  "invalid",
+  "TLC: {'result': 'error'} (expected {'result': 'success'}) Error: Action property line 14, col 17 to line 14, col 29 of module RT44View is violated.\nError: The behavior up to this point is:\n1: <Initial predicate>\n/\\ c = <<0, 0, 0>>\n/\\ h = 0\n/\\ tlx_pc = 1\n\n2: <tlx_Next line 11, col 13 to line 11, col 89 of module tlxTC>\n/\\ c = <<0, 1, 0>>\n/\\ h = 2\n/\\ tlx_pc = 2\n\n3: <tlx_Next line 11, col 13 to line 11, col 89 of module tlxTC>\n/\\ c = <<1, 1, 0>>\n/\\ h = 3\n/\\ tlx_pc = 3\n\n4: <tlx_Next line 11, col 13 to line 11, col 89 of module tlxTC>\n/\\ c = <<2, 1, 0>>\n/\\"
+ ],
+ "5e14794bc841c637aa80": [
+  "valid",
+  ""
+ ],
+ "60a3d2f3122d4ee69509": [
+  "invalid",
+  "TLC: {'result': 'deadlock', 'violated': None} (expected {'result': 'safety failure', 'violated': 'tlx_Reached'})"
+ ],
+ "731cfaf2e2cb0503de16": [
+  "valid",
+  ""
+ ],
+ "a39c6d49b61c3e9900cb": [
+  "invalid",
+  "TLC: {'result': 'liveness failure'} (expected {'result': 'success'})"
+ ],
+ "a59ab969d6a3b9346f44": [
+  "valid",
+  ""
+ ],
+ "a7d30b8add0b669acc95": [
+  "valid",
+  ""
+ ],
+ "bb2f4b5c9a33fa2e24fa": [
+  "valid",
+  ""
+ ],
+ "bf127f58c3f20b444772": [
+  "valid",
+  ""
+ ],
+ "c261440035582fffa616": [
+  "valid",
+  ""
+ ],
+ "cdf7d31ee68d4e184111": [
+  "valid",
+  ""
+ ],
+ "e1ff2d06d5d1527f3dc7": [
+  "valid",
+  ""
+ ],
+ "e427eaa062797ed09b81": [
+  "valid",
+  ""
+ ],
+ "e946a31ef46faf6e46eb": [
+  "valid",
+  ""
+ ],
+ "f62be302bd1decef88b6": [
+  "valid",
+  ""
+ ],
+ "f78b6543311cdf8f7052": [
+  "valid",
+  ""
+ ],
+ "fe4fb729a4f145de37c5": [
+  "valid",
+  ""
+ ],
+ "ff4bbc5ddd9e2bb404bf": [
+  "valid",
+  ""
+ ]
+}

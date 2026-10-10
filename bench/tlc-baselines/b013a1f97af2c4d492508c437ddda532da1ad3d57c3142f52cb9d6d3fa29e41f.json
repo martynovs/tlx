@@ -1,0 +1,87 @@
+{
+  "key": {
+    "args": [
+      "-workers",
+      "1"
+    ],
+    "cgroup_mib": null,
+    "content_digest": "4989a83e6981af7e45488919d687ca278c8052aca6c735d7996d4a022a3a412d",
+    "env": {
+      "base": {},
+      "cur": {}
+    },
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "PaxosHowToWinATuringAward/MCPaxosSmall",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [
+        "-workers",
+        "1"
+      ],
+      "cgroup_mib": null,
+      "env": {
+        "base": {},
+        "cur": {}
+      },
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "4989a83e6981af7e45488919d687ca278c8052aca6c735d7996d4a022a3a412d",
+    "counts": {
+      "depth": 25,
+      "distinct": 185369,
+      "generated": 1361380,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:06:21",
+    "id": "2e21a9645d83e725446d6897",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 140.788,
+      "instructions": null,
+      "rss_mib": 2416.5,
+      "wall_s": 131.91
+    },
+    "mode": "-tlc",
+    "model": "PaxosHowToWinATuringAward/MCPaxosSmall",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/ab/2026-10-07-interp-table-heavy.json#/tlc_baseline/runs/PaxosHowToWinATuringAward/MCPaxosSmall",
+      "pointer": "/measurement",
+      "reused_from": "08a024ce81f19729455bdb5c",
+      "source": "bench/tlc-baselines/b013a1f97af2c4d492508c437ddda532da1ad3d57c3142f52cb9d6d3fa29e41f.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        140.788
+      ],
+      "wall_s": [
+        131.91
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

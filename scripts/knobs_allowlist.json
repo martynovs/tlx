@@ -1,0 +1,29 @@
+{
+  "_symbols": {
+    "TLX_ABI_VERSION": "C ABI version constant",
+    "TLX_OK": "C ABI status constant",
+    "TLX_ERR": "C ABI status constant",
+    "TLX_STOP": "C ABI status constant",
+    "TLX_MISS": "C ABI status constant",
+    "TLX_UNSUPPORTED": "C ABI status constant",
+    "TLX_ENV_KEEP": "Python constant holding environment passthrough names",
+    "TLX_SELFTERM_EOF": "Shell heredoc delimiter",
+    "TLX_BENCH_EOF": "Shell heredoc delimiter",
+    "TLX_ORACLE_EOF": "Shell heredoc delimiter"
+  },
+  "crates/tlx-base/src/knobs.rs": {
+    "TLX_NO_SUCH_KNOB": "Test checks rejection of an undeclared knob"
+  },
+  "crates/tlx-cli/tests/config.rs": {
+    "TLX_NAME": "Comment illustrating a knob literal"
+  },
+  "scripts/doccheck.py": {
+    "TLX_LIVE_REEXPLORE": "Documentation checker rejects removed historical knobs",
+    "TLX_IR_CLOSURES": "Documentation checker rejects removed historical knobs",
+    "TLX_IR_INTERP": "Documentation checker rejects removed historical knobs",
+    "TLX_MEMO": "Documentation checker rejects removed historical knobs",
+    "TLX_MIXED_LOOPS": "Documentation checker rejects removed historical knobs",
+    "TLX_MIXED_MEMO": "Documentation checker rejects removed historical knobs",
+    "TLX_NO_REGIONS": "Documentation checker rejects removed historical knobs"
+  }
+}

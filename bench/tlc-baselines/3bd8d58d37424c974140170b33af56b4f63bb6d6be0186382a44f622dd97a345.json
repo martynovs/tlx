@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "9b2a8ee2831c1f6c82f26c07d6ac58feb2a8e6cadef7fd0c9b6f9e4365c67f14",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/TLC/MCAlternatingBit",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "9b2a8ee2831c1f6c82f26c07d6ac58feb2a8e6cadef7fd0c9b6f9e4365c67f14",
+    "counts": {
+      "depth": 10,
+      "distinct": 240,
+      "generated": 1392,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:47:18",
+    "id": "d1963569f70d86ca06e17157",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.812,
+      "instructions": null,
+      "rss_mib": 217.7,
+      "wall_s": 0.58
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/TLC/MCAlternatingBit",
+    "provenance": {
+      "adoption": {
+        "content_digest": "9b2a8ee2831c1f6c82f26c07d6ac58feb2a8e6cadef7fd0c9b6f9e4365c67f14",
+        "matched_counts": {
+          "depth": 10,
+          "distinct": 240,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/TLC/MCAlternatingBit/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/3bd8d58d37424c974140170b33af56b4f63bb6d6be0186382a44f622dd97a345.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.812
+      ],
+      "wall_s": [
+        0.58
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

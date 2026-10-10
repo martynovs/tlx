@@ -1,0 +1,206 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "a0372b82e366c720a41637fabfdba15867867c012c15a21b0c804aa97b752d96",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "DiningPhilosophers/DiningPhilosophers",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "67ee4f815b93ce77bfd0f81e",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "a0372b82e366c720a41637fabfdba15867867c012c15a21b0c804aa97b752d96",
+    "counts": {
+      "depth": 29,
+      "distinct": 67,
+      "generated": 336,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 2142,
+    "fully_native": 2142,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "c8d57d9d2480d6200a76757c",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.055,
+      "instructions": 383302361,
+      "rss_mib": 34.7,
+      "wall_s": 0.055
+    },
+    "mode": "default",
+    "model": "DiningPhilosophers/DiningPhilosophers",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/small:DiningPhilosophers/DiningPhilosophers:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/1a8f7f43d708e9ae2938bb8152d8eab8ce465459c28853cd4c61b998ddb1a96f.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "a0372b82e366c720a41637fabfdba15867867c012c15a21b0c804aa97b752d96",
+      "count_problems": [],
+      "cpu": [
+        0.056,
+        0.055,
+        0.055
+      ],
+      "depth": 29,
+      "distinct": 67,
+      "env": null,
+      "generated": 336,
+      "instructions": [
+        383302361,
+        383301587,
+        383329183
+      ],
+      "load": [
+        1.11,
+        1.11
+      ],
+      "median": 0.055,
+      "min": 0.055,
+      "mode": "default",
+      "model": "DiningPhilosophers/DiningPhilosophers",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 2142,
+        "fully_native": 2142,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 0.001179
+      },
+      "result": "success",
+      "rss_mib": [
+        34.7,
+        34.7,
+        34.7
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.056,
+          "depth": 29,
+          "distinct": 67,
+          "generated": 336,
+          "maxrss_mib": 34.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.056
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.055,
+          "depth": 29,
+          "distinct": 67,
+          "generated": 336,
+          "maxrss_mib": 34.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.055
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.055,
+          "depth": 29,
+          "distinct": 67,
+          "generated": 336,
+          "maxrss_mib": 34.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.055
+        }
+      ],
+      "tier": "small",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.056,
+        0.055,
+        0.055
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.278,
+          "depth": 29,
+          "distinct": 67,
+          "generated": 336,
+          "maxrss_mib": 97.4,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 2142,
+            "fully_native": 2142,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 0.001179
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.278
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.056,
+        0.055,
+        0.055
+      ],
+      "wall_s": [
+        0.056,
+        0.055,
+        0.055
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.001179,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

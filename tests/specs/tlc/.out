@@ -1,0 +1,11 @@
+# exit 151
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -3630141632863058417 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 5001:1 @!@!@
+TLC encountered the following error when trying to read the configuration file .cfg:
+File not found.
+@!@!@ENDMSG 5001 @!@!@

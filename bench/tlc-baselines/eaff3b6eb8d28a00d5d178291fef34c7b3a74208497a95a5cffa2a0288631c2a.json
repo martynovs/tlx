@@ -1,0 +1,87 @@
+{
+  "key": {
+    "args": [
+      "-workers",
+      "1"
+    ],
+    "cgroup_mib": null,
+    "content_digest": "4500f7411e769d3d7e8c0fcb66d85e79a717905773e9553c9ee0dfba7bdb6931",
+    "env": {
+      "base": {},
+      "cur": {}
+    },
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "MultiPaxos-SMR/MultiPaxos_MC_small",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [
+        "-workers",
+        "1"
+      ],
+      "cgroup_mib": null,
+      "env": {
+        "base": {},
+        "cur": {}
+      },
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "4500f7411e769d3d7e8c0fcb66d85e79a717905773e9553c9ee0dfba7bdb6931",
+    "counts": {
+      "depth": 28,
+      "distinct": 343796,
+      "generated": 736012,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:46:35",
+    "id": "d4eb46a4cbb045b26e9fa805",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 29.227,
+      "instructions": null,
+      "rss_mib": 2780.8,
+      "wall_s": 22.386
+    },
+    "mode": "-tlc",
+    "model": "MultiPaxos-SMR/MultiPaxos_MC_small",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/ab/2026-10-07-interp-table-light.json#/tlc_baseline/runs/MultiPaxos-SMR/MultiPaxos_MC_small",
+      "pointer": "/measurement",
+      "reused_from": "8fa46c85badacb9295e795ae",
+      "source": "bench/tlc-baselines/eaff3b6eb8d28a00d5d178291fef34c7b3a74208497a95a5cffa2a0288631c2a.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        29.227
+      ],
+      "wall_s": [
+        22.386
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

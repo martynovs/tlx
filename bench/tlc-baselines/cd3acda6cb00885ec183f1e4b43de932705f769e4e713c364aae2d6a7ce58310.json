@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "a0748b7b77facaed0edc2fa45bdda17d12fce232a177914ac867b8eb7084eb42",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpanningTree/SpanTree",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "a0748b7b77facaed0edc2fa45bdda17d12fce232a177914ac867b8eb7084eb42",
+    "counts": {
+      "depth": 5,
+      "distinct": 1236,
+      "generated": 10278,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:09:54",
+    "id": "bd13efa24e3c473c534ae735",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.533,
+      "instructions": null,
+      "rss_mib": 276.4,
+      "wall_s": 0.753
+    },
+    "mode": "-tlc",
+    "model": "SpanningTree/SpanTree",
+    "provenance": {
+      "adoption": {
+        "content_digest": "a0748b7b77facaed0edc2fa45bdda17d12fce232a177914ac867b8eb7084eb42",
+        "matched_counts": {
+          "depth": 5,
+          "distinct": 1236,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpanningTree/SpanTree/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/cd3acda6cb00885ec183f1e4b43de932705f769e4e713c364aae2d6a7ce58310.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.533
+      ],
+      "wall_s": [
+        0.753
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

@@ -1,0 +1,4 @@
+{
+ "bug": "D-29",
+ "summary": "TLC accepts a literal constant VIEW but rejects equal computed constants; tlx consistently rejects pure constant VIEW definitions (docs/compat.md D-29)."
+}

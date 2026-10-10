@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "97179ffd81b13b97be035f6a0530c91ee3be24818fcb28a37e4b30f8cb678037",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "byihive/VoucherLifeCycle",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "97179ffd81b13b97be035f6a0530c91ee3be24818fcb28a37e4b30f8cb678037",
+    "counts": {
+      "depth": 7,
+      "distinct": 64,
+      "generated": 193,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:12:22",
+    "id": "094f28c0ac957048464c403f",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.019,
+      "instructions": null,
+      "rss_mib": 124.3,
+      "wall_s": 0.39
+    },
+    "mode": "-tlc",
+    "model": "byihive/VoucherLifeCycle",
+    "provenance": {
+      "adoption": {
+        "content_digest": "97179ffd81b13b97be035f6a0530c91ee3be24818fcb28a37e4b30f8cb678037",
+        "matched_counts": {
+          "depth": 7,
+          "distinct": 64,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/byihive/VoucherLifeCycle/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/264668bcf6d41b7d47186a1480963455dc359acf322187683b37aefc20de9406.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        1.019
+      ],
+      "wall_s": [
+        0.39
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

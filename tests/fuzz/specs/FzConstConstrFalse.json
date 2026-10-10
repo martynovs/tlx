@@ -1,0 +1,5 @@
+{
+ "bug": "constant-level-false",
+ "found": "fuzz_spec seed 1 (F1_4, F1_18), minimized by hand",
+ "summary": "a constant-level CONSTRAINT that is FALSE: TLC reports an error before the search; tlx succeeds with 0 distinct states"
+}

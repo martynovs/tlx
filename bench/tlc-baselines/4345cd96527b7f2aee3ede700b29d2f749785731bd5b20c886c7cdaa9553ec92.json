@@ -1,0 +1,87 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "03507e0783ffc73a08ef94f6a6b22f5e4b402566c6a9bfe7b060cc5bbcf689c8",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/Liveness/MCLiveInternalMemory",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "liveness",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "03507e0783ffc73a08ef94f6a6b22f5e4b402566c6a9bfe7b060cc5bbcf689c8",
+    "counts": {
+      "depth": 10,
+      "distinct": 4408,
+      "generated": 21400,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:12:03",
+    "id": "caf850f51a19a95b0b74c831",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 5.387,
+      "instructions": null,
+      "rss_mib": 424.4,
+      "wall_s": 0.858
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/Liveness/MCLiveInternalMemory",
+    "provenance": {
+      "adoption": {
+        "content_digest": "03507e0783ffc73a08ef94f6a6b22f5e4b402566c6a9bfe7b060cc5bbcf689c8",
+        "matched_counts": {
+          "depth": 10,
+          "distinct": 4408,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/Liveness/MCLiveInternalMemory/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/4345cd96527b7f2aee3ede700b29d2f749785731bd5b20c886c7cdaa9553ec92.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        5.387
+      ],
+      "wall_s": [
+        0.858
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

@@ -1,0 +1,15 @@
+/target
+/third_party
+/corpus/out
+*.dylib
+*.so
+.DS_Store
+/tests/specs/*.csv
+/work/
+__pycache__/
+/.cargo/config.toml
+
+/.agents/
+/.claude/
+/.githooks/
+/harness/

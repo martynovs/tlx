@@ -1,0 +1,32 @@
+{
+ "diffs": [
+  "generated"
+ ],
+ "env": {},
+ "features": "vars=mixed actions=1 heterogeneous=cup nodeadlock",
+ "flags": [
+  "-workers",
+  "1"
+ ],
+ "found": "fuzz_spec.py --seed 1 --start 56 --count 1",
+ "mode": "interp",
+ "note": "",
+ "original_diffs": [
+  "generated"
+ ],
+ "shrink_secs": 12,
+ "shrink_tries": 17,
+ "tlc": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 2,
+  "result": "error"
+ },
+ "tlx": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 1,
+  "result": "error"
+ },
+ "variant": "F1_56"
+}

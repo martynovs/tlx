@@ -1,0 +1,6 @@
+{
+ "bug": "tlc-short-action-trace",
+ "found": "cloud campaign seed 129747164 (F129747164_462), minimized by fuzz_spec's shrinker",
+ "summary": "TLC defect candidate: the counterexample TLC prints for the violated action property is the initial state alone (the violating successor (1 :> 1) is missing; rebuilding the step re-evaluates the IF whose other branch fails on Max({})); tlx prints both states",
+ "variant": "F129747164_462"
+}

@@ -1,0 +1,5 @@
+{
+ "bug": "constraint-no-initial-depth",
+ "found": "fuzz_spec seed 4 (F4_61, F4_97, F4_102, F4_110), minimized by hand",
+ "summary": "no initial state satisfies the CONSTRAINT: TLC reports depth 1, tlx 0"
+}

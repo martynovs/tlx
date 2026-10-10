@@ -1,0 +1,216 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "430b609daf64aa4a524e122fba3996d0610c016961dfd8bf60da4d089a4183c0",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "transaction_commit/PaxosCommit",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "74edeed1d32951534ea71bd6",
+    "category": [
+      "corpus",
+      "compiled"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "430b609daf64aa4a524e122fba3996d0610c016961dfd8bf60da4d089a4183c0",
+    "counts": {
+      "depth": 28,
+      "distinct": 119992,
+      "generated": 1545109,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 2399839,
+    "fully_native": 2383444,
+    "host_calls": 24321,
+    "host_s": 0.01858659,
+    "host_time_share": 0.008305797920711774,
+    "id": "d23c3c70ea8c723e9ef1fd57",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.676,
+      "instructions": 17314315983,
+      "rss_mib": 50.3,
+      "wall_s": 1.673
+    },
+    "mode": "-compile",
+    "model": "transaction_commit/PaxosCommit",
+    "native_share": 0.9931682917062353,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:transaction_commit/PaxosCommit:compile:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/dbc41944d801a0bd7406afdb1c06773f550a12f8cba2890c43434b4e45cafe77.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "430b609daf64aa4a524e122fba3996d0610c016961dfd8bf60da4d089a4183c0",
+      "count_problems": [],
+      "cpu": [
+        1.677,
+        1.676,
+        1.663
+      ],
+      "depth": 28,
+      "distinct": 119992,
+      "env": null,
+      "generated": 1545109,
+      "instructions": [
+        17316228985,
+        17314305998,
+        17314315983
+      ],
+      "load": [
+        2.03,
+        1.95
+      ],
+      "median": 1.673,
+      "min": 1.662,
+      "mode": "compile",
+      "model": "transaction_commit/PaxosCommit",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 2399839,
+        "fully_native": 2383444,
+        "host_calls": 24321,
+        "host_time_s": 0.01858659,
+        "host_time_share": 0.008305797920711774,
+        "native_share": 0.9931682917062353,
+        "search_thread_s_est": 2.237785
+      },
+      "result": "success",
+      "rss_mib": [
+        50.0,
+        50.3,
+        51.3
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 1.677,
+          "depth": 28,
+          "distinct": 119992,
+          "generated": 1545109,
+          "maxrss_mib": 50.0,
+          "optimizations": [
+            "symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only)"
+          ],
+          "result": "success",
+          "wall_s": 1.682
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 1.676,
+          "depth": 28,
+          "distinct": 119992,
+          "generated": 1545109,
+          "maxrss_mib": 50.3,
+          "optimizations": [
+            "symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only)"
+          ],
+          "result": "success",
+          "wall_s": 1.673
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 1.663,
+          "depth": 28,
+          "distinct": 119992,
+          "generated": 1545109,
+          "maxrss_mib": 51.3,
+          "optimizations": [
+            "symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only)"
+          ],
+          "result": "success",
+          "wall_s": 1.662
+        }
+      ],
+      "tier": "medium",
+      "tlc_1w_s": 138.3,
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        1.682,
+        1.673,
+        1.662
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 2.451,
+          "depth": 28,
+          "distinct": 119992,
+          "generated": 1545109,
+          "maxrss_mib": 102.8,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 2399839,
+            "fully_native": 2383444,
+            "host_calls": 24321,
+            "host_time_s": 0.01858659,
+            "host_time_share": 0.008305797920711774,
+            "native_share": 0.9931682917062353,
+            "search_thread_s_est": 2.237785
+          },
+          "optimizations": [
+            "symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only)"
+          ],
+          "result": "success",
+          "wall_s": 2.449
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        1.677,
+        1.676,
+        1.663
+      ],
+      "wall_s": [
+        1.682,
+        1.673,
+        1.662
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 2.237785,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

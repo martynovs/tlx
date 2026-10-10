@@ -1,0 +1,210 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "35f6b5fd6473c380ca11a740859341f55d34ca2dc5e773f4bf75471b11bea01e",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "ext/cassandra/Accord_baseline__deep_chain_live",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "cdd92158c252111ed867b94b",
+    "category": [
+      "external",
+      "liveness",
+      "compiled"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "35f6b5fd6473c380ca11a740859341f55d34ca2dc5e773f4bf75471b11bea01e",
+    "counts": {
+      "depth": 9,
+      "distinct": 179712,
+      "generated": 214191,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 5539965,
+    "fully_native": 4966839,
+    "host_calls": 861493,
+    "host_s": 0.696842785,
+    "host_time_share": 0.3623657709134041,
+    "id": "2d4d48fde0bd65fc59a1808e",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.902,
+      "instructions": 24098323330,
+      "rss_mib": 110.4,
+      "wall_s": 2.569
+    },
+    "mode": "-compile",
+    "model": "ext/cassandra/Accord_baseline__deep_chain_live",
+    "native_share": 0.8965469998456669,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:ext/cassandra/Accord_baseline__deep_chain_live:compile:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/0cf814b617e855ad8c680c6246b2cbc85ffc9c2e01f25e7d0dac534fb098b6ea.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "external",
+        "liveness"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "35f6b5fd6473c380ca11a740859341f55d34ca2dc5e773f4bf75471b11bea01e",
+      "count_problems": [],
+      "cpu": [
+        2.89,
+        2.907,
+        2.902
+      ],
+      "depth": 9,
+      "distinct": 179712,
+      "env": null,
+      "generated": 214191,
+      "instructions": [
+        24099044468,
+        24098323330,
+        24097566455
+      ],
+      "load": [
+        1.13,
+        1.09
+      ],
+      "median": 2.569,
+      "min": 2.566,
+      "mode": "compile",
+      "model": "ext/cassandra/Accord_baseline__deep_chain_live",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 5539965,
+        "fully_native": 4966839,
+        "host_calls": 861493,
+        "host_time_s": 0.696842785,
+        "host_time_share": 0.3623657709134041,
+        "native_share": 0.8965469998456669,
+        "search_thread_s_est": 1.923037
+      },
+      "result": "success",
+      "rss_mib": [
+        110.3,
+        112.7,
+        110.4
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 2.89,
+          "depth": 9,
+          "distinct": 179712,
+          "generated": 214191,
+          "maxrss_mib": 110.3,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 2.57
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 2.907,
+          "depth": 9,
+          "distinct": 179712,
+          "generated": 214191,
+          "maxrss_mib": 112.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 2.569
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 2.902,
+          "depth": 9,
+          "distinct": 179712,
+          "generated": 214191,
+          "maxrss_mib": 110.4,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 2.566
+        }
+      ],
+      "tier": "medium",
+      "tlc_1w_s": 95.6,
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        2.57,
+        2.569,
+        2.566
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 11.811,
+          "depth": 9,
+          "distinct": 179712,
+          "generated": 214191,
+          "maxrss_mib": 134.2,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 5539965,
+            "fully_native": 4966839,
+            "host_calls": 861493,
+            "host_time_s": 0.696842785,
+            "host_time_share": 0.3623657709134041,
+            "native_share": 0.8965469998456669,
+            "search_thread_s_est": 1.923037
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 11.483
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        2.89,
+        2.907,
+        2.902
+      ],
+      "wall_s": [
+        2.57,
+        2.569,
+        2.566
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 1.923037,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

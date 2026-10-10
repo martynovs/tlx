@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SlidingPuzzles/SlidingPuzzles",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+    "counts": {
+      "depth": 117,
+      "distinct": 24005,
+      "generated": 81561,
+      "result": "safety failure"
+    },
+    "date": "2026-10-05 22:09:53",
+    "id": "07ca7d955fbd757f13e82ce8",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 4.13,
+      "instructions": null,
+      "rss_mib": 537.0,
+      "wall_s": 1.764
+    },
+    "mode": "-tlc",
+    "model": "SlidingPuzzles/SlidingPuzzles",
+    "provenance": {
+      "adoption": {
+        "content_digest": "e527dba44220d3ba00b625bacc1e8710f2b6e601bd6127723e739802a487db46",
+        "matched_counts": {
+          "depth": 117,
+          "distinct": 24005,
+          "result": "safety failure"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SlidingPuzzles/SlidingPuzzles/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/dae885708e2a20d9f5d896be33d6d4a220b2c43c83de64f06ded17b19ed31dca.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        4.13
+      ],
+      "wall_s": [
+        1.764
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

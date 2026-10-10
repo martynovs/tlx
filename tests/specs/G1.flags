@@ -1,0 +1,2 @@
+-generate num=20 -depth 5
+# deterministic

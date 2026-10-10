@@ -1,0 +1,9 @@
+CommunityModules (https://github.com/tlaplus/CommunityModules, MIT license,
+see LICENSE), the .tla files of the CommunityModules-deps.jar release dated
+2026-09-12 (the jar scripts/fetch-deps.sh downloads to third_party/community).
+They are embedded in the tlx binary, as TLC finds them on its classpath:
+a module is looked up in the spec's directory, then the -I / TLX_PATH
+directories, then the standard modules (../stdlib), then these. The
+operators TLC overrides in Java are tlx natives (tlx-sema builtins.rs).
+To update: copy the .tla files of a newer jar here and update the list
+COMMUNITY_MODULES in crates/tlx-sema/src/builtins.rs.

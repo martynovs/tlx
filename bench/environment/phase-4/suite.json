@@ -1,0 +1,353 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "ext/mongo/MCRaftMongoReplTimestamp",
+      "size": "large",
+      "timeout_s": 1800,
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "expect": {
+        "result": "success",
+        "distinct": 5670386,
+        "generated": 96417413,
+        "depth": 34,
+        "source": "tlc-oracle"
+      }
+    },
+    {
+      "id": "bench/ReprPullRaft",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprRaftFsync",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprCCFSingle",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprCCFMulti",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprCCFReads",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprCCFMedium",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprMongoReconfig",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprAccordKeys",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprAccordLoad",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprPaxosCommit",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "bench/ReprLamportMutex",
+      "size": "small",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "expect": {
+        "source": "unpinned"
+      },
+      "category": [
+        "representation"
+      ],
+      "note": "Fixed reduced representation comparison; see bench/repr-models.toml for its original configuration."
+    },
+    {
+      "id": "ext/vanlightly-kafka/kafka_replication_v3_5",
+      "size": "huge",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 16
+        },
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "timeout_s": 1800,
+      "note": "Vanlightly Kafka",
+      "expect": {
+        "result": "deadlock",
+        "source": "tlc-oracle"
+      },
+      "tlc_1w_s": 102.5,
+      "category": [
+        "external"
+      ]
+    },
+    {
+      "id": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "byzpaxos/BPConProof",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "dag-consensus/TLCSailfish2",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "diskpaxos/MC_HDiskSynod",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    }
+  ],
+  "report": {
+    "stale_after_revisions": 20,
+    "corpus_scope": "all exhaustive/simulation configurations in the Examples manifests; unbounded generate uses fixed trace count"
+  }
+}

@@ -1,0 +1,55 @@
+# exit 255
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2188:0 @!@!@
+Running Random Simulation with seed 3786074122300737520 with 1 worker on <machine>
+@!@!@ENDMSG 2188 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/G2.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module G2
+Linting of module G2
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 1 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 1000:1 @!@!@
+TLC threw an unexpected exception.
+This was probably caused by an error in the spec or model.
+See the User Output or TLC Console for clues to what happened.
+The exception was a java.lang.UnsupportedOperationException
+: Probabilistic evaluation of next-state relation not implemented for CASE yet.
+@!@!@ENDMSG 1000 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Init line 6, col 9 to line 6, col 13 of module G2>
+x = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(1) at <date>: 1 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2210:0 @!@!@
+The number of states generated: 1
+Simulation using seed 3786074122300737520 and aril 0
+@!@!@ENDMSG 2210 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(1) at <date>: 1 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

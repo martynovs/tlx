@@ -1,0 +1,5 @@
+{
+ "bug": "init-eval-error",
+ "found": "fuzz_spec seed 9 (F9_165), minimized by fuzz_spec's shrinker",
+ "summary": "a liveness predicate fails to evaluate on the initial state and an invariant is violated by it: TLC reports the violation with statistics (1 generated / 1 distinct / depth 1), tlx without"
+}

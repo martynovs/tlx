@@ -1,0 +1,33 @@
+{
+ "diffs": [
+  "paranoid"
+ ],
+ "env": {
+  "TLX_JIT": "1",
+  "TLX_PARANOID": "1"
+ },
+ "features": "vars=mixed/mixed actions=1 heterogeneous=Cardinality nodeadlock",
+ "flags": [
+  "-compile",
+  "-workers",
+  "1"
+ ],
+ "found": "fuzz_spec.py --seed 1 --start 84 --count 1",
+ "mode": "paranoid",
+ "note": " interpreter)\ncompile: IR action properties: 0 lowered; IR nodes 0 (0 boxed, 0 interpreter)\ncompile: native code: 1/1 actions, 0/0 invariants, Init; mixed: 1 functions, 1 regions\ntlx: internal error: TLX_PARANOID: compiled code differs from the interpreter: action A1 on state\n/\\ r = 0\n/\\ vLeft = \"ab\"\nthe interpreter fails (Attempted to apply the operator overridden by the Java method\npublic static tlc2.value.impl.IntValue tlc2.module.FiniteSets.Cardinality(tlc2.value.impl.Value),\nbut it produced the following error:\nAttempted to compare the function <<0>> with the value:\n\"ab\"\nline 19, col 14 of module FzHeterogeneousCardinalityParanoid) but compiled code produced 1 successor(s):\n  vLeft = \"ab\", r = 2 (crates/tlx-compile/src/enc/model.rs:1404:13)\n",
+ "original_diffs": [
+  "paranoid"
+ ],
+ "shrink_secs": 2,
+ "shrink_tries": 13,
+ "tlc": {
+  "depth": 1,
+  "distinct": 1,
+  "generated": 1,
+  "result": "error"
+ },
+ "tlx": {
+  "result": "unknown"
+ },
+ "variant": "F1_84"
+}

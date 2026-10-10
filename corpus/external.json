@@ -1,0 +1,1351 @@
+{
+  "_comment": [
+    "External TLA+ corpora (see docs/testing.md, 'External corpora'). Nothing is vendored: scripts/fetch-external.py",
+    "downloads each repository at its pinned commit into third_party/external/<repo>/ and copies corpus/external/<repo>/",
+    "(our own cfg files and wrapper modules) over it. Model ids are ext/<repo>/<name>."
+  ],
+  "repos": {
+    "mongo": {
+      "repo": "mongodb/mongo",
+      "commit": "1c1e012583df064096c951d5932008ea23333aac",
+      "root": "src/mongo/tla_plus",
+      "fetch": "files",
+      "include": [
+        "Concurrency",
+        "Replication",
+        "Sharding",
+        "RaftMongoWithRaftReconfig.tla"
+      ],
+      "license": "CC-BY-3.0-US",
+      "attribution": "Copyright MongoDB, Inc.; the TLA+ specifications are licensed under Creative Commons Attribution 3.0 United States",
+      "redistributable": true
+    },
+    "ccf": {
+      "repo": "microsoft/CCF",
+      "commit": "a5d04970798a1a7e18def7916801d53bedb531ae",
+      "root": "tla",
+      "fetch": "files",
+      "include": [
+        "consensus",
+        "consistency"
+      ],
+      "license": "Apache-2.0",
+      "attribution": "Copyright Microsoft Corporation (CCF)",
+      "redistributable": true
+    },
+    "neon": {
+      "repo": "neondatabase/neon",
+      "commit": "fa504217c61bbcaf5c512d75830564541f917f8f",
+      "root": "safekeeper/spec",
+      "fetch": "files",
+      "include": [
+        "MCProposerAcceptorStatic.tla",
+        "ProposerAcceptorStatic.tla",
+        "MCProposerAcceptorReconfig.tla",
+        "ProposerAcceptorReconfig.tla",
+        "models"
+      ],
+      "license": "Apache-2.0",
+      "attribution": "Copyright Neon Inc. (neondatabase/neon, safekeeper/spec)",
+      "redistributable": true
+    },
+    "vanlightly-raft": {
+      "repo": "Vanlightly/raft-tlaplus",
+      "commit": "69ad9d6092f1ff32536726e4dd945e306bc1b73d",
+      "root": "specifications",
+      "license": "MIT",
+      "attribution": "Copyright Jack Vanlightly (Vanlightly/raft-tlaplus)",
+      "redistributable": true
+    },
+    "alpha-zk": {
+      "repo": "AlphaCanisMajoris/zookeeper-tla-spec",
+      "commit": "c633af379dbede9b657aee7c0b0571000f8ffddd",
+      "license": "Apache-2.0",
+      "attribution": "AlphaCanisMajoris/zookeeper-tla-spec (Apache-2.0)",
+      "redistributable": true
+    },
+    "pragmatic": {
+      "repo": "ElliotSwart/pragmaticformalmodeling",
+      "commit": "ea86b1b5852d49d60d82d944e4807774392e1414",
+      "fetch": "files",
+      "include": [
+        "caching",
+        "database-blob",
+        "tictactoe",
+        "business-logic"
+      ],
+      "license": "MIT",
+      "attribution": "Copyright Elliot Swart (ElliotSwart/pragmaticformalmodeling)",
+      "redistributable": true
+    },
+    "tezedge": {
+      "repo": "tezedge/tezedge-specification",
+      "commit": "bd4538407bd54b137a436e71cbb491b3b7f2e03e",
+      "license": "MIT",
+      "attribution": "Copyright the TezEdge authors (tezedge/tezedge-specification)",
+      "redistributable": true
+    },
+    "apalache-tests": {
+      "repo": "apalache-mc/apalache-tests",
+      "commit": "1b76b8e70549f6cd71a758b4014e7f7682d7fd44",
+      "root": "parametric",
+      "fetch": "files",
+      "include": [
+        "IntClocks",
+        "SetAddDel",
+        "SetSndRcv"
+      ],
+      "license": "Apache-2.0",
+      "attribution": "Apache Apalache authors (apalache-mc/apalache-tests)",
+      "redistributable": true
+    },
+    "logless-reconfig": {
+      "repo": "will62794/logless-reconfig",
+      "commit": "05178a700a05e3a3e7f1808c39a5f61f2e6cece0",
+      "fetch": "tarball",
+      "include": [
+        "Defs.tla",
+        "MongoLoglessDynamicRaft.tla",
+        "MCMongoLoglessDynamicRaft.tla",
+        "MongoRaftReconfig.tla",
+        "MCMongoRaftReconfig.tla",
+        "MongoStaticRaft.tla",
+        "MCMongoStaticRaft.tla",
+        "models"
+      ],
+      "license": "none",
+      "attribution": "William Schultz (will62794/logless-reconfig); no license: fetched for testing only, never vendored",
+      "redistributable": false
+    },
+    "snapshot-isolation": {
+      "repo": "will62794/snapshot-isolation-spec",
+      "commit": "99ff1fd5ba64ab6ee5511d5025aa6390400adbf0",
+      "license": "none",
+      "attribution": "William Schultz (will62794/snapshot-isolation-spec); no license: fetched for testing only, never vendored",
+      "redistributable": false
+    },
+    "mongo-repl-models": {
+      "repo": "will62794/mongo-repl-tla-models",
+      "commit": "48ef5d7e7d135a4ddc8d3efdb81f5c48a088b6b9",
+      "license": "none",
+      "attribution": "William Schultz (will62794/mongo-repl-tla-models); no license: fetched for testing only, never vendored",
+      "redistributable": false
+    },
+    "vanlightly-kafka": {
+      "repo": "Vanlightly/kafka-tlaplus",
+      "commit": "823615e8a0962d0160c11d9affb2576c56b7c054",
+      "include": [
+        "kraft",
+        "kafka_data_replication",
+        "groupprotocol"
+      ],
+      "license": "MIT",
+      "attribution": "Copyright Jack Vanlightly (Vanlightly/kafka-tlaplus)",
+      "redistributable": true
+    },
+    "vanlightly-vsr": {
+      "repo": "Vanlightly/vsr-tlaplus",
+      "commit": "7566e8af7bb4f5e323bb5601340c7d8192a1fab8",
+      "root": "vsr-revisited/paper",
+      "license": "MIT",
+      "attribution": "Copyright Jack Vanlightly (Vanlightly/vsr-tlaplus)",
+      "redistributable": true
+    },
+    "vanlightly-bookkeeper": {
+      "repo": "Vanlightly/bookkeeper-tlaplus",
+      "commit": "fe199dc717b5723f5308aca74eda6ab3b03917e5",
+      "license": "MIT",
+      "attribution": "Copyright Jack Vanlightly (Vanlightly/bookkeeper-tlaplus)",
+      "redistributable": true
+    },
+    "paxosstore": {
+      "repo": "Disalg-ICS-NJU/PaxosStore-TLA",
+      "commit": "0188955e7023b4350943a9961d9b83a0d87e9fe9",
+      "root": "experiment/TPaxos",
+      "license": "none",
+      "attribution": "Disalg-ICS-NJU/PaxosStore-TLA (TPaxos, the consensus protocol of Tencent's PaxosStore); no license: fetched for testing only, never vendored",
+      "redistributable": false
+    },
+    "cassandra": {
+      "repo": "apache/cassandra",
+      "commit": "b15526b4816518e415aa1046d7eb98232a0c1151",
+      "root": "formalise/accord/execution/tla",
+      "fetch": "files",
+      "include": [
+        "AccordExec.tla",
+        "AccordNotify.tla",
+        "examples",
+        "matrix.py",
+        "notify.py"
+      ],
+      "license": "Apache-2.0",
+      "attribution": "Copyright the Apache Software Foundation (apache/cassandra, formalise/accord)",
+      "redistributable": true
+    },
+    "etcd-raft": {
+      "repo": "etcd-io/raft",
+      "commit": "1c0011d2c6b7a0230f87bad38ad4c6e70d810f9e",
+      "root": "tla",
+      "license": "Apache-2.0",
+      "attribution": "Copyright the etcd authors (etcd-io/raft, tla)",
+      "redistributable": true
+    },
+    "elastic": {
+      "repo": "elastic/elasticsearch-formal-models",
+      "commit": "ca30663506a7e18de9d23fabbc70a369903d7c98",
+      "license": "Apache-2.0",
+      "attribution": "Copyright Elasticsearch B.V. (elastic/elasticsearch-formal-models)",
+      "redistributable": true
+    }
+  },
+  "suites": {
+    "tlaplus-tests": {
+      "repo": "tlaplus/tlaplus",
+      "commit": "94d0c5070852b37b801bb8998c436383ab7ee37b",
+      "root": "tlatools/org.lamport.tlatools",
+      "include": [
+        "test-model",
+        "test"
+      ],
+      "license": "MIT",
+      "attribution": "Copyright Microsoft Corporation and the TLA+ Tools authors (tlaplus/tlaplus)",
+      "redistributable": true
+    }
+  },
+  "models": [
+    {
+      "name": "MCProposerAcceptorStatic_p2_a3_t2_l2",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorStatic.tla",
+      "cfg": "models/MCProposerAcceptorStatic_p2_a3_t2_l2.cfg",
+      "tier": "small",
+      "runtime": "00:00:52",
+      "result": "success",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorStatic_p2_a3_t3_l2",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorStatic.tla",
+      "cfg": "models/MCProposerAcceptorStatic_p2_a3_t3_l2.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorStatic_p2_a5_t2_l2",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorStatic.tla",
+      "cfg": "models/MCProposerAcceptorStatic_p2_a5_t2_l2.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorStatic_p2_a3_t3_l3",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorStatic.tla",
+      "cfg": "models/MCProposerAcceptorStatic_p2_a3_t3_l3.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorReconfig_p2_a2_t2_l2_c3",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorReconfig.tla",
+      "cfg": "models/MCProposerAcceptorReconfig_p2_a2_t2_l2_c3.cfg",
+      "tier": "medium",
+      "runtime": "00:11:13",
+      "result": "success",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorReconfig_p2_a3_t2_l2_c3",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorReconfig.tla",
+      "cfg": "models/MCProposerAcceptorReconfig_p2_a3_t2_l2_c3.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCProposerAcceptorReconfig_p2_a2_t2_l2_c5",
+      "repo": "neon",
+      "tla": "MCProposerAcceptorReconfig.tla",
+      "cfg": "models/MCProposerAcceptorReconfig_p2_a2_t2_l2_c5.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCMongoReplReconfig",
+      "repo": "mongo",
+      "tla": "Replication/MongoReplReconfig/MCMongoReplReconfig.tla",
+      "cfg": "Replication/MongoReplReconfig/MCMongoReplReconfig.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCRaftMongo",
+      "repo": "mongo",
+      "tla": "Replication/RaftMongo/MCRaftMongo.tla",
+      "cfg": "Replication/RaftMongo/MCRaftMongo.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCRaftMongoReplTimestamp",
+      "repo": "mongo",
+      "tla": "Replication/RaftMongoReplTimestamp/MCRaftMongoReplTimestamp.tla",
+      "cfg": "Replication/RaftMongoReplTimestamp/MCRaftMongoReplTimestamp.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCOrderedTicketSemaphore",
+      "repo": "mongo",
+      "tla": "Concurrency/OrderedTicketSemaphore/MCOrderedTicketSemaphore.tla",
+      "cfg": "Concurrency/OrderedTicketSemaphore/MCOrderedTicketSemaphore.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMoveRange",
+      "repo": "mongo",
+      "tla": "Sharding/MoveRange/MCMoveRange.tla",
+      "cfg": "Sharding/MoveRange/MCMoveRange.cfg",
+      "tier": "small",
+      "runtime": "00:01:16",
+      "result": "success"
+    },
+    {
+      "name": "MCRangeDeletionsSecondaryNodes",
+      "repo": "mongo",
+      "tla": "Sharding/RangeDeletionsSecondaryNodes/MCRangeDeletionsSecondaryNodes.tla",
+      "cfg": "Sharding/RangeDeletionsSecondaryNodes/MCRangeDeletionsSecondaryNodes.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "success"
+    },
+    {
+      "name": "MCTxnsCollectionIncarnation",
+      "repo": "mongo",
+      "tla": "Sharding/TxnsCollectionIncarnation/MCTxnsCollectionIncarnation.tla",
+      "cfg": "Sharding/TxnsCollectionIncarnation/MCTxnsCollectionIncarnation.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCTxnsMoveRange",
+      "repo": "mongo",
+      "tla": "Sharding/TxnsMoveRange/MCTxnsMoveRange.tla",
+      "cfg": "Sharding/TxnsMoveRange/MCTxnsMoveRange.cfg",
+      "tier": "small",
+      "runtime": "00:00:34",
+      "result": "success"
+    },
+    {
+      "name": "MCSingleNodeOrderedSerializable",
+      "repo": "ccf",
+      "tla": "consistency/MCSingleNode.tla",
+      "cfg": "consistency/MCSingleNodeOrderedSerializable.cfg",
+      "tier": "small",
+      "runtime": "00:00:02",
+      "result": "success"
+    },
+    {
+      "name": "MCSingleNode",
+      "repo": "ccf",
+      "tla": "consistency/MCSingleNode.tla",
+      "cfg": "consistency/MCSingleNode.cfg",
+      "tier": "small",
+      "runtime": "00:00:06",
+      "result": "success"
+    },
+    {
+      "name": "MCSingleNodeReads",
+      "repo": "ccf",
+      "tla": "consistency/MCSingleNodeReads.tla",
+      "cfg": "consistency/MCSingleNodeReads.cfg",
+      "tier": "small",
+      "runtime": "00:00:20",
+      "result": "success"
+    },
+    {
+      "name": "MCMultiNode",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNode.tla",
+      "cfg": "consistency/MCMultiNode.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMultiNodeReads",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNodeReads.tla",
+      "cfg": "consistency/MCMultiNodeReads.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCSingleNodeCommitReachability",
+      "repo": "ccf",
+      "tla": "consistency/MCSingleNode.tla",
+      "cfg": "consistency/MCSingleNodeCommitReachability.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "MCMultiNodeCommitReachability",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNodeReads.tla",
+      "cfg": "consistency/MCMultiNodeCommitReachability.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "MCMultiNodeInvalidReachability",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNodeReads.tla",
+      "cfg": "consistency/MCMultiNodeInvalidReachability.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "MCMultiNodeReadsNotLinearizable",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNodeReads.tla",
+      "cfg": "consistency/MCMultiNodeReadsNotLinearizable.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "MCMultiNodeReadsAlt",
+      "repo": "ccf",
+      "tla": "consistency/MCMultiNodeReadsAlt.tla",
+      "cfg": "consistency/MCMultiNodeReadsAlt.cfg",
+      "tier": "small",
+      "runtime": "00:00:52",
+      "result": "success"
+    },
+    {
+      "name": "standard-raft-Raft",
+      "repo": "vanlightly-raft",
+      "tla": "standard-raft/Raft.tla",
+      "cfg": "standard-raft/Raft.cfg",
+      "tier": "small",
+      "runtime": "00:00:11",
+      "result": "deadlock"
+    },
+    {
+      "name": "standard-raft-RaftWithReconfigAddRemove",
+      "repo": "vanlightly-raft",
+      "tla": "standard-raft/RaftWithReconfigAddRemove.tla",
+      "cfg": "standard-raft/RaftWithReconfigAddRemove_tlx.cfg",
+      "tier": "small",
+      "runtime": "00:00:06",
+      "result": "deadlock"
+    },
+    {
+      "name": "standard-raft-RaftWithReconfigJointConsensus",
+      "repo": "vanlightly-raft",
+      "tla": "standard-raft/RaftWithReconfigJointConsensus.tla",
+      "cfg": "standard-raft/RaftWithReconfigJointConsensus.cfg",
+      "tier": "small",
+      "runtime": "00:00:31",
+      "result": "deadlock"
+    },
+    {
+      "name": "pull-raft-KRaft",
+      "repo": "vanlightly-raft",
+      "tla": "pull-raft/KRaft.tla",
+      "cfg": "pull-raft/KRaft.cfg",
+      "tier": "small",
+      "runtime": "00:00:28",
+      "result": "deadlock"
+    },
+    {
+      "name": "pull-raft-PullRaft",
+      "repo": "vanlightly-raft",
+      "tla": "pull-raft/PullRaft.tla",
+      "cfg": "pull-raft/PullRaft.cfg",
+      "tier": "small",
+      "runtime": "00:00:14",
+      "result": "deadlock"
+    },
+    {
+      "name": "flexible-raft-FlexibleRaft",
+      "repo": "vanlightly-raft",
+      "tla": "flexible-raft/FlexibleRaft.tla",
+      "cfg": "flexible-raft/FlexibleRaft.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "raft-and-fsync-RaftFsync",
+      "repo": "vanlightly-raft",
+      "tla": "raft-and-fsync/RaftFsync.tla",
+      "cfg": "raft-and-fsync/RaftFsync.cfg",
+      "tier": "small",
+      "runtime": "00:00:25",
+      "result": "deadlock"
+    },
+    {
+      "name": "storagecleanernaive_small",
+      "repo": "pragmatic",
+      "tla": "database-blob/storage-cleaner-naive/storagecleanernaive.tla",
+      "cfg": "database-blob/storage-cleaner-naive/storagecleanernaive_small.cfg",
+      "tier": "small",
+      "runtime": "00:00:02",
+      "result": "safety failure"
+    },
+    {
+      "name": "cacheinvalidation",
+      "repo": "pragmatic",
+      "tla": "caching/cache-invalidation/cacheinvalidationv2.tla",
+      "cfg": "caching/cache-invalidation/cacheinvalidation.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "liveness failure"
+    },
+    {
+      "name": "MC_tlx_Zab_new",
+      "repo": "alpha-zk",
+      "tla": "MC_tlx_Zab_new.tla",
+      "cfg": "MC_tlx_Zab_new.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "tictactoe-full",
+      "repo": "pragmatic",
+      "tla": "tictactoe/1everygame/tictactoe.tla",
+      "cfg": "tictactoe/1everygame/tictactoe-full.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "deadlock"
+    },
+    {
+      "name": "tictactoexwin",
+      "repo": "pragmatic",
+      "tla": "tictactoe/3xwin/tictactoexwin.tla",
+      "cfg": "tictactoe/3xwin/tictactoexwin.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "liveness failure"
+    },
+    {
+      "name": "naivecache",
+      "repo": "pragmatic",
+      "tla": "caching/naive-model/naivecache.tla",
+      "cfg": "caching/naive-model/naivecache.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "liveness failure"
+    },
+    {
+      "name": "naive_small",
+      "repo": "pragmatic",
+      "tla": "database-blob/naive/naive.tla",
+      "cfg": "database-blob/naive/naive_small.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "working_small",
+      "repo": "pragmatic",
+      "tla": "database-blob/working/working.tla",
+      "cfg": "database-blob/working/working_small.cfg",
+      "tier": "small",
+      "runtime": "00:00:04",
+      "result": "success"
+    },
+    {
+      "name": "improved_small",
+      "repo": "pragmatic",
+      "tla": "database-blob/improved/improved.tla",
+      "cfg": "database-blob/improved/improved_small.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "storagecleaner",
+      "repo": "pragmatic",
+      "tla": "database-blob/storage-cleaner-working/storagecleaner.tla",
+      "cfg": "database-blob/storage-cleaner-working/storagecleaner.cfg",
+      "tier": "huge",
+      "runtime": "unknown"
+    },
+    {
+      "name": "specjuniorv1",
+      "repo": "pragmatic",
+      "tla": "business-logic/junior-dev/specjuniorv1.tla",
+      "cfg": "business-logic/junior-dev/specjuniorv1.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "p2p-handshaking-MC_safety",
+      "repo": "tezedge",
+      "tla": "p2p/handshaking/MC_safety.tla",
+      "cfg": "p2p/handshaking/MC_safety.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "p2p-handshaking-MC_liveness",
+      "repo": "tezedge",
+      "tla": "p2p/handshaking/MC_liveness.tla",
+      "cfg": "p2p/handshaking/MC_liveness.cfg",
+      "tier": "huge",
+      "runtime": "unknown"
+    },
+    {
+      "name": "p2p-counter-Model-MC",
+      "repo": "tezedge",
+      "tla": "p2p/counter/Model/MC.tla",
+      "cfg": "p2p/counter/Model/MC.cfg",
+      "tier": "small",
+      "runtime": "00:00:08",
+      "result": "success"
+    },
+    {
+      "name": "p2p-scheduler_rw-Model-MC",
+      "repo": "tezedge",
+      "tla": "p2p/scheduler_rw/Model/MC.tla",
+      "cfg": "p2p/scheduler_rw/Model/MC.cfg",
+      "tier": "huge",
+      "runtime": "unknown"
+    },
+    {
+      "name": "IntClocks_3",
+      "repo": "apalache-tests",
+      "tla": "IntClocks/IntClocks_3.tla",
+      "cfg": "IntClocks/IntClocks_3.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "IntClocks_4",
+      "repo": "apalache-tests",
+      "tla": "IntClocks/IntClocks_4.tla",
+      "cfg": "IntClocks/IntClocks_4.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "IntClocks_5",
+      "repo": "apalache-tests",
+      "tla": "IntClocks/IntClocks_5.tla",
+      "cfg": "IntClocks/IntClocks_5.cfg",
+      "tier": "small",
+      "runtime": "00:00:02",
+      "result": "safety failure"
+    },
+    {
+      "name": "IntClocks_6",
+      "repo": "apalache-tests",
+      "tla": "IntClocks/IntClocks_6.tla",
+      "cfg": "IntClocks/IntClocks_6.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "SetAddDel_8",
+      "repo": "apalache-tests",
+      "tla": "SetAddDel/SetAddDel_8.tla",
+      "cfg": "SetAddDel/SetAddDel_8.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "SetAddDel_10",
+      "repo": "apalache-tests",
+      "tla": "SetAddDel/SetAddDel_10.tla",
+      "cfg": "SetAddDel/SetAddDel_10.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "SetAddDel_12",
+      "repo": "apalache-tests",
+      "tla": "SetAddDel/SetAddDel_12.tla",
+      "cfg": "SetAddDel/SetAddDel_12.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "SetSndRcv_6",
+      "repo": "apalache-tests",
+      "tla": "SetSndRcv/SetSndRcv_6.tla",
+      "cfg": "SetSndRcv/SetSndRcv_6.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "result": "safety failure"
+    },
+    {
+      "name": "MCMongoLoglessDynamicRaft",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoLoglessDynamicRaft.tla",
+      "cfg": "models/MCMongoLoglessDynamicRaft.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMongoStaticRaft",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoStaticRaft.tla",
+      "cfg": "models/MCMongoStaticRaft.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMongoRaftReconfig",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoRaftReconfig.tla",
+      "cfg": "models/MCMongoRaftReconfig.cfg",
+      "tier": "medium",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMongoLoglessDynamicRaft-4Servers-T4-CV4",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoLoglessDynamicRaft.tla",
+      "cfg": "models/MCMongoLoglessDynamicRaft-4Servers-T4-CV4.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMongoRaftReconfig-4Servers-L2-T2-CV3",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoRaftReconfig.tla",
+      "cfg": "models/MCMongoRaftReconfig-4Servers-L2-T2-CV3.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCMongoLoglessDynamicRaft-5Servers-T4-CV4",
+      "repo": "logless-reconfig",
+      "tla": "MCMongoLoglessDynamicRaft.tla",
+      "cfg": "models/MCMongoLoglessDynamicRaft-5Servers-T4-CV4.cfg",
+      "tier": "huge",
+      "runtime": "unknown"
+    },
+    {
+      "name": "IsConflictSerializable",
+      "repo": "snapshot-isolation",
+      "tla": "models/IsConflictSerializable/MC.tla",
+      "cfg": "models/IsConflictSerializable/MC.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "SnapshotIsolation",
+      "repo": "snapshot-isolation",
+      "tla": "SnapshotIsolation.tla",
+      "cfg": "SnapshotIsolation.cfg",
+      "tier": "huge",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "1_LearnCommitPoint",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "1_LearnCommitPoint.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "1_LearnCommitPoint_noinv",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "1_LearnCommitPoint_noinv.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "1_LearnCommitPointFromSyncSource_3_node",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "1_LearnCommitPointFromSyncSource_3_node.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "1_LearnCommitPointFromSyncSource_5_node",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "1_LearnCommitPointFromSyncSource_5_node.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "1_LearnCommitPointFromSyncSource_5_node_noinv",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "1_LearnCommitPointFromSyncSource_5_node_noinv.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "2_MultiNodeSyncSourceCycle",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongoSyncSources.tla",
+      "cfg": "2_MultiNodeSyncSourceCycle.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "2_MultiNodeSyncSourceCycle_noinv",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongoSyncSources.tla",
+      "cfg": "2_MultiNodeSyncSourceCycle_noinv.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "3_CommitPointPropagationLiveness",
+      "repo": "mongo-repl-models",
+      "tla": "RaftMongo.tla",
+      "cfg": "3_CommitPointPropagationLiveness.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "kafka_replication_v3_5",
+      "repo": "vanlightly-kafka",
+      "tla": "kafka_data_replication/kraft/v3.5/kafka_replication_v3_5.tla",
+      "cfg": "kafka_data_replication/kraft/v3.5/kafka_replication_v3_5.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "kafka_replication_kip_966",
+      "repo": "vanlightly-kafka",
+      "tla": "kafka_data_replication/kraft/kip-966/kafka_replication_kip_966.tla",
+      "cfg": "kafka_data_replication/kraft/kip-966/kafka_replication_kip_966.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "consumer_group_protocol_kip_848_v2",
+      "repo": "vanlightly-kafka",
+      "tla": "groupprotocol/consumer_group_protocol_kip_848_v2.tla",
+      "cfg": "groupprotocol/consumer_group_protocol_kip_848_v2.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "kraft_kip_853_small",
+      "repo": "vanlightly-kafka",
+      "tla": "kraft/kip_853/kraft_kip_853.tla",
+      "cfg": "kraft/kip_853/kraft_kip_853_tlx_small.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "kraft_kip_996_small",
+      "repo": "vanlightly-kafka",
+      "tla": "kraft/kip_996/kraft_kip_996.tla",
+      "cfg": "kraft/kip_996/kraft_kip_996_tlx_small.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "VSR",
+      "repo": "vanlightly-vsr",
+      "tla": "VSR.tla",
+      "cfg": "VSR.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "VR_INC_RESEND",
+      "repo": "vanlightly-vsr",
+      "tla": "analysis/01-view-changes/VR_INC_RESEND.tla",
+      "cfg": "analysis/01-view-changes/VR_INC_RESEND.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "VR_ASSUME_NEWVIEWCHANGE",
+      "repo": "vanlightly-vsr",
+      "tla": "analysis/01-view-changes/VR_ASSUME_NEWVIEWCHANGE.tla",
+      "cfg": "analysis/01-view-changes/VR_ASSUME_NEWVIEWCHANGE.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "VR_STATE_TRANSFER",
+      "repo": "vanlightly-vsr",
+      "tla": "analysis/03-state-transfer/VR_STATE_TRANSFER.tla",
+      "cfg": "analysis/03-state-transfer/VR_STATE_TRANSFER.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "VR_APP_STATE",
+      "repo": "vanlightly-vsr",
+      "tla": "analysis/04-application-state/VR_APP_STATE.tla",
+      "cfg": "analysis/04-application-state/VR_APP_STATE.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "LedgerChaining",
+      "repo": "vanlightly-bookkeeper",
+      "tla": "LedgerChaining.tla",
+      "cfg": "LedgerChaining.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "BookKeeperProtocol_v4_13",
+      "repo": "vanlightly-bookkeeper",
+      "tla": "BookKeeperProtocol_v4_13.tla",
+      "cfg": "BookKeeperProtocol_v4_13_tlx.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "BookKeeperProtocol",
+      "repo": "vanlightly-bookkeeper",
+      "tla": "BookKeeperProtocol.tla",
+      "cfg": "BookKeeperProtocol_tlx.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "TPaxos_p2_v2_n2",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxos.tla",
+      "cfg": "MC_tlx_TPaxos_p2_v2_n2.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxos_p2_v2_n3",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxos.tla",
+      "cfg": "MC_tlx_TPaxos_p2_v2_n3.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosAP_p2_v2_n2",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosAP.tla",
+      "cfg": "MC_tlx_TPaxosAP_p2_v2_n2.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosAP_p2_v2_n3",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosAP.tla",
+      "cfg": "MC_tlx_TPaxosAP_p2_v2_n3.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosRefVoting_p2_v2_n2",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosRefVoting.tla",
+      "cfg": "MC_tlx_TPaxosRefVoting_p2_v2_n2.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosRefVoting_p2_v2_n3",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosRefVoting.tla",
+      "cfg": "MC_tlx_TPaxosRefVoting_p2_v2_n3.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosAPRefEagerVoting_p2_v2_n2",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosAPRefEagerVoting.tla",
+      "cfg": "MC_tlx_TPaxosAPRefEagerVoting_p2_v2_n2.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "TPaxosAPRefEagerVoting_p2_v2_n3",
+      "repo": "paxosstore",
+      "tla": "MC_tlx_TPaxosAPRefEagerVoting.tla",
+      "cfg": "MC_tlx_TPaxosAPRefEagerVoting_p2_v2_n3.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "Accord_ar_always__keys_only",
+      "repo": "cassandra",
+      "tla": "Accord_ar_always__keys_only.tla",
+      "cfg": "Accord_ar_always__keys_only.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ar_never__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_ar_never__two_lockers.tla",
+      "cfg": "Accord_ar_never__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__consequence_non_subset",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__consequence_non_subset.tla",
+      "cfg": "Accord_baseline__consequence_non_subset.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__deep_chain",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__deep_chain.tla",
+      "cfg": "Accord_baseline__deep_chain.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__deep_chain_live",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__deep_chain_live.tla",
+      "cfg": "Accord_baseline__deep_chain_live.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__disjoint_txns",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__disjoint_txns.tla",
+      "cfg": "Accord_baseline__disjoint_txns.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__hold_vs_consequence",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__hold_vs_consequence.tla",
+      "cfg": "Accord_baseline__hold_vs_consequence.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__keys_only",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__keys_only.tla",
+      "cfg": "Accord_baseline__keys_only.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__two_lockers.tla",
+      "cfg": "Accord_baseline__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__two_lockers_live",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__two_lockers_live.tla",
+      "cfg": "Accord_baseline__two_lockers_live.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline__two_txns",
+      "repo": "cassandra",
+      "tla": "Accord_baseline__two_txns.tla",
+      "cfg": "Accord_baseline__two_txns.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline_full__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_baseline_full__two_lockers.tla",
+      "cfg": "Accord_baseline_full__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_baseline_load__keys_only",
+      "repo": "cassandra",
+      "tla": "Accord_baseline_load__keys_only.tla",
+      "cfg": "Accord_baseline_load__keys_only.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ctl_defer_submit__deep_chain",
+      "repo": "cassandra",
+      "tla": "Accord_ctl_defer_submit__deep_chain.tla",
+      "cfg": "Accord_ctl_defer_submit__deep_chain.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ctl_double_lock__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_ctl_double_lock__two_lockers.tla",
+      "cfg": "Accord_ctl_double_lock__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ctl_fifo_adopt__consequence_non_subset",
+      "repo": "cassandra",
+      "tla": "Accord_ctl_fifo_adopt__consequence_non_subset.tla",
+      "cfg": "Accord_ctl_fifo_adopt__consequence_non_subset.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ctl_no_upgrade__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_ctl_no_upgrade__two_lockers.tla",
+      "cfg": "Accord_ctl_no_upgrade__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_ctl_unseq_incr_txn__two_lockers",
+      "repo": "cassandra",
+      "tla": "Accord_ctl_unseq_incr_txn__two_lockers.tla",
+      "cfg": "Accord_ctl_unseq_incr_txn__two_lockers.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "Accord_probe_bag_interleaves__keys_only",
+      "repo": "cassandra",
+      "tla": "Accord_probe_bag_interleaves__keys_only.tla",
+      "cfg": "Accord_probe_bag_interleaves__keys_only.cfg",
+      "tier": "small",
+      "runtime": "unknown",
+      "oracle_workers": 1
+    },
+    {
+      "name": "MCetcdraft_3s_t2",
+      "repo": "etcd-raft",
+      "tla": "MCetcdraft.tla",
+      "cfg": "MCetcdraft_tlx_small.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "MCetcdraft_4s_t3_reconfig",
+      "repo": "etcd-raft",
+      "tla": "MCetcdraft.tla",
+      "cfg": "MCetcdraft_tlx_medium.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "oracle_workers": 1,
+      "asymmetric_symmetry": true
+    },
+    {
+      "name": "Storage",
+      "repo": "elastic",
+      "tla": "Storage/tla/MC_tlx_Storage.tla",
+      "cfg": "Storage/tla/MC_tlx_Storage.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "consensus",
+      "repo": "elastic",
+      "tla": "cluster/tla/MC_tlx_consensus.tla",
+      "cfg": "cluster/tla/MC_tlx_consensus.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "ReplicaEngine",
+      "repo": "elastic",
+      "tla": "ReplicaEngine/tla/MC_tlx_ReplicaEngine.tla",
+      "cfg": "ReplicaEngine/tla/MC_tlx_ReplicaEngine.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "replication",
+      "repo": "elastic",
+      "tla": "data/tla/MC_tlx_replication.tla",
+      "cfg": "data/tla/MC_tlx_replication.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "ZenWithTerms",
+      "repo": "elastic",
+      "tla": "ZenWithTerms/tla/MC_tlx_ZenWithTerms.tla",
+      "cfg": "ZenWithTerms/tla/MC_tlx_ZenWithTerms.cfg",
+      "tier": "huge",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCabs",
+      "repo": "ccf",
+      "tla": "consensus/MCabs.tla",
+      "cfg": "consensus/MCabs.cfg",
+      "tier": "small",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MCccfraft_1C2N",
+      "repo": "ccf",
+      "tla": "consensus/MCccfraft_tlx.tla",
+      "cfg": "consensus/MCccfraft_tlx_1C2N.cfg",
+      "tier": "large",
+      "runtime": "unknown",
+      "features": [
+        "action composition"
+      ]
+    },
+    {
+      "name": "MCccfraft_1C3N",
+      "repo": "ccf",
+      "tla": "consensus/MCccfraft_tlx.tla",
+      "cfg": "consensus/MCccfraft_tlx_1C3N.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "features": [
+        "action composition"
+      ]
+    },
+    {
+      "name": "MC_tlx_Zab_new_big",
+      "repo": "alpha-zk",
+      "tla": "MC_tlx_Zab_new.tla",
+      "cfg": "MC_tlx_Zab_new_big.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "MC_tlx_Zab_new_timeout",
+      "repo": "alpha-zk",
+      "tla": "MC_tlx_Zab_new.tla",
+      "cfg": "MC_tlx_Zab_new_timeout.cfg",
+      "tier": "large",
+      "runtime": "unknown"
+    },
+    {
+      "name": "Traceetcdraft_400",
+      "repo": "etcd-raft",
+      "tla": "Traceetcdraft_tlx.tla",
+      "cfg": "Traceetcdraft_tlx_400.cfg",
+      "tier": "small",
+      "runtime": "00:00:05",
+      "scratch": true,
+      "oracle_workers": 1
+    },
+    {
+      "name": "Traceetcdraft",
+      "repo": "etcd-raft",
+      "tla": "Traceetcdraft_tlx.tla",
+      "cfg": "Traceetcdraft_tlx_full.cfg",
+      "tier": "medium",
+      "runtime": "unknown",
+      "scratch": true,
+      "oracle_workers": 1
+    },
+    {
+      "name": "TraceMultiNodeReads_ElectionNoRollback",
+      "repo": "ccf",
+      "tla": "consistency/TraceMultiNodeReads_tlx.tla",
+      "cfg": "consistency/TraceMultiNodeReads_tlx_ElectionNoRollback.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "scratch": true,
+      "oracle_workers": 1
+    },
+    {
+      "name": "TraceMultiNodeReads_ElectionNonContiguousView",
+      "repo": "ccf",
+      "tla": "consistency/TraceMultiNodeReads_tlx.tla",
+      "cfg": "consistency/TraceMultiNodeReads_tlx_ElectionNonContiguousView.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "scratch": true,
+      "oracle_workers": 1
+    },
+    {
+      "name": "TraceMultiNodeReads_RollbackSameSeqno",
+      "repo": "ccf",
+      "tla": "consistency/TraceMultiNodeReads_tlx.tla",
+      "cfg": "consistency/TraceMultiNodeReads_tlx_RollbackSameSeqno.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "scratch": true,
+      "oracle_workers": 1
+    },
+    {
+      "name": "TraceMultiNodeReads_RollbackTwoTransactions",
+      "repo": "ccf",
+      "tla": "consistency/TraceMultiNodeReads_tlx.tla",
+      "cfg": "consistency/TraceMultiNodeReads_tlx_RollbackTwoTransactions.cfg",
+      "tier": "small",
+      "runtime": "00:00:01",
+      "scratch": true,
+      "oracle_workers": 1
+    }
+  ]
+}

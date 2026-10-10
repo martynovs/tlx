@@ -1,0 +1,326 @@
+//! Semantic fingerprints, VIEW evaluation and SYMMETRY reduction.
+
+use std::cell::RefCell;
+
+use tlx_eval::env::Env;
+use tlx_eval::eval::Ctx;
+use tlx_eval::StateVals;
+use tlx_layout::permute::PermPlan;
+use tlx_layout::{Layout, Shape};
+use tlx_native::fp_words;
+use tlx_runtime::stats::{self, C, T};
+use tlx_runtime::{Model, ModelError};
+use tlx_value::Value;
+
+use super::symmetry::orbit_fp;
+use super::{EState, EncModel, View};
+use crate::paranoid::{mismatch, state_list};
+
+/// Fingerprints of encodings holding value store handles (`Shape::Ref`):
+/// a handle's number depends on the representation and on the order of
+/// interning, so each is hashed as its semantic digest instead (equal
+/// values, equal fingerprints; `tlx_layout::store`).
+pub(in crate::enc) struct SemFp {
+    pub(in crate::enc) store: tlx_layout::store::StoreRef,
+    /// The word offsets of the handles in a state.
+    pub(in crate::enc) state: Box<[usize]>,
+    /// The word offsets of the handles in the VIEW's encoding.
+    pub(in crate::enc) view: Box<[usize]>,
+    /// Per variable: its slot is one handle.
+    pub(in crate::enc) ref_vars: Box<[bool]>,
+}
+
+thread_local! {
+    static SEM_BUF: std::cell::RefCell<Vec<u64>> = const { std::cell::RefCell::new(Vec::new()) };
+}
+
+impl SemFp {
+    /// For a layout (and the VIEW's shape, if fingerprinted by its
+    /// encoding); None without handles.
+    pub(super) fn of(layout: &Layout, view: Option<&Shape>) -> Option<SemFp> {
+        let store = tlx_layout::layout::store_of(layout.vars.iter().chain(view))?;
+        let mut state = Vec::new();
+        for (s, off) in layout.vars.iter().zip(&layout.offsets) {
+            tlx_layout::layout::ref_offsets(s, *off, &mut state).expect("value store handles at fixed positions");
+        }
+        let mut v = Vec::new();
+        if let Some(s) = view {
+            tlx_layout::layout::ref_offsets(s, 0, &mut v).expect("value store handles at fixed positions");
+        }
+        let ref_vars = layout.vars.iter().map(|s| matches!(s, Shape::Ref(_))).collect();
+        Some(SemFp { store, state: state.into(), view: v.into(), ref_vars })
+    }
+
+    /// `words` with the handles at `refs` replaced by their digests.
+    pub(in crate::enc) fn semantic(&self, words: &[u64], refs: &[usize], out: &mut Vec<u64>) {
+        out.clear();
+        out.extend_from_slice(words);
+        for &i in refs {
+            out[i] = self.store.digest(out[i]);
+        }
+    }
+
+    /// The fingerprint of `words` (handles at `refs`).
+    pub(in crate::enc) fn fp(&self, words: &[u64], refs: &[usize]) -> u64 {
+        if refs.is_empty() {
+            return fp_words(words);
+        }
+        SEM_BUF.with(|b| {
+            let mut b = b.borrow_mut();
+            self.semantic(words, refs, &mut b);
+            fp_words(&b)
+        })
+    }
+}
+
+/// How an `EncModel` fingerprints its states.
+#[allow(clippy::large_enum_variant)] // one per model; boxing only adds an indirection on the fingerprint path
+pub(super) enum Fingerprint {
+    /// `fp_words` of the encoding (no VIEW or SYMMETRY).
+    Words,
+    /// SYMMETRY on encodings: per group element, one plan per variable. The
+    /// fingerprint is that of the least encoding in the orbit (`orbit_fp`,
+    /// comparing the variables in `order`, narrowest first).
+    Symmetry { group: Vec<Vec<PermPlan>>, order: Vec<usize> },
+    /// VIEW computed into an encoding: the fingerprint is that of the
+    /// VIEW's encoding.
+    View(View),
+    /// VIEW with SYMMETRY: the fingerprint of the VIEW (as in `View`) of
+    /// the least state of the orbit in TLC's value order, chosen by value
+    /// (`InterpModel::least_perm`) and permuted on the encoding with that
+    /// element's plans (`group`, as in `Symmetry`).
+    SymView { group: Vec<Vec<PermPlan>>, view: View },
+    /// By value: the interpreter's (reduced) fingerprint, for a VIEW or
+    /// SYMMETRY not handled on encodings (states are decoded for it).
+    Values,
+}
+
+thread_local! {
+    /// Scratch buffers of `EncModel::view_fp`: the extended state and the
+    /// VIEW's encoding.
+    static VIEW_BUF: RefCell<(Vec<u64>, Vec<u64>)> = const { RefCell::new((Vec::new(), Vec::new())) };
+    /// The permuted encoding of `sym_view_fp`.
+    static PERM_BUF: RefCell<Vec<u64>> = const { RefCell::new(Vec::new()) };
+}
+
+impl EncModel {
+    /// Fingerprint of a state given by its encoding (VIEW and SYMMETRY
+    /// handled on encodings, if any).
+    #[inline]
+    pub(super) fn words_fp(&self, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        if stats::on() {
+            return self.words_fp_counted(words, level);
+        }
+        self.words_fp_untimed(words, level)
+    }
+
+    /// `words_fp`, counted and timed for the statistics.
+    #[inline(never)]
+    fn words_fp_counted(&self, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        stats::count(C::Fingerprints, 1);
+        let span = stats::span();
+        let fp = self.words_fp_untimed(words, level);
+        span.end(T::Fingerprint);
+        fp
+    }
+
+    #[inline]
+    fn words_fp_untimed(&self, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        if let Some(e) = &self.escape {
+            if words.len() > self.layout.words {
+                return self.escape_fp(e, words, level);
+            }
+        }
+        match &self.fp {
+            Fingerprint::View(v) => self.view_fp(v, words, level),
+            Fingerprint::Symmetry { group, order } => {
+                if self.paranoid {
+                    self.check_permutations(group, words);
+                }
+                Ok(orbit_fp(group, order, &self.layout.offsets, words, self.sem.as_ref()))
+            }
+            Fingerprint::SymView { group, view } => self.sym_view_fp(group, view, words, level),
+            Fingerprint::Words | Fingerprint::Values => Ok(match &self.sem {
+                Some(sem) => sem.fp(words, &sem.state),
+                None => fp_words(words),
+            }),
+        }
+    }
+
+    fn escape_fp(&self, e: &crate::enc::escape::Escape, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        let vals = e.codec.decode(words);
+        match &self.fp {
+            Fingerprint::View(v) => self.escape_view_fp(v, &vals, level),
+            Fingerprint::SymView { view, .. } => {
+                let decode = |i: usize| vals[i].clone();
+                let mut state = StateVals::decoded(vals.len(), &decode);
+                let least = self.base.least_perm(&mut state).inspect_err(|_| self.base.count_generated())?;
+                let vals = match least {
+                    Some(p) => self.escape_permute(&vals, p)?,
+                    None => vals,
+                };
+                self.escape_view_fp(view, &vals, level)
+            }
+            Fingerprint::Symmetry { order, .. } => {
+                let mut best = e.codec.key(words);
+                for p in 0..self.base.symmetry_maps().len() {
+                    let vals = self.escape_permute(&vals, p)?;
+                    let words = e.codec.encode(&vals).map_err(|x| ModelError::new(format!("escape store: {x:?}")))?;
+                    let key = e.codec.key(&words);
+                    let cmp = order.iter().find_map(|&i| {
+                        let r = self.layout.var_range(i);
+                        let c = key[r.clone()].cmp(&best[r]);
+                        let c =
+                            c.then_with(|| key.get(self.layout.words + i).unwrap_or(&0).cmp(best.get(self.layout.words + i).unwrap_or(&0)));
+                        (c != std::cmp::Ordering::Equal).then_some(c)
+                    });
+                    if cmp == Some(std::cmp::Ordering::Less) {
+                        best = key;
+                    }
+                }
+                Ok(fp_words(&best))
+            }
+            Fingerprint::Words => Ok(fp_words(&e.codec.key(words))),
+            Fingerprint::Values => {
+                let vals: Vec<_> = vals.into_iter().map(Some).collect();
+                self.base.make_state_counted(&vals, level, "state").map(|s| s.fp).map_err(|x| self.base.error(x))
+            }
+        }
+    }
+
+    fn escape_permute(&self, vals: &[Value], p: usize) -> Result<Vec<Value>, ModelError> {
+        let m = &self.base.symmetry_maps()[p];
+        vals.iter().map(|v| tlx_value::ops::permute(v, &|s| m.get(&s).cloned()).map_err(|x| self.base.error(x.into()))).collect()
+    }
+
+    fn escape_view_fp(&self, v: &View, vals: &[Value], level: u32) -> Result<u64, ModelError> {
+        let expr = self.base.view_expr().expect("VIEW");
+        let val = self.base.ip.eval(expr, &Env::default(), &Ctx::state(vals, level)).and_then(|x| Ok(x.normalize()?)).map_err(|x| {
+            self.base.count_generated();
+            self.base.error(x)
+        })?;
+        let node = v.typing.layout.node(v.typing.layout.vars.len() - 1);
+        let mut out = vec![0; node.words()];
+        if node.encode(&val, &mut out).is_err() {
+            return tlx_layout::store::digest_of_value(&val)
+                .map(|d| fp_words(&[u64::MAX, d]))
+                .map_err(|x| ModelError::new(format!("escape VIEW: {x:?}")));
+        }
+        Ok(fp_words(&out))
+    }
+
+    /// Fingerprint of the VIEW of the least state of the SYMMETRY orbit of
+    /// the state `words` (see `Fingerprint::SymView`).
+    fn sym_view_fp(&self, group: &[Vec<PermPlan>], v: &View, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        if self.paranoid {
+            self.check_permutations(group, words);
+        }
+        // SAFETY: the matching encoder/program produced these words.
+        // Active Dyn handles were published before this call.
+        let decode = |i: usize| unsafe { self.layout.node(i).decode_unchecked(&words[self.layout.offsets[i]..]) };
+        let mut vals = StateVals::decoded(self.layout.vars.len(), &decode);
+        let least = self.base.least_perm(&mut vals).inspect_err(|_| self.base.count_generated())?;
+        drop(vals);
+        let Some(p) = least else {
+            return self.view_fp(v, words, level);
+        };
+        PERM_BUF.with(|b| {
+            let mut buf = b.borrow_mut();
+            buf.resize(words.len(), 0);
+            for (i, plan) in group[p].iter().enumerate() {
+                let r = self.layout.var_range(i);
+
+                // SAFETY: valid words from the matching encoder/program, with published Dyn handles.
+                unsafe { plan.apply_unchecked(&words[r.clone()], &mut buf[r]) };
+            }
+            self.view_fp(v, &buf, level)
+        })
+    }
+
+    /// Paranoid: each permutation plan applied to `words` gives the
+    /// encoding of the permuted values.
+    fn check_permutations(&self, group: &[Vec<PermPlan>], words: &[u64]) {
+        // SAFETY: the matching encoder/program produced these words.
+        // Active Dyn handles were published before this call.
+        let vals = unsafe { self.layout.decode_state_unchecked(words) };
+        let mut buf = vec![0u64; words.len()];
+        for (plans, m) in group.iter().zip(self.base.symmetry_maps()) {
+            for (i, p) in plans.iter().enumerate() {
+                let r = self.layout.var_range(i);
+
+                // SAFETY: valid words from the matching encoder/program, with published Dyn handles.
+                unsafe { p.apply_unchecked(&words[r.clone()], &mut buf[r.clone()]) };
+            }
+            // SAFETY: the matching encoder/program produced these words.
+            // Active Dyn handles were published before this call.
+            let got = unsafe { self.layout.decode_state_unchecked(&buf) };
+            let want: Vec<Value> = vals.iter().map(|v| tlx_value::ops::permute(v, &|s| m.get(&s).cloned()).expect("permute")).collect();
+            if got != want {
+                mismatch(format_args!(
+                    "SYMMETRY: the permuted encoding (permutation {m:?}) of\n{}\ndecodes to\n{}\ninstead of\n{}",
+                    state_list(&self.base, std::slice::from_ref(&vals)),
+                    state_list(&self.base, &[got]),
+                    state_list(&self.base, &[want])
+                ));
+            }
+        }
+    }
+
+    /// Fingerprint of the VIEW of the state `words`: natively, else in the
+    /// IR executor, else in the interpreter (all produce the canonical
+    /// encoding of the VIEW's value).
+    fn view_fp(&self, v: &View, words: &[u64], level: u32) -> Result<u64, ModelError> {
+        VIEW_BUF.with(|b| {
+            let mut b = b.borrow_mut();
+            let (ext, out) = &mut *b;
+            ext.clear();
+            ext.extend_from_slice(words);
+            ext.resize(v.typing.layout.words, 0);
+            out.clear();
+            if v.compiled(&self.base, ext, level, out) {
+                if self.paranoid {
+                    let want = self.view_interpreted(v, words, level)?;
+                    if *out != want {
+                        let st = self.base.render(&self.decode(&EState {
+                            words: words.into(),
+                            level,
+                            fp: 0,
+                            #[cfg(debug_assertions)]
+                            model: self.id,
+                        }));
+                        mismatch(format_args!("VIEW on state\n{st}\ninterpreter: {want:?}\ncompiled:    {out:?}"));
+                    }
+                }
+            } else {
+                *out = self.view_interpreted(v, words, level)?;
+            }
+            Ok(match &self.sem {
+                Some(sem) => sem.fp(out, &sem.view),
+                None => fp_words(out),
+            })
+        })
+    }
+
+    /// The VIEW's encoding computed by the interpreter; a value that does
+    /// not fit its shape is a layout miss of the VIEW definition.
+    fn view_interpreted(&self, v: &View, words: &[u64], level: u32) -> Result<Vec<u64>, ModelError> {
+        // SAFETY: the matching encoder/program produced these words.
+        // Active Dyn handles were published before this call.
+        let vals = unsafe { self.layout.decode_state_unchecked(words) };
+        let e = self.base.view_expr().expect("VIEW");
+        let val = self.base.ip.eval(e, &Env::default(), &Ctx::state(&vals, level)).and_then(|x| Ok(x.normalize()?)).map_err(|e| {
+            // (A state whose VIEW fails counts as generated.)
+            self.base.count_generated();
+            self.base.error(e)
+        })?;
+        let node = v.typing.layout.node(v.typing.layout.vars.len() - 1);
+        let mut out = vec![0u64; node.words()];
+        match node.encode(&val, &mut out) {
+            Ok(()) => Ok(out),
+            Err(_) if self.escape.is_some() => tlx_layout::store::digest_of_value(&val)
+                .map(|d| vec![u64::MAX, d])
+                .map_err(|x| ModelError::new(format!("escape VIEW: {x:?}"))),
+            Err(_) => Err(Self::record_miss(&self.def_miss, v.def, val)),
+        }
+    }
+}

@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "3b12aa39ff18bc89d0893efce487378ead5297c0782f7dfab4ddd61c7cebc854",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/HourClock/HourClock2",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "3b12aa39ff18bc89d0893efce487378ead5297c0782f7dfab4ddd61c7cebc854",
+    "counts": {
+      "depth": 1,
+      "distinct": 12,
+      "generated": 24,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:12:00",
+    "id": "67fb6b136e0c0f28eab3b0f0",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.936,
+      "instructions": null,
+      "rss_mib": 117.7,
+      "wall_s": 0.376
+    },
+    "mode": "-tlc",
+    "model": "SpecifyingSystems/HourClock/HourClock2",
+    "provenance": {
+      "adoption": {
+        "content_digest": "3b12aa39ff18bc89d0893efce487378ead5297c0782f7dfab4ddd61c7cebc854",
+        "matched_counts": {
+          "depth": 1,
+          "distinct": 12,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/SpecifyingSystems/HourClock/HourClock2/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/6b6fb52e69f84ee139bc9a32d63728a8c42516349e5ab18e0f13a6e046715090.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        0.936
+      ],
+      "wall_s": [
+        0.376
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

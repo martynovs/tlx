@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC_liveliness",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "liveness"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+    "counts": {
+      "depth": 61,
+      "distinct": 14365,
+      "generated": 44581,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:18:37",
+    "id": "d1b08dd0ec8fc8f15b4b285e",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 5.658,
+      "instructions": null,
+      "rss_mib": 1151.1,
+      "wall_s": 2.823
+    },
+    "mode": "-tlc",
+    "model": "Disruptor/MCDisruptor_MPMC_liveliness",
+    "provenance": {
+      "adoption": {
+        "content_digest": "7f06e7946e564581c25ae16e792bb8433adb43b46f15fac80dcb5ff36a7fe0dc",
+        "matched_counts": {
+          "depth": 61,
+          "distinct": 14365,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Disruptor/MCDisruptor_MPMC_liveliness/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/58c006c250a4502c7665fa08d11c0a2f5f1d8e57dec801f4a46933fd4aaf7c9e.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        5.658
+      ],
+      "wall_s": [
+        2.823
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

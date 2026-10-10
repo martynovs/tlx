@@ -1,0 +1,208 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "cd740917a8f1c00bb27c883b5f85ae2bd7bd0685e20d7168e0c69abc91e45035",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "bench/ReplicatedLog4x3",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "liveness"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "cd740917a8f1c00bb27c883b5f85ae2bd7bd0685e20d7168e0c69abc91e45035",
+    "counts": {
+      "depth": 17,
+      "distinct": 35245,
+      "generated": 713845,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 8654553,
+    "fully_native": 8090633,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "364edf4988e16c34814b4d13",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.88,
+      "instructions": 7384887693,
+      "rss_mib": 48.0,
+      "wall_s": 0.883
+    },
+    "mode": "default",
+    "model": "bench/ReplicatedLog4x3",
+    "native_share": 0.9348412332791769,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/medium:bench/ReplicatedLog4x3:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/3c733685d2a5b0541e82d64cb0a957b4a6a0f92a1d139a4076dbb62780c65030.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus",
+        "liveness"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "cd740917a8f1c00bb27c883b5f85ae2bd7bd0685e20d7168e0c69abc91e45035",
+      "count_problems": [],
+      "cpu": [
+        0.88,
+        0.884,
+        0.876
+      ],
+      "depth": 17,
+      "distinct": 35245,
+      "env": null,
+      "generated": 713845,
+      "instructions": [
+        7384887345,
+        7384887693,
+        7384888173
+      ],
+      "load": [
+        2.67,
+        2.67
+      ],
+      "median": 0.883,
+      "min": 0.875,
+      "mode": "default",
+      "model": "bench/ReplicatedLog4x3",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 8654553,
+        "fully_native": 8090633,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 0.9348412332791769,
+        "search_thread_s_est": 1.528178
+      },
+      "result": "success",
+      "rss_mib": [
+        48.1,
+        47.8,
+        48.0
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.88,
+          "depth": 17,
+          "distinct": 35245,
+          "generated": 713845,
+          "maxrss_mib": 48.1,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.887
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.884,
+          "depth": 17,
+          "distinct": 35245,
+          "generated": 713845,
+          "maxrss_mib": 47.8,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.883
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.876,
+          "depth": 17,
+          "distinct": 35245,
+          "generated": 713845,
+          "maxrss_mib": 48.0,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.875
+        }
+      ],
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.887,
+        0.883,
+        0.875
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 1.091,
+          "depth": 17,
+          "distinct": 35245,
+          "generated": 713845,
+          "maxrss_mib": 48.3,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 8654553,
+            "fully_native": 8090633,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 0.9348412332791769,
+            "search_thread_s_est": 1.528178
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.091
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.88,
+        0.884,
+        0.876
+      ],
+      "wall_s": [
+        0.887,
+        0.883,
+        0.875
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 1.528178,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

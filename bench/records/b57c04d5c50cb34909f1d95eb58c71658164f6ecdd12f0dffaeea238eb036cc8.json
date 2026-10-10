@@ -1,0 +1,119 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "52952dc0e25343de84935fe5e49b7b126eabf3c19604247d207793c4af18f638",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "KeyValueStore/MCKVSSafetyLarge",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "52952dc0e25343de84935fe5e49b7b126eabf3c19604247d207793c4af18f638",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "skipped"
+    },
+    "date": "2026-10-11 07:21:55",
+    "id": "94bf45374fd8ccbceae06a3f",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": null,
+      "instructions": null,
+      "rss_mib": null,
+      "wall_s": null
+    },
+    "mode": "default",
+    "model": "KeyValueStore/MCKVSSafetyLarge",
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-5.json#/runs/medium:KeyValueStore/MCKVSSafetyLarge:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 0,
+        "requested": 3
+      },
+      "source": "bench/records/b57c04d5c50cb34909f1d95eb58c71658164f6ecdd12f0dffaeea238eb036cc8.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": null,
+      "completed_samples": 0,
+      "content_digest": "52952dc0e25343de84935fe5e49b7b126eabf3c19604247d207793c4af18f638",
+      "count_problems": [],
+      "cpu": [],
+      "depth": null,
+      "distinct": null,
+      "env": null,
+      "generated": null,
+      "instructions": [],
+      "load": [
+        1.57,
+        1.0
+      ],
+      "median": 0,
+      "min": 0,
+      "mode": "default",
+      "model": "KeyValueStore/MCKVSSafetyLarge",
+      "result": "skipped",
+      "rss_mib": [],
+      "samples": [],
+      "skipped": "sample timeout",
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 1801.435,
+          "maxrss_mib": 7945.0,
+          "result": "timeout",
+          "wall_s": 1800
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [],
+      "wall_s": []
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

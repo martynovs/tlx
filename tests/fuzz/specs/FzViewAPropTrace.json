@@ -1,0 +1,5 @@
+{
+ "bug": "view-trace",
+ "found": "fuzz_spec seed 3 (F3_59), minimized by fuzz_spec's shrinker",
+ "summary": "under VIEW tlx's counterexample of an action property ends in a stuttering step (the first state of the successor's view class); TLC rejects it as a counterexample"
+}

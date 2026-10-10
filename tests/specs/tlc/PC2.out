@@ -1,0 +1,622 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 614144937351366451 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/PC2.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module PC2
+Linting of module PC2
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(73) at <date>: 4,020,578 states generated (<rate> s/min), 407,057 distinct states found (<rate> ds/min), 3,642 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant TypeOK is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ msgs = {}
+/\ a = 0
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 1
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 2
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 3
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 4
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 5
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 6
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 7
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 8
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 9
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 10
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 11
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 12
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 13
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 14
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 15
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 16
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 17
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 18
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 19
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 20
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 21
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 22
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 23
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 24
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 25
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 26
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 27
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 28
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 29
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 30
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 31
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 32
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 33
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 34
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 35
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 36
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 37
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+39: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 38
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+40: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 39
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+41: <Next line 18, col 12 to line 18, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+42: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+43: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+44: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+45: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+46: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+47: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+48: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+49: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+50: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 9
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+51: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 10
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+52: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 11
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+53: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 12
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+54: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+55: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 14
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+56: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+57: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+58: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+59: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+60: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 19
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+61: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+62: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 21
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+63: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 22
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+64: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 23
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+65: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 24
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+66: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 25
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+67: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 26
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+68: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 27
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+69: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 28
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+70: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 29
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+71: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 30
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+72: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 31
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+73: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 32
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+74: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 33
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+75: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 34
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+76: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 35
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+77: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 36
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+78: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 37
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+79: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 38
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+80: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 39
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+81: <Next line 19, col 12 to line 19, col 56 of module PC2>
+/\ msgs = {}
+/\ a = 40
+/\ b = 40
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+82: <Next line 23, col 12 to line 25, col 32 of module PC2>
+/\ msgs = {[type |-> "y", c |-> "blue", v |-> 9]}
+/\ a = 40
+/\ b = 40
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(82) at <date>: 4,243,978 states generated (<rate> s/min), 427,529 distinct states found (<rate> ds/min), 1,287 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+4243978 states generated, 427529 distinct states found, 1287 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 82.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

@@ -1,0 +1,75 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "3580ea4ac73db57eedd5139bafa444c8b78a25a26094a926fbf785b9bb463dbb",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "byzpaxos/BPConProof",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "3580ea4ac73db57eedd5139bafa444c8b78a25a26094a926fbf785b9bb463dbb",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "timeout"
+    },
+    "date": "2026-10-10 04:13:55",
+    "id": "be1832f3f18c8c4021d61167",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 4124.433,
+      "instructions": null,
+      "rss_mib": 5834.8,
+      "wall_s": 3600.256
+    },
+    "mode": "-tlc",
+    "model": "byzpaxos/BPConProof",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/history/tlc-1813307-laneT-1w.json#/models/byzpaxos/BPConProof/runs/1",
+      "pointer": "/measurement",
+      "reused_from": "be1832f3f18c8c4021d61167",
+      "source": "bench/tlc-baselines/8f28872d66fff8634491509a4eff4634401e9c0fe89dd943dafa9a9979fa5244.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        4124.433
+      ],
+      "wall_s": [
+        3600.256
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

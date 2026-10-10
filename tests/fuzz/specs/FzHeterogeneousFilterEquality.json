@@ -1,0 +1,7 @@
+{
+ "summary": "{h \\in {[a |-> 1, b |-> (-1)], <<(-2)>>} : h \\in {[a |-> 1, b |-> (-1)]}}",
+ "detail": "TLC: ('err', 'Attempted to check equality of record: [a |-> 1, b |-> -1] with non-record <<-2>>', 10) / tlx: ('ok', '{[a |-> 1, b |-> -1]}')",
+ "ctx": null,
+ "seed": null,
+ "variant": "FzHeterogeneousFilterEquality"
+}

@@ -1,0 +1,303 @@
+# exit 13 trace-random
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed 321537056205477094 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/SPL2.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module SPL2
+Linting of module SPL2
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(79) at <date>: 3,201 states generated, 1,600 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking temporal properties for the complete state space with 1600 total distinct states at (<date>)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal property Prop was violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ x = 0
+/\ y = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 7
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 8
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 9
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 10
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 11
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 12
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 13
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 14
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 15
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 16
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 17
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 18
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 19
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 20
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 21
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 22
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 23
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 24
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 25
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 26
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 27
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 28
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 29
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 30
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 31
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 32
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 33
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 34
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 35
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 36
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 37
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+39: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 38
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+40: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+/\ x = 0
+/\ y = 39
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2122:4 @!@!@
+1: Back to state: <IncY line 9, col 9 to line 9, col 35 of module SPL2>
+
+@!@!@ENDMSG 2122 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in <time> at <date>
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(79) at <date>: 3,201 states generated (<rate> s/min), 1,600 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+3201 states generated, 1600 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 79.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

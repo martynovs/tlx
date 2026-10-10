@@ -1,0 +1,405 @@
+# exit 12
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -130696865956760360 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/SQS2.tla
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Semantic processing of module Naturals
+Semantic processing of module SQS2
+Linting of module SQS2
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant Inv is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ a = 0
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 1
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 2
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 3
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 4
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 5
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 6
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 7
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 8
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <Next line 7, col 12 to line 7, col 58 of module SQS2>
+/\ a = 9
+/\ b = 0
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 1
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 2
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 3
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 4
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 5
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 6
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 7
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <Next line 8, col 12 to line 8, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 0
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 1
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 2
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 3
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 4
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 5
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 6
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 7
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 8
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <Next line 9, col 12 to line 9, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 0
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 1
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 2
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 3
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 4
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 5
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 6
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <Next line 10, col 12 to line 10, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 3
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 4
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+39: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 5
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+40: <Next line 11, col 12 to line 11, col 58 of module SQS2>
+/\ a = 9
+/\ b = 8
+/\ c = 9
+/\ d = 7
+/\ e = 6
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(40) at <date>: 447,783 states generated (<rate> s/min), 99,569 distinct states found (<rate> ds/min), 321 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+447783 states generated, 99569 distinct states found, 321 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 40.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

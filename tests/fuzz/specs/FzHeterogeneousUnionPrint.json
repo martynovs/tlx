@@ -1,0 +1,4 @@
+{
+ "bug": "heterogeneous-union-lazy-print",
+ "summary": "TLC prints the lazy union without comparing its record/tuple members; tlx raises a comparison error"
+}

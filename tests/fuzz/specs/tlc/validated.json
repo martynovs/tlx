@@ -1,0 +1,26 @@
+{
+ "28321f57c8d9f8d13ab5": [
+  "valid",
+  ""
+ ],
+ "4f5240e67eba919bed8d": [
+  "valid",
+  ""
+ ],
+ "87b4bb32847db6ba4bf4": [
+  "valid",
+  ""
+ ],
+ "8f02ff2f4035716322f3": [
+  "invalid",
+  "TLC: {'result': 'success', 'violated': None} (expected {'result': 'safety failure', 'violated': 'tlx_Reached'})"
+ ],
+ "aaa00f2dd995b9fad50f": [
+  "valid",
+  ""
+ ],
+ "b5157ef1190d83a018ac": [
+  "invalid",
+  "TLC: {'result': 'success', 'violated': None} (expected {'result': 'property failure', 'violated': 'tlx_Reached'})"
+ ]
+}

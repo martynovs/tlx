@@ -1,0 +1,76 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "fd101fc04506d52c84f800c95f79ac1663532c91549ac58a0072fefbc799a3d7",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "diskpaxos/MC_HDiskSynod",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "fd101fc04506d52c84f800c95f79ac1663532c91549ac58a0072fefbc799a3d7",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "timeout"
+    },
+    "date": "2026-10-09 23:51:45",
+    "id": "ee18f1e2b8b400446f474bfa",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 111353.669,
+      "instructions": null,
+      "rss_mib": 8267.2,
+      "wall_s": 7200.222
+    },
+    "mode": "-tlc",
+    "model": "diskpaxos/MC_HDiskSynod",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/history/tlc-1813307-laneG-16w.json#/models/diskpaxos/MC_HDiskSynod/runs/16",
+      "pointer": "/measurement",
+      "reused_from": "ee18f1e2b8b400446f474bfa",
+      "source": "bench/tlc-baselines/f54b00e28fb2138f1d682501359d4a5fb0f8bf05985565f04daabfc33ac292e6.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        111353.669
+      ],
+      "wall_s": [
+        7200.222
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

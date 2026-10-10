@@ -1,0 +1,210 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "SDP_Verification/SDP_Attack_Spec/MC",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "31ee224a7768ca1fccab5ce4",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+    "counts": {
+      "depth": 11,
+      "distinct": 526,
+      "generated": 1103,
+      "result": "safety failure"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 15428,
+    "fully_native": 14479,
+    "host_calls": 1014,
+    "host_s": 0.000570007,
+    "host_time_share": 0.054834728234728236,
+    "id": "bf2d84084e845d9f6eeae56a",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.221,
+      "instructions": 1682189912,
+      "rss_mib": 49.0,
+      "wall_s": 0.221
+    },
+    "mode": "default",
+    "model": "SDP_Verification/SDP_Attack_Spec/MC",
+    "native_share": 0.9384884625356494,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/small:SDP_Verification/SDP_Attack_Spec/MC:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/2211f0fce3e33bafc18098d6931d53795f08c4e556ef8686f9b983866c5cdd72.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "cc4dc268e6bc766829af139d9da6606150d8f608f6c220ec91d643962dd92d19",
+      "count_problems": [],
+      "cpu": [
+        0.222,
+        0.221,
+        0.221
+      ],
+      "depth": 11,
+      "distinct": 526,
+      "env": null,
+      "generated": 1103,
+      "instructions": [
+        1682189912,
+        1682181698,
+        1682210532
+      ],
+      "load": [
+        1.19,
+        1.18
+      ],
+      "median": 0.221,
+      "min": 0.221,
+      "mode": "default",
+      "model": "SDP_Verification/SDP_Attack_Spec/MC",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 15428,
+        "fully_native": 14479,
+        "host_calls": 1014,
+        "host_time_s": 0.000570007,
+        "host_time_share": 0.054834728234728236,
+        "native_share": 0.9384884625356494,
+        "search_thread_s_est": 0.010395
+      },
+      "result": "safety failure",
+      "rss_mib": [
+        49.0,
+        49.0,
+        49.0
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.222,
+          "depth": 11,
+          "distinct": 526,
+          "generated": 1103,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "DataAccessSafeLaw",
+          "wall_s": 0.232
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.221,
+          "depth": 11,
+          "distinct": 526,
+          "generated": 1103,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "DataAccessSafeLaw",
+          "wall_s": 0.221
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.221,
+          "depth": 11,
+          "distinct": 526,
+          "generated": 1103,
+          "maxrss_mib": 49.0,
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "DataAccessSafeLaw",
+          "wall_s": 0.221
+        }
+      ],
+      "tier": "small",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.232,
+        0.221,
+        0.221
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 2.209,
+          "depth": 11,
+          "distinct": 526,
+          "generated": 1103,
+          "maxrss_mib": 121.0,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 15428,
+            "fully_native": 14479,
+            "host_calls": 1014,
+            "host_time_s": 0.000570007,
+            "host_time_share": 0.054834728234728236,
+            "native_share": 0.9384884625356494,
+            "search_thread_s_est": 0.010395
+          },
+          "optimizations": [],
+          "result": "safety failure",
+          "violated": "DataAccessSafeLaw",
+          "wall_s": 2.208
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.222,
+        0.221,
+        0.221
+      ],
+      "wall_s": [
+        0.232,
+        0.221,
+        0.221
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.010395,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

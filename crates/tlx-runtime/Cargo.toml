@@ -1,0 +1,23 @@
+[package]
+name = "tlx-runtime"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tlx-base.workspace = true
+libc = "0.2"
+tlx-live.workspace = true
+tlx-value.workspace = true
+parking_lot = "0.12.5"
+
+[features]
+# Compile the -stats hooks out (`stats::on()` is constant false): only for
+# measuring their cost when -stats is off.
+no-stats = []
+
+[dev-dependencies]
+tlx-testkit = { workspace = true, features = ["runtime"] }
+
+[lints]
+workspace = true

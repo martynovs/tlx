@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "f0dc85c7476b54d4c3992654a204b33866e6f169f33b31e3f0e2678067a2560c",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "PaxosHowToWinATuringAward/MCConsensus",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "f0dc85c7476b54d4c3992654a204b33866e6f169f33b31e3f0e2678067a2560c",
+    "counts": {
+      "depth": 2,
+      "distinct": 4,
+      "generated": 4,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:46:44",
+    "id": "1ab4ff6db5e3be5c6b0622cc",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.123,
+      "instructions": null,
+      "rss_mib": 174.4,
+      "wall_s": 0.535
+    },
+    "mode": "-tlc",
+    "model": "PaxosHowToWinATuringAward/MCConsensus",
+    "provenance": {
+      "adoption": {
+        "content_digest": "f0dc85c7476b54d4c3992654a204b33866e6f169f33b31e3f0e2678067a2560c",
+        "matched_counts": {
+          "depth": 2,
+          "distinct": 4,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/PaxosHowToWinATuringAward/MCConsensus/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/ad198e36f9279c5cb7a463f886d4b286dd9a47eb6e1e032a560849f197300849.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.123
+      ],
+      "wall_s": [
+        0.535
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

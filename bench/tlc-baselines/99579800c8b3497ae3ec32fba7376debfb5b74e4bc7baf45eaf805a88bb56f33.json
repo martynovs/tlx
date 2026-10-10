@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "23ce51d5f493f3b63d3b0d39f280eb3b17614c6c48710d9edcf9be1bbf86be4b",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "FiniteMonotonic/MCReplicatedLog",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "23ce51d5f493f3b63d3b0d39f280eb3b17614c6c48710d9edcf9be1bbf86be4b",
+    "counts": {
+      "depth": 13,
+      "distinct": 1363,
+      "generated": 17425,
+      "result": "success"
+    },
+    "date": "2026-10-05 22:05:03",
+    "id": "065665514f5e58b63629ffc0",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 3.927,
+      "instructions": null,
+      "rss_mib": 264.7,
+      "wall_s": 0.696
+    },
+    "mode": "-tlc",
+    "model": "FiniteMonotonic/MCReplicatedLog",
+    "provenance": {
+      "adoption": {
+        "content_digest": "23ce51d5f493f3b63d3b0d39f280eb3b17614c6c48710d9edcf9be1bbf86be4b",
+        "matched_counts": {
+          "depth": 13,
+          "distinct": 1363,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/FiniteMonotonic/MCReplicatedLog/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/99579800c8b3497ae3ec32fba7376debfb5b74e4bc7baf45eaf805a88bb56f33.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        3.927
+      ],
+      "wall_s": [
+        0.696
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

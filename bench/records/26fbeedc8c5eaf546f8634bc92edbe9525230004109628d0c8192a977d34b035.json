@@ -1,0 +1,206 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "14ec75a368ee13aa0b885ab335dec17b00410f7252de2d309ac31440d036f75a",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "default",
+    "model": "bosco/bosco",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "df7babefdb50bbbaa708c35c",
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "14ec75a368ee13aa0b885ab335dec17b00410f7252de2d309ac31440d036f75a",
+    "counts": {
+      "depth": 10,
+      "distinct": 1072452,
+      "generated": 29223200,
+      "result": "success"
+    },
+    "date": "2026-10-11 04:55:45",
+    "evaluations": 8579576,
+    "fully_native": 8579576,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "d317ccb7cfc77caadabe3e99",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 23.55,
+      "instructions": 191758535341,
+      "rss_mib": 129.2,
+      "wall_s": 23.526
+    },
+    "mode": "default",
+    "model": "bosco/bosco",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-phase-3.json#/runs/medium:bosco/bosco:default:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/26fbeedc8c5eaf546f8634bc92edbe9525230004109628d0c8192a977d34b035.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "14ec75a368ee13aa0b885ab335dec17b00410f7252de2d309ac31440d036f75a",
+      "count_problems": [],
+      "cpu": [
+        23.55,
+        23.557,
+        23.447
+      ],
+      "depth": 10,
+      "distinct": 1072452,
+      "env": null,
+      "generated": 29223200,
+      "instructions": [
+        191758537390,
+        191758535341,
+        191758511607
+      ],
+      "load": [
+        1.0,
+        1.0
+      ],
+      "median": 23.526,
+      "min": 23.414,
+      "mode": "default",
+      "model": "bosco/bosco",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 8579576,
+        "fully_native": 8579576,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 34.238341
+      },
+      "result": "success",
+      "rss_mib": [
+        129.2,
+        129.2,
+        129.2
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 23.55,
+          "depth": 10,
+          "distinct": 1072452,
+          "generated": 29223200,
+          "maxrss_mib": 129.2,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 23.526
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 23.557,
+          "depth": 10,
+          "distinct": 1072452,
+          "generated": 29223200,
+          "maxrss_mib": 129.2,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 23.526
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 23.447,
+          "depth": 10,
+          "distinct": 1072452,
+          "generated": 29223200,
+          "maxrss_mib": 129.2,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 23.414
+        }
+      ],
+      "tier": "medium",
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        23.526,
+        23.526,
+        23.414
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 26.741,
+          "depth": 10,
+          "distinct": 1072452,
+          "generated": 29223200,
+          "maxrss_mib": 123.6,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 8579576,
+            "fully_native": 8579576,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 34.238341
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 26.722
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        23.55,
+        23.557,
+        23.447
+      ],
+      "wall_s": [
+        23.526,
+        23.526,
+        23.414
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 34.238341,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

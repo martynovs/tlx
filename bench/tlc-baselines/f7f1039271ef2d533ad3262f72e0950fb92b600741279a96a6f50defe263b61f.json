@@ -1,0 +1,86 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "1aff89ecb16e522f63b44b9f4ff3bbd2802f54c35ed4ba1add8389142201d9d4",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "Prisoners/Prisoners",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus",
+      "scaling"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "1aff89ecb16e522f63b44b9f4ff3bbd2802f54c35ed4ba1add8389142201d9d4",
+    "counts": {
+      "depth": 14,
+      "distinct": 214,
+      "generated": 860,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:06:39",
+    "id": "a959286ca4debecab0266608",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 1.597,
+      "instructions": null,
+      "rss_mib": 143.8,
+      "wall_s": 0.487
+    },
+    "mode": "-tlc",
+    "model": "Prisoners/Prisoners",
+    "provenance": {
+      "adoption": {
+        "content_digest": "1aff89ecb16e522f63b44b9f4ff3bbd2802f54c35ed4ba1add8389142201d9d4",
+        "matched_counts": {
+          "depth": 14,
+          "distinct": 214,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/Prisoners/Prisoners/runs/16",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/f7f1039271ef2d533ad3262f72e0950fb92b600741279a96a6f50defe263b61f.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        1.597
+      ],
+      "wall_s": [
+        0.487
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

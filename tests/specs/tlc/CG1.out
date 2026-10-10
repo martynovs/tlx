@@ -1,0 +1,91 @@
+# exit 76
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2026.10.02.163556 (rev: 1813307)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 0 and seed -2723927727731229081 with 1 worker on <machine>
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file <specs>/CG1.tla
+Parsing file <tmp>/Integers.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Integers.tla)
+Parsing file <tmp>/SequencesExt.tla (jar:file:<modules.jar>!/SequencesExt.tla)
+Parsing file <tmp>/Naturals.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Naturals.tla)
+Parsing file <tmp>/Sequences.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Sequences.tla)
+Parsing file <tmp>/FiniteSets.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file <tmp>/FiniteSetsExt.tla (jar:file:<modules.jar>!/FiniteSetsExt.tla)
+Parsing file <tmp>/Folds.tla (jar:file:<modules.jar>!/Folds.tla)
+Parsing file <tmp>/Functions.tla (jar:file:<modules.jar>!/Functions.tla)
+Parsing file <tmp>/Bags.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/Bags.tla)
+Parsing file <tmp>/TLC.tla (jar:file:<tla2tools.jar>!/tla2sany/StandardModules/TLC.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module Folds
+Semantic processing of module Functions
+Semantic processing of module FiniteSetsExt
+Semantic processing of module Bags
+Semantic processing of module TLC
+Semantic processing of module SequencesExt
+Semantic processing of module CG1
+Linting of module Folds
+Linting of module Functions
+Linting of module FiniteSetsExt
+Linting of module SequencesExt
+Linting of module CG1
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (<date>)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at <date>.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2111:1 @!@!@
+Evaluating invariant Inv failed.
+Attempted to compute the value of an expression of form
+CHOOSE x \in S: P, but no element of S satisfied P.
+line 11, col 35 to line 11, col 56 of module CG1
+@!@!@ENDMSG 2111 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ s = <<>>
+/\ x = 0
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Next line 10, col 9 to line 10, col 42 of module CG1>
+/\ s = <<>>
+/\ x = 1
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Next line 10, col 9 to line 10, col 42 of module CG1>
+/\ s = <<>>
+/\ x = 2
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(3) at <date>: 3 states generated (<rate> s/min), 3 distinct states found (<rate> ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+3 states generated, 3 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 3.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 1 (minimum is 1, the maximum 1 and the 95th percentile is 1).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in <time> at (<date>)
+@!@!@ENDMSG 2186 @!@!@

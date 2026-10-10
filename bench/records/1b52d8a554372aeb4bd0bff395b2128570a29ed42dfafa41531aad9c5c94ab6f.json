@@ -1,0 +1,208 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-compile",
+    "model": "GameOfLife/GameOfLife",
+    "revision": "517f59c67a0a",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "median",
+    "baseline": "e62ea0db46c29bc40e0acbfa",
+    "category": [
+      "corpus",
+      "compiled"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+    "counts": {
+      "depth": 1,
+      "distinct": 65536,
+      "generated": 131072,
+      "result": "success"
+    },
+    "date": "2026-10-11 00:39:48",
+    "evaluations": 65536,
+    "fully_native": 65536,
+    "host_calls": 0,
+    "host_s": 0,
+    "host_time_share": 0.0,
+    "id": "b6f14b46b021f49a968c8860",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 0.247,
+      "instructions": 1949865163,
+      "rss_mib": 120.8,
+      "wall_s": 0.247
+    },
+    "mode": "-compile",
+    "model": "GameOfLife/GameOfLife",
+    "native_share": 1.0,
+    "provenance": {
+      "count_problems": [],
+      "legacy": false,
+      "measurement_source": "bench/history/517f59c67a0a-small-medium.json#/runs/small:GameOfLife/GameOfLife:compile:1w",
+      "pointer": "/measurement",
+      "repetitions": {
+        "completed": 3,
+        "requested": 3
+      },
+      "source": "bench/records/1b52d8a554372aeb4bd0bff395b2128570a29ed42dfafa41531aad9c5c94ab6f.json"
+    },
+    "raw_result": {
+      "args": [],
+      "category": [
+        "corpus"
+      ],
+      "cgroup_mib": null,
+      "compatibility": false,
+      "content_digest": "f98c05e52909b7b183bdecd5269a1db4c585174216ef9185aebd2ba9c3172bdc",
+      "count_problems": [],
+      "cpu": [
+        0.247,
+        0.242,
+        0.247
+      ],
+      "depth": 1,
+      "distinct": 65536,
+      "env": null,
+      "generated": 131072,
+      "instructions": [
+        1949944681,
+        1949842891,
+        1949865163
+      ],
+      "load": [
+        1.97,
+        1.97
+      ],
+      "median": 0.247,
+      "min": 0.242,
+      "mode": "compile",
+      "model": "GameOfLife/GameOfLife",
+      "native_coverage": {
+        "diagnostic": true,
+        "evaluations": 65536,
+        "fully_native": 65536,
+        "host_calls": 0,
+        "host_time_s": 0,
+        "host_time_share": 0.0,
+        "native_share": 1.0,
+        "search_thread_s_est": 0.047376
+      },
+      "result": "success",
+      "rss_mib": [
+        120.8,
+        121.1,
+        120.7
+      ],
+      "samples": [
+        {
+          "compatibility": false,
+          "cpu_s": 0.247,
+          "depth": 1,
+          "distinct": 65536,
+          "generated": 131072,
+          "maxrss_mib": 120.8,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.259
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.242,
+          "depth": 1,
+          "distinct": 65536,
+          "generated": 131072,
+          "maxrss_mib": 121.1,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.242
+        },
+        {
+          "compatibility": false,
+          "cpu_s": 0.247,
+          "depth": 1,
+          "distinct": 65536,
+          "generated": 131072,
+          "maxrss_mib": 120.7,
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 0.247
+        }
+      ],
+      "tier": "small",
+      "tlc_1w_s": 9.6,
+      "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+      "tool": "tlx",
+      "walls": [
+        0.259,
+        0.242,
+        0.247
+      ],
+      "warmups": [
+        {
+          "compatibility": false,
+          "cpu_s": 1.528,
+          "depth": 1,
+          "distinct": 65536,
+          "generated": 131072,
+          "maxrss_mib": 185.2,
+          "native_coverage": {
+            "diagnostic": true,
+            "evaluations": 65536,
+            "fully_native": 65536,
+            "host_calls": 0,
+            "host_time_s": 0,
+            "host_time_share": 0.0,
+            "native_share": 1.0,
+            "search_thread_s_est": 0.047376
+          },
+          "optimizations": [],
+          "result": "success",
+          "wall_s": 1.528
+        }
+      ],
+      "workers": 1
+    },
+    "revision": "517f59c67a0a",
+    "samples": {
+      "cpu_s": [
+        0.247,
+        0.242,
+        0.247
+      ],
+      "wall_s": [
+        0.259,
+        0.242,
+        0.247
+      ]
+    },
+    "schema_version": 2,
+    "search_thread_s_est": 0.047376,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlx",
+    "workers": 1
+  },
+  "schema_version": 2
+}

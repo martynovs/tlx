@@ -1,0 +1,77 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "5c7a283cc5e8676d54bc303c20426c6f37f8015a942fd494097634d83d1710a9",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "ext/ccf/TraceMultiNodeReads_RollbackSameSeqno",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 16
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "external",
+      "scaling",
+      "trace-validation"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "5c7a283cc5e8676d54bc303c20426c6f37f8015a942fd494097634d83d1710a9",
+    "counts": {
+      "depth": null,
+      "distinct": null,
+      "generated": null,
+      "result": "error"
+    },
+    "date": "2026-10-08 21:57:47",
+    "id": "829c1c4ce1a74ad53561e188",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.722,
+      "instructions": null,
+      "rss_mib": 200.9,
+      "wall_s": 0.646
+    },
+    "mode": "-tlc",
+    "model": "ext/ccf/TraceMultiNodeReads_RollbackSameSeqno",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/ext/ccf/TraceMultiNodeReads_RollbackSameSeqno/runs/16",
+      "pointer": "/measurement",
+      "reused_from": "829c1c4ce1a74ad53561e188",
+      "source": "bench/tlc-baselines/5b3492b79837782475fd6c2c7e5f14e4549847b2c5568caf5eb49e7bfd61f459.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        2.722
+      ],
+      "wall_s": [
+        0.646
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 16
+  },
+  "schema_version": 2
+}

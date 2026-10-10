@@ -1,0 +1,6 @@
+{
+ "summary": "{[a |-> 0, b |-> (-2)], {}}",
+ "mode": "paranoid",
+ "variant": "F1_84",
+ "bug": "compiled-heterogeneous-set-construction"
+}

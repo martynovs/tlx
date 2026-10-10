@@ -1,0 +1,85 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "f3e4a5905dc472cdda8534ff223115ade5863c25248877bf95a6d5e142ae2481",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "ewd840/EWD840_json",
+    "revision": "6b6303768c73",
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "f3e4a5905dc472cdda8534ff223115ade5863c25248877bf95a6d5e142ae2481",
+    "counts": {
+      "depth": 12,
+      "distinct": 1566,
+      "generated": 15986,
+      "result": "success"
+    },
+    "date": "2026-10-05 23:49:42",
+    "id": "d35983694b4b331df2896300",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 2.008,
+      "instructions": null,
+      "rss_mib": 196.0,
+      "wall_s": 0.569
+    },
+    "mode": "-tlc",
+    "model": "ewd840/EWD840_json",
+    "provenance": {
+      "adoption": {
+        "content_digest": "f3e4a5905dc472cdda8534ff223115ade5863c25248877bf95a6d5e142ae2481",
+        "matched_counts": {
+          "depth": 12,
+          "distinct": 1566,
+          "result": "success"
+        },
+        "method": "migration snapshot with exact current TLC oracle verdict/distinct/depth match",
+        "oracle": "corpus/out/tlc*.json",
+        "tlc_revision_basis": "recorded TLC revision matches current jar manifest; no inference from jar presence"
+      },
+      "legacy": true,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/ewd840/EWD840_json/runs/1",
+      "pointer": "/measurement",
+      "source": "bench/tlc-baselines/6c1f1e70840e0a52fc5530cad16e9913240f2034a46805fe1075b841e86bb4ff.json"
+    },
+    "revision": "6b6303768c73",
+    "samples": {
+      "cpu_s": [
+        2.008
+      ],
+      "wall_s": [
+        0.569
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}

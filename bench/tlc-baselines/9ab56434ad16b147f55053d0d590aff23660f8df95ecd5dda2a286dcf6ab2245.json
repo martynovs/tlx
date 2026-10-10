@@ -1,0 +1,75 @@
+{
+  "key": {
+    "args": [],
+    "cgroup_mib": null,
+    "content_digest": "121ba6b7555275a73e98f190538271a6d8e234cae71e4ed4fa01cce66f1b1588",
+    "env": null,
+    "hogs": 0,
+    "instance_arch": "x86_64",
+    "instance_type": "SA5.4XLARGE32",
+    "mode": "-tlc",
+    "model": "bench/ReprMoveRange",
+    "revision": null,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "variant": null,
+    "workers": 1
+  },
+  "measurement": {
+    "aggregation": "single-or-legacy-scalar",
+    "baseline": null,
+    "category": [
+      "corpus"
+    ],
+    "configuration": {
+      "args": [],
+      "cgroup_mib": null,
+      "env": null,
+      "hogs": 0,
+      "variant": null
+    },
+    "content_digest": "121ba6b7555275a73e98f190538271a6d8e234cae71e4ed4fa01cce66f1b1588",
+    "counts": {
+      "depth": 16,
+      "distinct": 2088,
+      "generated": 4506,
+      "result": "success"
+    },
+    "date": "2026-10-08 15:51:01",
+    "id": "1cb281efd8fe7104ed866c10",
+    "instance": {
+      "arch": "x86_64",
+      "description": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+      "type": "SA5.4XLARGE32"
+    },
+    "metrics": {
+      "cpu_s": 5.325,
+      "instructions": null,
+      "rss_mib": 481.6,
+      "wall_s": 1.259
+    },
+    "mode": "-tlc",
+    "model": "bench/ReprMoveRange",
+    "provenance": {
+      "legacy": false,
+      "measurement_source": "bench/history/tlc-1813307-SA5.4XLARGE32.json#/models/bench/ReprMoveRange/runs/1",
+      "pointer": "/measurement",
+      "reused_from": "1cb281efd8fe7104ed866c10",
+      "source": "bench/tlc-baselines/9ab56434ad16b147f55053d0d590aff23660f8df95ecd5dda2a286dcf6ab2245.json"
+    },
+    "revision": null,
+    "samples": {
+      "cpu_s": [
+        5.325
+      ],
+      "wall_s": [
+        1.259
+      ]
+    },
+    "schema_version": 2,
+    "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "tool": "tlc",
+    "workers": 1
+  },
+  "schema_version": 2
+}
