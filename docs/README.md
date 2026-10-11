@@ -76,4 +76,4 @@ git show af7011f530a61750ef5c770a37f570b91a6db1e0:docs/notes/state-representatio
 | [benchmarking.md](benchmarking.md) | Performance measurement: `scripts/bench.py`, the benchmark suite of record and its continuous tracking, the TLC timing baselines and their reuse, the measurement schema. |
 | [cloud-verification.md](cloud-verification.md) | Where work runs (cloud instances against the shared workstation), `scripts/cloud_verify.py`, launch admission and budgets, provider identity, the operator's ssh allowlist. |
 | [unsafe-audit.md](unsafe-audit.md) | Inventory and justification of every `unsafe` block and the FFI boundary to generated C. |
-| [performance.md](performance.md) | Generated: the canonical TLC/tlx performance report (median wall time per cohort, instance, mode and worker count), naming the record behind every measurement. |
+| [performance.md](performance.md) | Generated: the canonical TLC/tlx performance report (median wall time per cohort, instance, mode and worker count), naming the record behind every measurement and marking each row whose recorded samples name an optimization, so a ratio that includes a state-space reduction says so. |

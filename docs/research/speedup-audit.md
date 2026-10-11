@@ -60,7 +60,10 @@ Consequence for reading the table: the tlx side excludes the cost of a user's fi
 library, start the process), the TLC side includes its own start-up, and the section title "Default
 mode end-to-end vs TLC" claims more than that for the fast rows, where the recorded warm-up is
 3.4-6.8x the timed value. A cold-cache number for these configurations exists only in the `ttfr`
-lane's protocol (a fresh `TLX_CACHE` per run); no such record is in this store.
+lane's protocol (a fresh `TLX_CACHE` per run); no such record is in this store. The generated report
+now states these conditions in its own text - a timed tlx value is a separate process run after a
+discarded warm-up, and the discarded run is not an isolated cold-cache measurement - without changing
+any published number.
 
 **F3 - two rows compare different searches.** `MCPaxosSmall` (239x) and `PConProof` (181x) are
 default-mode runs that applied tlx's automatic symmetry of sets of model values
@@ -93,11 +96,19 @@ falsified copy of that property in the same configuration is reported
 
 The policy that lets a default-mode row pair with an unreduced TLC baseline is written down (the
 report header exempts "distinct count outside default mode") and the report prints the distinct
-counts next to the ratio, so a reader who knows the rule can see it. What is missing is a label on
-the row: nothing in the table or its section text says that the tlx number of a ratio above 100x on
-this table may be a reduced search. `ElevatorSafetyLarge` (published at 22.72x, below this audit's
-threshold) is the same case with `Optimizations: symmetry Permutations(Person)` and 10,365,445
-reduced distinct states against TLC's 59,007,145.
+counts next to the ratio, so a reader who knows the rule can see it. The label this audit found
+missing is now in the generator: `benchmarking.bench_records.render` reads the optimization line out
+of each record's own samples - never out of a count difference, which the default-mode contract
+permits for reasons the record does not state - and emits a `tlx optimizations` column on every
+measured row (`none` when the samples name none, `unknown` when the record carries no sample detail)
+plus a `Reduced models` count in the summary. 39 published rows in the store carry one, among them
+`ElevatorSafetyLarge` (published at 22.72x, below this audit's threshold) with
+`symmetry Permutations(Person)`: 10,365,445 reduced distinct states against TLC's 59,007,145.
+The same store shows why a count difference cannot stand in for that line: two published rows have
+different distinct counts on the two sides and name no optimization, and both have an innocent
+reason - `ext/vanlightly-raft/pull-raft-KRaft -compile` stops at a deadlock, where the count is
+whatever the exploration order reached first, and `SpanningTree/SpanTreeRandom` checks a temporal
+property, which TLC may stop early on a periodic check.
 
 **F4 - the checks that must hold, hold.** For all 13 rows: input digest recomputed equal on both
 sides; worker count, instance type, architecture and `cgroup_mib` equal; TLC version equal; verdict

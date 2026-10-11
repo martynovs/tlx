@@ -37,6 +37,12 @@ evidence. Original collection locators remain metadata; raw runner histories are
 `work/` and are not required to reproduce or validate the report. Superseded
 versions and records for other inputs or machines are archived outside this directory.
 
+The report states the measurement conditions it depends on: a tlx time is the median of the timed
+samples, each a separate process run after a discarded warm-up that builds the native library once,
+and the warm-up is not a cold-cache measurement (the cache is not isolated per configuration). A row
+whose recorded samples name an optimization carries that line in its `tlx optimizations` column,
+because its ratio compares the reduced search with TLC's unreduced one.
+
 To run new measurements, fetch dependencies using `sh scripts/fetch-deps.sh` and
 `python3 scripts/fetch-external.py`, then resolve the suite with
 `python3 scripts/bench.py suite-check`. [benchmarking.md](../docs/benchmarking.md) defines the

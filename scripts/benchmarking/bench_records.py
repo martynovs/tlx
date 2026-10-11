@@ -74,6 +74,40 @@ def number(value, suffix=''):
     return '—' if value is None else f'{value:.2f}{suffix}'
 
 
+def optimizations(r):
+    """The optimizations the row's own samples name, in record order.
+
+    A run that reduced its search says so in its `Optimizations:` line
+    (docs/usage.md section 6.3), and the samples carry that line; a reduced
+    row's ratio compares a reduced search with TLC's unreduced one, so the
+    report has to label it. The label is that statement and nothing else: a
+    count difference is not a substitute, because the default-mode contract
+    permits one for reasons the record does not state (docs/compat.md section
+    0), and a row that names no optimization is never marked for it.
+    """
+    raw = r.get('raw_result') or {}
+    named = []
+    for sample in [*(raw.get('samples') or []), *(raw.get('warmups') or [])]:
+        for name in sample.get('optimizations') or []:
+            if name not in named:
+                named.append(name)
+    return tuple(named)
+
+
+def reduction_note(r):
+    """One row's `tlx optimizations` cell: what the record states, or why not.
+
+    `none` is "this row records its samples, and they name no optimization";
+    `unknown` is a row without per-sample detail, where unknown metadata stays
+    unknown rather than reading as an unreduced search.
+    """
+    named = optimizations(r)
+    if named:
+        return '; '.join(named)
+    raw = r.get('raw_result') or {}
+    return 'none' if raw.get('samples') or raw.get('warmups') else 'unknown'
+
+
 def eligible(r):
     if r['provenance'].get('count_problems'):
         return False
@@ -131,6 +165,17 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
            'Each number is named by the record it came from: the Evidence column carries that record\'s revision, instance, date and '
            'store file. The current measurement store ships with the sources ([benchmarking.md](benchmarking.md) section 6); '
            'the record links can be inspected in a fresh clone.',
+           'A tlx time is the median of the timed samples, and each timed sample is a separate process run that follows a discarded '
+           'warm-up; the warm-up builds the native library once for the configuration, so the timed run does not pay for that build. '
+           'The discarded run is not an isolated cold-cache measurement - the native cache is only rebuilt when the build is missing, '
+           'and it is shared by the configurations of one batch ([benchmarking.md](benchmarking.md) section 1 owns the protocol); a '
+           'cold-cache number needs the fresh-cache conditions the `ttfr` lane states. A TLC time is its one process, including its own '
+           'start-up.',
+           'A row whose record names optimizations (`tlx optimizations` below: the run\'s own `Optimizations:` line, '
+           '[usage.md](usage.md) section 6.3) explored a reduced search, so its ratio compares that reduced search with TLC\'s '
+           'unreduced one and includes the reduction. The label is the record\'s own statement; a count difference is not used to '
+           'infer it, and `-compile` rows carry it too. `none` means the row\'s samples name no optimization, `unknown` a row whose '
+           'record carries no per-sample detail.',
            'See [benchmark inputs and evidence](../bench/README.md) for verification and reproduction. '
            'Superseded measurements and backup archives are kept outside the published tree.', '']
     if report_note:
@@ -140,8 +185,8 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
     for section in SECTIONS:
         out += ['## ' + section, '']
         if section == 'Summary':
-            out += ['| Category / instance / mode / workers | Models | Median TLC / tlx | Range | Evidence |',
-                    '|---|---:|---:|---:|---|']
+            out += ['| Category / instance / mode / workers | Models | Median TLC / tlx | Range | Reduced models | Evidence |',
+                    '|---|---:|---:|---:|---:|---|']
             groups = {}
             for r in rows:
                 if ratio(r) is not None:
@@ -154,9 +199,10 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
             for key, models in sorted(groups.items()):
                 rs = list(models.values())
                 vals = [ratio(r) for r in rs]
+                reduced = sum(1 for r in rs if optimizations(r))
                 refs = ', '.join(ref(r, r['model']) + ' / ' + ref(baseline(r), 'TLC') for r in rs)
                 out.append(f"| {' / '.join(map(str, key))} | {len(rs)} | {statistics.median(vals):.2f}× | "
-                           f"{min(vals):.2f}–{max(vals):.2f}× | {refs} |")
+                           f"{min(vals):.2f}–{max(vals):.2f}× | {reduced} | {refs} |")
             if not groups:
                 out += ['No eligible records with a matching TLC baseline.']
         elif section == 'Coverage and gaps':
@@ -194,7 +240,7 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
         elif section == 'Multi-core scaling':
             out += ['Efficiency is T(1) / (workers × T(workers)); only the same revision, mode, model, instance and arguments are compared. '
                     'Unmeasured worker counts between one and the maximum remain gaps.', '',
-                    '| Model | Workers | Wall s | Efficiency | Evidence |', '|---|---:|---:|---:|---|']
+                    '| Model | Workers | Wall s | Efficiency | tlx optimizations | Evidence |', '|---|---:|---:|---:|---|---|']
             grouped = {}
             for r in rows:
                 if 'scaling' in r['category'] or r['workers'] == 1:
@@ -206,10 +252,11 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
                 found = True
                 for w, r in sorted(ws.items()):
                     eff = ws[1]['metrics']['wall_s'] / (w * r['metrics']['wall_s'])
-                    out.append(f"| {r['model']} | {w} | {number(r['metrics']['wall_s'])} | {number(100 * eff, '%')} | {ref(r)} / {ref(ws[1], '1w')} |")
+                    out.append(f"| {r['model']} | {w} | {number(r['metrics']['wall_s'])} | {number(100 * eff, '%')} | "
+                               f"{reduction_note(r)} | {ref(r)} / {ref(ws[1], '1w')} |")
                 gaps = sorted(set(range(1, max(ws) + 1)) - set(ws))
                 if gaps:
-                    out.append(f"| {key[0]} | unmeasured: {', '.join(map(str, gaps))} | — | — | — |")
+                    out.append(f"| {key[0]} | unmeasured: {', '.join(map(str, gaps))} | — | — | — | — |")
             if not found:
                 out += ['No eligible records with a comparable one-worker measurement.']
         else:
@@ -224,12 +271,14 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
             }
             rs = [r for r in rows if predicates[section](r)]
             if section == SECTIONS[1]:
-                out += ['Corpus coverage is the manifest selection, including missing records. A partial selection is not a whole-corpus speedup.', '']
+                out += ['Corpus coverage is the manifest selection, including missing records. A partial selection is not a whole-corpus speedup. '
+                        'Each ratio here is the timed tlx run (after the discarded warm-up) against TLC\'s single process; the '
+                        '`tlx optimizations` column marks the rows whose two sides did not explore the same state space.', '']
             if not rs:
                 out += ['No eligible records. See Coverage and gaps.', '']
                 continue
-            out += ['| Model / mode | Workers | Result / distinct / generated / depth | Wall s | CPU s | RSS MiB | Instructions | TLC wall / CPU s | TLC / tlx | Evidence |',
-                    '|---|---:|---|---:|---:|---:|---:|---:|---:|---|']
+            out += ['| Model / mode | Workers | Result / distinct / generated / depth | Wall s | CPU s | RSS MiB | Instructions | TLC wall / CPU s | TLC / tlx | tlx optimizations | Evidence |',
+                    '|---|---:|---|---:|---:|---:|---:|---:|---:|---|---|']
             for r in rs:
                 tc = baseline(r)
                 counts = r['counts']
@@ -244,7 +293,8 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
                 if configuration.get('cgroup_mib'):
                     label += f" / cgroup {configuration['cgroup_mib']} MiB"
                 out.append(f"| {label} | {r['workers']} | {count_text} | "
-                           + ' | '.join(number(r['metrics'][k]) for k in METRICS) + f" | {baseline_text} | {number(ratio(r), '×')} | {evidence} |")
+                           + ' | '.join(number(r['metrics'][k]) for k in METRICS)
+                           + f" | {baseline_text} | {number(ratio(r), '×')} | {reduction_note(r)} | {evidence} |")
         out += ['']
     return '\n'.join(out)
 

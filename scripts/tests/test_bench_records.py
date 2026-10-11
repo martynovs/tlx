@@ -857,6 +857,68 @@ class RecordsTest(unittest.TestCase):
         tc['workers'] = 8
         self.assertNotIn('3.00×', br.render([tx, tc], {'models': []}))
 
+    def reduced_row(self, optimizations, **changes):
+        """A measured row as the store writes it, its samples carrying the line.
+
+        The `Optimizations:` line is the run's own statement that it reduced
+        its search; the report has to label a published ratio from it. The
+        fixtures below are the known-bad cases: before this label existed,
+        `docs/performance.md` published such a ratio with nothing to say the
+        two sides explored different state spaces.
+        """
+        h = {'commit': 'abc123', 'date': '2026-10-07', 'machine': 'x86_64, tencent SA5.4XLARGE32'}
+        raw = {'model': 'M', 'mode': 'default', 'workers': 1, 'walls': [1.0, 1.0, 1.0],
+               'cpu': [1.0, 1.0, 1.0], 'result': 'success', 'distinct': 10, 'generated': 20, 'depth': 3,
+               'content_digest': 'd', 'tlc_version': 'v',
+               'raw_result': {'samples': [{'result': 'success', 'optimizations': list(optimizations)}],
+                              'warmups': []}}
+        r = normalize(h, raw, 'bench/history/a.json', '/runs/M')
+        r.update(changes)
+        return r
+
+    def test_reduced_rows_are_labelled_from_the_record_not_from_counts(self):
+        baseline = self.record(tool='tlc', mode='-tlc', content_digest='d', tlc_version='v')
+        baseline['id'] = 'baseline'
+        baseline['metrics']['wall_s'] = 9.0
+        line = ['symmetry Permutations(RM) (proven; safety checks only)']
+
+        # A row whose record names the optimization is labelled with it, and the
+        # group it belongs to counts it.
+        tx = self.reduced_row(line, category=['corpus'], baseline='baseline')
+        text = br.render([tx, baseline], {'models': []})
+        self.assertIn('tlx optimizations', text)
+        self.assertIn('| Reduced models |', text)
+        self.assertIn('| ' + line[0] + ' |', text)
+        self.assertIn('| 1 |', text.split('## Summary')[1].split('##')[0])
+
+        # The label is the record's statement, not a count difference: the same
+        # counts with no recorded line are `none`, and a reduced row whose
+        # counts happen to equal the baseline keeps its label.
+        counts_unlike = self.reduced_row([], category=['corpus'], baseline='baseline')
+        counts_unlike['counts']['distinct'] = 11
+        text = br.render([counts_unlike, baseline], {'models': []})
+        self.assertIn('| none |', text)
+        self.assertNotIn(line[0], text)
+
+        counts_like = self.reduced_row(line, category=['corpus'], baseline='baseline')
+        self.assertEqual(counts_like['counts']['distinct'], baseline['counts']['distinct'])
+        self.assertIn(line[0], br.render([counts_like, baseline], {'models': []}))
+
+        # A row that keeps no per-sample detail says so instead of reading as
+        # an unreduced search.
+        tx['raw_result'] = {}
+        self.assertIn('| unknown |', br.render([tx, baseline], {'models': []}))
+
+    def test_report_states_the_timing_and_cache_conditions(self):
+        # The timed value follows a discarded warm-up in the same process
+        # sequence, and the native cache is not isolated per configuration, so
+        # the report may not call the discarded run cold (benchmarking.md
+        # section 1 owns the protocol).
+        text = br.render([self.record(category=['corpus'])], {'models': []})
+        self.assertIn('each timed sample is a separate process run that follows a discarded warm-up', text)
+        self.assertIn('not an isolated cold-cache measurement', text)
+        self.assertIn('A TLC time is its one process, including its own start-up.', text)
+
     def test_incomplete_current_key_is_a_coverage_gap(self):
         tc = self.record(tool='tlc', mode='-tlc', content_digest='d', tlc_version='v')
         tc['counts']['result'] = 'timeout'
