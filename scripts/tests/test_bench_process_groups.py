@@ -92,9 +92,13 @@ class BenchmarkProcessGroups(unittest.TestCase):
             while not self.pids.exists() and time.monotonic() < deadline:
                 time.sleep(.01)
             raise KeyboardInterrupt('fixture cancellation')
-        with patch.object(process.OwnedChild, 'wait_usage', interrupt):
+        with patch.object(process.OwnedChild, 'wait_usage', interrupt), \
+             patch.object(process.os, 'killpg', wraps=os.killpg) as kill_group:
             with self.assertRaises(KeyboardInterrupt):
                 process.capture(self.cmd, 3, rusage=True, start_new_session=True)
+            # Cancellation signals the owned group once, then reaps the child.
+            # A second signal races with the first one's process teardown.
+            kill_group.assert_called_once_with(json.loads(self.pids.read_text())[-1], signal.SIGKILL)
         self.assert_stopped()
 
     def test_group_is_cleaned_after_leader_has_already_exited(self):

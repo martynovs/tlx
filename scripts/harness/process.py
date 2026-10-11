@@ -194,10 +194,9 @@ def capture(cmd, timeout=None, *, cwd=None, env=None, rusage=False, grace=0, rai
                         stdout, stderr = process.communicate()
                 wall = time.time() - started
         finally:
-            if start_new_session:
+            if start_new_session or process.returncode is None:
                 kill()
             if process.returncode is None:
-                kill()
                 process.communicate()
         if timed_out.is_set() and raise_timeout:
             raise subprocess.TimeoutExpired(cmd, timeout, output=stdout, stderr=stderr)
