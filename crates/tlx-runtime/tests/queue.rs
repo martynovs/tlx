@@ -603,6 +603,8 @@ fn resumed_search_from_spilled_archive() {
                 }
                 assert!(sp.error().is_none());
                 drop(r);
+                sp.wait_for_writes();
+                sp.wait_for_reads();
                 assert!(sp.dir().is_none(), "the spill files are gone with the search");
             }
         }

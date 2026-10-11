@@ -52,6 +52,8 @@ fn spilled_trace_logs_give_the_same_results() {
         let c = sp.counters();
         assert!(c.blocks >= 10 && c.read > 0, "{c:?}");
         // The trace was read back; the directory is gone with the logs.
+        sp.wait_for_writes();
+        sp.wait_for_reads();
         assert!(sp.dir().is_none());
         assert!(sp.error().is_none());
         // A complete search: the same statistics.
@@ -109,6 +111,8 @@ fn memory_pressure_spills_trace_logs() {
         assert_eq!(r.trace.len(), plain.trace.len());
         assert!(sp.counters().blocks > 0, "{:?}", sp.counters());
         assert!(sp.error().is_none());
+        sp.wait_for_writes();
+        sp.wait_for_reads();
         assert!(sp.dir().is_none());
     }
     // `-spill off`: nothing written.

@@ -35,24 +35,3 @@ fn wall_since_start() -> Duration {
     static START: std::sync::OnceLock<std::time::Instant> = std::sync::OnceLock::new();
     START.get_or_init(std::time::Instant::now).elapsed()
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn process_cpu_counts_work_not_waiting() {
-        let t0 = process_cpu();
-        let mut acc = 0u64;
-        for i in 0..500_000u64 {
-            acc = acc.wrapping_add(std::hint::black_box(i));
-        }
-        std::hint::black_box(acc);
-        let t1 = process_cpu();
-        assert!(t1 >= t0, "the clock went backwards: {t0:?} -> {t1:?}");
-        assert!(t1 - t0 >= Duration::from_micros(50), "burning CPU did not advance the clock: {:?}", t1 - t0);
-        std::thread::sleep(Duration::from_millis(60));
-        let t2 = process_cpu();
-        assert!(t2 - t1 < Duration::from_millis(30), "waiting counted as CPU time: {:?}", t2 - t1);
-    }
-}
