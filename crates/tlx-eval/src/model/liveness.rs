@@ -665,6 +665,21 @@ impl Builder<'_> {
                 self.spec.fairness.push(Fair { strong: matches!(kind, FairnessKind::Strong), enabled, taken });
                 Ok(())
             }
+            // The conditional fairness of the examples of the TLA+ book,
+            // `(guard) => WF_v(A)`: with a constant `guard` the conjunct is
+            // the fairness condition (guard TRUE) or TRUE (guard FALSE), not
+            // an assumption formula. (TLC folds the constant too. Keeping the
+            // implication as an antecedent would leave the `[]<>`s of its
+            // consequent to the tableau of the property, which unfolds the
+            // `2k` of `k` guarded `WF`s into `2^(2k)` automaton states instead
+            // of the checker taking them as cycle conditions.)
+            ExprKind::Builtin { op: B::Implies, args } if args.len() == 2 && self.foldable(&args[0], env) => {
+                if self.ip.eval_bool(&args[0], env, &Ctx::NONE)? {
+                    self.assumption(&args[1], env, out)
+                } else {
+                    Ok(())
+                }
+            }
             ExprKind::Apply { op: OpRef::Def(d), args } => match self.expand(*d, args, env)? {
                 Some((body, env2)) => self.assumption(&body, &env2, out),
                 None => {
@@ -677,6 +692,12 @@ impl Builder<'_> {
                 Ok(())
             }
         }
+    }
+
+    /// Whether `e` is a state predicate whose value does not depend on the
+    /// state (as `formula`: a constant subformula, evaluated now).
+    fn foldable(&self, e: &Expr, env: &Env) -> bool {
+        is_action_free(self.ip, e) && !super::spec::is_temporal_expr(self.ip, e) && self.ip.is_constant_in(e, env)
     }
 
     /// The body of a temporal definition applied to `args` (bound by value

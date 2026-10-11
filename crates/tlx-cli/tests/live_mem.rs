@@ -177,3 +177,71 @@ Live == \E i \in 1..20: [](x = i)
         assert!(!out.text().contains("Temporal properties were violated"), "{}", out.text());
     }
 }
+
+/// The conditional fairness of the TLA+ book's specifications,
+/// `(guard) => WF_v(A)`, and the same guard under a quantifier, as
+/// SpecifyingSystems' `MCInnerSerial` writes it: a guarded `WF` is a
+/// fairness condition of the checker, not an antecedent of the property.
+///
+/// As an antecedent its `[]<>`s have no condition to be taken as and fall
+/// to the tableau of the rest, which unfolds the `2k` of `k` guarded `WF`s
+/// into `2^(2k)` automaton states: `MCInnerSerial` (12 guarded `WF`s, 195
+/// safety states) reports an estimate of about 15,603 MiB — the whole
+/// budget — and stops instead of checking the property, where TLC checks it
+/// (it folds the constant guard and merges the `[]<>`s of the `WF`, so its
+/// negation needs no tableau for them).
+const GUARDED_WF: &str = r#"---- MODULE GuardedWF ----
+EXTENDS Naturals
+VARIABLES x, y
+vars == <<x, y>>
+Init == x = 0 /\ y = 0
+A == x' = 1 /\ y' = y
+B == x' = x /\ y' = 1
+Next == A \/ B
+Guarded == \A i, j \in 1..4 : (i # j) => WF_vars(A)
+Spec == Init /\ [][Next]_vars /\ Guarded
+Live == <>(x = 1)
+Stutter == x' = x /\ y' = y
+StutterSpec == Init /\ [][Stutter]_vars /\ \A i, j \in 1..4 : (i # j) => WF_vars(Stutter)
+Stuck == <>(x = 1)
+====
+"#;
+
+/// With the guarded fairness, `A` (always enabled, never taken on the cycle
+/// `(0, 1) -> (0, 1)`) must be taken: `Live` holds, and the run must not
+/// take the fairness for a tableau. Without it the same property is
+/// violated, which the second case checks: dropping the fairness is as
+/// wrong as blowing up on it.
+#[test]
+fn guarded_wf_is_a_fairness_condition() {
+    let dir = tlx_testkit::TempDir::with_spec("guarded_wf", GUARDED_WF, "SPECIFICATION Spec\nPROPERTY Live\nCHECK_DEADLOCK FALSE\n");
+    for extra in [vec![], vec!["-compile"]] {
+        let mut cmd = tlx_testkit::tlx!();
+        let out = cmd
+            .args(["check", "GuardedWF.tla", "-config", "GuardedWF.cfg", "-workers", "1"])
+            .args(&extra)
+            .dir(&dir)
+            .timeout(std::time::Duration::from_secs(30))
+            .run();
+        assert_eq!(out.code, 0, "{extra:?}:\n{}", out.text());
+        assert!(out.text().contains("Model checking completed. No error has been found."), "{}", out.text());
+        assert!(!out.text().contains("liveness needs more memory"), "{}", out.text());
+    }
+    let dir = tlx_testkit::TempDir::with_spec(
+        "guarded_wf_stuck",
+        GUARDED_WF,
+        "SPECIFICATION StutterSpec\nPROPERTY Stuck\nCHECK_DEADLOCK FALSE\n",
+    );
+    for extra in [vec![], vec!["-compile"]] {
+        let mut cmd = tlx_testkit::tlx!();
+        let out = cmd
+            .args(["check", "GuardedWF.tla", "-config", "GuardedWF.cfg", "-workers", "1"])
+            .args(&extra)
+            .dir(&dir)
+            .timeout(std::time::Duration::from_secs(30))
+            .run();
+        assert_eq!(out.code, 13, "{extra:?}:\n{}", out.text());
+        assert!(out.text().contains("Temporal property Stuck was violated."), "{}", out.text());
+        assert!(!out.text().contains("liveness needs more memory"), "{}", out.text());
+    }
+}
