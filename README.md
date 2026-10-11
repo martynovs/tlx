@@ -31,14 +31,16 @@ for coverage, slower cases and unresolved results.
 
 The main sources of this performance are:
 
-- **Specialization for each model.** Configuration constants are folded and action instances
-  become dedicated native functions, reducing repeated expression evaluation and dynamic dispatch.
+- **Compilation specialized to each specification.** Once configuration constants are fixed,
+  tlx folds constant expressions and compiles supported actions and expressions using
+  model-specific value representations, reducing interpretation and dynamic dispatch while
+  retaining guarded interpreter fallbacks.
 - **Compact state representations.** Where value shapes permit, flat word arrays, bitsets and
   specialized collection layouts reduce allocation and make equality and fingerprinting cheaper.
 - **Parallel state-space exploration.** Level-synchronous workers share an atomic fingerprint
   table, supporting concurrent successor generation and duplicate detection.
 
-The [architecture](docs/design.md) explains these mechanisms and the guarded interpreter fallback.
+[docs/design.md](docs/design.md) explains these mechanisms and the guarded interpreter fallback.
 The measurements compare complete implementations; they do not isolate each mechanism's contribution.
 
 TLC is the semantic oracle. In TLC-compatible mode (`-tlc`), verdicts, violated names, state counts,

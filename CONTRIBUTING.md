@@ -60,7 +60,7 @@ validity of counterexamples.
 ## Code and commits
 
 - Code, comments, commit messages and all public documentation (README, this file, `docs/`) are in English. Keep commits focused, with a message that
-  says what changed and why.
+  says what changed and why. Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit subjects.
 - Command-line options and `TLX_*` environment variables are documented only in
   [docs/configuration.md](docs/configuration.md); update it when you add or change one
   (a test checks that it matches the code).
