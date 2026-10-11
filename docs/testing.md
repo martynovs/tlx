@@ -300,7 +300,7 @@ itself), or the corpus root for the models `scripts/corpus.py` names as `cwd: ro
 manifest's relative paths (`.github/scripts/check_small_models.py`, `--examples_root .`), so a spec
 that names an input `specifications/<dir>/<file>` reads it there and nowhere else.
 `ewd998/EWD998ChanTrace` reads its trace as `specifications/ewd998/EWD998ChanTrace.ndjson`; from the
-spec's own directory TLC and tlx both stop with an IO error (docs/issues.md). A model
+spec's own directory TLC and tlx both stop with an IO error. A model
 that writes files still runs in a scratch copy of its directory, so concurrent runs of one model do
 not collide and the shared checkout stays untouched.
 

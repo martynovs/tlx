@@ -947,7 +947,7 @@
     }
   },
   "reference_revision": "517f59c67a0a80ddaee0445c9c413d7fe45780c5",
-  "report_note": "**Initial baseline, frozen 2026-10-11 at 08:51:23 +08:00.** This snapshot has 279 complete three-sample configurations out of 299. Later retries do not update it automatically. See [initial benchmark issues](issues.md) for correctness differences, errors, incomplete retries and the provenance of in-progress checkpoints.",
+  "report_note": "**Initial baseline, frozen 2026-10-11 at 08:51:23 +08:00.** This snapshot has 279 complete three-sample configurations out of 299. Later retries do not update it automatically. See [baseline provenance](../bench/README.md#frozen-snapshot-provenance) for the historical outcomes and in-progress checkpoints, and [open issues](issues.md) for remaining work.",
   "schema_version": 1,
   "stale_after_revisions": 20
 }

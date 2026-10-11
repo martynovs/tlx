@@ -43,7 +43,7 @@ reproduced the preceding measurement's exact native and total evaluation counts.
 
 The EWD998ChanTrace gap was staging, not a tlx difference: the model names its
 trace relative to the Examples root and now runs there (`cwd: root` of the corpus
-models, docs/testing.md section 6.1; docs/issues.md). A rerun of the command
+models, docs/testing.md section 6.1). A rerun of the command
 therefore measures it, while the snapshot above keeps the numbers it was taken
 with.
 

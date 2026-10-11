@@ -7,7 +7,7 @@ A tlx time is the median of the timed samples, and each timed sample is a separa
 A row whose record names optimizations (`tlx optimizations` below: the run's own `Optimizations:` line, [usage.md](usage.md) section 6.3) ran with them, so the counts are those of that reduced search. The column states what the record says about the tlx run; it does not claim the TLC baseline was unreduced, and the default-mode contract does not make a count difference a substitute for the record's own line ([compat.md](compat.md) section 0). `none` means every recorded sample states its optimization list and names none; `unknown` means the record does not state it for every sample.
 See [benchmark inputs and evidence](../bench/README.md) for verification and reproduction. Superseded measurements and backup archives are kept outside the published tree.
 
-**Initial baseline, frozen 2026-10-11 at 08:51:23 +08:00.** This snapshot has 279 complete three-sample configurations out of 299. Later retries do not update it automatically. See [initial benchmark issues](issues.md) for correctness differences, errors, incomplete retries and the provenance of in-progress checkpoints.
+**Initial baseline, frozen 2026-10-11 at 08:51:23 +08:00.** This snapshot has 279 complete three-sample configurations out of 299. Later retries do not update it automatically. See [baseline provenance](../bench/README.md#frozen-snapshot-provenance) for the historical outcomes and in-progress checkpoints, and [open issues](issues.md) for remaining work.
 
 ## Summary
 

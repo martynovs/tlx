@@ -18,8 +18,8 @@ The initial baseline was frozen on 2026-10-11 at 08:51:23 +08:00. The source-equ
 `git rev-list --max-parents=0 HEAD`. Measurements retain their original source identity in the
 evidence files; history cleanup does not relabel them.
 The Rust workspace is unchanged by the documentation and benchmark-tool updates that finalize the
-initial commit. [Known issues and baseline provenance](../docs/issues.md) records the source
-fingerprints, incomplete configurations and explicitly identified in-progress checkpoints.
+initial commit. The frozen snapshot below records its source fingerprints and incomplete configurations.
+[Open issues](../docs/issues.md) tracks remaining work, rather than the state of past runs.
 
 ## Validate and reproduce
 
@@ -69,3 +69,79 @@ Keep the exact measured-source bundle when amending history; `git bundle verify`
 The initial source bundle is retained in the maintainer's `work/` archive. Copy backups to an
 independent disk or object store for protection against disk loss. A local archive is not an
 off-machine backup; the repository does not configure an external backup destination.
+
+## Frozen snapshot provenance
+
+The suite contains **235 models and 299 configurations**. At the freeze point:
+
+| State | Configurations | Treatment |
+|---|---:|---|
+| Three complete timed samples, with no configured expectation failure | 279 | Eligible for performance tables |
+| Previously timed out; longer retries not all complete | 12 | No headline timing |
+| Execution error | 6 | No headline timing |
+| Result differs from a fixed expectation | 2 | No headline timing |
+
+The complete configurations include 247 successes, 16 safety failures, 12 deadlocks and four
+liveness failures. A valid counterexample is a completed check. However, 39 complete configurations
+have no pinned expectation; completion is not a claim that every case has full TLC validation.
+The default-mode contract permits different state counts; the compatible compiled runs check
+their applicable counts as well as verdicts.
+
+There are 300 canonical tlx records covering these 299 configurations: the unfinished Slush retry
+also has a partial, unkeyed record. It is excluded by the repetition guard and has no TLC pairing.
+Only the new measured revision is retained in the active tlx store. The 470 TLC records for current input/version/machine keys remain; other versions and historical
+keys are archived. Performance ratios use complete matching keys only.
+
+Batches 1–3 have final cloud receipts. Batches 4–5 contribute explicitly frozen **in-progress
+checkpoints**, not final passing batch verdicts. Their checked-out revision, clean tracked tree
+and measured binary SHA-256 were checked when freezing them. The snapshot's `bench/environment/`
+holds machine descriptions, source checks, sampling configurations and `outcomes.tsv`.
+
+The source-equivalent initial commit is found with `git rev-list --max-parents=0 HEAD`.
+The measurement files retain the original collection revision; these identities are not
+rewritten when documentation or Git history changes.
+These fingerprints identify the measured Rust inputs independently of that amend. Subsequent
+fixes do not change the frozen measurements:
+
+| Input | Identity |
+|---|---|
+| Git tree for `crates/` | `90c32255b973c17ea2a12c3b94feadff3f3c3d5b` |
+| `Cargo.toml` SHA-256 | `0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641` |
+| `Cargo.lock` SHA-256 | `a3accb8f37e52206e92365dd61f741ba0122a0e667bbb106d5a307e9a2afab2f` |
+| `rust-toolchain.toml` SHA-256 | `62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede` |
+
+The current canonical records (including embedded original per-configuration samples) and
+environment evidence ship in Git, so a fresh clone can reproduce the report. Raw suite histories
+are archived under `work/`; active records point to their own canonical measurement objects. Original collection locators are preserved as metadata
+on independent canonical baseline records. Superseded records, exact source bundles and optional
+backup snapshots are retained under the maintainer's ignored `work/` archive, as described in
+this document.
+
+## Timeout observations at the freeze point
+
+These are historical observations for the initial snapshot, not a list of current defects.
+See [open issues](../docs/issues.md) for remaining validation and performance work.
+
+All used a 600-second bound in the earlier attempts. The extended retries used a single-sample bound
+of 1,800 seconds. At the freeze point, the two Kafka configurations and `MCKVSSafetyLarge` had also
+hit that longer bound. The other nine retries were not complete. Slush had a successful warm-up
+and two successful timed samples (900.949 and 897.232 seconds); two samples do not satisfy the
+three-sample baseline requirement.
+
+These TLC records match the input digest, TLC version, SA5.4XLARGE32/x86_64 instance class and
+worker count. Timeout durations are lower bounds, not completed TLC timings.
+
+| Model | Workers | TLC seconds | TLC result |
+|---|---:|---:|---|
+| `ext/vanlightly-kafka/kafka_replication_v3_5` (compiled tlx) | 16 | 52.676 | Deadlock |
+| `ext/vanlightly-kafka/kafka_replication_v3_5` (default tlx) | 1 | 755.553 | Deadlock |
+| `KeyValueStore/MCKVSSafetyLarge` | 1 | 7,200.188 | Timeout |
+| `SlushProtocol/SlushLarge` | 1 | 10,794.133 | Success |
+| `SpecifyingSystems/AdvancedExamples/MCInnerSerial` | 1 | 462.895 | Success |
+| `TLC/TestMCReachability` | 1 | 1,492.239 | Liveness failure |
+| `byzpaxos/BPConProof` | 1 | 3,600.256 | Timeout |
+| `c1cs/c1cs` | 1 | 7,200.243 | Timeout |
+| `dag-consensus/TLCSailfish2` | 1 | 7,200.133 | Timeout |
+| `detector_chan96/EnvironmentController` | 1 | 7,200.090 | Timeout |
+| `diskpaxos/MC_HDiskSynod` | 1 | 7,200.293 | Timeout |
+| `ewd998/EWD998` | 1 | 7,200.309 | Timeout |

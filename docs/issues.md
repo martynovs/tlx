@@ -1,175 +1,70 @@
-# Initial benchmark baseline and open issues
+# Open issues
 
-The initial baseline is frozen at **2026-10-11 08:51:23 +08:00**. Later cloud results do not
-automatically change it. [performance.md](performance.md) is generated from this frozen store;
-[benchmarking.md](benchmarking.md) defines the measurement protocol.
+This document tracks unresolved work. Fixed defects are removed; their changes and regression
+coverage remain in Git history and the relevant design and testing documentation.
+[bench/README.md](../bench/README.md#frozen-snapshot-provenance) preserves the initial snapshot's
+provenance and historical failures. Fixes and later validation do not rewrite that frozen baseline.
 
-## Scope and provenance
+## Full-model validation and performance follow-up
 
-The suite contains **235 models and 299 configurations**. At the freeze point:
+The following checks remain open after the code fixes. Passing a regression test does not establish
+completion or performance on the original benchmark configuration.
 
-| State | Configurations | Treatment |
-|---|---:|---|
-| Three complete timed samples, with no configured expectation failure | 279 | Eligible for performance tables |
-| Previously timed out; longer retries not all complete | 12 | No headline timing |
-| Execution error | 6 | No headline timing |
-| Result differs from a fixed expectation | 2 | No headline timing |
-
-The complete configurations include 247 successes, 16 safety failures, 12 deadlocks and four
-liveness failures. A valid counterexample is a completed check. However, 39 complete configurations
-have no pinned expectation; completion is not a claim that every case has full TLC validation.
-The default-mode contract permits different state counts; the compatible compiled runs check
-their applicable counts as well as verdicts.
-
-There are 300 canonical tlx records covering these 299 configurations: the unfinished Slush retry
-also has a partial, unkeyed record. It is excluded by the repetition guard and has no TLC pairing.
-Only the new measured revision is retained in the active tlx store. The 470 TLC records for current input/version/machine keys remain; other versions and historical
-keys are archived. Performance ratios use complete matching keys only.
-
-Batches 1–3 have final cloud receipts. Batches 4–5 contribute explicitly frozen **in-progress
-checkpoints**, not final passing batch verdicts. Their checked-out revision, clean tracked tree
-and measured binary SHA-256 were checked when freezing them. The snapshot's `bench/environment/`
-holds machine descriptions, source checks, sampling configurations and `outcomes.tsv`.
-
-The source-equivalent initial commit is found with `git rev-list --max-parents=0 HEAD`.
-The measurement files retain the original collection revision; these identities are not
-rewritten when documentation or Git history changes.
-The Rust workspace remains identical; these fingerprints identify it independently of that amend:
-
-| Input | Identity |
+| Configuration | Remaining work |
 |---|---|
-| Git tree for `crates/` | `90c32255b973c17ea2a12c3b94feadff3f3c3d5b` |
-| `Cargo.toml` SHA-256 | `0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641` |
-| `Cargo.lock` SHA-256 | `a3accb8f37e52206e92365dd61f741ba0122a0e667bbb106d5a307e9a2afab2f` |
-| `rust-toolchain.toml` SHA-256 | `62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede` |
+| `CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC` and `SpanningTree/SpanTreeTest5Nodes` | Run the original configurations within explicit bounds; streaming removes the premature overflow but does not make their large enumerations cheap. Keep incomplete runs excluded. |
+| `ext/vanlightly-kafka/kafka_replication_v3_5`, compiled 16 workers and default one worker | Collect repeated same-instance before/after samples with explicit cache conditions. Investigate remaining layout migration and interpreted-region costs; compiler cancellation alone does not establish that the timeout problem is solved. |
 
-The current canonical records (including embedded original per-configuration samples) and
-environment evidence ship in Git, so a fresh clone can reproduce the report. Raw suite histories
-are archived under `work/`; active records point to their own canonical measurement objects. Original collection locators are preserved as metadata
-on independent canonical baseline records. Superseded records, exact source bundles and optional
-backup snapshots are retained under the maintainer's ignored `work/` archive, as described in
-[bench/README.md](../bench/README.md).
+Other long-running configurations still need completion or a documented resource bound:
+`KeyValueStore/MCKVSSafetyLarge`, `TLC/TestMCReachability`, `byzpaxos/BPConProof`, `c1cs/c1cs`,
+`dag-consensus/TLCSailfish2`, `detector_chan96/EnvironmentController`, `diskpaxos/MC_HDiskSynod`
+and `ewd998/EWD998`. Several matching TLC runs also timed out; a timeout is not a completed timing.
+The [frozen observations](../bench/README.md#timeout-observations-at-the-freeze-point) retain the
+original limits and TLC results. Later successful runs, including extended retries, need review
+before they become a new baseline.
 
-## Correctness difference requiring investigation
+## Liveness resource limit
 
-`ext/ccf/MCccfraft_1C3N`, compiled with TLC compatibility at both one and 16 workers, reports
-`TypeInv` as violated at depth 3. The suite expects success. The existing TLC baselines with the
-same input digest and TLC version complete successfully, with 675,893 distinct states and depth 66.
+`bcastFolklore/bcastFolklore` exceeded the default memory budget: the frozen run requested about
+16,845 MiB against a 15,603 MiB budget. The product graph is large; correcting the separate
+MCInnerSerial fairness issue does not remove this resource requirement.
 
-Input digest: `703571406163bcea5847e8c56e7925e794c11f6741e5a8eeb6aece81c2c0c913`.
+Validate an explicitly larger budget as a separate configuration, or reduce product-graph memory
+use. Do not silently raise the budget of an existing measurement or treat a resource failure as
+success.
 
-Both configurations are excluded from performance claims. Their early termination is not a
-speedup. The cause was found and fixed; the suite expectation was never changed to make the
-run pass. `UNION {f(x) : x \in S}` (`UnionFold`) was lowered to a word-wise or of the encoded
-members, which is the set union only for a bitset. The set of in-flight messages is a set of
-records whose element universe (three record arms, about 1.8e4 values) is far above the bitset
-universe (4,096), so it is a sorted array: or-ing the encodings of `UNION {Range(messages[s])}`
-produced a different record, and the first invariant reading a field of such an element
-(`TypeInv`, through `MessagesTypeInv`) reported a violation on a legal state.
-`crates/tlx-compile/src/lower/sets.rs` now keeps the fold for bitset members only and leaves the
-other members to the interpreter. The regression is
-`crates/tlx-compile/tests/union_of_ranges.rs`: it fails before the change and covers both
-directions (a union over a sorted-array set agrees with the interpreter, an atoms-only union
-keeps the fold and stays native). The recorded early termination stands as the state of the
-frozen measurement; the configuration needs a fresh compiled run before it can be timed, and
-the TLC baseline above is unchanged.
+## EWD benchmark input identity and expectations
 
-## Execution errors and incomplete diagnostic observations
+The correctness drivers now resolve `ewd998/EWD998ChanTrace` from the Examples root
+([testing.md](testing.md#61-tlc-oracle-scriptscorpuspy)). The benchmark path and its frozen `error`
+expectation have not migrated. The measurement key currently omits the working directory and this
+model's trace-data content, so changing staging without changing the identity could reuse evidence
+from a different effective input.
 
-| Model | Observation | Follow-up |
-|---|---|---|
-| `CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC` | Cardinality overflow while evaluating an assumption | Review large-set cardinality evaluation and the model's assumptions |
-| `SpanningTree/SpanTreeTest5Nodes` | Cardinality overflow for nested `SUBSET` | Review cardinality handling |
-| `bcastFolklore/bcastFolklore` | Liveness checking needs about 16,845 MiB, beyond the default 15,603 MiB budget | Measure an explicitly larger budget separately; do not silently change this configuration |
+The remaining migration must update these together:
 
-The three `ewd998` rows of the freeze-point census were recorded as execution errors; they are
-**expected errors of the examples and of their staging**, and no engine error was found in them.
-Two are invalid examples: `EWD998ChanID` declares six variables (`active`, `color`,
-`counter`, `inbox`, `clock`, `passes`), but the `MCInit` of `ewd998/EWD998ChanID_export` and of
-`ewd998/EWD998ChanID_shiviz` assigns five — `passes` stays undefined — so the initial state is not
-complete. Their states print `/\ passes = null`, TLC's `DoInitFunctor` and tlx both report the
-error, and the upstream manifest marks both models `result: unknown` (never validated). The
-export examples are therefore unusable as written (they invoke `MCInit` from their cfg); the
-Examples tree is shared and is not edited here, and the suite's TLC baselines record the same
-error. The third is the staging of
-`ewd998/EWD998ChanTrace`: its spec reads
-`ndJsonDeserialize(... "specifications/ewd998/EWD998ChanTrace.ndjson")`, a path relative to the
-**Examples root** — the path upstream's CI uses from that root — while TLC's Java override
-(`new File(path)`) and tlx's `ndJsonDeserialize` both open it relative to the working directory,
-which was the spec's own directory. Both engines then stopped with an IO error, and the suite
-entry pinned that error. `scripts/corpus.py` now names the model `cwd: root` (docs/testing.md
-section 6.1), so the run starts in the Examples root, reads the checked-in trace and completes with
-`659` distinct states, depth `655` and `11169` generated states in every tier (interpreter,
-compiled, `-tlc`). TLC's own generated count for this log varies with its random default `-fp`
-polynomial (`11180` came out of the run measured here); `11169` is the `-fp 0` count that tlx
-reproduces (compat.md D-25).
+- Include the working directory and resolved trace data in the benchmark configuration identity.
+- Apply the corrected staging to benchmark execution and collect a new TLC oracle.
+- Update the suite expectation and the matching correctness oracle; keep the old measurements
+  identifiable as historical evidence. Do not add an expected-failure exemption for this mismatch.
 
-That verdict is **evidence, not the frozen suite's expectation**: the `bench/suite.json` pin and
-the shared `corpus/out/tlc.json` row of the model still hold the pre-fix `error`, and this change
-leaves them there. It also leaves the benchmark's own run semantics (and so its records) alone: the
-fix is confined to the correctness drivers (the TLC oracle collection, `difftest`, the coverage
-census), which now start a model in the directory its inputs are relative to.
+For this trace, use TLC's `-fp 0` when collecting the correctness oracle, as described in
+[compat.md](compat.md), D-25. The corrected-input evidence is success with 659 distinct states,
+11,169 generated states and depth 655; it does not replace the frozen error record.
 
-What the later baseline upgrade has to carry - the three things belong together, and a staging
-change is also an identity change: the working directory (and the trace data it resolves) is not in
-the measurement key or in `content_digest` today, so a stale `error` row would otherwise keep
-matching a run that now succeeds. The upgrade therefore re-collects the row with
-`scripts/corpus.py tlc --ids ewd998/EWD998ChanTrace` (its stored row is a well-formed error, which
-`--only-failed` does not flag), states the run's directory and staged inputs in the configuration
-identity, and updates the `bench/suite.json` pin that quotes the row.
+The upstream examples `ewd998/EWD998ChanID_export` and `ewd998/EWD998ChanID_shiviz` are incomplete:
+`MCInit` leaves `passes` unassigned. TLC and tlx both reject them. They need corrected examples or
+explicit classification as invalid inputs, rather than an engine fix.
 
-An additional observation arrived during the unfinished retry of
-`SpecifyingSystems/AdvancedExamples/MCInnerSerial`: its warm-up returned a liveness-memory-budget
-error after 829.443 seconds. Safety exploration had reached 195 distinct states and depth 5,
-matching the stored TLC safety counts. This is a diagnostic from an unfinished configuration,
-not a new complete timing or a final verdict for that retry. It should be investigated alongside
-the liveness memory accounting and budget behavior.
+## Measurement quality and high-speedup validation
 
-## The 12 configurations with earlier timeouts
+Four frozen default-mode configurations have a sample range divided by the median above 25%:
+`MultiCarElevator/ElevatorSafetyLarge`, `Prisoners_Single_Switch/PrisonerSolo`,
+`SpecifyingSystems/AsynchronousInterface/AsynchInterface` and `barriers/Barrier`.
+Keep their samples visible and repeat measurements before using them to establish small changes.
 
-All used a 600-second bound in the earlier attempts. Extended retries use a single-sample bound
-of 1,800 seconds. At the freeze point, the two Kafka configurations and `MCKVSSafetyLarge` had also
-hit that longer bound. The other nine retries were not complete. Slush had a successful warm-up
-and two successful timed samples (900.949 and 897.232 seconds); two samples do not satisfy the
-three-sample baseline requirement.
-
-These TLC records match the input digest, TLC version, SA5.4XLARGE32/x86_64 instance class and
-worker count. Timeout durations are lower bounds, not completed TLC timings.
-
-| Model | Workers | TLC seconds | TLC result |
-|---|---:|---:|---|
-| `ext/vanlightly-kafka/kafka_replication_v3_5` (compiled tlx) | 16 | 52.676 | Deadlock |
-| `ext/vanlightly-kafka/kafka_replication_v3_5` (default tlx) | 1 | 755.553 | Deadlock |
-| `KeyValueStore/MCKVSSafetyLarge` | 1 | 7,200.188 | Timeout |
-| `SlushProtocol/SlushLarge` | 1 | 10,794.133 | Success |
-| `SpecifyingSystems/AdvancedExamples/MCInnerSerial` | 1 | 462.895 | Success |
-| `TLC/TestMCReachability` | 1 | 1,492.239 | Liveness failure |
-| `byzpaxos/BPConProof` | 1 | 3,600.256 | Timeout |
-| `c1cs/c1cs` | 1 | 7,200.243 | Timeout |
-| `dag-consensus/TLCSailfish2` | 1 | 7,200.133 | Timeout |
-| `detector_chan96/EnvironmentController` | 1 | 7,200.090 | Timeout |
-| `diskpaxos/MC_HDiskSynod` | 1 | 7,200.293 | Timeout |
-| `ewd998/EWD998` | 1 | 7,200.309 | Timeout |
-
-Seven TLC configurations also failed to finish within one or two hours. Kafka is a different
-case: native C compilation consumed much of the compiled tlx warm-up. Compile/startup cost and
-warmed search cost need separate investigation; no ratio is calculated from an unfinished warm-up.
-
-## Measurement quality and collection fixes
-
-Four complete default-mode configurations have a timed-sample range divided by the median above
-25%: `MultiCarElevator/ElevatorSafetyLarge` (30.8%), `Prisoners_Single_Switch/PrisonerSolo` (26.2%),
-`SpecifyingSystems/AsynchronousInterface/AsynchInterface` (40.0%) and `barriers/Barrier` (29.3%).
-Keep their samples visible; do not use them to establish small changes in performance.
-
-The collection found two reporting/process issues, corrected in the initial release's tooling:
-
-- Canonical normalization discarded the suite's `count_problems`. It now preserves those
-  diagnostics, excludes mismatches from performance evidence and rejects mismatched TLC pairings.
-- A checker timeout could leave native compiler descendants running. Benchmark capture now owns
-  an explicit process group and cleans it on timeout/cancellation and scope exit. The observed
-  leftover compiler was stopped during the next configuration's warm-up, before timed samples.
-
-These are tooling fixes, not fixes for the model-checking differences above. Frozen measurements
-retain their original source identity and sample completeness; later retries require a separately
-reviewed update to the baseline.
+The [audit of ratios above 100x](research/speedup-audit.md) identifies further validation work:
+repeated TLC measurements on the same instance, explicit cache conditions, comparable runs with
+and without automatic reduction, and per-property correctness checks. `MCParReach` still lacks
+phase attribution. Matching counts and a log line announcing liveness checking do not prove that
+every temporal property was translated correctly.

@@ -125,7 +125,7 @@ reductions above are the exceptions, and both re-check equal under `-tlc`). Mode
 reduction cases) satisfy tier 2 exactly, including distinct counts. The local re-runs of every
 candidate reproduced the stored counts, verdicts and digests, but they were run against the frozen
 measurements' original Rust source, now represented by `5dc582bde98a677524032753f133dc3692cd2e15`, whose `crates/` tree is
-`90c32255b973c17ea2a12c3b94feadff3f3c3d5b` - the tree [issues.md](../issues.md) records for the
+`90c32255b973c17ea2a12c3b94feadff3f3c3d5b` - the tree [baseline provenance](../../bench/README.md#frozen-snapshot-provenance) records for the
 original measurement inputs - and not against the Rust fixes main has gained since. Those runs
 say nothing about how the fixes change any timing; the cloud benchmark of the fixed revision is a
 separate measurement.

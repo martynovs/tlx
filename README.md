@@ -26,7 +26,7 @@ and the report names, per row, the optimization the tlx record states - a row th
 ran with it, so its counts are those of that reduced search; the row does not assert what the
 TLC side was configured with. The mode cohorts differ.
 Incomplete runs and expectation mismatches are excluded. See the
-[full performance report](docs/performance.md) and [initial benchmark issues](docs/issues.md)
+[full performance report](docs/performance.md) and [open issues](docs/issues.md)
 for coverage, slower cases and unresolved results.
 
 The main sources of this performance are:
@@ -217,7 +217,7 @@ are below 1, meaning tlx was slower than TLC.
 The current configurations, measurement records and report policy are tracked in
 [bench/](bench/README.md), so a fresh clone can reproduce the report and inspect its evidence.
 Raw run histories, superseded data and backup snapshots are archived outside the published tree. The
-[initial benchmark issues](docs/issues.md) document exclusions and unfinished work;
+[open issues](docs/issues.md) document exclusions and unfinished work;
 [docs/benchmarking.md](docs/benchmarking.md) owns the protocol and tooling.
 
 ## How it works
