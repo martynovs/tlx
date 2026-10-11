@@ -10,7 +10,7 @@
     "input_sha256": {
       "specifications/ewd998/EWD998ChanTrace.ndjson": "0d288659698fe0a4db105988cdb326065aba82bf547b3473b94c760fc31bada5"
     },
-    "note": "The pre-fix staging ran the model in its spec directory, where this relative input does not resolve; the corrected staging runs it in the corpus root (docs/testing.md section 6.1)."
+    "note": "The pre-fix TLC staging ran in the spec directory, while tlx inherited the driver directory; neither resolved this relative input; the corrected staging runs it in the corpus root (docs/testing.md section 6.1)."
   },
   "identity": {
     "content_digest": "a0367824be223085e597cc7a8704fa36ee72097030fe5dc2e66d8f61896e59c8",
@@ -37,7 +37,7 @@
   },
   "tlx_parity": {
     "checked_by": "scripts/difftest.py --filter EWD998ChanTrace --timeout 180",
-    "mode": "default",
+    "mode": "-tlc -interp",
     "workers": 1,
     "counts": {"result": "success", "distinct": 659, "generated": 11169, "depth": 655},
     "verdict": "PASS (result, distinct, generated, depth)"
