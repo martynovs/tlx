@@ -59,9 +59,20 @@ same input digest and TLC version complete successfully, with 675,893 distinct s
 Input digest: `703571406163bcea5847e8c56e7925e794c11f6741e5a8eeb6aece81c2c0c913`.
 
 Both configurations are excluded from performance claims. Their early termination is not a
-speedup. The cause remains open; neither the engine nor the suite expectation was changed to
-make the run pass. Follow-up should reproduce the counterexample and compare the interpreter,
-compiled execution and TLC on the same inputs.
+speedup. The cause was found and fixed; the suite expectation was never changed to make the
+run pass. `UNION {f(x) : x \in S}` (`UnionFold`) was lowered to a word-wise or of the encoded
+members, which is the set union only for a bitset. The set of in-flight messages is a set of
+records whose element universe (three record arms, about 1.8e4 values) is far above the bitset
+universe (4,096), so it is a sorted array: or-ing the encodings of `UNION {Range(messages[s])}`
+produced a different record, and the first invariant reading a field of such an element
+(`TypeInv`, through `MessagesTypeInv`) reported a violation on a legal state.
+`crates/tlx-compile/src/lower/sets.rs` now keeps the fold for bitset members only and leaves the
+other members to the interpreter. The regression is
+`crates/tlx-compile/tests/union_of_ranges.rs`: it fails before the change and covers both
+directions (a union over a sorted-array set agrees with the interpreter, an atoms-only union
+keeps the fold and stays native). The recorded early termination stands as the state of the
+frozen measurement; the configuration needs a fresh compiled run before it can be timed, and
+the TLC baseline above is unchanged.
 
 ## Execution errors and incomplete diagnostic observations
 

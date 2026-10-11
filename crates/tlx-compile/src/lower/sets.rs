@@ -760,8 +760,13 @@ impl Lowerer<'_> {
         // shape holds it whatever capacity it was inferred with (a bitset
         // represents every subset of its universe; only the shapes of the
         // state and of materialized definitions bound a value, see
-        // `card_checked`).
+        // `card_checked`). `UnionFold` ors the members' words, which is only
+        // the set union for a bitset encoding: over a larger (or unbounded)
+        // element universe a set is a sorted array whose words are not a set.
         let Ty::Enc(sid) = x.ty else { return None };
+        if !self.is_bitset(x.ty) {
+            return None;
+        }
         Some(Expr::new(Ty::Enc(sid), ExprKind::UnionFold { bind: t, set: src, body: x }))
     }
 
@@ -786,7 +791,11 @@ impl Lowerer<'_> {
         let x = binders::checked(check, self.expr_into(f, &env2, st, sid));
         // An inlined recursive body keeps the shape its own branches gave it
         // (a singleton `{x}` bounds it): re-encode it as the destination's
-        // bitset, which is free when the element shape already matches.
+        // bitset, which is free when the element shape already matches. Only a
+        // bitset destination may take `UnionFold` (see `big_union_mapped`).
+        if !self.is_bitset(Ty::Enc(sid)) {
+            return None;
+        }
         let x = self.coerce_enc(x, sid);
         if x.ty != Ty::Enc(sid) {
             return None;

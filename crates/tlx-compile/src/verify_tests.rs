@@ -107,6 +107,15 @@ fn union_fields_and_recode_widths() {
     reject(&t, Expr::new(Ty::Enc(0), ExprKind::Recode { x, arm_base: vec![0, 2].into(), table: vec![0].into(), words: 0 }), "width");
 }
 #[test]
+fn union_fold_requires_a_bitset_result() {
+    let mut t = typing();
+    // A set of `Dyn` elements has no bitset universe: its encoding is a sorted
+    // array, which the word-wise fold would corrupt.
+    let sorted = enc(&mut t, Shape::Set { elem: Box::new(Shape::Dyn), max_card: 2 });
+    let member = enc(&mut t, Shape::Set { elem: Box::new(Shape::Bool), max_card: 2 });
+    reject(&t, Expr::new(sorted.ty, ExprKind::UnionFold { bind: 0, set: member, body: sorted }), "bitset");
+}
+#[test]
 fn ranks_and_maps() {
     let mut t = typing();
     let x = enc(&mut t, Shape::Tuple(vec![Shape::Bool; 2].into()));

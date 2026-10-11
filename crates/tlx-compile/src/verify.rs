@@ -335,6 +335,13 @@ impl<'a> Check<'a> {
                 self.bind(*bind, ty, |c| c.expect(body, Ty::Int))
             }
             UnionFold { bind, set, body } => {
+                // The fold is the word-wise or of the members' encodings: it is
+                // the union of the members only where a set is a bitset of one
+                // element universe (a larger universe is a sorted array).
+                match self.shape(e.ty)? {
+                    Shape::Set { elem, .. } if bitset_universe(elem).is_some() => {}
+                    _ => return Err("UnionFold over a non-bitset set".into()),
+                }
                 let ty = self.source(set)?;
                 self.bind(*bind, ty, |c| c.expect(body, e.ty))
             }
