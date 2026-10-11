@@ -1,10 +1,19 @@
 //! Compile generated C into a shared library, cached by content hash.
 
 use std::fs::{File, TryLockError};
+use std::os::unix::process::CommandExt;
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command, Stdio};
-use std::sync::atomic::{AtomicU64, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::time::{Duration, SystemTime};
+
+/// How often `Build::wait_or_cancel` checks whether the build finished (a C
+/// compilation runs for seconds to minutes; the poll is negligible beside
+/// it) and whether it must be stopped.
+const CANCEL_POLL: Duration = Duration::from_millis(20);
+
+/// How long a killed compiler group may take to be reaped.
+const CANCEL_REAP: Duration = Duration::from_millis(500);
 
 /// Options for the C compiler.
 #[derive(Clone, Debug)]
@@ -181,11 +190,32 @@ pub struct Build {
 enum State {
     /// The library is in the cache.
     Done,
-    /// Our compiler process: (child, its temporary source, its log).
-    Running(Child, PathBuf, PathBuf),
+    /// Our compiler process, with the files of its build (see `Files`).
+    Running(Child, Files),
     /// Another build of the library holds its lock (the lock file, the
     /// source and options to build it ourselves if that build fails).
     Elsewhere(File, String, BuildOptions),
+}
+
+/// The files of one build in progress: what the shell of `start` renames
+/// into the cache on success, and removes on failure.
+struct Files {
+    /// The generated source the compiler reads.
+    src: PathBuf,
+    /// The library the compiler writes.
+    tmp: PathBuf,
+    /// The compiler's diagnostics.
+    log: PathBuf,
+}
+
+impl Files {
+    /// Remove the files of a build that will not complete (a cancelled one;
+    /// the shell's own cleanup cannot run after it is killed).
+    fn remove(&self) {
+        for p in [&self.src, &self.tmp, &self.log] {
+            let _ = std::fs::remove_file(p);
+        }
+    }
 }
 
 /// Start building `source` with `opts` in the background (see `build`);
@@ -264,10 +294,13 @@ pub fn start(source: &str, opts: &BuildOptions) -> Result<Build, String> {
         .stdin(Stdio::from(lock))
         .stdout(Stdio::null())
         .stderr(Stdio::null());
-    match cmd.spawn() {
+    // The build gets its own process group, so that `Build::wait_or_cancel`
+    // can stop the shell and everything it started with one signal to `-pgid`.
+    match cmd.process_group(0).spawn() {
         Ok(child) => {
             prune(opts, &dir);
-            Ok(Build { lib, state: State::Running(child, c_path, log) })
+            let files = Files { src: c_path, tmp, log };
+            Ok(Build { lib, state: State::Running(child, files) })
         }
         Err(e) => {
             let _ = std::fs::remove_file(&c_path);
@@ -282,15 +315,10 @@ impl Build {
         let lib = std::mem::take(&mut self.lib);
         match std::mem::replace(&mut self.state, State::Done) {
             State::Done => Ok(lib),
-            State::Running(mut child, c_path, log) => {
-                let status = child.wait().map_err(|e| format!("C compilation ({}): {e}", c_path.display()))?;
-                let diagnostics = std::fs::read_to_string(&log).unwrap_or_default();
-                let _ = std::fs::remove_file(&log);
-                if !status.success() || !lib.exists() {
-                    return Err(format!("C compilation failed ({}): {}", c_path.display(), first_error(&diagnostics)));
-                }
-                Ok(lib)
-            }
+            State::Running(mut child, files) => match child.wait() {
+                Ok(status) => finished(&lib, status, &files),
+                Err(e) => Err(format!("C compilation ({}): {e}", files.src.display())),
+            },
             State::Elsewhere(lock, source, opts) => {
                 lock.lock().map_err(|e| format!("cannot lock the build of {}: {e}", lib.display()))?;
                 drop(lock);
@@ -302,16 +330,97 @@ impl Build {
             }
         }
     }
+
+    /// Wait for the build, but stop it when `cancel` is set: the compiled
+    /// tier discards a model whose layout a miss widens, so the library
+    /// being built for it can never be loaded, and a machine running a
+    /// model-checker must not keep compiling one translation unit per
+    /// discarded attempt beside the search. The compiler's process group
+    /// (the shell of `start` and everything it started) is killed and the
+    /// build's temporary files are removed; Err then says it was cancelled.
+    /// A build that ends by itself reports as `wait` does, and a build of
+    /// another process (`State::Elsewhere`) is not touched: only the build
+    /// this `Build` started can be cancelled.
+    pub fn wait_or_cancel(mut self, cancel: &AtomicBool) -> Result<PathBuf, String> {
+        let lib = std::mem::take(&mut self.lib);
+        let (mut child, files) = match std::mem::replace(&mut self.state, State::Done) {
+            State::Done => return Ok(lib),
+            State::Running(child, files) => (child, files),
+            State::Elsewhere(lock, source, opts) => {
+                lock.lock().map_err(|e| format!("cannot lock the build of {}: {e}", lib.display()))?;
+                drop(lock);
+                if lib.exists() {
+                    return Ok(lib);
+                }
+                return build(&source, &opts);
+            }
+        };
+        loop {
+            match child.try_wait() {
+                Ok(Some(status)) => return finished(&lib, status, &files),
+                Ok(None) => {}
+                Err(e) => {
+                    files.remove();
+                    return Err(format!("C compilation ({}): {e}", files.src.display()));
+                }
+            }
+            if cancel.load(Ordering::Acquire) {
+                terminate(&mut child);
+                files.remove();
+                return Err(format!("C compilation cancelled ({}): the layout was discarded", files.src.display()));
+            }
+            std::thread::sleep(CANCEL_POLL);
+        }
+    }
+}
+
+/// The result of a build that ended: its library, or its diagnostics.
+fn finished(lib: &Path, status: std::process::ExitStatus, files: &Files) -> Result<PathBuf, String> {
+    let diagnostics = std::fs::read_to_string(&files.log).unwrap_or_default();
+    let _ = std::fs::remove_file(&files.log);
+    if !status.success() || !lib.exists() {
+        return Err(format!("C compilation failed ({}): {}", files.src.display(), first_error(&diagnostics)));
+    }
+    Ok(lib.to_path_buf())
+}
+
+/// Stop `child` and everything it started. `start` spawned the shell in a
+/// process group of its own, so one signal to `-pgid` reaches the compiler
+/// and its helpers too.
+fn terminate(child: &mut Child) {
+    let Ok(pgid) = i32::try_from(child.id()) else { return };
+    if pgid <= 1 {
+        // (Cannot be a group we own; leave it to the reaper.)
+        let _ = child.kill();
+        return;
+    }
+    // SAFETY: spawn used process_group(0), so -pgid addresses only the group
+    // of this build. The leader stays unreaped until after the signal, so its
+    // PID (the group ID) cannot be reused meanwhile. `kill` takes no pointer.
+    unsafe { libc::kill(-pgid, libc::SIGKILL) };
+    // The leader can leave its group; kill its still-owned PID as well,
+    // never a group it may have joined since.
+    let _ = child.kill();
+    let start = std::time::Instant::now();
+    while start.elapsed() < CANCEL_REAP {
+        match child.try_wait() {
+            Ok(Some(_)) | Err(_) => return,
+            Ok(None) => std::thread::sleep(CANCEL_POLL),
+        }
+    }
+    eprintln!("cancelled C compiler {} was not reaped within {CANCEL_REAP:?}", child.id());
 }
 
 /// A build dropped while its compiler runs completes into the cache in the
 /// background (a thread reaps the process). If that thread cannot start,
-/// dropping the build waits synchronously; it never kills the compiler.
+/// dropping the build waits synchronously; it never kills the compiler (a
+/// caller that knows the library can no longer be used stops it explicitly:
+/// `Build::wait_or_cancel`).
 impl Drop for Build {
     fn drop(&mut self) {
-        if let State::Running(child, _, log) = std::mem::replace(&mut self.state, State::Done) {
+        if let State::Running(child, files) = std::mem::replace(&mut self.state, State::Done) {
             if let Err(e) =
-                reap_child(child, log, |reap| tlx_base::stack::spawn(std::thread::Builder::new().name("tlx-cc-reap".into()), reap))
+                reap_child(child, files.log, |reap| tlx_base::stack::spawn(std::thread::Builder::new().name("tlx-cc-reap".into()), reap))
             {
                 eprintln!("cannot start C compiler reaper: {e}; synchronous reap attempted");
             }
@@ -354,6 +463,102 @@ mod tests {
 
     unsafe extern "C" {
         fn waitpid(pid: i32, status: *mut i32, options: i32) -> i32;
+    }
+
+    /// Whether `pid` still exists (`ESRCH` means it is gone).
+    fn alive(pid: i32) -> bool {
+        // SAFETY: signal 0 checks the process without touching it; a PID
+        // recorded by our own fixture is a live or dead process, never a
+        // pointer.
+        unsafe { libc::kill(pid, 0) == 0 }
+    }
+
+    /// A scratch directory of this test, empty at the start.
+    fn scratch(name: &str) -> PathBuf {
+        let dir = std::env::temp_dir().join(format!("tlx-{name}-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        dir
+    }
+
+    /// A "compiler" that never finishes: it starts a helper process, records
+    /// the helper's PID beside itself and sleeps. Compiling an actual
+    /// translation unit is not needed to see whether a cancelled build is
+    /// left running.
+    fn sleep_compiler(dir: &Path) -> String {
+        let cc = dir.join("slow-cc.sh");
+        std::fs::write(
+            &cc,
+            "#!/bin/sh\n\
+             sleep 60 &\n\
+             helper=$!\n\
+             d=$(dirname \"$0\")\n\
+             echo $helper > \"$d/helper.pid\"\n\
+             sleep 60\n",
+        )
+        .unwrap();
+        use std::os::unix::fs::PermissionsExt;
+        let mut perm = std::fs::metadata(&cc).unwrap().permissions();
+        perm.set_mode(0o755);
+        std::fs::set_permissions(&cc, perm).unwrap();
+        cc.to_string_lossy().into_owned()
+    }
+
+    fn wait_for(path: &Path) -> String {
+        let until = std::time::Instant::now() + Duration::from_secs(10);
+        while std::time::Instant::now() < until {
+            if let Ok(s) = std::fs::read_to_string(path) {
+                let s = s.trim().to_string();
+                if !s.is_empty() {
+                    return s;
+                }
+            }
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        panic!("the fixture compiler did not start ({} not written)", path.display());
+    }
+
+    /// A build the compiled tier discards (a layout miss widened the model)
+    /// must be stopped: the compiler and the processes it started are killed
+    /// and its temporary files are removed, and nothing lands in the cache.
+    #[test]
+    fn a_cancelled_build_kills_the_compiler_group_and_removes_its_files() {
+        let dir = scratch("cancel-build");
+        let cache = dir.join("cache");
+        let opts = BuildOptions { cc: sleep_compiler(&dir), opt: "-O2".into(), debug: false, cache_dir: cache.clone() };
+        let source = "/* fixture: never compiled */\n";
+        let cancel = AtomicBool::new(false);
+        let build = start(source, &opts).unwrap();
+        let helper: i32 = wait_for(&dir.join("helper.pid")).parse().unwrap();
+        assert!(alive(helper), "the fixture compiler must run before it is cancelled");
+
+        cancel.store(true, Ordering::Release);
+        let err = build.wait_or_cancel(&cancel).unwrap_err();
+        assert!(err.contains("cancelled"), "{err}");
+
+        // The compiler's own child is gone: the signal reached the group, not
+        // only the shell we spawned.
+        let until = std::time::Instant::now() + Duration::from_secs(10);
+        while alive(helper) && std::time::Instant::now() < until {
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        assert!(!alive(helper), "cancelling must kill the compiler group (helper {helper})");
+        // No temporary file survives, and the cancelled build is not cached.
+        let leftovers: Vec<String> = std::fs::read_dir(&cache)
+            .map(|d| {
+                d.flatten()
+                    .flat_map(|e| std::fs::read_dir(e.path()).into_iter().flatten())
+                    .flatten()
+                    .map(|e| e.file_name().to_string_lossy().into_owned())
+                    .collect()
+            })
+            .unwrap_or_default();
+        // (The slot keeps its lock file and the ABI header: the source, the
+        // log and any library of the cancelled build are gone.)
+        assert!(leftovers.iter().all(|n| n == "build.lock" || n == "tlx_abi.h"), "leftovers: {leftovers:?}");
+        assert!(cached(source, &opts).is_none());
+        let _ = std::fs::remove_file(dir.join("helper.pid"));
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     fn child_and_log(name: &str, exit: i32) -> (Child, PathBuf) {

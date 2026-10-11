@@ -1276,13 +1276,22 @@ fn bailout_debug(what: &str, e: &tlx_eval::EvalError) {
 
 impl Drop for EncModel {
     fn drop(&mut self) {
+        // A model the driver discards for a widening restart
+        // (`restartable`) never searches again: its layout is replaced, so
+        // the C library being built for it could never be loaded, and the
+        // compilation must not keep running beside the search (one large
+        // translation unit per attempt).
+        if self.restartable {
+            if let Some(n) = self.native.as_deref() {
+                n.cancel_builds();
+            }
+            return;
+        }
         // The run ended and nothing restarts (`restartable`; a model dropped
         // for a widening restart keeps it set): start the C build if this run
         // was too short for the delayed one (see `Native::at_exit_build`).
-        if !self.restartable {
-            if let Some(n) = self.native.as_deref() {
-                n.at_exit_build();
-            }
+        if let Some(n) = self.native.as_deref() {
+            n.at_exit_build();
         }
     }
 }

@@ -6,6 +6,7 @@ license.workspace = true
 
 [dependencies]
 tlx-base.workspace = true
+libc = "0.2"
 libloading = "0.9.0"
 tlx-value.workspace = true
 

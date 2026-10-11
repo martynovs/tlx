@@ -677,6 +677,7 @@ dependencies = [
 name = "tlx-native"
 version = "0.1.0"
 dependencies = [
+ "libc",
  "libloading",
  "tlx-base",
  "tlx-runtime",

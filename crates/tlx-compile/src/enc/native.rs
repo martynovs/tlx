@@ -26,6 +26,13 @@
 //! restart the whole run so far counts), so that a short first run still fills
 //! the cache for the next one.
 //!
+//! A model the driver discards for a widening restart is different: its
+//! layout is replaced, so the library being built for it could never be
+//! loaded, and one large translation unit per attempt would compete with
+//! the search for the machine (`cancel_builds`, called from `EncModel::drop`
+//! while the model is still `restartable`). That build is stopped instead of
+//! being left to finish.
+//!
 //! In mixed mode the libraries come with their region table (the host side
 //! of the regions they call), which they are loaded against.
 
@@ -69,6 +76,11 @@ pub(super) struct Native {
     /// The owning model is gone: skip remaining build stages (wakes up a
     /// delayed build).
     abandoned: AtomicBool,
+    /// The driver discarded this model's layout (a layout miss widens it):
+    /// the library being built can never be loaded, so a running build is
+    /// stopped (`cancel_builds`). Unlike `abandoned`, this also stops a
+    /// build already compiling.
+    cancelled: AtomicBool,
     wake: (Mutex<()>, Condvar),
     /// A build stage has started.
     started: AtomicBool,
@@ -100,6 +112,23 @@ impl Native {
         self.restarted.store(true, Ordering::Relaxed);
     }
 
+    /// The driver discarded this model's layout (a layout miss widened it):
+    /// its C library could never be loaded, so do not start a delayed build
+    /// and stop the process of a build already running. The JIT library
+    /// stays, so the results are unchanged (the C library is the faster one,
+    /// not a different one).
+    pub(super) fn cancel_builds(&self) {
+        self.cancelled.store(true, Ordering::Release);
+        let (m, cv) = &self.wake;
+        let _g = m.lock().unwrap();
+        cv.notify_all();
+    }
+
+    /// Whether `cancel_builds` was called.
+    fn is_cancelled(&self) -> bool {
+        self.cancelled.load(Ordering::Acquire)
+    }
+
     /// Build events since the last call, and whether a build is still
     /// running (a build waiting for its delay is not).
     pub fn take_events(&self) -> (Vec<String>, bool) {
@@ -107,17 +136,19 @@ impl Native {
         (ev, self.started.load(Ordering::Acquire) && !self.done.load(Ordering::Acquire))
     }
 
-    /// Wait until `delay` has passed or the model is abandoned; whether it
-    /// was abandoned.
+    /// Wait until `delay` has passed, the model is abandoned, or its builds
+    /// were cancelled; whether the build must not start.
     fn wait(&self, delay: Duration) -> bool {
         let (m, cv) = &self.wake;
         let g = m.lock().unwrap();
-        let _g = cv.wait_timeout_while(g, delay, |_| !self.abandoned.load(Ordering::Acquire)).unwrap();
-        self.abandoned.load(Ordering::Acquire)
+        let _g = cv.wait_timeout_while(g, delay, |_| !(self.abandoned.load(Ordering::Acquire) || self.is_cancelled())).unwrap();
+        self.abandoned.load(Ordering::Acquire) || self.is_cancelled()
     }
 
     /// Build and load `src` in stages (`-O0` first if large and not
-    /// cached, then `-O2`); stops at the first failure or when abandoned.
+    /// cached, then `-O2`); stops at the first failure, when abandoned, or
+    /// when the layout was discarded (`cancel_builds`, see
+    /// `Build::wait_or_cancel`).
     fn build_stages(&self, src: &str, quick_first: bool) {
         let opt = BuildOptions::default();
         let quick = BuildOptions { opt: "-O0".into(), ..opt.clone() };
@@ -128,18 +159,25 @@ impl Native {
         // tlx, see `cc::start`).
         let mut opt_build = quick_first.then(|| cc::start(src, &opt).ok()).flatten();
         for (o, slot) in stages {
-            if self.abandoned.load(Ordering::Relaxed) {
+            if self.abandoned.load(Ordering::Relaxed) || self.is_cancelled() {
+                // (The `-O0`-first path starts the `-O2` build beside the
+                // first stage: stop that one too when the layout is gone.)
+                self.stop(opt_build.take());
                 break;
             }
             self.started.store(true, Ordering::Release);
             let cached = stats::on() && cc::cached(src, o).is_some();
             let t0 = Instant::now();
             let built = match opt_build.take_if(|_| o.opt == opt.opt) {
-                Some(b) => b.wait(),
-                None => cc::build(src, o),
+                Some(b) => b.wait_or_cancel(&self.cancelled),
+                None => cc::start(src, o).and_then(|b| b.wait_or_cancel(&self.cancelled)),
             };
             stats::add_secs(&format!("C build {}", o.opt), t0.elapsed());
             stats::set(&format!("C build {} cache", o.opt), Metric::Text(if cached { "hit" } else { "miss" }.into()));
+            if self.is_cancelled() {
+                self.stop(opt_build.take());
+                break;
+            }
             let t1 = Instant::now();
             let check = self.regions.as_ref().map(TableCheck);
             let refops = self.refops.clone().map(|t| t as Arc<dyn RefOps>);
@@ -172,6 +210,14 @@ impl Native {
         self.refops.as_deref()
     }
 
+    /// Stop a build started beside the current stage (the `-O2` build of the
+    /// `-O0`-first path) when this model's layout was discarded.
+    fn stop(&self, pending: Option<cc::Build>) {
+        if let Some(b) = pending {
+            let _ = b.wait_or_cancel(&self.cancelled);
+        }
+    }
+
     fn event(&self, e: String) {
         self.events.lock().unwrap().push(e);
     }
@@ -191,7 +237,7 @@ impl Native {
     /// would never get a C library and every run would restart again with
     /// only JIT code.
     pub(super) fn at_exit_build(&self) {
-        if self.cc_at_exit.is_zero() || self.started.load(Ordering::Acquire) || self.done.load(Ordering::Acquire) {
+        if self.cc_at_exit.is_zero() || self.started.load(Ordering::Acquire) || self.done.load(Ordering::Acquire) || self.is_cancelled() {
             return;
         }
         let spent = if self.restarted.load(Ordering::Relaxed) {
@@ -279,6 +325,7 @@ pub(super) fn build(
         opt: OnceLock::new(),
         quick: OnceLock::new(),
         abandoned: AtomicBool::new(false),
+        cancelled: AtomicBool::new(false),
         wake: (Mutex::new(()), Condvar::new()),
         started: AtomicBool::new(false),
         done: AtomicBool::new(false),
