@@ -34,7 +34,7 @@ Environment: TLX_JAVA (see scripts/tlc.py).
 import argparse, glob, json, os, re, sys, threading
 from concurrent.futures import ThreadPoolExecutor
 
-from tlxlib import ROOT, json_update, model_cwd
+from tlxlib import CORPUS_ROOT_CWD, ROOT, json_update, model_cwd
 from oracle import provenance, issue
 # Real path: inside a worktree third_party is a symlink to the main checkout, and
 # recorded spec paths must stay valid after the worktree is removed.
@@ -54,8 +54,15 @@ GENERATE_TRACES = 100
 # (`tlxlib.model_cwd`). EWD998ChanTrace's default trace input is
 # `specifications/ewd998/EWD998ChanTrace.ndjson` - the path upstream's own CI
 # uses from the Examples root - so from the spec's directory TLC and tlx both
-# stop unable to read it (see docs/issues.md).
+# stop unable to read it (see docs/testing.md section 6.1).
 ROOT_RELATIVE_MODELS = frozenset({"ewd998/EWD998ChanTrace"})
+# The input files a root-relative model resolves from its run directory, named
+# relative to it. They are part of the model's benchmark identity
+# (`benchmarking.baselines.content_digest`): the working directory and the bytes
+# of these files decide what a run actually checked, so changing the staging or
+# the trace data has to change the identity - a measurement of one staging must
+# not be reused for another.
+MODEL_INPUTS = {"ewd998/EWD998ChanTrace": ("specifications/ewd998/EWD998ChanTrace.ndjson",)}
 # Extra arguments of the *TLC oracle* collection (never of a tlx run): TLC's
 # fingerprint polynomial (`-fp N`) is random by default and it decides the order
 # of concurrent lines in `VectorClocks!CausalOrder`, so a trace validation's
@@ -82,8 +89,9 @@ def external_models(tiers=("small", "medium"), repos=()):
         if m["tier"] not in tiers or (repos and m["repo"] not in repos):
             continue
         base = os.path.join(EXTERNAL, m["repo"])
+        model_id = f'ext/{m["repo"]}/{m["name"]}'
         res.append({
-            "id": f'ext/{m["repo"]}/{m["name"]}',
+            "id": model_id,
             "tla": os.path.join(base, m["tla"]),
             "cfg": os.path.join(base, m["cfg"]),
             "root": base,
@@ -94,7 +102,8 @@ def external_models(tiers=("small", "medium"), repos=()):
             "features": m.get("features", []),
             "flags": m.get("flags", []),
             "tier": m["tier"],
-            **({"cwd": "root"} if f'ext/{m["repo"]}/{m["name"]}' in ROOT_RELATIVE_MODELS else {}),
+            **({"cwd": CORPUS_ROOT_CWD} if model_id in ROOT_RELATIVE_MODELS else {}),
+            **({"inputs": list(MODEL_INPUTS[model_id])} if model_id in MODEL_INPUTS else {}),
             **({"oracle_workers": m["oracle_workers"]} if m.get("oracle_workers") else {}),
             **({"asymmetric_symmetry": True} if m.get("asymmetric_symmetry") else {}),
             **({"scratch": True} if m.get("scratch") else {}),
@@ -173,7 +182,8 @@ def models(max_runtime, min_runtime=0):
                     "total": m.get("totalStates"),
                     "features": mod.get("features", []) + m.get("features", []),
                     "flags": flags,
-                    **({"cwd": "root"} if model_id in ROOT_RELATIVE_MODELS else {}),
+                    **({"cwd": CORPUS_ROOT_CWD} if model_id in ROOT_RELATIVE_MODELS else {}),
+                    **({"inputs": list(MODEL_INPUTS[model_id])} if model_id in MODEL_INPUTS else {}),
                     **({"tlc_args": TLC_ORACLE_ARGS[model_id]} if model_id in TLC_ORACLE_ARGS else {}),
                     **({"scratch": True} if scratch else {}),
                 })

@@ -384,6 +384,62 @@ class StagedChild(testkit.GuardedTestCase):
         self.assertFalse(os.path.exists(root))
 
 
+class RootRelativeStaging(testkit.GuardedTestCase):
+    """A model whose spec reads inputs relative to the corpus root runs there.
+
+    The benchmark used to hand every model that writes nothing ``cwd=None``, so
+    a measured tlx (or TLC) child inherited the driver's directory and
+    EWD998ChanTrace's ``specifications/ewd998/EWD998ChanTrace.ndjson`` - named
+    the way upstream's Examples CI names it from the Examples root - was not
+    there. ``staged_run``/``staged_tlc_run`` now start such a model in its
+    corpus root; every other model keeps the driver's directory.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="tlx-root-relative-")
+        self.addCleanup(self.tmp.cleanup)
+        self.root = os.path.join(self.tmp.name, "Examples")
+        self.spec = os.path.join(self.root, "specifications", "A")
+        os.makedirs(self.spec)
+        for name, text in (("A.tla", "---- MODULE A ----\n====\n"), ("A.cfg", "INIT Init\n"), ("A.ndjson", "{}\n")):
+            with open(os.path.join(self.spec, name), "w") as stream:
+                stream.write(text)
+        self.model = {"id": "A", "tla": os.path.join(self.spec, "A.tla"),
+                      "cfg": os.path.join(self.spec, "A.cfg"), "root": self.root,
+                      "cwd": "root", "inputs": ["specifications/A/A.ndjson"]}
+
+    def test_the_measured_child_starts_in_the_corpus_root(self):
+        argv = os.path.join(self.tmp.name, "argv.json")
+        context = os.path.join(self.tmp.name, "context.json")
+        environ = patch.dict(os.environ, {"BENCH_ARGV": argv, "BENCH_CONTEXT": context})
+        environ.start()
+        self.addCleanup(environ.stop)
+        exe = child(self.tmp.name)
+        with patch.object(bench, "tlx_cmd", lambda m, args, binary: [exe, "burn", "0.02", "0"]):
+            r = bench.tlx(self.model, ["-workers", "1"], 60)
+        self.assertEqual(r["result"], "success")
+        seen = recorded(context)
+        self.assertEqual(os.path.realpath(seen["cwd"]), os.path.realpath(self.root))
+        # The relative input the spec names resolves here, and nowhere else.
+        self.assertIn("A.ndjson", os.listdir(os.path.join(seen["cwd"], "specifications", "A")))
+
+    def test_run_dir_is_the_corpus_root_only_for_a_root_relative_model(self):
+        self.assertIsNone(measurement.run_dir({"id": "A", "tla": "/spec/A.tla", "cfg": "/spec/A.cfg"}))
+        self.assertEqual(measurement.run_dir(self.model), self.root)
+        with measurement.staged_run(self.model, "tlx-measure-") as (staged, cwd, root):
+            self.assertEqual(cwd, self.root)
+            self.assertIsNone(root)
+
+    def test_the_tlc_baseline_run_starts_where_its_inputs_are(self):
+        with measurement.staged_tlc_run(self.model) as (cwd, module):
+            self.assertEqual(os.path.realpath(cwd), os.path.realpath(self.root))
+            self.assertEqual(module, os.path.join("specifications", "A", "A.tla"))
+        plain = {"id": "A", "tla": "/spec/A.tla", "cfg": "/spec/A.cfg"}
+        with measurement.staged_tlc_run(plain) as (cwd, module):
+            self.assertEqual(cwd, "/spec")
+            self.assertEqual(module, "A.tla")
+
+
 class MeasurementAdapters(testkit.GuardedTestCase):
     """The staging, command, environment and accounting adapters themselves."""
 

@@ -78,6 +78,22 @@ class Manifest(unittest.TestCase):
         self.assertIn("distinct 6", S.oracle_problems(m, ok)[0])
         self.assertIn("no oracle result", S.oracle_problems(m, {})[0])
 
+    def test_the_ewd_trace_pin_matches_the_corrected_oracle(self):
+        # The active suite pin and the correctness oracle move together: the
+        # pre-fix staging's `error` is now the corrected complete search, with
+        # TLC collected under `-fp 0` (docs/compat.md D-25).
+        manifest = S.load_manifest()
+        self.assertEqual(S.validate_manifest(manifest), [])
+        entry = next(m for m in manifest["models"] if m["id"] == "ewd998/EWD998ChanTrace")
+        expect = entry["expect"]
+        self.assertEqual(expect["source"], "tlc-oracle")
+        self.assertEqual({f: expect[f] for f in ("result", "distinct", "generated", "depth")},
+                         {"result": "success", "distinct": 659, "generated": 11169, "depth": 655})
+        corrected = {"result": "success", "distinct": 659, "generated": 11169, "depth": 655}
+        self.assertEqual(S.check_counts(corrected, expect), [])
+        # (The frozen staging's result stays a mismatch; it is not relabelled.)
+        self.assertTrue(S.check_counts({"result": "error"}, expect))
+
 
 class Counts(unittest.TestCase):
     ex = {"result": "success", "source": "tlc-oracle", "distinct": 5, "generated": 10, "depth": 3}

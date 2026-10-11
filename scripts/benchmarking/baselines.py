@@ -25,6 +25,14 @@ from benchmarking.records import (BASELINES, COMPLETE, ROOT, STORE, VERSION, dig
                                   key_complete, key_id, measurement_key, normalize, record_of_record, record_path,
                                   store_files, store_stem, write_records)
 from harness.storage import file_lock
+from tlxlib import CORPUS_ROOT_CWD, model_cwd
+
+
+# The digest's name for a run that starts in the model's corpus root rather than
+# next to its spec file (a logical location, never an absolute path). Only the
+# deviation from the default enters the digest, so every model that runs where
+# its inputs already are keeps the digest it was measured under.
+ROOT_CWD_TOKEN = "corpus-root"
 
 
 def historical_match(tx, tc):
@@ -62,14 +70,63 @@ def attach_baselines(records):
     return records
 
 
+def input_layout(model):
+    """The layout component of a model's input identity, or `None` (fail closed).
+
+    `cwd` states the directory a run starts in when it is not the spec's own -
+    a model the corpus manifest marks `cwd: root` resolves its inputs from the
+    corpus root (`tlxlib.model_cwd`). `inputs` keeps, under the relative names
+    the model declares, the bytes staging resolves there: a changed trace file
+    is a changed input. Both are relative, so a relocated but identical input
+    keeps its identity, while a marked model without its root, an unknown `cwd`
+    or a declared input that is not there has no identity at all instead of
+    silently reusing another staging's evidence.
+
+    Empty for a model that runs next to its spec and declares no inputs, which
+    keeps every other model's digest - and the frozen report that cites it -
+    unchanged.
+    """
+    cwd = model.get('cwd')
+    if cwd is not None and cwd != CORPUS_ROOT_CWD:
+        return None
+    try:
+        run_dir = model_cwd(model)
+    except ValueError:
+        return None
+    if not run_dir:
+        return {}
+    layout = {}
+    if cwd == CORPUS_ROOT_CWD:
+        # The manifest names a run that does not start next to its spec: encode
+        # its directory as a logical location, never an absolute path, so two
+        # identical inputs hash alike wherever the checkout lives.
+        layout['cwd'] = ROOT_CWD_TOKEN
+    declared = model.get('inputs') or ()
+    if declared:
+        resolved = {}
+        for name in declared:
+            path = Path(run_dir) / name
+            if not path.is_file():
+                return None
+            resolved[Path(name).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+        layout['inputs'] = resolved
+    return layout
+
+
 def content_digest(model):
-    """Hash spec, config, local module dependency closure and semantic flags.
+    """Hash spec, config, local module dependency closure, semantic flags and layout.
 
     Relative names, never absolute checkout paths, enter the digest. Missing
-    inputs fail closed. Standard/community jar bytes are part of the key.
+    inputs fail closed. Standard/community jar bytes are part of the key. The
+    run's effective working directory and the input files staging resolves from
+    it are part of the identity too (`input_layout`): a run started somewhere
+    else, or against a different trace, is a different measurement.
     """
     cfg, tla = Path(model['cfg']), Path(model['tla'])
     if not cfg.is_file() or not tla.is_file():
+        return None
+    layout = input_layout(model)
+    if layout is None:
         return None
     files = {'config': hashlib.sha256(cfg.read_bytes()).hexdigest()}
     pending, seen = [tla], set()
@@ -95,7 +152,11 @@ def content_digest(model):
         for sidecar in sorted(tla.parent.rglob('*')):
             if sidecar.is_file() and sidecar.suffix in ('.json', '.jsonl', '.ndjson', '.csv', '.txt') and 'states' not in sidecar.parts:
                 files['data/' + sidecar.relative_to(tla.parent).as_posix()] = hashlib.sha256(sidecar.read_bytes()).hexdigest()
-    return digest({'files': files, 'flags': model.get('flags') or [], 'features': model.get('features') or [], 'constraints': model.get('measurement_constraints')})
+    body = {'files': files, 'flags': model.get('flags') or [], 'features': model.get('features') or [],
+            'constraints': model.get('measurement_constraints')}
+    if layout:
+        body['layout'] = layout
+    return digest(body)
 
 
 def baseline_key(model, workers, version, instance, content, arch=None):

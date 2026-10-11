@@ -39,24 +39,7 @@ Validate an explicitly larger budget as a separate configuration, or reduce prod
 use. Do not silently raise the budget of an existing measurement or treat a resource failure as
 success.
 
-## EWD benchmark input identity and expectations
-
-The correctness drivers now resolve `ewd998/EWD998ChanTrace` from the Examples root
-([testing.md](testing.md#61-tlc-oracle-scriptscorpuspy)). The benchmark path and its frozen `error`
-expectation have not migrated. The measurement key currently omits the working directory and this
-model's trace-data content, so changing staging without changing the identity could reuse evidence
-from a different effective input.
-
-The remaining migration must update these together:
-
-- Include the working directory and resolved trace data in the benchmark configuration identity.
-- Apply the corrected staging to benchmark execution and collect a new TLC oracle.
-- Update the suite expectation and the matching correctness oracle; keep the old measurements
-  identifiable as historical evidence. Do not add an expected-failure exemption for this mismatch.
-
-For this trace, use TLC's `-fp 0` when collecting the correctness oracle, as described in
-[compat.md](compat.md), D-25. The corrected-input evidence is success with 659 distinct states,
-11,169 generated states and depth 655; it does not replace the frozen error record.
+## Incomplete upstream EWD998 examples
 
 The upstream examples `ewd998/EWD998ChanID_export` and `ewd998/EWD998ChanID_shiviz` are incomplete:
 `MCInit` leaves `passes` unassigned. TLC and tlx both reject them. They need corrected examples or

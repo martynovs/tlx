@@ -365,8 +365,17 @@ python3 scripts/bench.py tlcbase --missing --collect --workers 1,16 --no-large
 python3 scripts/bench.py tlcbase --missing --workers 1,16 --instance-type SA5.4XLARGE32
 ```
 
+The input digest covers the spec, config, local module closure and semantic flags, and the run's
+**layout**: the effective working directory when it is not the spec's own - a model the corpus
+manifest marks `cwd: root` reads its declared inputs (`corpus.MODEL_INPUTS`) from the corpus root,
+where upstream's Examples CI runs it - and the resolved bytes of those declared inputs. Both are
+relative (a named root and relative file names), so a relocated but identical input keeps its key,
+while a changed staging or a changed trace is a different key and a missing declared input has no
+reusable key at all. A model that runs next to its spec and declares no input hashes exactly as
+before, so the frozen report's pinned input keys stay valid.
+
 TLC is collected once per key in the store (`bench/records/`, section 6): TLC revision, model ID, digest of
-spec/config/local module dependencies and semantic flags, worker count and instance type.
+spec/config/local module dependencies, semantic flags and run layout, worker count and instance type.
 Memory-constrained experiments additionally key their heap/direct-memory/cgroup settings.
 A valid completed key is reused even with a runner's force option. `run`, `scale`, disk
 experiments, `ttfr` and `tlcbase` share this collection boundary; `ab` and `track` consult the store
@@ -424,7 +433,7 @@ no census" and "carried a census of zero" cannot be confused. One measurement ca
 | `workers` | positive integer; `1` and `16` are the two the TLC baseline collects |
 | `revision` | the tlx commit for a tlx row, `null` for a TLC row |
 | `tlc_version` | the TLC revision measured, or the one a tlx row was compared against |
-| `content_digest` | digest of the spec and config, so a row is reusable only for the same input |
+| `content_digest` | digest of the spec, config, module closure, semantic flags and run layout, so a row is reusable only for the same input |
 | `instance` | `{type, arch, description}`; the machine the number is only valid on |
 | `category` | free-form tags the report groups by (`corpus`, `external`, `compiled`, `liveness`, `scaling`, `beyond-memory`, `diagnostic`, ...) |
 | `counts` | `{result, distinct, generated, depth}`; `result` in `COMPLETE` (`success`, `deadlock`, `safety failure`, `liveness failure`, `assumption failure`) means the run finished |

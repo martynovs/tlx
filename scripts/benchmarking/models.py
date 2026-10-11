@@ -123,6 +123,30 @@ def stress_models(ids):
     return out
 
 
+def input_layout(model_id):
+    """The run layout the corpus manifest declares for `model_id`, or `{}`.
+
+    `{cwd, root, inputs}`: where the model runs and the input files it resolves
+    there, read from `corpus` (the manifest reader) rather than from whichever
+    oracle row is cached. A model's identity (`benchmarking.baselines.content_digest`)
+    and staging therefore follow the tracked manifest, so a stale oracle row
+    cannot silently drop the working directory or the trace data a run reads.
+    """
+    import corpus
+    if model_id not in corpus.ROOT_RELATIVE_MODELS and model_id not in corpus.MODEL_INPUTS:
+        return {}
+    fields = {}
+    if model_id in corpus.ROOT_RELATIVE_MODELS:
+        fields["cwd"] = corpus.CORPUS_ROOT_CWD
+        # `corpus.EX` is the Examples root; an external model carries its own
+        # root from the manifest instead. Today the set names Examples models.
+        if not model_id.startswith(EXTERNAL_PREFIX):
+            fields["root"] = corpus.EX
+    if model_id in corpus.MODEL_INPUTS:
+        fields["inputs"] = list(corpus.MODEL_INPUTS[model_id])
+    return fields
+
+
 def oracle(ids=()):
     """The corpus oracle (corpus/out/tlc.json), plus the external models
     (`ext/<repo>/<name>`, corpus/external.json) that `ids` names: with their
@@ -147,6 +171,10 @@ def oracle(ids=()):
                 if problem := issue(entry):
                     entry.update(tlc={}, oracle_error=problem)
                 d[m["id"]] = entry
+    # The declared run layout is the tracked manifest's, not the cached row's.
+    for k, m in list(d.items()):
+        if layout := input_layout(k):
+            d[k] = {**m, **layout}
     return d
 
 

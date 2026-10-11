@@ -21,7 +21,7 @@ import sys
 import tempdirs
 from benchmarking import machine
 from tlc import parse
-from tlxlib import mode_args as execution_args, tlx_env
+from tlxlib import CORPUS_ROOT_CWD, mode_args as execution_args, model_cwd, tlx_env
 
 
 def binary_path(path=None):
@@ -34,6 +34,18 @@ def binary_path(path=None):
     return os.path.abspath(path or machine.TLX)
 
 
+def run_dir(m):
+    """The directory a measured run of `m` starts in, or `None` to keep it in
+    the driver's own directory (the frozen default).
+
+    A model the corpus manifest marks `cwd: root` resolves its declared inputs
+    from the corpus root (`tlxlib.model_cwd`), so its child has to start there;
+    every other model keeps the documented behaviour (the driver's directory,
+    with an absolute spec path, so nothing about it changes).
+    """
+    return model_cwd(m) if m.get("cwd") == CORPUS_ROOT_CWD else None
+
+
 @contextlib.contextmanager
 def staged_run(m, prefix, *, workspace=False, mode=None):
     """Yield ``(model, cwd, root)`` for one measured run in a scratch directory.
@@ -41,24 +53,25 @@ def staged_run(m, prefix, *, workspace=False, mode=None):
     A model whose spec writes files (``m["scratch"]``) gets its own copy of the
     spec directory per run, so concurrent runs of one model do not collide, and
     the model handed to the caller points at the copy (`cwd` is that copy, for
-    the child). `workspace` makes the directory even for a model that writes
-    nothing, for a caller that needs a directory of its own (the disk runner's
-    state directory and its ``-stats`` file). `mode` widens the directory's
-    permissions for a reader in another process (the control-group runner
-    reaches it through sudo).
+    the child). A model marked `cwd: root` runs in its corpus root (`run_dir`),
+    where its declared inputs resolve. `workspace` makes the directory even for
+    a model that writes nothing, for a caller that needs a directory of its own
+    (the disk runner's state directory and its ``-stats`` file). `mode` widens
+    the directory's permissions for a reader in another process (the
+    control-group runner reaches it through sudo).
 
     `root` is None exactly when no directory was made; either way the
     directory is removed on the way out, whether the run finished, failed or
     raised.
     """
     if not (m.get("scratch") or workspace):
-        yield m, None, None
+        yield m, run_dir(m), None
         return
     root = tempdirs.mkdtemp(prefix=prefix)
     try:
         if mode is not None:
             os.chmod(root, mode)
-        model, cwd = m, None
+        model, cwd = m, run_dir(m)
         if m.get("scratch"):
             cwd = os.path.join(root, "spec")
             shutil.copytree(os.path.dirname(m["tla"]), cwd)
@@ -68,6 +81,31 @@ def staged_run(m, prefix, *, workspace=False, mode=None):
         yield model, cwd, root
     finally:
         shutil.rmtree(root, ignore_errors=True)
+
+
+@contextlib.contextmanager
+def staged_tlc_run(m):
+    """Yield ``(run_dir, module)`` for one benchmark TLC run of model `m`.
+
+    The run starts in the directory its inputs are relative to
+    (`tlxlib.model_cwd`: the spec's own directory by default, the corpus root
+    for a model that names inputs relative to it) and TLC is given the main
+    module relative to that directory, exactly as the correctness drivers run
+    it. A model whose spec writes files still runs in a copy of its directory.
+    """
+    import tlc
+    spec = os.path.abspath(m["tla"])
+    run = tlc_run_dir(m)
+    module = os.path.relpath(spec, run)
+    with tlc.scratch_dir(run if m.get("scratch") else None) as staged:
+        yield staged or run, module
+
+
+def tlc_run_dir(m):
+    """The directory one TLC run (or a TLC baseline collection) of model `m`
+    starts in: the directory its inputs are relative to (`tlxlib.model_cwd`),
+    or the spec's own directory when the model names no spec path."""
+    return model_cwd(m) or os.path.dirname(os.path.abspath(m["tla"]))
 
 
 def check_argv(binary, m, args, extra=()):

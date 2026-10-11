@@ -123,14 +123,14 @@ def _collect_tlc_measured(m, workers, timeout, jvm_extra=(), default_heap=True):
     and its last progress report under "at_timeout". `jvm_extra`: further
     JVM options (e.g. -Xmx; it wins over `default_heap`)."""
     import bench
-    from tlc import metadir, scratch_dir, tlc_cmd
+    from tlc import metadir, tlc_cmd
     args = ["-config", m["cfg"], "-workers", str(workers)] + bench_models.bench_flags(m)
-    cmd = tlc_cmd(m["tla"], args, m.get("features") or (),
-                  jvm_extra=[TLC_MS_PROP, *measured_jvm_options(jvm_extra, default_heap)])
     load0 = os.getloadavg()[0]
-    spec_dir = os.path.dirname(os.path.abspath(m["tla"]))
-    with scratch_dir(spec_dir if m.get("scratch") else None) as cwd:
-        p = bench.run_proc(cmd, timeout, cwd=cwd or spec_dir, rusage=True, raise_timeout=False, start_new_session=True)
+    spec = os.path.abspath(m["tla"])
+    with bench_measure.staged_tlc_run(m) as (cwd, module):
+        cmd = tlc_cmd(spec, args, m.get("features") or (), module=module,
+                      jvm_extra=[TLC_MS_PROP, *measured_jvm_options(jvm_extra, default_heap)])
+        p = bench.run_proc(cmd, timeout, cwd=cwd, rusage=True, raise_timeout=False, start_new_session=True)
         wall, text, ru = p.wall, p.stdout, p.rusage
     # (A killed JVM leaves its states directory behind; the next run starts afresh anyway.)
     shutil.rmtree(metadir(), ignore_errors=True)

@@ -316,15 +316,14 @@ def _collect_tlc(m, workers, timeout):
     The CPU time is this child's own wait4 usage. A process-wide
     RUSAGE_CHILDREN delta around the call would fold in every other child
     reaped meanwhile, and bench_ttfr runs its lanes in parallel (HARNESS-09)."""
-    from tlc import scratch_dir, tlc_cmd
+    from tlc import tlc_cmd
     args = ["-config", m["cfg"], "-workers", str(workers)]
     if m.get("flags"):
         args += m["flags"] + ["-seed", "1"]
     spec = os.path.abspath(m["tla"])
-    spec_dir = os.path.dirname(spec)
-    cmd = tlc_cmd(spec, args, m.get("features") or ())
-    with scratch_dir(spec_dir if m.get("scratch") else None) as cwd:
-        p = run_proc(cmd, timeout, cwd=cwd or spec_dir, rusage=True, raise_timeout=False, start_new_session=True)
+    with bench_measure.staged_tlc_run(m) as (cwd, module):
+        cmd = tlc_cmd(spec, args, m.get("features") or (), module=module)
+        p = run_proc(cmd, timeout, cwd=cwd, rusage=True, raise_timeout=False, start_new_session=True)
     r = bench_measure.result_of(p, timeout)
     if not p.timed_out:
         # (This child's own CPU; a timed-out run is recorded without it, as

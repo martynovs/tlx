@@ -10,7 +10,9 @@ from benchmarking.records import (dump, load_records, normalize, receipt_revisio
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -990,6 +992,91 @@ class RecordsTest(unittest.TestCase):
         br.generate(self.root)
         (self.root / 'bench' / 'random.md').write_text('# New timings\n')
         self.assertTrue(any('ad hoc' in p for p in br.check(self.root)))
+
+
+class InputIdentityTest(unittest.TestCase):
+    """A model's identity follows its run directory and the inputs staging reads.
+
+    The measurement key used to omit the working directory and, with it, the
+    trace data a staging resolves (docs/issues.md, "EWD benchmark input
+    identity and expectations"): the same spec staged next to itself - where a
+    relative ndjson input is not there - and staged in the corpus root - where
+    it is - had one identity, so the failing staging's evidence could satisfy
+    the corrected run. `content_digest` now carries a portable `layout`: `cwd`
+    when a run does not start next to its spec, plus the resolved bytes of every
+    input the model declares, and a missing declared input has no identity.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = os.path.join(self.tmp.name, 'Examples')
+        self.spec = os.path.join(self.root, 'specifications', 'A')
+        os.makedirs(self.spec)
+        self.tla = os.path.join(self.spec, 'A.tla')
+        self.cfg = os.path.join(self.spec, 'A.cfg')
+        self.trace = os.path.join(self.spec, 'A.ndjson')
+        for path, text in ((self.tla, '---- MODULE A ----\n====\n'), (self.cfg, 'INIT Init\n'), (self.trace, '{}\n')):
+            with open(path, 'w') as stream:
+                stream.write(text)
+
+    def model(self, *, tla=None, cfg=None, root=None, cwd='root', inputs=('specifications/A/A.ndjson',)):
+        """A model staged in `root` (`cwd: root`) or next to its spec (`cwd=None`)."""
+        m = {'id': 'A', 'tla': tla or self.tla, 'cfg': cfg or self.cfg}
+        if root is not None:
+            m['root'] = root
+        if cwd is not None:
+            m['cwd'] = cwd
+        if inputs is not None:
+            m['inputs'] = list(inputs)
+        return m
+
+    def test_the_run_directory_is_part_of_the_identity(self):
+        next_to_spec = self.model(cwd=None, inputs=None)
+        self.assertEqual(baselines.input_layout(next_to_spec), {})
+        self.assertNotEqual(content_digest(next_to_spec), content_digest(self.model(root=self.root)))
+        self.assertEqual(baselines.input_layout(self.model(root=self.root))['cwd'], baselines.ROOT_CWD_TOKEN)
+
+    def test_a_missing_declared_input_has_no_identity(self):
+        model = self.model(root=self.root, inputs=('specifications/A/absent.ndjson',))
+        self.assertIsNone(content_digest(model))
+
+    def test_a_model_without_the_layout_keeps_its_identity(self):
+        # Every other model keeps the digest it was measured under, so the
+        # frozen report and its pinned input keys stay valid.
+        plain = {'id': 'A', 'tla': self.tla, 'cfg': self.cfg}
+        self.assertEqual(content_digest(plain), content_digest({**plain, 'flags': [], 'features': []}))
+
+    def test_the_trace_bytes_are_part_of_the_identity(self):
+        before = content_digest(self.model(root=self.root))
+        with open(self.trace, 'w') as stream:
+            stream.write('{"N": 1}\n')
+        self.assertNotEqual(before, content_digest(self.model(root=self.root)))
+
+    def test_relocated_identical_inputs_keep_their_identity(self):
+        other = os.path.join(self.tmp.name, 'checkout')
+        shutil.copytree(self.root, other)
+        there = self.model(root=other, tla=os.path.join(other, 'specifications', 'A', 'A.tla'),
+                           cfg=os.path.join(other, 'specifications', 'A', 'A.cfg'))
+        self.assertEqual(content_digest(self.model(root=self.root)), content_digest(there))
+
+    def test_the_working_directory_change_invalidates_reuse(self):
+        # The pre-fix identity is spec, config and module closure, with no
+        # layout: the model without the new fields still hashes to it, so the
+        # old key matched the failing staging's evidence.
+        without_layout = {k: v for k, v in self.model(root=self.root).items()
+                          if k not in ('cwd', 'root', 'inputs')}
+        next_to_spec = self.model(cwd=None, inputs=None)
+        self.assertEqual(content_digest(without_layout), content_digest(next_to_spec))
+        # With the layout the corrected staging is a different key, so a
+        # collected baseline no longer satisfies it and the collection reruns.
+        store_root = Path(self.tmp.name) / 'store'
+        (store_root / 'bench').mkdir(parents=True)
+        measured = Mock(return_value={'wall_s': 1, 'cpu_s': 1, 'result': 'success', 'distinct': 14})
+        kw = dict(root=store_root, version='v', instance='SA5.4XLARGE32')
+        cached_tlc(next_to_spec, 1, measured, **kw)
+        cached_tlc(self.model(root=self.root), 1, measured, **kw)
+        self.assertEqual(measured.call_count, 2)
 
 
 class ArchivedSourceTest(unittest.TestCase):

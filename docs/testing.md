@@ -359,10 +359,12 @@ well-formed result a staging or path fix changes: such a row is not an "error" r
 keeps the old result until the row is re-collected. `ewd998/EWD998ChanTrace` is collected with
 `-fp 0` (`corpus.TLC_ORACLE_ARGS`): TLC's fingerprint polynomial is random by default and decides
 the order of concurrent log lines, so only `-fp 0` gives the deterministic `generated` count that
-tlx reproduces (compat.md D-25). Its row is refreshed together with the `bench/suite.json` pin and
-the identity of the new configuration, in one baseline upgrade - not with the staging fix that
-makes the model runnable. Until that upgrade, the shared row (and the pin that quotes it) is the
-pre-fix `error`, and a corpus run of the model reports the difference rather than hiding it.
+tlx reproduces (compat.md D-25). Its row, the `bench/suite.json` pin that quotes it, and the
+identity of the run moved together in one baseline upgrade: `corpus.MODEL_INPUTS` declares the trace
+the model reads from its run directory, and `benchmarking.baselines.content_digest` carries the
+effective working directory and the resolved bytes of every declared input, so the pre-fix staging's
+evidence cannot satisfy the corrected run. The corrected row is success with 659 distinct states,
+11,169 generated states and depth 655; the frozen pre-fix `error` records stay historical.
 
 ### 6.2 Differential run: `scripts/difftest.py`
 
@@ -383,8 +385,8 @@ scripts/difftest.py --extra=-compile --recover 1               # end each run af
   codes and counterexamples are not compared.
 - tlx runs in the same directory as the TLC oracle (section 6.1): its own spec directory, the
   corpus root for a `cwd: root` model, or a scratch copy for a model that writes files. The
-  benchmark's own staging (`benchmarking.measurement`) is untouched and keeps its frozen run
-  semantics.
+  benchmark stages a `cwd: root` model in that same corpus root (`benchmarking.measurement`); every
+  other model keeps its documented run semantics (the driver's directory, an absolute spec path).
 - One line per model, `PASS/FAIL id tlc=result/distinct/generated/depth tlx=... (TLC s vs tlx s)`,
   then this run's and the cumulative pass counts. Results merge into `corpus/out/tlx<tag>.json`
   (`--tag` defaults to empty for 1 worker, `-w<N>` otherwise).

@@ -3,7 +3,7 @@
 
 usage: python3 scripts/tests/test_cloud_verify.py [-v]
 """
-import ast, base64, builtins, contextlib, datetime, functools, io, json, os, signal, socket, sys, tempfile, time, unittest
+import ast, base64, builtins, contextlib, datetime, functools, io, json, os, shutil, signal, socket, subprocess, sys, tempfile, time, unittest
 from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -925,6 +925,33 @@ class Oracle(unittest.TestCase):
     def test_external_corpora_are_uploaded(self):
         self.assertIn("--include=/external/***", cloud_common.THIRD_PARTY_FILTER)
         self.assertLess(cloud_common.THIRD_PARTY_FILTER.index("--include=/external/***"), cloud_common.THIRD_PARTY_FILTER.index("--exclude=*"))
+
+    def test_the_declared_trace_inputs_reach_the_cloud_bundle(self):
+        # The staging fix is only usable in the cloud if the input a root-relative
+        # model reads is in the uploaded third_party/ tree: EWD998ChanTrace's trace
+        # lives under Examples/ (corpus.EX is that root), which THIRD_PARTY_FILTER
+        # includes; a dry run proves the real rsync pattern keeps it and still
+        # drops the jars the filter excludes.
+        import corpus
+        self.assertTrue(corpus.MODEL_INPUTS, "no declared model inputs to package")
+        for model_id, inputs in corpus.MODEL_INPUTS.items():
+            self.assertIn(model_id, corpus.ROOT_RELATIVE_MODELS)
+            for name in inputs:
+                source = os.path.join('third_party', 'Examples', *name.split('/'))
+                if not os.path.isfile(source):
+                    self.skipTest(f"{source} is not in this checkout")
+                with tempfile.TemporaryDirectory() as base:
+                    src, dst = os.path.join(base, 'src'), os.path.join(base, 'dst')
+                    staged = os.path.join(src, 'Examples', *name.split('/'))
+                    os.makedirs(os.path.dirname(staged))
+                    shutil.copyfile(source, staged)
+                    with open(os.path.join(src, 'tla2tools.jar'), 'w') as stream:
+                        stream.write('x')
+                    p = subprocess.run(['rsync', '-ni', '-a', *cloud_common.THIRD_PARTY_FILTER, src + '/', dst + '/'],
+                                       capture_output=True, text=True)
+                    self.assertEqual(p.returncode, 0, p.stderr)
+                    self.assertIn(os.path.join('Examples', *name.split('/')), p.stdout)
+                    self.assertNotIn('tla2tools.jar', p.stdout)
 
 
 class FakeMachine:
