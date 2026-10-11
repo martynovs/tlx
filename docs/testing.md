@@ -14,11 +14,13 @@ cloud-provider commands additionally need their SDKs, described in [cloud-verifi
 
 ## Continuous integration
 
-GitHub Actions runs on pushes to `main`, pull requests and manual dispatches. The required `CI`
-check aggregates Linux x86_64, Linux arm64 and macOS arm64 Rust/spec tests plus the Linux quality
+GitHub Actions runs on pushes to `main`, pull requests and manual dispatches. The `CI`
+summary check aggregates Linux x86_64, Linux arm64 and macOS arm64 Rust/spec tests plus the Linux quality
 job (formatting, Clippy, Python driver tests, documentation and benchmark-report checks).
 Actions are pinned by commit and run with read-only repository permissions. The workflow does not
 use cloud credentials or run performance benchmarks. Corpus-wide tests remain separate cloud jobs.
+The `main` branch permits direct pushes and force pushes, but rejects merge commits and deletion.
+CI runs after each push; its result is not a precondition for pushing.
 
 CI installs test dependencies with `bash scripts/fetch-deps.sh --tests-only`, which omits the
 Examples corpus. The exact TLC oracle jar and its license are retained in `tests/deps/` and verified
