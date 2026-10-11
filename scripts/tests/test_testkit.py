@@ -1,5 +1,4 @@
 """The shared test helpers enforce their own two rules (scripts/testkit.py)."""
-import time
 import unittest
 from unittest import mock
 
@@ -34,12 +33,6 @@ class FakeClockTests(testkit.GuardedTestCase):
         self.assertEqual(result, "done")
         self.assertEqual(clock.sleeps, [5, 10, 20])
 
-    def test_with_fake_time_leaves_a_real_sleep_alone(self):
-        started = time.monotonic()
-        testkit.with_fake_time(lambda: None)
-        # Real time must simply not be patched (no sleep happens here); a loaded
-        # machine may still take a moment to enter and leave the context.
-        self.assertLess(time.monotonic() - started, 10)
 
 
 class NoPatchLeakTests(testkit.GuardedTestCase):

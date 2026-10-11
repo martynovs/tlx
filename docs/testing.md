@@ -30,6 +30,19 @@ against the pin in `scripts/dependencies.py`; the mutable upstream release asset
 supply the historical oracle bytes. Spec tests still exercise interpreter, compiled and paranoid
 compiled modes, with Java available for trace validation.
 
+## What belongs in a test
+
+Test tlx behavior and the contracts of its integrations, not basic guarantees supplied by the
+operating system, standard library or an unchanged third-party dependency. For example, do not
+retest that the system CPU clock excludes sleep or that a re-exported hash implementation is
+deterministic. Keep coverage of tlx-owned hashing, persisted formats, resource accounting,
+cleanup, cancellation and error propagation: these can fail even when the underlying APIs work.
+
+Use controlled inputs or an injected clock to test time-dependent policy. Avoid assertions about
+machine speed or elapsed time around otherwise empty work. Real-process tests and generous
+deadlines are appropriate when they exercise tlx's timeout, cancellation or process-ownership
+contract. Before adding a test, identify the tlx defect its failure would reveal.
+
 ## 1. Test layers
 
 | Layer | What it checks | Needs Java/TLC | Section |

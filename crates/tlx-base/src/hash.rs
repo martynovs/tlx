@@ -322,24 +322,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn fx_is_deterministic_and_spreads_low_bits() {
-        let hash = |bytes: &[u8]| {
-            let mut h = FxHasher::default();
-            h.write(bytes);
-            h.finish()
-        };
-        assert_eq!(hash(b"abc"), hash(b"abc"));
-        // hashbrown buckets by the low bits: 3-word bit patterns must fill most of them.
-        let mut buckets = std::collections::HashSet::new();
-        for i in 0u64..4096 {
-            let mut h = FxHasher::default();
-            [i, 1 << (i % 64), 0].hash(&mut h);
-            buckets.insert(h.finish() & 0xfff);
-        }
-        assert!(buckets.len() > 2000, "{}", buckets.len());
-    }
-
-    #[test]
     fn integer_and_identity_keys_keep_their_hashes() {
         for value in [0, 1, 127, u32::MAX as u64, u64::MAX] {
             let mut address = IntegerHasher::default();
