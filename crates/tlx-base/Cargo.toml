@@ -19,7 +19,3 @@ workspace = true
 [[test]]
 name = "stack_overflow"
 harness = false
-
-[[test]]
-name = "process_cpu"
-harness = false
