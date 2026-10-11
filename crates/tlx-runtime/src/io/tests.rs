@@ -159,6 +159,10 @@ fn spillvec_round_trip() {
     // (Draining gives the disk space back.)
     assert!(spill.counters().used < before);
     drop(it);
+    // The IO requests own stores until the worker has finished the request,
+    // even after publishing a result. Observe cleanup after both barriers.
+    spill.wait_for_writes();
+    spill.wait_for_reads();
     assert!(!dir.exists(), "the spill directory is removed with its last store");
     assert!(spill.error().is_none());
 }
@@ -200,6 +204,29 @@ fn wait_for_writes_finishes_and_releases_stores() {
     assert_eq!(spill.counters().written, 8 * 4096);
     assert!(spill.error().is_none());
     assert!(spill.dir().is_none(), "the writer released its last store reference");
+    assert!(!dir.exists());
+}
+
+#[test]
+fn wait_for_reads_finishes_and_releases_stores() {
+    let scratch = tlx_testkit::TempDir::new("io-wait-reads");
+    let dir = scratch.child_path("spill");
+    let spill = spill_in(&dir);
+    spill.wait_for_reads();
+    assert!(spill.dir().is_none(), "waiting without reads creates nothing");
+    let store = spill.store("blocks").unwrap();
+    let bytes = vec![42u8; 4096];
+    let block = store.append(&bytes).unwrap();
+    let pending: Vec<_> = (0..8).map(|_| spill.prefetch(&store, &block)).collect();
+    drop(store);
+    spill.wait_for_reads();
+    assert!(pending.iter().all(|p| p.ready()));
+    for p in pending {
+        assert_eq!(p.wait().unwrap(), bytes);
+    }
+    assert_eq!(spill.counters().used, 0);
+    assert!(spill.error().is_none());
+    assert!(spill.dir().is_none(), "the reader released its last store reference");
     assert!(!dir.exists());
 }
 

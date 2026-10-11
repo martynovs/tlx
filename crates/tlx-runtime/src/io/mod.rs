@@ -268,7 +268,12 @@ struct Inner {
 /// The IO threads (started with the first asynchronous request).
 struct Threads {
     write: SyncSender<WriteRequest>,
-    read: SyncSender<(Arc<BlockStore>, BlockRef, Arc<Prefetch>)>,
+    read: SyncSender<ReadRequest>,
+}
+
+enum ReadRequest {
+    Block(Arc<BlockStore>, BlockRef, Arc<Prefetch>),
+    Barrier(SyncSender<()>),
 }
 
 enum WriteRequest {
@@ -390,7 +395,7 @@ impl Spill {
     fn threads(&self) -> &Threads {
         self.0.threads.get_or_init(|| {
             let (wtx, wrx) = sync_channel::<WriteRequest>(WRITE_QUEUE);
-            let (rtx, rrx) = sync_channel::<(Arc<BlockStore>, BlockRef, Arc<Prefetch>)>(READ_QUEUE);
+            let (rtx, rrx) = sync_channel::<ReadRequest>(READ_QUEUE);
             // (The threads end when the `Spill` is dropped: its senders
             // close the channels.)
             tlx_base::stack::spawn(std::thread::Builder::new().name("tlx-spill-writer".into()), move || {
@@ -405,9 +410,16 @@ impl Spill {
             })
             .expect("failed to spawn the spill writer thread");
             tlx_base::stack::spawn(std::thread::Builder::new().name("tlx-spill-reader".into()), move || {
-                while let Ok((store, r, p)) = rrx.recv() {
-                    let res = store.read(&r);
-                    p.state.set(res);
+                while let Ok(request) = rrx.recv() {
+                    match request {
+                        ReadRequest::Block(store, r, p) => {
+                            let res = store.read(&r);
+                            p.state.set(res);
+                        }
+                        ReadRequest::Barrier(done) => {
+                            let _ = done.send(());
+                        }
+                    }
                 }
             })
             .expect("failed to spawn the spill reader thread");
@@ -437,10 +449,21 @@ impl Spill {
         wait.recv().expect("spill writer stopped before its barrier");
     }
 
+    /// Wait until reads queued before this call have finished and the reader
+    /// has released their store references. A ready prefetch publishes its
+    /// bytes before that request's store is dropped; cleanup checks need this
+    /// barrier, not only `Prefetch::wait`. Does not start an idle reader.
+    pub fn wait_for_reads(&self) {
+        let Some(threads) = self.0.threads.get() else { return };
+        let (done, wait) = sync_channel(0);
+        threads.read.send(ReadRequest::Barrier(done)).expect("spill reader stopped");
+        wait.recv().expect("spill reader stopped before its barrier");
+    }
+
     /// Read block `r` of `store` on the reader thread.
     pub fn prefetch(&self, store: &Arc<BlockStore>, r: &BlockRef) -> Arc<Prefetch> {
         let p = Arc::new(Prefetch { state: OneShot::new() });
-        if self.threads().read.send((store.clone(), r.clone(), p.clone())).is_err() {
+        if self.threads().read.send(ReadRequest::Block(store.clone(), r.clone(), p.clone())).is_err() {
             p.state.set(store.read(r));
         }
         p

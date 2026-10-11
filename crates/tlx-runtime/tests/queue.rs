@@ -475,6 +475,10 @@ fn spilled_queue_gives_the_same_search() {
                         "{cfg:?} {workers} workers"
                     );
                 }
+                // Queue destruction can leave asynchronous requests holding
+                // their stores. Wait for release before asserting disk cleanup.
+                sp.wait_for_writes();
+                sp.wait_for_reads();
                 let c = sp.counters();
                 assert!(c.read > 0 && sp.error().is_none(), "{cfg:?} {workers} workers: {c:?}");
                 assert_eq!(c.used, 0, "{cfg:?} {workers} workers: the disk space given back");
