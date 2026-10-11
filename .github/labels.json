@@ -1,0 +1,52 @@
+[
+  {
+    "name": "correctness",
+    "color": "B60205",
+    "description": "Incorrect verdicts, counterexamples or model-checking semantics"
+  },
+  {
+    "name": "performance",
+    "color": "FBCA04",
+    "description": "Execution time, memory use and benchmark quality"
+  },
+  {
+    "name": "compatibility",
+    "color": "D93F0B",
+    "description": "TLC compatibility and TLA+ language behavior"
+  },
+  {
+    "name": "ci",
+    "color": "1D76DB",
+    "description": "Continuous integration, checks and repository automation"
+  },
+  {
+    "name": "testing",
+    "color": "5319E7",
+    "description": "Regression tests, test drivers and oracle evidence"
+  },
+  {
+    "name": "area: compiler",
+    "color": "006B75",
+    "description": "Lowering, generated code, JIT and native compilation"
+  },
+  {
+    "name": "area: runtime",
+    "color": "0052CC",
+    "description": "State exploration, storage and parallel execution"
+  },
+  {
+    "name": "area: liveness",
+    "color": "7057FF",
+    "description": "Temporal properties, fairness and liveness checking"
+  },
+  {
+    "name": "area: tooling",
+    "color": "008672",
+    "description": "Public scripts, benchmark tools and dependency management"
+  },
+  {
+    "name": "security",
+    "color": "B60205",
+    "description": "Security tracking; report vulnerability details privately per SECURITY.md"
+  }
+]

@@ -12,6 +12,20 @@ workstation.
 The commands below use public tools in `scripts/`. Most use the Python 3 standard library;
 cloud-provider commands additionally need their SDKs, described in [cloud-verification.md](cloud-verification.md).
 
+## Continuous integration
+
+GitHub Actions runs on pushes to `main`, pull requests and manual dispatches. The required `CI`
+check aggregates Linux x86_64, Linux arm64 and macOS arm64 Rust/spec tests plus the Linux quality
+job (formatting, Clippy, Python driver tests, documentation and benchmark-report checks).
+Actions are pinned by commit and run with read-only repository permissions. The workflow does not
+use cloud credentials or run performance benchmarks. Corpus-wide tests remain separate cloud jobs.
+
+CI installs test dependencies with `bash scripts/fetch-deps.sh --tests-only`, which omits the
+Examples corpus. The exact TLC oracle jar and its license are retained in `tests/deps/` and verified
+against the pin in `scripts/dependencies.py`; the mutable upstream release asset is not trusted to
+supply the historical oracle bytes. Spec tests still exercise interpreter, compiled and paranoid
+compiled modes, with Java available for trace validation.
+
 ## 1. Test layers
 
 | Layer | What it checks | Needs Java/TLC | Section |

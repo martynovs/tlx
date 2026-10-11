@@ -1,0 +1,3 @@
+# SDK imports exercised by mocked cloud-provider unit tests; no cloud credentials are used.
+boto3==1.43.111
+botocore==1.43.111

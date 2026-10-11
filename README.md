@@ -1,5 +1,6 @@
 # tlx
 
+[![CI](https://github.com/tlaplus-x/tlx/actions/workflows/ci.yml/badge.svg)](https://github.com/tlaplus-x/tlx/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Native-code model checking for TLA+, written in Rust.**
