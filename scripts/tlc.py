@@ -17,7 +17,7 @@ import tempdirs
 
 import contextlib, json, os, re, shutil, sys, tempfile, threading
 
-from tlxlib import ROOT, TP, CLASSPATH_DIRS, DEFAULT_JOBS, run_proc, check_tlc_model
+from tlxlib import ROOT, TP, CLASSPATH_DIRS, DEFAULT_JOBS, run_proc, check_tlc_model, model_cwd
 
 JAVA = os.environ.get("TLX_JAVA", "/opt/homebrew/opt/openjdk@21/bin/java")
 CLASSPATH = os.pathsep.join([os.path.join(TP, "tla2tools.jar"),
@@ -31,25 +31,32 @@ CLASSPATH = os.pathsep.join([os.path.join(TP, "tla2tools.jar"),
 TEMPORAL_VIOLATED = re.compile(r"Error: Temporal propert(y (\S+) was|ies (.+ )?were) violated")
 
 
-def run_tlc(spec, args, timeout=None, features=(), scratch=False, *, allow_local_heavy=False):
-    """Run TLC on `spec` from its directory; with `scratch`, from a copy of
-    that directory (for specs that write files, e.g. CSVWrite)."""
-    out, rc, wall = run_tlc_raw(spec, args, timeout, features, scratch, allow_local_heavy=allow_local_heavy)
+def run_tlc(spec, args, timeout=None, features=(), scratch=False, *, cwd=None, allow_local_heavy=False):
+    """Run TLC on `spec` from `cwd` (default: the spec's directory); with
+    `scratch`, from a copy of that directory (for specs that write files, e.g.
+    CSVWrite)."""
+    out, rc, wall = run_tlc_raw(spec, args, timeout, features, scratch, cwd=cwd,
+                                allow_local_heavy=allow_local_heavy)
     return parse(out, wall, rc)
 
 
-def run_tlc_raw(spec, args, timeout=None, features=(), scratch=False, *, allow_local_heavy=False):
+def run_tlc_raw(spec, args, timeout=None, features=(), scratch=False, *, cwd=None, allow_local_heavy=False):
     """Run TLC as run_tlc: its output (stdout and stderr), exit code and
-    wall time."""
+    wall time. `cwd` also names the main module for TLC (relative to it)."""
     spec = os.path.abspath(spec)
     args = list(args)
     if "--allow-local-heavy" in args:
         args.remove("--allow-local-heavy")
         allow_local_heavy = True
-    cmd = tlc_cmd(spec, args, features)
-    check_tlc_model(cmd, os.path.dirname(spec), allow_local_heavy=allow_local_heavy)
-    with scratch_dir(os.path.dirname(spec) if scratch else None) as cwd:
-        p = run_proc(cmd, cwd=cwd or os.path.dirname(spec), timeout=timeout, allow_local_heavy=allow_local_heavy)
+    run_dir = cwd or os.path.dirname(spec)
+    # (TLC looks the main module up relative to its working directory and the
+    # `-I` directories, so a run outside the spec's own directory names it by
+    # its path there - what upstream's Examples CI does from the Examples root.)
+    cmd = tlc_cmd(spec, args, features, module=os.path.relpath(spec, run_dir))
+    check_tlc_model(cmd, run_dir, allow_local_heavy=allow_local_heavy)
+    with scratch_dir(run_dir if scratch else None) as staged:
+        p = run_proc(cmd, cwd=staged or run_dir, timeout=timeout,
+                     allow_local_heavy=allow_local_heavy)
     return p.stdout + p.stderr, p.returncode, p.wall
 
 
@@ -64,12 +71,15 @@ def metadir():
     return os.path.join(ROOT, "target", "tlc-states", f"{os.getpid()}-{threading.get_ident()}")
 
 
-def tlc_cmd(spec, args, features=(), jvm_extra=(), state_dir=None):
+def tlc_cmd(spec, args, features=(), jvm_extra=(), state_dir=None, module=None):
     """The command line of a TLC run on `spec` (run from its directory);
-    `jvm_extra`: further JVM options (e.g. -D properties)."""
+    `jvm_extra`: further JVM options (e.g. -D properties). `module`: the main
+    module argument TLC is given, relative to the directory the run starts in
+    (default: the spec's file name, for a run from the spec's own directory)."""
     flags = ["-Dtlc2.tool.impl.Tool.cdot=true"] if "action composition" in features else []
     return [JAVA, *JVM_OPTS, *flags, *jvm_extra, "-cp", CLASSPATH, "tlc2.TLC",
-            "-cleanup", "-noGenerateSpecTE", "-metadir", state_dir or metadir(), *args, os.path.basename(spec)]
+            "-cleanup", "-noGenerateSpecTE", "-metadir", state_dir or metadir(), *args,
+            module or os.path.basename(spec)]
 
 
 @contextlib.contextmanager
@@ -82,6 +92,24 @@ def scratch_dir(src):
         dst = os.path.join(tmp, os.path.basename(src))
         shutil.copytree(src, dst)
         yield dst
+
+
+@contextlib.contextmanager
+def model_scratch_dir(m):
+    """The working directory of one run of model `m`.
+
+    A model that writes files gets a temporary copy of its spec directory, so
+    concurrent runs of one model do not collide and the shared checkout (and the
+    corpus root) stays untouched; every other model runs in the directory its
+    inputs are relative to (`tlxlib.model_cwd`): its own directory, or the
+    corpus root for a model that names its inputs relative to that.
+    """
+    run_dir = model_cwd(m)  # refuses `"cwd": "root"` together with a staged copy
+    if not m.get("scratch"):
+        yield run_dir
+        return
+    with scratch_dir(run_dir) as cwd:
+        yield cwd
 
 
 def untool(out):

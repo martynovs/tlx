@@ -20,7 +20,7 @@ import shutil
 import time
 
 import tempdirs
-from tlxlib import (ROOT, ACTION_REPORT, NATIVE_REPORT, PRED_REPORT, mode_args,
+from tlxlib import (ROOT, ACTION_REPORT, NATIVE_REPORT, PRED_REPORT, mode_args, model_cwd,
                     add_profile_args, build_tlx, profile_of, tlx_env, run_proc)
 from tlc import DEFAULT_JOBS
 
@@ -163,12 +163,14 @@ def run(m, timeout, binary, dynamic=False):
         return {'id': m['id'], 'status': 'missing input', 'error': m.get('selection_error'),
                 'static': static_report(''), 'dynamic': dynamic_report({})}
     with tempdirs.TemporaryDirectory(prefix='tlx-coverage-', owner_root=ROOT) as tmp:
+        run_cwd = model_cwd(m)
         if m.get('scratch'):
             model_dir = os.path.join(tmp, 'spec')
             shutil.copytree(os.path.dirname(m['tla']), model_dir)
             shutil.copyfile(m['cfg'], os.path.join(model_dir, os.path.basename(m['cfg'])))
             m = {**m, 'tla': os.path.join(model_dir, os.path.basename(m['tla'])),
                  'cfg': os.path.join(model_dir, os.path.basename(m['cfg']))}
+            run_cwd = model_dir
         path = os.path.join(tmp, 'stats.json')
         args = [*(['-maxmem', '2048'] if dynamic else ['-fpmem', '64']), '-workers', '1', '-tlc', *m.get('flags', [])]
         if m.get('flags'):
@@ -181,7 +183,7 @@ def run(m, timeout, binary, dynamic=False):
         def read(line):
             if not reported and 'actions lowered' in line and 'IR nodes' in line:
                 reported.append(time.monotonic())
-        p = run_proc(cmd, timeout, env=env, cwd=os.path.dirname(m['tla']), on_line=None if dynamic else read,
+        p = run_proc(cmd, timeout, env=env, cwd=run_cwd, on_line=None if dynamic else read,
                      stop_when=None if dynamic else lambda: reported and time.monotonic() > reported[0] + GRACE,
                      grace=TIMEOUT_GRACE if dynamic else 0, errors='replace', raise_timeout=False)
         # Streaming capture kills immediately; TERM allows normal spill cleanup.

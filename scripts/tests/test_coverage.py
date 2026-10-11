@@ -110,6 +110,34 @@ class Reports(unittest.TestCase):
             self.assertFalse(r['dynamic']['complete'])
             self.assertEqual(r['stats'], {})
 
+    def test_the_staged_trace_input_closes_the_ewd998_census_gap(self):
+        """The one small-census unknown that was staging, not an engine gap.
+
+        docs/native-coverage.md records EWD998ChanTrace among the small
+        census's unknown metrics because its spec names its trace input
+        relative to the Examples root and the census ran it from its own
+        directory. The model is marked `cwd: root` (scripts/corpus.py), so the
+        census measures it now; this pins the reduced example with the checked
+        in trace (659 distinct states, depth 655).
+        """
+        binary = next((os.path.join(C.ROOT, 'target', profile, 'tlx')
+                       for profile in ('test-release', 'release')
+                       if os.path.isfile(os.path.join(C.ROOT, 'target', profile, 'tlx'))), None)
+        if binary is None:
+            self.skipTest('build tlx first for the real coverage measurement')
+        import corpus
+        import tlxlib
+        models = {m['id']: m for m in corpus.models(float('inf'))}
+        m = models.get('ewd998/EWD998ChanTrace')
+        if m is None or not os.path.isfile(os.path.join(m['root'], 'specifications', 'ewd998',
+                                                        'EWD998ChanTrace.ndjson')):
+            self.skipTest('the Examples corpus with the EWD998 trace is not in this checkout')
+        self.assertEqual(tlxlib.model_cwd(m), m['root'])
+        r = C.run(m, 120, binary, True)
+        self.assertEqual(r['status'], 'success', r.get('output'))
+        self.assertTrue(r['dynamic']['complete'])
+        self.assertGreater(r['dynamic']['evaluations'], 0)
+
     def test_truncated_final_stats_remain_an_explicit_gap(self):
         from types import SimpleNamespace
         with tempfile.TemporaryDirectory() as tmp:

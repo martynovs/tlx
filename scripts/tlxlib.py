@@ -311,6 +311,42 @@ def check_tlc_model(cmd, cwd=None, *, allow_local_heavy=False):
         raise SystemExit(f"STOP: local heavy TLC model {heavy}; use cloud_verify.py or --allow-local-heavy")
 
 
+# The directory a model's run starts in. A spec opens its inputs relative to the
+# working directory - TLC's Java overrides (`new File(path)`) and tlx's native
+# `ndJsonDeserialize` both use the path as given - so a runner has to start it in
+# the directory its inputs are relative to, and TLC and tlx have to agree on it.
+# By default that is the spec's own directory (`docs/testing.md`, the corpus
+# convention: a spec writes its CSV/JSON output next to itself). `"cwd": "root"`
+# names a model whose spec reads inputs relative to the corpus root instead - the
+# directory the corpus manifest's paths are relative to. Upstream's Examples CI
+# runs TLC from the Examples root with those relative paths
+# (`.github/scripts/check_small_models.py`, `--examples_root .`), so a spec that
+# names `specifications/<dir>/<file>` resolves it there and nowhere else.
+CORPUS_ROOT_CWD = "root"
+
+
+def model_cwd(m):
+    """The working directory of one run of model `m` (see `CORPUS_ROOT_CWD`).
+
+    `m["cwd"]` names it: the spec's own directory (the default) or the corpus
+    root `m["root"]` for a model whose inputs are named relative to it. A model
+    that writes files is staged into a copy of the directory it runs in
+    (`tlc.model_scratch_dir`), and the combination this helper cannot express is
+    refused. The benchmark's own, frozen staging does not consult this helper.
+    """
+    if m.get("cwd") != CORPUS_ROOT_CWD:
+        # (A relative spec path is relative to the caller's own directory: the
+        # run keeps that directory, as it did before this helper existed. So
+        # does a fixture without a spec path at all.)
+        return os.path.dirname(m.get("tla") or "") or None
+    root = m.get("root")
+    if not root:
+        raise ValueError(f'{m.get("id", m.get("tla"))}: `"cwd": "root"` needs the model\'s corpus `root`')
+    if m.get("scratch"):
+        raise ValueError(f'{m.get("id")}: `"cwd": "root"` and a model that writes files are not supported together')
+    return root
+
+
 def run_tlc_proc(cmd, timeout=None, *, cwd=None, allow_local_heavy=False, **kwargs):
     check_tlc_model(cmd, cwd, allow_local_heavy=allow_local_heavy)
     with tlc_slot() as slot:

@@ -82,7 +82,10 @@ if os.path.basename(sys.argv[2]) not in {silent!r}:
                 call, = [json.loads(line) for line in log.read_text().splitlines()]
                 self.assertEqual(call['argv'], [binary, 'check', str(self.root / 'A.tla'), '-config',
                                                 str(self.root / 'A.cfg'), '-workers', '1', '-tlc', '-interp'])
-                self.assertEqual(call['cwd'], os.getcwd())
+                # (The run starts in the spec's own directory, as the TLC oracle
+                # does - not in the driver's: a relative input of the spec
+                # resolves next to it, see tlxlib.model_cwd.)
+                self.assertEqual(os.path.realpath(call['cwd']), os.path.realpath(str(self.root)))
                 self.assertIn('TLX_CLASSPATH', call['env'])
                 self.assertEqual(call['exit'], 0)
 

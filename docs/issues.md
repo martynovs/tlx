@@ -81,9 +81,42 @@ the TLC baseline above is unchanged.
 | `CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC` | Cardinality overflow while evaluating an assumption | Review large-set cardinality evaluation and the model's assumptions |
 | `SpanningTree/SpanTreeTest5Nodes` | Cardinality overflow for nested `SUBSET` | Review cardinality handling |
 | `bcastFolklore/bcastFolklore` | Liveness checking needs about 16,845 MiB, beyond the default 15,603 MiB budget | Measure an explicitly larger budget separately; do not silently change this configuration |
-| `ewd998/EWD998ChanID_export` | Initial state is not legal | Check the export example's setup and state construction |
-| `ewd998/EWD998ChanID_shiviz` | Initial state is not legal | Check the export example's setup and state construction |
-| `ewd998/EWD998ChanTrace` | Cannot find `specifications/ewd998/EWD998ChanTrace.ndjson` at runtime | Correct trace-data staging/path resolution; this suite entry already expects `error` |
+
+The three `ewd998` rows of the freeze-point census were recorded as execution errors; they are
+**expected errors of the examples and of their staging**, and no engine error was found in them.
+Two are invalid examples: `EWD998ChanID` declares six variables (`active`, `color`,
+`counter`, `inbox`, `clock`, `passes`), but the `MCInit` of `ewd998/EWD998ChanID_export` and of
+`ewd998/EWD998ChanID_shiviz` assigns five — `passes` stays undefined — so the initial state is not
+complete. Their states print `/\ passes = null`, TLC's `DoInitFunctor` and tlx both report the
+error, and the upstream manifest marks both models `result: unknown` (never validated). The
+export examples are therefore unusable as written (they invoke `MCInit` from their cfg); the
+Examples tree is shared and is not edited here, and the suite's TLC baselines record the same
+error. The third is the staging of
+`ewd998/EWD998ChanTrace`: its spec reads
+`ndJsonDeserialize(... "specifications/ewd998/EWD998ChanTrace.ndjson")`, a path relative to the
+**Examples root** — the path upstream's CI uses from that root — while TLC's Java override
+(`new File(path)`) and tlx's `ndJsonDeserialize` both open it relative to the working directory,
+which was the spec's own directory. Both engines then stopped with an IO error, and the suite
+entry pinned that error. `scripts/corpus.py` now names the model `cwd: root` (docs/testing.md
+section 6.1), so the run starts in the Examples root, reads the checked-in trace and completes with
+`659` distinct states, depth `655` and `11169` generated states in every tier (interpreter,
+compiled, `-tlc`). TLC's own generated count for this log varies with its random default `-fp`
+polynomial (`11180` came out of the run measured here); `11169` is the `-fp 0` count that tlx
+reproduces (compat.md D-25).
+
+That verdict is **evidence, not the frozen suite's expectation**: the `bench/suite.json` pin and
+the shared `corpus/out/tlc.json` row of the model still hold the pre-fix `error`, and this change
+leaves them there. It also leaves the benchmark's own run semantics (and so its records) alone: the
+fix is confined to the correctness drivers (the TLC oracle collection, `difftest`, the coverage
+census), which now start a model in the directory its inputs are relative to.
+
+What the later baseline upgrade has to carry - the three things belong together, and a staging
+change is also an identity change: the working directory (and the trace data it resolves) is not in
+the measurement key or in `content_digest` today, so a stale `error` row would otherwise keep
+matching a run that now succeeds. The upgrade therefore re-collects the row with
+`scripts/corpus.py tlc --ids ewd998/EWD998ChanTrace` (its stored row is a well-formed error, which
+`--only-failed` does not flag), states the run's directory and staged inputs in the configuration
+identity, and updates the `bench/suite.json` pin that quotes the row.
 
 An additional observation arrived during the unfinished retry of
 `SpecifyingSystems/AdvancedExamples/MCInnerSerial`: its warm-up returned a liveness-memory-budget

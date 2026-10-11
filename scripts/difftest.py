@@ -53,7 +53,7 @@ from tlxlib import CaseResult, add_result_args, finish_cases, case_summary, judg
 from harness.storage import locked_json_update
 from contract import compare as compare_contract
 from oracle import select_models, issue as oracle_issue
-from tlc import DEFAULT_JOBS, parse, scratch_dir
+from tlc import DEFAULT_JOBS, parse, model_scratch_dir
 
 # The exit status of a run ended right after a checkpoint by
 # TLX_CHECKPOINT_ABORT (tlx_runtime::explore::checkpoint::ABORT_EXIT).
@@ -88,8 +88,10 @@ def run_once(binary, m, workers, timeout, extra=(), extra_env=None, default_mode
     cmd = [binary, "check", m["tla"], "-config", m["cfg"], "-workers", str(workers), *args]
     env = tlx_env(classpath=True, extra={**parity_env(args), **(extra_env or {})})
     t0 = time.time()
-    # (A model that writes files runs in a copy of its directory.)
-    with scratch_dir(os.path.dirname(m["tla"]) if m.get("scratch") else None) as cwd:
+    # (A model that writes files runs in a copy of its directory; every other
+    # model runs in the directory its inputs are relative to, as the TLC oracle
+    # does - see tlxlib.model_cwd.)
+    with model_scratch_dir(m) as cwd:
         try:
             p = run_proc(cmd, timeout, cwd=cwd, env=env, grace=5)
         except subprocess.TimeoutExpired:

@@ -11,6 +11,7 @@ usage:
   scripts/corpus.py tlc --tier huge --tlc-workers 16   # manifest runtime above 700 s (corpus/out/tlc-huge.json; for the cloud)
   scripts/corpus.py list --source external             # the external models (ids ext/<repo>/<model>), tiers small and medium
   scripts/corpus.py tlc --source external --tier small # their TLC oracle: corpus/out/tlc-ext.json
+  scripts/corpus.py tlc --ids ewd998/EWD998ChanTrace # re-collect one model's row (after a staging fix)
 
   --source S       examples (default) or external
   --tier T[,T...]  examples: large (manifest runtime 61-700 s, oracle tlc-large) or huge (above
@@ -33,7 +34,7 @@ Environment: TLX_JAVA (see scripts/tlc.py).
 import argparse, glob, json, os, re, sys, threading
 from concurrent.futures import ThreadPoolExecutor
 
-from tlxlib import ROOT, json_update
+from tlxlib import ROOT, json_update, model_cwd
 from oracle import provenance, issue
 # Real path: inside a worktree third_party is a symlink to the main checkout, and
 # recorded spec paths must stay valid after the worktree is removed.
@@ -48,6 +49,20 @@ HUGE_MIN_RUNTIME = 701
 HUGE_MAX_RUNTIME = 10**8
 # Behaviors generated for models in "generate" mode.
 GENERATE_TRACES = 100
+# Models whose spec names its inputs relative to the corpus root (the Examples
+# root) instead of to its own directory; they run with `cwd: root`
+# (`tlxlib.model_cwd`). EWD998ChanTrace's default trace input is
+# `specifications/ewd998/EWD998ChanTrace.ndjson` - the path upstream's own CI
+# uses from the Examples root - so from the spec's directory TLC and tlx both
+# stop unable to read it (see docs/issues.md).
+ROOT_RELATIVE_MODELS = frozenset({"ewd998/EWD998ChanTrace"})
+# Extra arguments of the *TLC oracle* collection (never of a tlx run): TLC's
+# fingerprint polynomial (`-fp N`) is random by default and it decides the order
+# of concurrent lines in `VectorClocks!CausalOrder`, so a trace validation's
+# `generated` count varies with it (docs/compat.md D-25). tlx reproduces TLC's
+# `-fp 0` order deterministically, so the oracle row of such a model is taken
+# there (the timing baselines keep their own, unchanged collection).
+TLC_ORACLE_ARGS = {"ewd998/EWD998ChanTrace": ["-fp", "0"]}
 
 
 def secs(rt):
@@ -71,6 +86,7 @@ def external_models(tiers=("small", "medium"), repos=()):
             "id": f'ext/{m["repo"]}/{m["name"]}',
             "tla": os.path.join(base, m["tla"]),
             "cfg": os.path.join(base, m["cfg"]),
+            "root": base,
             "runtime": m.get("runtime", "unknown"),
             "result": m.get("result"),
             "distinct": None,
@@ -78,6 +94,7 @@ def external_models(tiers=("small", "medium"), repos=()):
             "features": m.get("features", []),
             "flags": m.get("flags", []),
             "tier": m["tier"],
+            **({"cwd": "root"} if f'ext/{m["repo"]}/{m["name"]}' in ROOT_RELATIVE_MODELS else {}),
             **({"oracle_workers": m["oracle_workers"]} if m.get("oracle_workers") else {}),
             **({"asymmetric_symmetry": True} if m.get("asymmetric_symmetry") else {}),
             **({"scratch": True} if m.get("scratch") else {}),
@@ -102,6 +119,20 @@ def select(a):
     elif tiers == ["huge"]:
         a.min_runtime, a.max_runtime = max(a.min_runtime, HUGE_MIN_RUNTIME), HUGE_MAX_RUNTIME
     return models(a.max_runtime, a.min_runtime), a.name or ("tlc" if not tiers else f"tlc-{tiers[0]}")
+
+
+def by_id(models, only):
+    """The models of `models` whose ids are in the comma-separated `only`, or all
+    of them when `only` is empty. An id the selection does not contain is an
+    error: a typo must not collect nothing (or the wrong models) silently."""
+    ids = [i for i in only.split(",") if i] if isinstance(only, str) else list(only)
+    if not ids:
+        return models
+    unknown = [i for i in ids if i not in {m["id"] for m in models}]
+    if unknown:
+        raise SystemExit("--ids: not in this selection (see `list`; a model outside the tier's runtime "
+                         "bounds needs --max-runtime/--min-runtime): " + ", ".join(unknown))
+    return [m for m in models if m["id"] in ids]
 
 
 def models(max_runtime, min_runtime=0):
@@ -130,16 +161,20 @@ def models(max_runtime, min_runtime=0):
                     continue
                 if not min_runtime <= secs(runtime) <= max_runtime:
                     continue
+                model_id = m["path"].removeprefix("specifications/").removesuffix(".cfg")
                 res.append({
-                    "id": m["path"].removeprefix("specifications/").removesuffix(".cfg"),
+                    "id": model_id,
                     "tla": os.path.join(EX, mod["path"]),
                     "cfg": os.path.join(EX, m["path"]),
+                    "root": EX,
                     "runtime": runtime,
                     "result": m.get("result"),
                     "distinct": m.get("distinctStates"),
                     "total": m.get("totalStates"),
                     "features": mod.get("features", []) + m.get("features", []),
                     "flags": flags,
+                    **({"cwd": "root"} if model_id in ROOT_RELATIVE_MODELS else {}),
+                    **({"tlc_args": TLC_ORACLE_ARGS[model_id]} if model_id in TLC_ORACLE_ARGS else {}),
                     **({"scratch": True} if scratch else {}),
                 })
     return res
@@ -163,8 +198,13 @@ def main():
                     help="TLC's JVM -Xmx (and a quarter of it as -XX:MaxDirectMemorySize), e.g. 12g")
     ap.add_argument("--timeout", type=int, default=600)
     ap.add_argument("--only-failed", action="store_true", help="rerun only models whose TLC result was 'error'")
+    ap.add_argument("--ids", default="", metavar="ID,...",
+                    help="only these models (exact ids, e.g. ewd998/EWD998ChanTrace; still within the tier's "
+                         "runtime bounds). Re-collects a row unconditionally, unlike --only-failed: a row that is "
+                         "well-formed but stale (a result a staging fix changes) is not a failure")
     a = ap.parse_args()
     ms, name = select(a)
+    ms = by_id(ms, a.ids)
     if a.tlc_heap:
         # (Several TLC JVMs at a time: the JVM's default heap is a quarter of
         # the physical memory each, and together they can exhaust it.)
@@ -190,8 +230,9 @@ def main():
         try:
             # (A model that may end in a violation runs with the workers the
             # manifest asks for: one, for TLC's counts and depth to be deterministic.)
-            r = run_tlc(m["tla"], ["-config", m["cfg"], "-workers", str(workers), *m["flags"]], timeout=a.timeout, features=m["features"],
-                        scratch=m.get("scratch", False))
+            args = ["-config", m["cfg"], "-workers", str(workers), *m["flags"], *m.get("tlc_args", ())]
+            r = run_tlc(m["tla"], args, timeout=a.timeout, features=m["features"],
+                        scratch=m.get("scratch", False), cwd=model_cwd(m))
         except Exception as e:  # timeout etc.
             r = {"result": "collection error", "error": str(e)}
         try:

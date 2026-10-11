@@ -41,6 +41,12 @@ The command exits 2 for six retained unknown metrics: five zero-evaluation cases
 EWD998ChanTrace, whose relative ndjson input cannot be read. The nonempty metrics
 reproduced the preceding measurement's exact native and total evaluation counts.
 
+The EWD998ChanTrace gap was staging, not a tlx difference: the model names its
+trace relative to the Examples root and now runs there (`cwd: root` of the corpus
+models, docs/testing.md section 6.1; docs/issues.md). A rerun of the command
+therefore measures it, while the snapshot above keeps the numbers it was taken
+with.
+
 The cloud census uses this command (M), on revision `5bd45c7d`:
 
 ```sh

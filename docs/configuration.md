@@ -198,7 +198,7 @@ Options specific to a script:
 |---|---|
 | `spectest.py` | `NAME...` (default: all specs with a cfg under tests/specs) |
 | `difftest.py` | `--tag TAG` (result file `corpus/out/tlx<TAG>.json`), `--ids A,B` (select models by exact id), `--failed` (rerun only the previous failures), `--recover N` (end each run after the N-th checkpoint and recover it), `-v` (print the error output of failing models) |
-| `corpus.py` | `list\|tlc`, `--max-runtime S`, `--min-runtime S`, `--name NAME`, `--tlc-workers N`, `--only-failed` |
+| `corpus.py` | `list\|tlc`, `--max-runtime S`, `--min-runtime S`, `--name NAME`, `--tlc-workers N`, `--only-failed`, `--ids A,B` (exact ids; re-collects a row whose result a staging fix changed, which `--only-failed` does not flag) |
 | `coverage.py` | `--hist N`, `--models`, `--dump DIR` (write each model's output into DIR); sets `TLX_COVERAGE`, `TLX_CGEN_DEBUG` and `TLX_NATIVE_SYNC` automatically |
 | `bench.py` | subcommands `tiers`/`run`/`compare`/`report`/`ab`/`layout`/`table`/`tlcbase`/`tlcbase-merge`/`tlcbase-report` (see the script header and [benchmarking.md](benchmarking.md) section 1); `table`: `--models a,b,...`, `--no-tlc`, `--measure-tlc`, `--repeat R`; `run`: `--tlc`; `ab`: `--bin NAME=PATH`, `--args` |
 | `sanydiff.py` | `FILE_OR_DIR...` |

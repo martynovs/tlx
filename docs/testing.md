@@ -293,10 +293,22 @@ Models come from `third_party/Examples/specifications/*/manifest.json`. Exhausti
 as-is; `simulate` models add `-simulate num=<traceCount>`; `generate` models add `-generate
 num=100` and run in a scratch copy (they write CSV files).
 
+A run starts in the directory the model's inputs are relative to, and both engines use the same
+one. That is the spec's own directory by default (a spec writes its CSV/JSON output next to
+itself), or the corpus root for the models `scripts/corpus.py` names as `cwd: root`
+(`ROOT_RELATIVE_MODELS`): upstream's Examples CI runs TLC from the Examples root with the
+manifest's relative paths (`.github/scripts/check_small_models.py`, `--examples_root .`), so a spec
+that names an input `specifications/<dir>/<file>` reads it there and nowhere else.
+`ewd998/EWD998ChanTrace` reads its trace as `specifications/ewd998/EWD998ChanTrace.ndjson`; from the
+spec's own directory TLC and tlx both stop with an IO error (docs/issues.md). A model
+that writes files still runs in a scratch copy of its directory, so concurrent runs of one model do
+not collide and the shared checkout stays untouched.
+
 ```sh
 scripts/corpus.py list --max-runtime 60              # models whose manifest runtime is <= 60 s (157 models)
 scripts/corpus.py tlc --max-runtime 60 -j 4          # run TLC, write/merge corpus/out/tlc.json
 scripts/corpus.py tlc --max-runtime 60 --only-failed # re-run only the models whose TLC result was an error
+scripts/corpus.py tlc --ids ewd998/EWD998ChanTrace   # re-collect one model's row (see below)
 # large tier (manifest 61-700 s; about an hour: a cloud job, see cloud-verification.md section 1)
 scripts/corpus.py tlc --min-runtime 61 --max-runtime 700 --name tlc-large --tlc-workers 4 -j 4 --timeout 3600
 # huge tier (manifest runtime above 700 s: the 6 models KVSSafetyLarge, NanoLarge, SlushLarge,
@@ -309,6 +321,17 @@ scripts/corpus.py tlc --tier huge --tlc-workers 16 --timeout 90000     # corpus/
 interrupted run keeps what finished. TLC is run by `scripts/tlc.py` (also usable alone:
 `scripts/tlc.py SPEC.tla -config X.cfg -workers 1` prints JSON statistics), with its state
 directory under `target/tlc-states/<pid>`.
+
+`--ids A,B` selects exact ids inside the tier's runtime bounds. It exists for a row whose
+well-formed result a staging or path fix changes: such a row is not an "error" row, so
+`--only-failed` leaves it in place, and the shared `corpus/out/tlc.json` copied into a worktree
+keeps the old result until the row is re-collected. `ewd998/EWD998ChanTrace` is collected with
+`-fp 0` (`corpus.TLC_ORACLE_ARGS`): TLC's fingerprint polynomial is random by default and decides
+the order of concurrent log lines, so only `-fp 0` gives the deterministic `generated` count that
+tlx reproduces (compat.md D-25). Its row is refreshed together with the `bench/suite.json` pin and
+the identity of the new configuration, in one baseline upgrade - not with the staging fix that
+makes the model runnable. Until that upgrade, the shared row (and the pin that quotes it) is the
+pre-fix `error`, and a corpus run of the model reports the difference rather than hiding it.
 
 ### 6.2 Differential run: `scripts/difftest.py`
 
@@ -327,6 +350,10 @@ scripts/difftest.py --extra=-compile --recover 1               # end each run af
   level-synchronously, so depth is exact too); simulation only the result kind; violated names
   for safety and property violations (a liveness failure only needs tlx to name one property). Exit
   codes and counterexamples are not compared.
+- tlx runs in the same directory as the TLC oracle (section 6.1): its own spec directory, the
+  corpus root for a `cwd: root` model, or a scratch copy for a model that writes files. The
+  benchmark's own staging (`benchmarking.measurement`) is untouched and keeps its frozen run
+  semantics.
 - One line per model, `PASS/FAIL id tlc=result/distinct/generated/depth tlx=... (TLC s vs tlx s)`,
   then this run's and the cumulative pass counts. Results merge into `corpus/out/tlx<tag>.json`
   (`--tag` defaults to empty for 1 worker, `-w<N>` otherwise).
