@@ -376,11 +376,13 @@ fn subset_enumeration_order() {
     assert!(ops::subseteq(&big, &ops::powerset(&nat()).unwrap()).unwrap());
 }
 
-/// TLC's `Enumerable.elements()` never asks a set for its `size()`, so a set
-/// whose size overflows TLC's int is still enumerated element by element:
-/// `Cardinality` (TLC's `Value.size`) and materializing the set error, but the
-/// streaming enumeration visits its elements, and a caller that stops early
-/// never needs the whole set.
+/// TLC's `Enumerable.elements()` (the default order) never asks a set for its
+/// `size()`, so a set whose size overflows TLC's int is still enumerated
+/// element by element: `Cardinality` (TLC's `Value.size`) and materializing the
+/// set error, but the streaming enumeration visits its elements, and a caller
+/// that stops early never needs the whole set. This is the path of `x' \in S`,
+/// of a set filter and of printing; TLC's *bound* asks for the normalized order
+/// instead, which materializes all but `SUBSET S` (`docs/compat.md` section 5).
 ///
 /// `SpanningTree/SpanTreeTest5Nodes` (`Edges \in {E \in SUBSET (SUBSET Nodes) :
 /// ...}`) and `CarTalkPuzzle/.../Model_3` (printing a set filter over
@@ -431,6 +433,32 @@ fn enumerating_a_set_whose_size_overflows() {
     assert!(ops::for_each_enumerated(&nested, &mut |_| Ok(true)).is_err());
     let rec = ops::record_set(vec![(Sym::new("ovf_a"), ops::powerset(&ops::interval(1, 31)).unwrap())]).unwrap();
     assert!(ops::for_each_enumerated(&rec, &mut |_| Ok(true)).is_err());
+}
+
+/// A bound variable's domain is streamed (`for_each_enumerated`) where it used
+/// to be materialized and sorted (`enumerate_normalized`), so the streaming
+/// order must be the normalized order: the evaluation order is tier 2 (`\E`
+/// witness choice, the order of `Print` and of effects in a quantified body).
+#[test]
+fn streaming_order_is_the_normalized_order() {
+    let cases: Vec<Value> = vec![
+        ops::powerset(&ops::interval(1, 4)).unwrap(),
+        ops::powerset(&ops::powerset(&ops::interval(1, 3)).unwrap()).unwrap(),
+        ops::fcn_set(&ops::interval(1, 3), &set(vec![s("a"), s("b")])).unwrap(),
+        ops::fcn_set(&ops::interval(1, 4), &ints(&[0, 1])).unwrap(),
+        ops::product(vec![ints(&[1, 2]), set(vec![s("a"), s("b")])]).unwrap(),
+        ops::record_set(vec![(Sym::new("ord_a"), ints(&[1, 2])), (Sym::new("ord_b"), set(vec![s("a"), s("b")]))]).unwrap(),
+    ];
+    for s in &cases {
+        let normalized = ops::enumerate_normalized(s).unwrap();
+        let mut streamed = Vec::new();
+        ops::for_each_enumerated(s, &mut |e| {
+            streamed.push(e);
+            Ok(true)
+        })
+        .unwrap();
+        assert_eq!(show(&streamed), show(&normalized), "{s} (n = {})", normalized.len());
+    }
 }
 
 #[test]

@@ -267,19 +267,28 @@ tlx: `tlx-eval/src/eval.rs` (`QuantUnbounded` and unbounded CHOOSE produce the s
 - `Nat` and `Int` are `UserValue`s: membership only, not enumerable.
 - Size overflow errors: `SUBSET S` with `|S| >= 31` (`V/SubsetValue.java:182-190`); `[S->T]` and `\X`
   size products over int (`V/SetOfFcnsValue.java:244-265`, `V/SetOfTuplesValue.java:232-246`).
-  These are errors of `size()` (= `Cardinality`): **enumeration does not ask for the size**.
-  `Enumerable.elements()` streams (`V/SubsetValue.java:753-767`, and the enumerators of
-  `SetOfFcnsValue`/`SetOfTuplesValue`/`SetOfRcdsValue` at `:458`/`:473`/`:449`), so a set whose
-  `size()` overflows is still enumerated element by element and a quantifier that stops early never
-  builds it. What raises the overflow is `size()`/`Cardinality`, materializing (`SubsetValue.toSetEnum`
-  asks `size()`, `:304`; the tuple and record enumerators convert every constituent with `toSetEnum`)
-  and the paths that hold a whole set (`CHOOSE` normalizes it, `x' \subseteq S`).
+  These are errors of `size()` (= `Cardinality`); **enumeration does not ask for the size**, but the
+  *order* asked for decides whether anything is built: `Enumerable.elements()` (the default order,
+  used by `x' \in S` `TI/Tool.java:836,1455`, by `{x \in S : P}` `V/SetPredValue.java:350-372` and by
+  printing `:317-322`) streams (`V/SubsetValue.java:753-767`, and the enumerators of
+  `SetOfFcnsValue`/`SetOfTuplesValue`/`SetOfRcdsValue` at `:458`/`:473`/`:449`), while
+  `elements(Ordering.NORMALIZED)` (a bound: `TI/Tool.java:4083-4117`; `CHOOSE`: `:2156`) is
+  implemented by materializing `toSetEnum()` for every set type except `SetEnumValue`, `SubsetValue`
+  (`V/SubsetValue.java:743-751`) and `KSubsetValue` (`V/EnumerableValue.java:83-101`); materializing
+  more than `-maxSetSize` elements (default 10^6, `V/ValueVec.java:88-92`) is TLC's "too many
+  elements" error. What raises the *overflow* is `size()`/`Cardinality`, materializing
+  (`SubsetValue.toSetEnum` asks `size()`, `:304`; the tuple and record enumerators convert every
+  constituent with `toSetEnum`) and the paths that hold a whole set (`CHOOSE` normalizes it,
+  `x' \subseteq S`).
 
-  tlx: `tlx-value/src/ops/enumerate.rs` (`for_each_enumerated` streams such a set; `enumerate`
-  refuses it and `materialization_error` reports the overflow) and `tlx-eval/src/eval.rs::bound_elems`
-  (a bound of one variable is streamed when its domain cannot be materialized: the interpreter
-  materialized it before and failed where the compiled tier's quantifiers already streamed). A
-  `CHOOSE`, a bound of several variables and `x' \subseteq S` still materialize and keep the overflow.
+  tlx: `tlx-value/src/ops/enumerate.rs` (`for_each_enumerated` streams such a set in the default
+  order; `enumerate` refuses it and `materialization_error` reports the overflow) and
+  `tlx-eval/src/eval.rs::bound_elems` (a bound of one variable over a domain that cannot be
+  materialized is streamed; the streamed order is the normalized order, pinned by
+  `crates/tlx-value/tests/ops.rs::streaming_order_is_the_normalized_order`). A `CHOOSE`, a bound of
+  several variables and `x' \subseteq S` still materialize and keep the overflow; a bound over a
+  `[S -> T]`, `\X`, record or interval domain larger than TLC's `-maxSetSize` is an error in TLC and
+  keeps computing in tlx (see [compat.md](compat.md) section 5).
 
 tlx: `tlx_value::arith` (`add`, `sub`, `mul`, `pow`, `neg`, `modulo`, `div_floor`, `div_naturals`;
 values are `i64` with an i32 range check per operation; generated C uses `tlx_add` etc. from

@@ -275,12 +275,14 @@ pub fn for_each_enumerated(s: &Value, f: &mut dyn FnMut(Value) -> Result<bool>) 
             };
         }
     }
-    // No size check: TLC's `Enumerable.elements()` never asks a set for its
-    // `size()`, so a set whose size overflows the int range (a `SUBSET` of 31
-    // or more elements, a function, record or tuple set whose product of
-    // component sizes does) is still enumerated element by element; a caller
-    // that stops early (a quantifier that found its witness, an `x' \in S`
-    // whose continuation stopped) never needs the whole set.
+    // No size check: this is TLC's `Enumerable.elements()` (the default
+    // order), which never asks a set for its `size()`, so a set whose size
+    // overflows the int range (a `SUBSET` of 31 or more elements, a function,
+    // record or tuple set whose product of component sizes does) is still
+    // enumerated element by element; a caller that stops early (an `x' \in S`
+    // whose continuation stopped) never needs the whole set. (A *bound* asks
+    // TLC for the normalized order, which materializes all but `SUBSET S`;
+    // see `docs/compat.md` section 5 and `tlx_eval::eval::BoundElems`.)
     for_each_element(s, f)
 }
 

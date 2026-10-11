@@ -192,15 +192,20 @@ This is the single source for known limitations ([design.md](design.md) and
   parameters). PlusCal is not translated: tlx checks the TLA+ translation that is in the file.
 - **Sets whose size overflows TLC's int**: `Cardinality` (TLC's `Value.size`) refuses `SUBSET S`
   with `|S| >= 31` and a `[S -> T]`, `\X` or record set whose product of component sizes does not
-  fit an int; tlx also refuses `CHOOSE x \in S`, `x' \subseteq S` and a bound of several variables
-  (`\E x, y \in S`), which hold the whole set. Enumeration itself needs no size
-  ([tlc-semantics.md](tlc-semantics.md) section 4): tlx streams a single-variable quantifier and
-  `x' \in S` over such a set, like TLC, whose `Enumerable.elements()` never asks for it. Where tlx
-  still reports the overflow, TLC answers for a `SUBSET S` domain (in TLC,
-  `CHOOSE s \in SUBSET (1..31) : s = {}` is `{}`, because `SubsetValue` implements the normalized
-  enumeration by streaming) and reports "too many elements" beyond its `-maxSetSize` bound (default
-  10^6) for the other set types, which TLC materializes in normalized order
-  ([features.md](features.md) section 1 records that tlx does not implement that bound).
+  fit an int ([tlc-semantics.md](tlc-semantics.md) section 4). Enumeration itself needs no size:
+  tlx streams a single bound's domain and `x' \in S`, and TLC streams `x' \in S`, `{x \in S : P}`
+  and printing (the default order) for every set type. A *bound* asks for the normalized order,
+  which TLC implements by materializing everything but `SUBSET S`, an enumerated set and
+  `kSubset(k, S)`, so a `SUBSET S` domain agrees — `\E s \in SUBSET (1..31) : s = {}` is TRUE in
+  both — while a
+  `[S -> T]`, `\X`, record or interval domain whose materialization is larger than TLC's
+  `-maxSetSize` (default 10^6) is an error in TLC ("too many elements") and keeps computing in tlx
+  ([features.md](features.md) section 1 records that tlx does not implement that bound). This
+  difference is in tlx's quantifier bounds over those domains, not in `x' \in S` or filtering.
+- **Sets kept as a whole**: `CHOOSE x \in S`, `x' \subseteq S` and a bound of several variables
+  (`\E x, y \in S`) refuse such a set in tlx, where TLC streams a `SUBSET S` or enumerated domain
+  and answers: `CHOOSE s \in SUBSET (1..31) : s = {}` is `{}` in TLC, and `x' \subseteq S`
+  enumerates the subsets; for the other set types TLC materializes as above.
 - **Command line** (outside the contract, section 2): TLC's `-continue`, `-difftrace`,
   `-maxSetSize`, `-fp`, `-lncheck`, `-terse` and others are not implemented and give a usage error
   (exit code 2); `-cleanup` and `-noGenerateSpecTE` are accepted without effect; no `*_TTrace_*`

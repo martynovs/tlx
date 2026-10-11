@@ -96,13 +96,15 @@ fn constant_expressions() {
 /// LET's value cache of `f` held the function, and the function held the
 /// environment with that cache (a reference cycle that leaked the function,
 /// its memo and the state it was made in on every evaluation).
-/// A quantifier over a set whose `size()` overflows TLC's int streams the set
-/// (`Enumerable.elements()` never calls `size()`): the answer is known as soon
-/// as an element satisfies the body. Materializing such a set still fails,
-/// exactly as `Cardinality` (TLC's `Value.size`) does — `CHOOSE`, a bound of
-/// several variables and `x' \subseteq S` hold the domain as a whole, so they
-/// keep the overflow (TLC streams `CHOOSE` and `x' \subseteq S`; that
-/// difference remains).
+/// A bound whose domain cannot be materialized is streamed, in the normalized
+/// order (`tlx-value/tests/ops.rs::streaming_order_is_the_normalized_order`):
+/// the answer is known as soon as an element satisfies the body.
+/// TLC streams a `SUBSET S` domain too (`SubsetValue` implements the normalized
+/// enumeration by streaming), so that case agrees; for a `[S -> T]` domain TLC
+/// materializes and stops at its `-maxSetSize` bound, which tlx does not
+/// implement — the difference is in `docs/compat.md` section 5, not a claim of
+/// agreement. `CHOOSE`, a bound of several variables and `x' \subseteq S` keep
+/// the overflow, where TLC streams a `SUBSET S` domain and answers.
 #[test]
 fn quantifiers_stream_domains_whose_size_overflows() {
     let body = "\

@@ -889,8 +889,9 @@ impl Interp {
                 let mut elems = match self.bound_elems(set, env, cx)? {
                     BoundElems::Elems(elems) => elems,
                     // The domain cannot be materialized: stream it
-                    // (`for_each_enumerated`, TLC's `Enumerable.elements()`)
-                    // and stop at the first witness.
+                    // (`for_each_enumerated`; see `BoundElems` on how this
+                    // relates to TLC's materializing bound) and stop at the
+                    // first witness.
                     BoundElems::Stream(v, _) => {
                         let mut found = !exists;
                         let mut err = None;

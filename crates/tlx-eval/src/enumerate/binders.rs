@@ -21,8 +21,8 @@ impl<'a> Enumerator<'a> {
                 let mut elems = match ip.bound_elems(set, env, &self.cx())? {
                     BoundElems::Elems(elems) => elems,
                     // The domain cannot be materialized: stream it
-                    // (`for_each_enumerated`, TLC's `Enumerable.elements()`)
-                    // and stop when the continuation does.
+                    // (`for_each_enumerated`; see `BoundElems`) and stop when
+                    // the continuation does.
                     BoundElems::Stream(v, _) => {
                         let mut go_on = true;
                         let mut err = None;

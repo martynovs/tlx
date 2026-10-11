@@ -81,14 +81,23 @@ impl Elems {
 /// The elements of a bound variable's domain (`bound_elems`): materialized, or
 /// — for a lazy set that cannot be materialized — a value enumerated on the
 /// fly by the caller (`ops::for_each_enumerated`).
+///
+/// TLC materializes such a domain too, except for `SUBSET S`: a bound asks for
+/// `elements(Ordering.NORMALIZED)`, which `EnumerableValue` implements by
+/// `toSetEnum()`, and only `SubsetValue`, `SetEnumValue` and `KSubsetValue`
+/// override it. So streaming a `SUBSET S` domain matches TLC, and streaming a
+/// `[S -> T]`, `\X`, record or interval domain keeps computing where TLC
+/// reports "too many elements" beyond its `-maxSetSize` bound (default 10^6),
+/// which tlx does not implement (`docs/compat.md` section 5). The streamed
+/// order is the normalized order
+/// (`tlx-value/tests/ops.rs::streaming_order_is_the_normalized_order`).
 pub(crate) enum BoundElems {
     Elems(Elems),
-    /// `ops::materialization_error` of the set, and the set itself. TLC's
-    /// `Enumerable.elements()` never asks a set for its `size()`, so a
-    /// `SUBSET` of 31 or more elements, or a function, record or tuple set
-    /// whose product of component sizes overflows TLC's int, is still
-    /// enumerated element by element: a body that stops early never needs the
-    /// whole set (and the set cannot be held in memory anyway).
+    /// `ops::materialization_error` of the set, and the set itself: a `SUBSET`
+    /// of 31 or more elements, or a function, record or tuple set whose
+    /// product of component sizes overflows TLC's int. The set is enumerated
+    /// element by element instead of being held in memory: a body that stops
+    /// early never needs the whole set.
     Stream(Value, ValueError),
 }
 

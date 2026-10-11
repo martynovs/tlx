@@ -1,15 +1,15 @@
 //! A quantifier over a set whose `size()` overflows TLC's int is streamed, not
-//! materialized.
-//!
-//! TLC's `Enumerable.elements()` never asks a set for its `size()`, so
-//! `SUBSET S` with `|S| >= 31` (2^31 elements) and `[S -> T]` whose product of
-//! sizes overflows are still enumerated element by element; `Cardinality`
-//! (TLC's `Value.size`) is what refuses them. The interpreter materialized the
-//! domain of a bound variable and failed with the overflow, while the compiled
-//! tier already streamed its quantifiers, so `TLX_PARANOID` reported the
-//! divergence. `SpanningTree/SpanTreeTest5Nodes` and
+//! materialized: the interpreter materialized the domain of a bound variable
+//! and failed with the overflow, while the compiled tier already streamed its
+//! quantifiers, so `TLX_PARANOID` reported the divergence.
+//! `SpanningTree/SpanTreeTest5Nodes` and
 //! `CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC` failed the same way
-//! through `x' \in S` and through printing a set filter.
+//! through `x' \in S` and through printing a set filter, which TLC streams too
+//! (the default order of `Enumerable.elements()`). For a *bound*, TLC asks for
+//! the normalized order and materializes every domain but `SUBSET S`, so only
+//! the `SUBSET` quantifier here is a claim of agreement with TLC; the
+//! `[S -> T]` one documents tlx's streaming where TLC stops at `-maxSetSize`
+//! (`docs/compat.md` section 5).
 
 use std::path::Path;
 use std::time::Duration;
