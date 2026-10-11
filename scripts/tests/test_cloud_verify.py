@@ -928,23 +928,24 @@ class Oracle(unittest.TestCase):
 
     def test_the_declared_trace_inputs_reach_the_cloud_bundle(self):
         # The staging fix is only usable in the cloud if the input a root-relative
-        # model reads is in the uploaded third_party/ tree: EWD998ChanTrace's trace
-        # lives under Examples/ (corpus.EX is that root), which THIRD_PARTY_FILTER
-        # includes; a dry run proves the real rsync pattern keeps it and still
-        # drops the jars the filter excludes.
+        # model declares (corpus.MODEL_INPUTS, named relative to the corpus root =
+        # third_party/Examples) is in the uploaded third_party/ tree. A dry run
+        # proves the real rsync pattern keeps it and still drops the jars the
+        # filter excludes. The bytes are synthetic: the filter is about paths, and
+        # a quality CI checkout (--tests-only) has no third_party/Examples.
         import corpus
+        if not shutil.which('rsync'):
+            self.skipTest('rsync is not installed')
         self.assertTrue(corpus.MODEL_INPUTS, "no declared model inputs to package")
         for model_id, inputs in corpus.MODEL_INPUTS.items():
             self.assertIn(model_id, corpus.ROOT_RELATIVE_MODELS)
             for name in inputs:
-                source = os.path.join('third_party', 'Examples', *name.split('/'))
-                if not os.path.isfile(source):
-                    self.skipTest(f"{source} is not in this checkout")
                 with tempfile.TemporaryDirectory() as base:
                     src, dst = os.path.join(base, 'src'), os.path.join(base, 'dst')
                     staged = os.path.join(src, 'Examples', *name.split('/'))
                     os.makedirs(os.path.dirname(staged))
-                    shutil.copyfile(source, staged)
+                    with open(staged, 'w') as stream:
+                        stream.write('{"N": 1}\n')
                     with open(os.path.join(src, 'tla2tools.jar'), 'w') as stream:
                         stream.write('x')
                     p = subprocess.run(['rsync', '-ni', '-a', *cloud_common.THIRD_PARTY_FILTER, src + '/', dst + '/'],

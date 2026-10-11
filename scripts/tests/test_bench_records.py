@@ -1053,6 +1053,15 @@ class InputIdentityTest(unittest.TestCase):
             stream.write('{"N": 1}\n')
         self.assertNotEqual(before, content_digest(self.model(root=self.root)))
 
+    def test_the_oracle_tlc_arguments_are_part_of_the_identity(self):
+        # The extra TLC arguments decide TLC's own counts, so two argument sets
+        # are two inputs: the active pin's `generated` count stays deterministic
+        # only while the key names the arguments (docs/compat.md D-25).
+        base = self.model(root=self.root)
+        self.assertNotEqual(content_digest(base), content_digest({**base, 'tlc_args': ['-fp', '0']}))
+        self.assertNotEqual(content_digest({**base, 'tlc_args': ['-fp', '0']}),
+                            content_digest({**base, 'tlc_args': ['-fp', '1']}))
+
     def test_relocated_identical_inputs_keep_their_identity(self):
         other = os.path.join(self.tmp.name, 'checkout')
         shutil.copytree(self.root, other)

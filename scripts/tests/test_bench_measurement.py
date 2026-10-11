@@ -10,6 +10,7 @@ model-checking pass is replaced at the seam where its command enters
 (`tlc.tlc_cmd`), which keeps the fixtures fast and JVM-free.
 """
 
+import argparse
 import json
 import os
 import signal
@@ -22,8 +23,11 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import bench
+from benchmarking import bench_budget
 from benchmarking import bench_disk
 from benchmarking import bench_profile
+from benchmarking import models
+from benchmarking.commands import tlcbase
 import testkit
 import tlc
 import tlxlib
@@ -517,6 +521,70 @@ class TimeoutClassification(unittest.TestCase):
              patch.object(bench, "tlx_cmd", return_value=["fake", "check"]):
             r = bench.tlx(self.model, [], 120)
         self.assertEqual((r["result"], r["wall_s"]), ("timeout", 120))
+
+
+class TlcCollectorArguments(testkit.GuardedTestCase):
+    """Every benchmark TLC collector passes the model's oracle arguments.
+
+    A pinned `generated` count (EWD998ChanTrace's 11169 under `-fp 0`,
+    docs/compat.md D-25) is deterministic only if the collectors that build a
+    TLC baseline - not just `scripts/corpus.py` - pass the model's `tlc_args`,
+    and the arguments are part of the input identity.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix="tlx-collector-args-")
+        self.addCleanup(self.tmp.cleanup)
+        self.tla = os.path.join(self.tmp.name, "M.tla")
+        self.cfg = os.path.join(self.tmp.name, "M.cfg")
+        for path, text in ((self.tla, "---- MODULE M ----\n====\n"), (self.cfg, "INIT Init\n")):
+            with open(path, "w") as stream:
+                stream.write(text)
+        self.model = {"id": "M", "tla": self.tla, "cfg": self.cfg, "features": [], "flags": [],
+                      "tlc_args": ["-fp", "0"]}
+        self.args = {}
+        self.addCleanup(lambda: bench_budget.configure(argparse.Namespace()))
+        bench_budget.configure(argparse.Namespace())  # no deadline for a collector probe
+
+    def capture_tlc_cmd(self, spec, args, features=(), **kw):
+        self.args["cmd"] = [str(a) for a in args]
+        return ["java", *self.args["cmd"], kw.get("module") or os.path.basename(spec)]
+
+    def assert_oracle_arguments(self):
+        cmd = self.args["cmd"]
+        self.assertIn("-fp", cmd)
+        self.assertEqual(cmd[cmd.index("-fp") + 1], "0")
+
+    def fake_proc(self, cmd, *args, **kwargs):
+        self.args["cmd"] = [str(x) for x in cmd]
+        return ProcResult(stdout="Model checking completed. No error has been found.\n", stderr="",
+                          returncode=0, wall=0.1, timed_out=False, rusage=RUSAGE)
+
+    def test_the_shared_rule_is_the_models_own_oracle_arguments(self):
+        self.assertEqual(models.oracle_tlc_args(self.model), ["-fp", "0"])
+        self.assertEqual(models.oracle_tlc_args({}), [])
+
+    def test_bench_collect_tlc_passes_the_oracle_arguments(self):
+        with patch.object(bench, "run_proc", self.fake_proc), \
+             patch.object(tlc, "tlc_cmd", self.capture_tlc_cmd):
+            bench._collect_tlc(self.model, 1, 10)
+        self.assert_oracle_arguments()
+
+    def test_tlcbase_measured_collector_passes_the_oracle_arguments(self):
+        with patch.object(bench, "run_proc", self.fake_proc), \
+             patch.object(tlc, "tlc_cmd", self.capture_tlc_cmd):
+            tlcbase._collect_tlc_measured(self.model, 1, 10)
+        self.assert_oracle_arguments()
+
+    def test_disk_collector_passes_the_oracle_arguments(self):
+        sampler = SimpleNamespace(io={}, peak_disk=0, samples=[], peak_cg=0)
+        run = SimpleNamespace(rusage=RUSAGE, sampler=sampler, problems=[],
+                              output="Model checking completed. No error has been found.\n", wall=0.1, returncode=0,
+                              timed_out=False)
+        with patch.object(bench_disk, "run_sampled", lambda *a, **k: run), \
+             patch.object(tlc, "tlc_cmd", self.capture_tlc_cmd):
+            bench_disk._collect_tlc(self.model, 1, 10, 512, 64)
+        self.assert_oracle_arguments()
 
 
 if __name__ == "__main__":

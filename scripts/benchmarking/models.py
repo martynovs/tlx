@@ -4,7 +4,7 @@ import re
 import sys
 import shutil
 
-from tlxlib import ROOT, TP, EXTERNAL_PREFIX, load_oracle
+from tlxlib import ROOT, TP, EXTERNAL_PREFIX, load_oracle, local_path
 
 DEFAULT = [
     "TeachingConcurrency/SimpleRegular",
@@ -123,28 +123,48 @@ def stress_models(ids):
     return out
 
 
-def input_layout(model_id):
-    """The run layout the corpus manifest declares for `model_id`, or `{}`.
+def declared_run_fields(model_id):
+    """The run fields the corpus manifest declares for `model_id`, or `{}`.
 
-    `{cwd, root, inputs}`: where the model runs and the input files it resolves
-    there, read from `corpus` (the manifest reader) rather than from whichever
-    oracle row is cached. A model's identity (`benchmarking.baselines.content_digest`)
+    `{cwd, root, inputs, tlc_args}`: where the model runs, the input files it
+    resolves there and the extra TLC arguments its oracle is collected with -
+    read from `corpus` (the manifest reader) rather than from whichever oracle
+    row is cached. A model's identity (`benchmarking.baselines.content_digest`)
     and staging therefore follow the tracked manifest, so a stale oracle row
-    cannot silently drop the working directory or the trace data a run reads.
+    cannot silently drop the working directory, the trace data a run reads, or
+    the fingerprint polynomial that makes its counts deterministic.
     """
     import corpus
-    if model_id not in corpus.ROOT_RELATIVE_MODELS and model_id not in corpus.MODEL_INPUTS:
-        return {}
     fields = {}
-    if model_id in corpus.ROOT_RELATIVE_MODELS:
-        fields["cwd"] = corpus.CORPUS_ROOT_CWD
-        # `corpus.EX` is the Examples root; an external model carries its own
-        # root from the manifest instead. Today the set names Examples models.
-        if not model_id.startswith(EXTERNAL_PREFIX):
-            fields["root"] = corpus.EX
-    if model_id in corpus.MODEL_INPUTS:
-        fields["inputs"] = list(corpus.MODEL_INPUTS[model_id])
+    if model_id in corpus.ROOT_RELATIVE_MODELS or model_id in corpus.MODEL_INPUTS:
+        if model_id in corpus.ROOT_RELATIVE_MODELS:
+            fields["cwd"] = corpus.CORPUS_ROOT_CWD
+            # `corpus.EX` is the Examples root; an external model carries its
+            # own root from the manifest instead. Today the set names Examples
+            # models. `local_path` keeps the root in the checkout the model's
+            # tla/cfg were localized to (`load_oracle`), so the run directory
+            # and the spec resolve to the same tree in a worktree too.
+            if not model_id.startswith(EXTERNAL_PREFIX):
+                fields["root"] = local_path(corpus.EX)
+        if model_id in corpus.MODEL_INPUTS:
+            fields["inputs"] = list(corpus.MODEL_INPUTS[model_id])
+    if model_id in corpus.TLC_ORACLE_ARGS:
+        fields["tlc_args"] = list(corpus.TLC_ORACLE_ARGS[model_id])
     return fields
+
+
+def oracle_tlc_args(m):
+    """The extra TLC arguments one benchmark run of model `m` passes TLC.
+
+    These are the model's oracle-collection arguments (e.g. the `-fp 0` that
+    fixes the order of `VectorClocks!CausalOrder`'s concurrent log lines, so
+    the `generated` count is deterministic - docs/compat.md D-25). Every
+    benchmark TLC collector appends them, so a collected baseline matches the
+    oracle; they are also part of the input identity
+    (`benchmarking.baselines.content_digest`), so two argument sets cannot share
+    one key.
+    """
+    return list(m.get("tlc_args") or [])
 
 
 def oracle(ids=()):
@@ -173,8 +193,8 @@ def oracle(ids=()):
                 d[m["id"]] = entry
     # The declared run layout is the tracked manifest's, not the cached row's.
     for k, m in list(d.items()):
-        if layout := input_layout(k):
-            d[k] = {**m, **layout}
+        if fields := declared_run_fields(k):
+            d[k] = {**m, **fields}
     return d
 
 

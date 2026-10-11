@@ -320,6 +320,7 @@ def _collect_tlc(m, workers, timeout):
     args = ["-config", m["cfg"], "-workers", str(workers)]
     if m.get("flags"):
         args += m["flags"] + ["-seed", "1"]
+    args += bench_models.oracle_tlc_args(m)
     spec = os.path.abspath(m["tla"])
     with bench_measure.staged_tlc_run(m) as (cwd, module):
         cmd = tlc_cmd(spec, args, m.get("features") or (), module=module)

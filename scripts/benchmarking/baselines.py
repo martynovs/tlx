@@ -120,7 +120,9 @@ def content_digest(model):
     inputs fail closed. Standard/community jar bytes are part of the key. The
     run's effective working directory and the input files staging resolves from
     it are part of the identity too (`input_layout`): a run started somewhere
-    else, or against a different trace, is a different measurement.
+    else, or against a different trace, is a different measurement. So are the
+    extra TLC arguments the oracle is collected with (`-fp 0`): they decide
+    TLC's own counts, so two argument sets cannot share a key.
     """
     cfg, tla = Path(model['cfg']), Path(model['tla'])
     if not cfg.is_file() or not tla.is_file():
@@ -156,6 +158,8 @@ def content_digest(model):
             'constraints': model.get('measurement_constraints')}
     if layout:
         body['layout'] = layout
+    if tlc_args := [str(a) for a in model.get('tlc_args') or ()]:
+        body['tlc_args'] = tlc_args
     return digest(body)
 
 

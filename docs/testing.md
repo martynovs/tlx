@@ -364,7 +364,9 @@ identity of the run moved together in one baseline upgrade: `corpus.MODEL_INPUTS
 the model reads from its run directory, and `benchmarking.baselines.content_digest` carries the
 effective working directory and the resolved bytes of every declared input, so the pre-fix staging's
 evidence cannot satisfy the corrected run. The corrected row is success with 659 distinct states,
-11,169 generated states and depth 655; the frozen pre-fix `error` records stay historical.
+11,169 generated states and depth 655; the frozen pre-fix `error` records stay historical. The
+durable receipt, including the corrected identity and the TLC/tlx counts, is
+[bench/validation/2026-10-11/ewd998-chantrace-oracle.json](../bench/validation/2026-10-11/ewd998-chantrace-oracle.json).
 
 ### 6.2 Differential run: `scripts/difftest.py`
 

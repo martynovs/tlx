@@ -58,6 +58,7 @@ import threading
 import time
 
 from benchmarking import measurement
+from benchmarking import models as bench_models
 from tlxlib import ROOT
 
 PROGRESS = re.compile(r"Progress\((\d+)\) at .*?: ([\d,]+) states generated.*?, ([\d,]+) distinct states found")
@@ -454,7 +455,8 @@ def _collect_tlc(m, workers, timeout, heap_mib, direct_mib, cg_mib=None):
                "-Dtlc2.TLC.progressInterval=10"]
         spec = os.path.abspath(m["tla"])
         cwd = measurement.tlc_run_dir(m)
-        cmd = tlc_cmd(spec, ["-config", m["cfg"], "-workers", str(workers)], m.get("features") or (),
+        args = ["-config", m["cfg"], "-workers", str(workers)] + bench_models.oracle_tlc_args(m)
+        cmd = tlc_cmd(spec, args, m.get("features") or (),
                       jvm_extra=jvm, state_dir=md, module=os.path.relpath(spec, cwd))
         check_tlc_model(cmd, cwd)
         with tlc_slot() as slot:

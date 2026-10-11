@@ -1,0 +1,52 @@
+{
+  "scope": "Correctness-oracle and staging migration for ewd998/EWD998ChanTrace; kept separate from the frozen initial baseline in bench/records/ and docs/performance.md.",
+  "date": "2026-10-11",
+  "model": "ewd998/EWD998ChanTrace",
+  "staging": {
+    "cwd": "corpus-root (the Examples root, corpus.EX / a model marked `cwd: root`)",
+    "declared_inputs": [
+      "specifications/ewd998/EWD998ChanTrace.ndjson"
+    ],
+    "input_sha256": {
+      "specifications/ewd998/EWD998ChanTrace.ndjson": "0d288659698fe0a4db105988cdb326065aba82bf547b3473b94c760fc31bada5"
+    },
+    "note": "The pre-fix staging ran the model in its spec directory, where this relative input does not resolve; the corrected staging runs it in the corpus root (docs/testing.md section 6.1)."
+  },
+  "identity": {
+    "content_digest": "a0367824be223085e597cc7a8704fa36ee72097030fe5dc2e66d8f61896e59c8",
+    "dimensions": [
+      "the effective working directory when it is not the spec's own (a `corpus-root` token, never an absolute path)",
+      "the resolved bytes of every declared input",
+      "the oracle TLC arguments (`-fp 0`)"
+    ],
+    "note": "Computed over the corrected model. The frozen bench/report-policy.json baseline_inputs entry (d2750772b157...) still describes the frozen baseline and is not relabelled."
+  },
+  "tlc_oracle": {
+    "collected_by": "scripts/corpus.py tlc --ids ewd998/EWD998ChanTrace --timeout 180 (TLX_TLC_XMX=2g, one JVM)",
+    "tla2tools_revision": "1813307068bbc5759a441df820f3f548948d6b7a",
+    "arguments": ["-fp", "0", "-workers", "1"],
+    "module_argument": "specifications/ewd998/EWD998ChanTrace.tla",
+    "counts": {"result": "success", "distinct": 659, "generated": 11169, "depth": 655},
+    "stored_at": "corpus/out/tlc.json row ewd998/EWD998ChanTrace (git-ignored per checkout); this file is its durable receipt"
+  },
+  "benchmark_collector": {
+    "collected_by": "bench._collect_tlc(model, workers=1, timeout=180) (TLX_TLC_XMX=2g, one JVM)",
+    "arguments": ["-workers", "1", "-fp", "0"],
+    "module_argument": "specifications/ewd998/EWD998ChanTrace.tla",
+    "counts": {"result": "success", "distinct": 659, "generated": 11169, "depth": 655}
+  },
+  "tlx_parity": {
+    "checked_by": "scripts/difftest.py --filter EWD998ChanTrace --timeout 180",
+    "mode": "default",
+    "workers": 1,
+    "counts": {"result": "success", "distinct": 659, "generated": 11169, "depth": 655},
+    "verdict": "PASS (result, distinct, generated, depth)"
+  },
+  "frozen_baseline": {
+    "bench/records": "unchanged",
+    "bench/tlc-baselines": "unchanged",
+    "docs/performance.md": "unchanged",
+    "report_check": "python3 scripts/bench.py report --check: 0 problems"
+  },
+  "machine": {"os": "darwin", "arch": "arm64", "java": "openjdk 21"}
+}

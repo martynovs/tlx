@@ -124,7 +124,8 @@ def _collect_tlc_measured(m, workers, timeout, jvm_extra=(), default_heap=True):
     JVM options (e.g. -Xmx; it wins over `default_heap`)."""
     import bench
     from tlc import metadir, tlc_cmd
-    args = ["-config", m["cfg"], "-workers", str(workers)] + bench_models.bench_flags(m)
+    args = (["-config", m["cfg"], "-workers", str(workers)] + bench_models.bench_flags(m)
+            + bench_models.oracle_tlc_args(m))
     load0 = os.getloadavg()[0]
     spec = os.path.abspath(m["tla"])
     with bench_measure.staged_tlc_run(m) as (cwd, module):
