@@ -14,8 +14,10 @@ driver's own directory and the model's relative input was not there.
 """
 
 import os
+import json
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import corpus
 import testkit
@@ -49,16 +51,25 @@ class ModelCwd(testkit.GuardedTestCase):
             tlxlib.model_cwd(m)
 
     def test_the_marked_corpus_model_names_the_corpus_root(self):
-        ms = {m["id"]: m for m in corpus.models(float("inf"))}
-        m = ms["ewd998/EWD998ChanTrace"]
-        self.assertEqual(m["cwd"], "root")
-        self.assertEqual(m["root"], corpus.EX)
-        self.assertFalse(m.get("scratch"))
-        # The input its spec names relative to that root is the checked-in trace
-        # (`EWD998ChanTrace.tla`: `specifications/ewd998/EWD998ChanTrace.ndjson`).
-        self.assertTrue(os.path.isfile(os.path.join(m["root"], "specifications", "ewd998", "EWD998ChanTrace.ndjson")))
-        for other in ("ewd998/EWD998ChanID", "ewd998/EWD998ChanTrace"):
-            self.assertEqual(ms[other].get("cwd"), None if other.endswith("ChanID") else "root")
+        with tempfile.TemporaryDirectory() as root:
+            directory = os.path.join(root, 'specifications', 'ewd998')
+            os.makedirs(directory)
+            modules = [{'path': f'specifications/ewd998/{name}.tla', 'models': [
+                {'path': f'specifications/ewd998/{name}.cfg', 'mode': 'exhaustive search',
+                 'runtime': '00:00:01'}]} for name in ('EWD998ChanID', 'EWD998ChanTrace')]
+            with open(os.path.join(directory, 'manifest.json'), 'w') as stream:
+                json.dump({'modules': modules}, stream)
+            with open(os.path.join(directory, 'EWD998ChanTrace.ndjson'), 'w') as stream:
+                stream.write('{}\n')
+            with patch.object(corpus, 'EX', root):
+                ms = {m['id']: m for m in corpus.models(float('inf'))}
+            m = ms['ewd998/EWD998ChanTrace']
+            self.assertEqual(m['cwd'], 'root')
+            self.assertEqual(m['root'], root)
+            self.assertFalse(m.get('scratch'))
+            self.assertTrue(os.path.isfile(os.path.join(m['root'], 'specifications', 'ewd998',
+                                                       'EWD998ChanTrace.ndjson')))
+            self.assertIsNone(ms['ewd998/EWD998ChanID'].get('cwd'))
 
     def test_the_id_filter_selects_exactly_the_named_models(self):
         # (The refresh recipe of a row whose result a staging fix changed:

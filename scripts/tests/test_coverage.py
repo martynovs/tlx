@@ -5,6 +5,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import shutil
 from unittest.mock import patch
 import coverage as C
 
@@ -191,12 +192,33 @@ class SubprocessFailures(unittest.TestCase):
         for driver in ('coverage.py', 'bench.py'):
             with self.subTest(driver=driver), tempfile.TemporaryDirectory() as tmp:
                 out = os.path.join(tmp, 'report.json')
-                cmd = [sys.executable, os.path.join(os.path.dirname(os.path.dirname(__file__)), driver)]
+                # Copy the complete import closure rather than depending on a
+                # contributor's installed Examples corpus or a hand-picked module list.
+                scripts = os.path.join(tmp, 'scripts')
+                shutil.copytree(os.path.dirname(os.path.dirname(__file__)), scripts,
+                                ignore=shutil.ignore_patterns('__pycache__'))
+                spec_dir = os.path.join(tmp, 'third_party', 'Examples', 'specifications', 'fixture')
+                os.makedirs(spec_dir)
+                with open(os.path.join(spec_dir, 'manifest.json'), 'w') as stream:
+                    json.dump({'modules': [{'path': 'specifications/fixture/Silent.tla', 'models': [
+                        {'path': 'specifications/fixture/Silent.cfg', 'mode': 'exhaustive search',
+                         'runtime': '00:00:01'}]}]}, stream)
+                for filename, text in [('Silent.tla', "---- MODULE Silent ----\nVARIABLE x\nInit == x = 0\nNext == x' = x\n====\n"),
+                                       ('Silent.cfg', 'INIT Init\nNEXT Next\n')]:
+                    with open(os.path.join(spec_dir, filename), 'w') as stream:
+                        stream.write(text)
+                subprocess.run(['git', 'init', '-q', tmp], check=True, capture_output=True)
+                subprocess.run(['git', '-C', tmp, '-c', 'user.name=Test Fixture',
+                                '-c', 'user.email=fixture@example.com', '-c', 'commit.gpgsign=false',
+                                'commit', '--allow-empty', '-qm', 'fixture'], check=True, capture_output=True)
+                cmd = [sys.executable, os.path.join(scripts, driver)]
                 if driver == 'bench.py':
                     cmd += ['coverage']
-                cmd += ['--dynamic', '--filter', 'transaction_commit/TCommit', '--bin', '/usr/bin/true', '--timeout', '1', '--out', out]
-                p = subprocess.run(cmd, capture_output=True, text=True)
+                cmd += ['--dynamic', '--filter', 'fixture/Silent', '--bin', '/usr/bin/true',
+                        '--timeout', '1', '--out', out]
+                p = subprocess.run(cmd, cwd=tmp, capture_output=True, text=True)
                 self.assertEqual(p.returncode, 2, p.stdout + p.stderr)
+                self.assertTrue(os.path.isfile(out), p.stdout + p.stderr)
                 with open(out) as f:
                     r = json.load(f)
                 self.assertEqual(r['selected'], 1)

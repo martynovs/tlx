@@ -1010,6 +1010,8 @@ class ArchivedSourceTest(unittest.TestCase):
         (self.root / 'docs').mkdir()
         (self.root / 'bench/suite.json').write_text(json.dumps({'models': [{'id': 'M'}]}))
         self.git('-c', 'init.defaultBranch=main', 'init', '-q')
+        self.git('config', 'user.name', 'Test Fixture')
+        self.git('config', 'user.email', 'fixture@example.com')
         self.source = self.root / 'bench' / 'history' / 'old.json'
         self.source.parent.mkdir()
         self.source.write_text(json.dumps({'commit': 'abc', 'runs': {
