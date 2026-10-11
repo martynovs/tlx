@@ -97,15 +97,17 @@ def optimizations(r):
 def reduction_note(r):
     """One row's `tlx optimizations` cell: what the record states, or why not.
 
-    `none` is "this row records its samples, and they name no optimization";
-    `unknown` is a row without per-sample detail, where unknown metadata stays
-    unknown rather than reading as an unreduced search.
+    `none` requires every recorded sample to state its optimization list and
+    name nothing. A sample without the key leaves the cell `unknown`: the
+    record does not say what that run used, and the older compatible samples
+    have exactly that shape, so absence must not read as "no optimization".
     """
     named = optimizations(r)
     if named:
         return '; '.join(named)
     raw = r.get('raw_result') or {}
-    return 'none' if raw.get('samples') or raw.get('warmups') else 'unknown'
+    samples = [*(raw.get('samples') or []), *(raw.get('warmups') or [])]
+    return 'none' if samples and all('optimizations' in s for s in samples) else 'unknown'
 
 
 def eligible(r):
@@ -166,16 +168,16 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
            'store file. The current measurement store ships with the sources ([benchmarking.md](benchmarking.md) section 6); '
            'the record links can be inspected in a fresh clone.',
            'A tlx time is the median of the timed samples, and each timed sample is a separate process run that follows a discarded '
-           'warm-up; the warm-up builds the native library once for the configuration, so the timed run does not pay for that build. '
-           'The discarded run is not an isolated cold-cache measurement - the native cache is only rebuilt when the build is missing, '
-           'and it is shared by the configurations of one batch ([benchmarking.md](benchmarking.md) section 1 owns the protocol); a '
-           'cold-cache number needs the fresh-cache conditions the `ttfr` lane states. A TLC time is its one process, including its own '
-           'start-up.',
+           'warm-up. The native library a timed run uses may already be in the cache the warm-up filled, and that cache is shared '
+           'by the configurations of one batch instead of being isolated per configuration, so the discarded run is not a '
+           'cold-cache measurement ([benchmarking.md](benchmarking.md) section 1 owns the protocol); a cold-cache number needs the '
+           'fresh-cache conditions the `ttfr` lane states. A TLC time is its one process, including its own start-up.',
            'A row whose record names optimizations (`tlx optimizations` below: the run\'s own `Optimizations:` line, '
-           '[usage.md](usage.md) section 6.3) explored a reduced search, so its ratio compares that reduced search with TLC\'s '
-           'unreduced one and includes the reduction. The label is the record\'s own statement; a count difference is not used to '
-           'infer it, and `-compile` rows carry it too. `none` means the row\'s samples name no optimization, `unknown` a row whose '
-           'record carries no per-sample detail.',
+           '[usage.md](usage.md) section 6.3) ran with them, so the counts are those of that reduced search. The column states '
+           'what the record says about the tlx run; it does not claim the TLC baseline was unreduced, and the default-mode '
+           'contract does not make a count difference a substitute for the record\'s own line ([compat.md](compat.md) section 0). '
+           '`none` means every recorded sample states its optimization list and names none; `unknown` means the record does not '
+           'state it for every sample.',
            'See [benchmark inputs and evidence](../bench/README.md) for verification and reproduction. '
            'Superseded measurements and backup archives are kept outside the published tree.', '']
     if report_note:
@@ -185,7 +187,7 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
     for section in SECTIONS:
         out += ['## ' + section, '']
         if section == 'Summary':
-            out += ['| Category / instance / mode / workers | Models | Median TLC / tlx | Range | Reduced models | Evidence |',
+            out += ['| Category / instance / mode / workers | Models | Median TLC / tlx | Range | Models with recorded optimizations | Evidence |',
                     '|---|---:|---:|---:|---:|---|']
             groups = {}
             for r in rows:
@@ -272,8 +274,9 @@ def render(records, suite, *, stale_after=20, ages=None, baseline_inputs=None, r
             rs = [r for r in rows if predicates[section](r)]
             if section == SECTIONS[1]:
                 out += ['Corpus coverage is the manifest selection, including missing records. A partial selection is not a whole-corpus speedup. '
-                        'Each ratio here is the timed tlx run (after the discarded warm-up) against TLC\'s single process; the '
-                        '`tlx optimizations` column marks the rows whose two sides did not explore the same state space.', '']
+                            'Each ratio here is the timed tlx run (after the discarded warm-up) against TLC\'s single process; the '
+                        '`tlx optimizations` column names the optimization the tlx record states, so a row whose tlx run was '
+                        'reduced says so.', '']
             if not rs:
                 out += ['No eligible records. See Coverage and gaps.', '']
                 continue

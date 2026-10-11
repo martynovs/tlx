@@ -30,10 +30,11 @@ missing modes and missing/stale TLC baselines. Every number is named by the reco
 the Evidence column carries that record's revision, instance, date and store file, as text
 as a link that resolves in a fresh clone (section 6.2); unknown provenance stays unknown. The
 report states its timing conditions next to the numbers - a tlx time is the median of the timed
-samples, each a separate process run after the discarded warm-up of section 1, which is not an
-isolated cold-cache measurement - and its `tlx optimizations` column carries the optimization the
-recorded samples name, so a ratio whose tlx side explored a reduced search says so (the summary
-counts those rows). Historical markdown is retained as source material and is
+samples, each a separate process run after the discarded warm-up of section 1, which is not a
+cold-cache measurement - and its `tlx optimizations` column carries the optimization the recorded
+samples name, so a row whose tlx run was reduced says so (the summary counts the rows that record
+one; `none` requires every sample to record an empty list, and a sample without the field is
+`unknown`). Historical markdown is retained as source material and is
 not updated. `bench.py table` now regenerates the fixed report without running measurements.
 
 Benchmark measurements captured with `wait4` (including suite warm-ups) own a new process group. On timeout,

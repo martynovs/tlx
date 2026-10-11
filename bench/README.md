@@ -38,10 +38,11 @@ evidence. Original collection locators remain metadata; raw runner histories are
 versions and records for other inputs or machines are archived outside this directory.
 
 The report states the measurement conditions it depends on: a tlx time is the median of the timed
-samples, each a separate process run after a discarded warm-up that builds the native library once,
-and the warm-up is not a cold-cache measurement (the cache is not isolated per configuration). A row
-whose recorded samples name an optimization carries that line in its `tlx optimizations` column,
-because its ratio compares the reduced search with TLC's unreduced one.
+samples, each a separate process run after a discarded warm-up, and the warm-up is not a cold-cache
+measurement (the native cache may be reused across the batch rather than isolated per configuration).
+A row carries the optimization its recorded samples name in the `tlx optimizations` column
+(`none` only when every sample records an empty list, `unknown` when the record does not state it),
+so a row whose tlx run was reduced says so without claiming what the TLC baseline was configured with.
 
 To run new measurements, fetch dependencies using `sh scripts/fetch-deps.sh` and
 `python3 scripts/fetch-external.py`, then resolve the suite with

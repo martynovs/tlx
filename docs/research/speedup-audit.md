@@ -62,8 +62,8 @@ mode end-to-end vs TLC" claims more than that for the fast rows, where the recor
 3.4-6.8x the timed value. A cold-cache number for these configurations exists only in the `ttfr`
 lane's protocol (a fresh `TLX_CACHE` per run); no such record is in this store. The generated report
 now states these conditions in its own text - a timed tlx value is a separate process run after a
-discarded warm-up, and the discarded run is not an isolated cold-cache measurement - without changing
-any published number.
+discarded warm-up whose cache may be reused, and the discarded run is not a cold-cache measurement -
+without changing any published number.
 
 **F3 - two rows compare different searches.** `MCPaxosSmall` (239x) and `PConProof` (181x) are
 default-mode runs that applied tlx's automatic symmetry of sets of model values
@@ -100,10 +100,17 @@ counts next to the ratio, so a reader who knows the rule can see it. The label t
 missing is now in the generator: `benchmarking.bench_records.render` reads the optimization line out
 of each record's own samples - never out of a count difference, which the default-mode contract
 permits for reasons the record does not state - and emits a `tlx optimizations` column on every
-measured row (`none` when the samples name none, `unknown` when the record carries no sample detail)
-plus a `Reduced models` count in the summary. 39 published rows in the store carry one, among them
+measured row: `none` only when every recorded sample states an empty list, `unknown` when the record
+does not state it for every sample (the older compatible rows are exactly that shape), and a
+`Models with recorded optimizations` count in the summary. 39 published rows in the store carry one,
+among them
 `ElevatorSafetyLarge` (published at 22.72x, below this audit's threshold) with
 `symmetry Permutations(Person)`: 10,365,445 reduced distinct states against TLC's 59,007,145.
+The column states the tlx side's record, not what the TLC baseline was configured with: a TLC
+baseline may declare `SYMMETRY` itself, so "the two sides explored different state spaces" is a
+separate claim that needs its own evidence. For the two candidates above that evidence exists in
+their configurations, which declare no `SYMMETRY` (checked in `MCPaxosSmall.cfg` and
+`PConProof.cfg`), together with the `-tlc` re-runs matching TLC's counts.
 The same store shows why a count difference cannot stand in for that line: two published rows have
 different distinct counts on the two sides and name no optimization, and both have an innocent
 reason - `ext/vanlightly-raft/pull-raft-KRaft -compile` stops at a deadlock, where the count is
@@ -116,8 +123,12 @@ sides; worker count, instance type, architecture and `cgroup_mib` equal; TLC ver
 reductions above are the exceptions, and both re-check equal under `-tlc`). Mode contract: the four
 `-tlc`/compatible rows (`MCRaftMongo` x2, `bench/ReprRaftMongo`, and the local `-tlc` re-runs of the
 reduction cases) satisfy tier 2 exactly, including distinct counts. The local re-runs of every
-candidate reproduced the stored counts, verdicts and digests with the release binary built from the
-current revision.
+candidate reproduced the stored counts, verdicts and digests, but they were run against the frozen
+measurements' original Rust source, now represented by `5dc582bde98a677524032753f133dc3692cd2e15`, whose `crates/` tree is
+`90c32255b973c17ea2a12c3b94feadff3f3c3d5b` - the tree [issues.md](../issues.md) records for the
+original measurement inputs - and not against the Rust fixes main has gained since. Those runs
+say nothing about how the fixes change any timing; the cloud benchmark of the fixed revision is a
+separate measurement.
 
 **F5 - no evidence of the checks being skipped wholesale; per-property correctness stays open.** The
 suspicion this audit was asked to test is that a large ratio comes from tlx silently dropping
@@ -180,10 +191,12 @@ not an engine-speed comparison; **pending** - the recorded evidence is consisten
 experiment is needed to name the cause. F1 (one TLC sample per denominator) applies to all 13 rows
 and is not repeated in the column.
 
-Every candidate was re-run locally with a release binary using the baseline Rust source (source-equivalent revision `5dc582bde98a677524032753f133dc3692cd2e15`), using the
-suite's own argument construction (worker count, tier flag, `-tlc`), each configuration at least
-twice in one sequence so that its first run paid the compile and the later ones ran from the cache;
-the counts, verdicts and content digests below are what the *stored* rows say:
+Every candidate was re-run locally with a release binary using the original baseline Rust source (now represented by `5dc582bde98a677524032753f133dc3692cd2e15`), the base revision
+the frozen measurements were taken on (F4 carries the tree identity), using the suite's own argument
+construction (worker count, tier flag, `-tlc`), each configuration at least twice in one sequence so
+that its first run paid the compile and the later ones ran from the cache. The table's counts,
+verdicts and content digests are what the *stored* rows say; the runs audit the frozen records, not
+the fixes main has gained since:
 
 | configuration (mode) | reproduced distinct / generated / depth | reproduced result | digest |
 |---|---|---|---|

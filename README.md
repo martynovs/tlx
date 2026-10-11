@@ -19,11 +19,12 @@ default mode**, across 184 completed configurations with matching TLC baselines.
 
 These measurements use Tencent SA5.4XLARGE32 instances (AMD EPYC 9754, 16 vCPU, 32 GB),
 one warm-up and three timed tlx repetitions. Times exclude the warm-up: the timed samples are
-separate process runs that do not pay for building the native library, whose cache is carried
-across the batch rather than isolated per configuration, so the discarded run is not a
-cold-cache measurement. Each ratio uses the same input, machine class and worker count as its
-TLC baseline, and the report marks every row whose record names an optimization - those tlx
-runs explored a reduced search, so their ratio includes the reduction. The mode cohorts differ.
+separate process runs that follow a discarded warm-up whose native cache may be reused across
+the batch, rather than isolated per configuration, so the discarded run is not a cold-cache
+measurement. Each ratio uses the same input, machine class and worker count as its TLC baseline,
+and the report names, per row, the optimization the tlx record states - a row that states one
+ran with it, so its counts are those of that reduced search; the row does not assert what the
+TLC side was configured with. The mode cohorts differ.
 Incomplete runs and expectation mismatches are excluded. See the
 [full performance report](docs/performance.md) and [initial benchmark issues](docs/issues.md)
 for coverage, slower cases and unresolved results.
