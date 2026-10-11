@@ -1,0 +1,34 @@
+version = 1
+note = "Original measurement revision identifiers are unchanged. After documentation-only history cleanup, these reachable revisions have identical Rust/workspace inputs; this does not claim byte-identical binaries or new measurements."
+
+[source_equivalents."517f59c67a0a80ddaee0445c9c413d7fe45780c5"]
+source_equivalent_revision = "5dc582bde98a677524032753f133dc3692cd2e15"
+crates_tree = "90c32255b973c17ea2a12c3b94feadff3f3c3d5b"
+[source_equivalents."517f59c67a0a80ddaee0445c9c413d7fe45780c5".sha256]
+"Cargo.toml" = "0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641"
+"Cargo.lock" = "a3accb8f37e52206e92365dd61f741ba0122a0e667bbb106d5a307e9a2afab2f"
+"rust-toolchain.toml" = "62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede"
+
+[source_equivalents."aa6f426018fb74ae981cc38b05e4f93b507a6b81"]
+source_equivalent_revision = "5dc582bde98a677524032753f133dc3692cd2e15"
+crates_tree = "90c32255b973c17ea2a12c3b94feadff3f3c3d5b"
+[source_equivalents."aa6f426018fb74ae981cc38b05e4f93b507a6b81".sha256]
+"Cargo.toml" = "0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641"
+"Cargo.lock" = "a3accb8f37e52206e92365dd61f741ba0122a0e667bbb106d5a307e9a2afab2f"
+"rust-toolchain.toml" = "62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede"
+
+[source_equivalents."0ea8d50e73e8569d9a7d3cc451035e85a8966398"]
+source_equivalent_revision = "e59632b14c15f858b89ee49817f7b88f63425067"
+crates_tree = "d2074da9fe5cef10dc9986f2548b759ea31ddc13"
+[source_equivalents."0ea8d50e73e8569d9a7d3cc451035e85a8966398".sha256]
+"Cargo.toml" = "0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641"
+"Cargo.lock" = "a3accb8f37e52206e92365dd61f741ba0122a0e667bbb106d5a307e9a2afab2f"
+"rust-toolchain.toml" = "62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede"
+
+[source_equivalents."e76ed2c52cbeae9c41cce44ea1025609a0b8f84c"]
+source_equivalent_revision = "d2a360051e601f5435709dfc39df00e2d3a782d7"
+crates_tree = "85e1d7e1e8002dd9fe8d455455ab46d5b82d1b4a"
+[source_equivalents."e76ed2c52cbeae9c41cce44ea1025609a0b8f84c".sha256]
+"Cargo.toml" = "0bf5e41720543745c8c53483e5f2b8f503ec08e877642a425b13c9acc6fa9641"
+"Cargo.lock" = "37a5fc9baa541aff4a7dc37c805cd09b060887e1d9a2ea356d6c519353a8eaa5"
+"rust-toolchain.toml" = "62774a7ceb3920b35db9f0632ef324fb941ee3bad9a9acb949e4c5bbd32fdede"

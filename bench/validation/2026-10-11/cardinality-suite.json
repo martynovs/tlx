@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC",
+      "size": "medium",
+      "timeout_s": 600,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "SpanningTree/SpanTreeTest5Nodes",
+      "size": "medium",
+      "timeout_s": 600,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    }
+  ],
+  "report": {
+    "stale_after_revisions": 20,
+    "corpus_scope": "all exhaustive/simulation configurations in the Examples manifests; unbounded generate uses fixed trace count"
+  }
+}

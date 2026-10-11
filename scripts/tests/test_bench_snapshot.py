@@ -69,6 +69,28 @@ class Snapshot(unittest.TestCase):
             self.assertEqual(data, path.read_bytes())
             self.assertEqual(manifest['files'][name], snapshot.digest(data))
 
+    def test_validation_artifacts_do_not_change_the_frozen_measurement_store(self):
+        from benchmarking.legacy import json_sources
+        validation = self.root / 'bench/validation/example/sampling.json'
+        validation.parent.mkdir(parents=True)
+        validation.write_text('{"models": []}')
+        history = self.root / 'bench/history/example.json'
+        history.parent.mkdir(parents=True)
+        history.write_text('{}')
+        self.assertIn('bench/history/example.json', json_sources(self.root))
+        self.assertNotIn('bench/validation/example/sampling.json', json_sources(self.root))
+
+    def test_fix_validation_evidence_is_included_without_changing_baseline(self):
+        path = self.root / 'bench/validation/example/run.json.gz'
+        path.parent.mkdir(parents=True)
+        import gzip
+        path.write_bytes(gzip.compress(b'{"result": "timeout"}', mtime=0))
+        snapshot.create(self.root, self.output)
+        self.assertEqual(snapshot.verify(self.output), 1)
+        with tarfile.open(self.output) as archive:
+            data = archive.extractfile(path.relative_to(self.root).as_posix()).read()
+            self.assertEqual(data, path.read_bytes())
+
     def test_pinned_report_note_survives_snapshot_reproduction(self):
         path = self.root / 'bench/report-policy.json'
         policy = json.loads(path.read_text())

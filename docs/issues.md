@@ -12,7 +12,6 @@ completion or performance on the original benchmark configuration.
 
 | Configuration | Remaining work |
 |---|---|
-| `CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC` and `SpanningTree/SpanTreeTest5Nodes` | Run the original configurations within explicit bounds; streaming removes the premature overflow but does not make their large enumerations cheap. Keep incomplete runs excluded. |
 | `ext/vanlightly-kafka/kafka_replication_v3_5`, compiled 16 workers and default one worker | Collect repeated same-instance before/after samples with explicit cache conditions. Investigate remaining layout migration and interpreted-region costs; compiler cancellation alone does not establish that the timeout problem is solved. |
 
 Other long-running configurations still need completion or a documented resource bound:
@@ -22,6 +21,13 @@ and `ewd998/EWD998`. Several matching TLC runs also timed out; a timeout is not 
 The [frozen observations](../bench/README.md#timeout-observations-at-the-freeze-point) retain the
 original limits and TLC results. Later successful runs, including extended retries, need review
 before they become a new baseline.
+
+## Enumeration resource limits
+
+CarTalkPuzzle Model_3 and SpanTreeTest5Nodes no longer fail immediately on cardinality overflow,
+but both reached the 600-second warm-up limit with no timed samples in the
+[post-fix validation](research/post-fix-validation.md). Their large enumerations still
+need optimization or a documented larger resource bound; neither is a completed timing.
 
 ## Liveness resource limit
 

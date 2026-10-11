@@ -13,6 +13,7 @@ Superseded measurements, source bundles, packaged snapshots and one-off analysis
 | `records/` | Current canonical tlx measurements, including excluded/incomplete evidence |
 | `tlc-baselines/` | TLC records matching the current input/version/machine keys |
 | `environment/` | Machine descriptions, sampling configurations, source checks and outcomes |
+| `validation/` | Subsequent fix-validation evidence, kept separate from the frozen baseline |
 
 The initial baseline was frozen on 2026-10-11 at 08:51:23 +08:00. The source-equivalent initial commit is found with
 `git rev-list --max-parents=0 HEAD`. Measurements retain their original source identity in the
@@ -145,3 +146,14 @@ worker count. Timeout durations are lower bounds, not completed TLC timings.
 | `detector_chan96/EnvironmentController` | 1 | 7,200.090 | Timeout |
 | `diskpaxos/MC_HDiskSynod` | 1 | 7,200.293 | Timeout |
 | `ewd998/EWD998` | 1 | 7,200.309 | Timeout |
+
+## Subsequent validation
+
+The [2026-10-11 fix validation](../docs/research/post-fix-validation.md) records completed CCF and
+MCInnerSerial checks, bounded enumeration timeouts, and the single-sample Kafka diagnostic.
+It does not change the initial baseline or establish a repeated Kafka speedup.
+
+Documentation-only history cleanup changes Git commit identifiers.
+[source-equivalents.toml](environment/source-equivalents.toml) maps the original measured
+revisions to reachable revisions with identical Rust/workspace inputs. Measurement files keep
+their original identities; this mapping does not relabel or repeat a measurement.

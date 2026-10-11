@@ -77,3 +77,6 @@ git show af7011f530a61750ef5c770a37f570b91a6db1e0:docs/notes/state-representatio
 | [cloud-verification.md](cloud-verification.md) | Where work runs (cloud instances against the shared workstation), `scripts/cloud_verify.py`, launch admission and budgets, provider identity, the operator's ssh allowlist. |
 | [unsafe-audit.md](unsafe-audit.md) | Inventory and justification of every `unsafe` block and the FFI boundary to generated C. |
 | [performance.md](performance.md) | Generated: the canonical TLC/tlx performance report (median wall time per cohort, instance, mode and worker count), naming the record behind every measurement and, per row, the optimization the tlx record states, so a row whose tlx run was reduced says so. |
+
+[Post-fix validation](research/post-fix-validation.md) records original-model checks and diagnostic
+measurements separately from the frozen initial baseline.

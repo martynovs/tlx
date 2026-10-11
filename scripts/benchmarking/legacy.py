@@ -79,12 +79,17 @@ def source_bytes(root, source):
 
 
 def json_sources(root):
-    """Every JSON artifact the store imports: the working tree plus the archive."""
+    """Measurement sources for the canonical store, including archived sources.
+
+    Post-fix validation artifacts have separate sampling and interpretation;
+    they are published evidence but never implicitly promoted into the frozen store.
+    """
     found = [p.relative_to(root).as_posix() for p in sorted((root / 'bench').rglob('*.json'))
-             if p.parts[-2] not in ('records', 'tlc-baselines') and p.name not in NOT_SOURCES]
+             if p.parts[-2] not in ('records', 'tlc-baselines') and p.name not in NOT_SOURCES
+             and p.relative_to(root).parts[:2] != ('bench', 'validation')]
     _, archived = archive_inventory(root)
     found += [s for s in sorted(archived)
-              if s.endswith('.json') and s.count('/') >= 1
+              if s.endswith('.json') and s.count('/') >= 1 and not s.startswith('bench/validation/')
               and s.rsplit('/', 2)[-2] not in ('records', 'tlc-baselines')
               and s.rsplit('/', 1)[-1] not in NOT_SOURCES and s not in found]
     return found

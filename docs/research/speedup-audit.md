@@ -1,5 +1,10 @@
 # Auditing the published speedups above 100x
 
+Source identifiers below name reachable, source-equivalent commits in this history.
+The original measurement and reproduction identifiers remain in the evidence files; [source-equivalents.toml](../../bench/environment/source-equivalents.toml)
+maps those original identities to revisions with identical Rust/workspace inputs.
+This source mapping does not claim that a historical measurement ran on a rewritten commit.
+
 The frozen store's published table contains ratios far above the typical 5-10x
 ([performance.md](../performance.md)). This report audits the 13 configurations whose *paired*
 tlx/TLC ratio the report publishes above 100x at the 2026-10-11 freeze, states which of them are

@@ -17,7 +17,7 @@ from benchmarking import bench_records, bench_suite
 ROOT = Path(__file__).resolve().parents[2]
 INPUTS = ('bench/README.md', 'bench/suite.json', 'bench/report-policy.json',
           'bench/repr-models.toml', 'bench/repr-configs/', 'bench/stress/', 'bench/scaling/')
-DATA = ('bench/records/', 'bench/tlc-baselines/', 'bench/history/', 'bench/environment/')
+DATA = ('bench/records/', 'bench/tlc-baselines/', 'bench/history/', 'bench/environment/', 'bench/validation/', 'docs/research/post-fix-validation.md')
 REPORT = 'docs/performance.md'
 
 

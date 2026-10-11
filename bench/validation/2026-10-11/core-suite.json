@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "SpecifyingSystems/AdvancedExamples/MCInnerSerial",
+      "size": "medium",
+      "timeout_s": 1800,
+      "category": [
+        "corpus"
+      ],
+      "runs": [
+        {
+          "mode": "default",
+          "workers": 1
+        }
+      ],
+      "expect": {
+        "source": "unpinned"
+      }
+    },
+    {
+      "id": "ext/ccf/MCccfraft_1C3N",
+      "size": "large",
+      "runs": [
+        {
+          "mode": "compile",
+          "workers": 1,
+          "args": [
+            "-tlc"
+          ]
+        },
+        {
+          "mode": "compile",
+          "workers": 16,
+          "args": [
+            "-tlc"
+          ]
+        }
+      ],
+      "timeout_s": 1800,
+      "note": "Industrial action composition",
+      "expect": {
+        "result": "success",
+        "source": "tlc-oracle",
+        "distinct": 675893,
+        "generated": 1848071,
+        "depth": 66
+      },
+      "tlc_1w_s": 743.53
+    }
+  ],
+  "report": {
+    "stale_after_revisions": 20,
+    "corpus_scope": "all exhaustive/simulation configurations in the Examples manifests; unbounded generate uses fixed trace count"
+  }
+}

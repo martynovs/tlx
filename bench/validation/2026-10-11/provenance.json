@@ -1,0 +1,86 @@
+{
+  "scope": "Post-fix validation; does not replace the frozen initial baseline",
+  "runs": {
+    "core": {
+      "rev": "0ea8d50e73e8569d9a7d3cc451035e85a8966398",
+      "verify_exit": 1,
+      "fetched_at": "2026-10-11T04:48:45Z",
+      "instance_type": "SA5.4XLARGE32",
+      "arch": "x86_64",
+      "vcpus": 16,
+      "region": "ap-shanghai",
+      "zone": "ap-shanghai-5",
+      "phases_s": {
+        "boot": 52,
+        "setup": 47,
+        "setup_parts": {
+          "rust (mirror)": 24,
+          "packages": 39,
+          "corpus/out upload": 1,
+          "git push": 2,
+          "third_party upload": 8,
+          "external overlays": 1
+        },
+        "bench": 5823,
+        "fetch": 2
+      },
+      "bench_bins": [],
+      "sampling": {
+        "core_manifest": "core-suite.json",
+        "core_repetitions": 3,
+        "cardinality_manifest": "cardinality-suite.json",
+        "cardinality_repetitions": 1
+      }
+    },
+    "kafka": {
+      "rev": "e76ed2c52cbeae9c41cce44ea1025609a0b8f84c",
+      "verify_exit": 0,
+      "fetched_at": "2026-10-11T04:07:13Z",
+      "instance_type": "SA5.4XLARGE32",
+      "arch": "x86_64",
+      "vcpus": 16,
+      "region": "ap-shanghai",
+      "zone": "ap-shanghai-5",
+      "phases_s": {
+        "boot": 45,
+        "setup": 43,
+        "setup_parts": {
+          "rust (mirror)": 18,
+          "packages": 36,
+          "corpus/out upload": 1,
+          "git push": 2,
+          "third_party upload": 7,
+          "external overlays": 1
+        },
+        "bench": 3114,
+        "fetch": 3
+      },
+      "bench_bins": [
+        {
+          "name": "before",
+          "rev": "0ea8d50e73e8569d9a7d3cc451035e85a8966398",
+          "features": ""
+        }
+      ],
+      "sampling": {
+        "repetitions": 1,
+        "warmup": false,
+        "isolated_cache_per_binary_and_worker_count": true,
+        "stats_enabled": true,
+        "sample_timeout_s": 1800
+      }
+    }
+  },
+  "sha256": {
+    "fixes-core.json": "766cdd119be0c198b3f2b173f7cde13051c9be1ffbb63f939039e0771bd9c467",
+    "fixes-cardinality.json": "e567dbb903febb48604846748e7ab043901b4c3bf9b1a2c7c35dab5b2e21462e",
+    "core-suite.json": "4976b8ec35d7d79e91acf72c91f4affb47c48211f3ae707dfd5797595281dfed",
+    "cardinality-suite.json": "7b1e7c837a58dbaf185e528139bcc397321693bcd8100b5c8281242896188c8c",
+    "kafka-cold-1.json.gz": "ed31eb231bee2f8ee9cfbd7f180b266e354c2e17c00cea45c98dfedcb38d09cd",
+    "kafka-cold-16.json.gz": "12b35559bad3a9e621ed5794c8e032ce0e384d6099430375252bf5ec624fe941"
+  },
+  "uncompressed_sha256": {
+    "kafka-cold-1.json.gz": "421bcd8414ccbd42febca7ec50ad07a02f86527fe962d0d4b57eef4c932e66bd",
+    "kafka-cold-16.json.gz": "9d463b7b92b4bfd413214b6f74ccbeff6ad38668a11e73f345dc7cd627edf938"
+  }
+}

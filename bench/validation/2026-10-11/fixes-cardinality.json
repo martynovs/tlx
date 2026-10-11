@@ -1,0 +1,173 @@
+{
+ "suite": true,
+ "tla2tools": {
+  "revision": "1813307068bbc5759a441df820f3f548948d6b7a",
+  "short": "1813307",
+  "version": "2.0 2026-10-02",
+  "built": "2026-10-02T16:35:56.5Z"
+ },
+ "commit": "0ea8d50e73e8",
+ "date": "2026-10-11 12:28:38",
+ "machine": "x86_64, AMD EPYC 9754 128-Core Processor, 16 cores, THP always [madvise] never, tencent SA5.4XLARGE32 (ap-shanghai-5, spot 0.1584 CNY/h)",
+ "instructions": true,
+ "repeat": 1,
+ "sizes": "all",
+ "runs": {
+  "medium:CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC:default:1w": {
+   "tool": "tlx",
+   "tier": "medium",
+   "model": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC",
+   "mode": "default",
+   "workers": 1,
+   "walls": [],
+   "min": 0,
+   "median": 0,
+   "cpu": [],
+   "rss_mib": [],
+   "instructions": [],
+   "distinct": null,
+   "generated": null,
+   "depth": null,
+   "compatibility": null,
+   "result": "skipped",
+   "load": [
+    12.66,
+    1.06
+   ],
+   "samples": [],
+   "warmups": [
+    {
+     "result": "timeout",
+     "compatibility": false,
+     "wall_s": 600,
+     "cpu_s": 599.993,
+     "maxrss_mib": 41.6
+    }
+   ],
+   "args": [],
+   "category": [
+    "corpus"
+   ],
+   "cgroup_mib": null,
+   "env": null,
+   "count_problems": [],
+   "skipped": "sample timeout",
+   "completed_samples": 0,
+   "content_digest": "39f25fc5ed5592ea1c498c71ae2317a70b893d3dbac53d64fcf21c76edf07f0a",
+   "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a"
+  },
+  "medium:SpanningTree/SpanTreeTest5Nodes:default:1w": {
+   "tool": "tlx",
+   "tier": "medium",
+   "model": "SpanningTree/SpanTreeTest5Nodes",
+   "mode": "default",
+   "workers": 1,
+   "walls": [],
+   "min": 0,
+   "median": 0,
+   "cpu": [],
+   "rss_mib": [],
+   "instructions": [],
+   "distinct": null,
+   "generated": null,
+   "depth": null,
+   "compatibility": null,
+   "result": "skipped",
+   "load": [
+    1.06,
+    1.0
+   ],
+   "samples": [],
+   "warmups": [
+    {
+     "result": "timeout",
+     "compatibility": false,
+     "wall_s": 600,
+     "cpu_s": 599.994,
+     "maxrss_mib": 32.1
+    }
+   ],
+   "args": [],
+   "category": [
+    "corpus"
+   ],
+   "cgroup_mib": null,
+   "env": null,
+   "count_problems": [],
+   "skipped": "sample timeout",
+   "completed_samples": 0,
+   "content_digest": "d13195806d39efb105f80d3aaa73fce968ca63b7bfc9a48e7a0ba9614898a62e",
+   "tlc_version": "1813307068bbc5759a441df820f3f548948d6b7a"
+  }
+ },
+ "samples": [
+  {
+   "entry": "medium:CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC:default:1w",
+   "model": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC",
+   "variant": "new",
+   "round": 0,
+   "warmup": true,
+   "result": "timeout",
+   "wall_s": 600,
+   "cpu_s": 599.993,
+   "maxrss_mib": 41.6,
+   "compatibility": false,
+   "instructions": null
+  },
+  {
+   "entry": "medium:CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC:default:1w",
+   "model": "CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC",
+   "variant": "new",
+   "round": 1,
+   "warmup": false,
+   "result": "skipped",
+   "reason": "sample timeout"
+  },
+  {
+   "entry": "medium:SpanningTree/SpanTreeTest5Nodes:default:1w",
+   "model": "SpanningTree/SpanTreeTest5Nodes",
+   "variant": "new",
+   "round": 0,
+   "warmup": true,
+   "result": "timeout",
+   "wall_s": 600,
+   "cpu_s": 599.994,
+   "maxrss_mib": 32.1,
+   "compatibility": false,
+   "instructions": null
+  },
+  {
+   "entry": "medium:SpanningTree/SpanTreeTest5Nodes:default:1w",
+   "model": "SpanningTree/SpanTreeTest5Nodes",
+   "variant": "new",
+   "round": 1,
+   "warmup": false,
+   "result": "skipped",
+   "reason": "sample timeout"
+  }
+ ],
+ "budget": {
+  "skipped": [
+   {
+    "model": "medium:CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC:default:1w#new",
+    "reason": "sample timeout"
+   },
+   {
+    "model": "medium:SpanningTree/SpanTreeTest5Nodes:default:1w#new",
+    "reason": "sample timeout"
+   }
+  ]
+ },
+ "verdict": {
+  "count_failures": [],
+  "regressions": [],
+  "inconclusive": [],
+  "skipped": [
+   "medium:CarTalkPuzzle/CarTalkPuzzle.toolbox/Model_3/MC:default:1w",
+   "medium:SpanningTree/SpanTreeTest5Nodes:default:1w"
+  ],
+  "improvements": [],
+  "outcome": "INCONCLUSIVE"
+ },
+ "range": []
+}
