@@ -338,39 +338,121 @@ impl Build {
     /// discarded attempt beside the search. The compiler's process group
     /// (the shell of `start` and everything it started) is killed and the
     /// build's temporary files are removed; Err then says it was cancelled.
-    /// A build that ends by itself reports as `wait` does, and a build of
-    /// another process (`State::Elsewhere`) is not touched: only the build
-    /// this `Build` started can be cancelled.
+    ///
+    /// A build that ends by itself reports as `wait` does. A build of
+    /// another process is not touched: while it holds the lock the wait
+    /// polls it (never blocks on it, so a slow or hung holder cannot make
+    /// the cancellation wait), and if it goes away without a library the
+    /// build is started here — and is then cancellable like any other.
     pub fn wait_or_cancel(mut self, cancel: &AtomicBool) -> Result<PathBuf, String> {
-        let lib = std::mem::take(&mut self.lib);
-        let (mut child, files) = match std::mem::replace(&mut self.state, State::Done) {
-            State::Done => return Ok(lib),
-            State::Running(child, files) => (child, files),
-            State::Elsewhere(lock, source, opts) => {
-                lock.lock().map_err(|e| format!("cannot lock the build of {}: {e}", lib.display()))?;
-                drop(lock);
-                if lib.exists() {
-                    return Ok(lib);
-                }
-                return build(&source, &opts);
-            }
-        };
         loop {
-            match child.try_wait() {
-                Ok(Some(status)) => return finished(&lib, status, &files),
-                Ok(None) => {}
-                Err(e) => {
-                    files.remove();
-                    return Err(format!("C compilation ({}): {e}", files.src.display()));
+            let lib = std::mem::take(&mut self.lib);
+            let (mut child, files) = match std::mem::replace(&mut self.state, State::Done) {
+                State::Done => return Ok(lib),
+                State::Running(child, files) => (child, files),
+                State::Elsewhere(lock, source, opts) => {
+                    match wait_for_holder(&lib, lock, cancel)? {
+                        // The other build finished: its library is ours too.
+                        Holder::Built => return Ok(lib),
+                        // The other build failed: start ours, and wait for it
+                        // with this same cancellation in the next round.
+                        Holder::Failed => {
+                            self = start(&source, &opts)?;
+                            continue;
+                        }
+                    }
                 }
+            };
+            loop {
+                match child.try_wait() {
+                    Ok(Some(status)) => return finished(&lib, status, &files),
+                    Ok(None) => {}
+                    Err(e) => {
+                        files.remove();
+                        return Err(format!("C compilation ({}): {e}", files.src.display()));
+                    }
+                }
+                if cancel.load(Ordering::Acquire) {
+                    cancel_build(child, &files);
+                    return Err(cancelled(&files.src));
+                }
+                std::thread::sleep(CANCEL_POLL);
             }
-            if cancel.load(Ordering::Acquire) {
-                terminate(&mut child);
-                files.remove();
-                return Err(format!("C compilation cancelled ({}): the layout was discarded", files.src.display()));
-            }
-            std::thread::sleep(CANCEL_POLL);
         }
+    }
+}
+
+/// How the wait for another process's build ended.
+enum Holder {
+    /// The library is in the cache.
+    Built,
+    /// The lock was released without a library (the other build failed): the
+    /// caller builds it.
+    Failed,
+}
+
+/// Wait for the build of another process (holding `lock`) without ever
+/// blocking on it: the wait polls the lock, so `cancel` ends it at once, and
+/// the holder — which is not ours to stop — is left alone. Ok(Built) when
+/// its library appears, Ok(Failed) when the lock was taken without one (the
+/// caller's own build starts then).
+fn wait_for_holder(lib: &Path, lock: File, cancel: &AtomicBool) -> Result<Holder, String> {
+    loop {
+        if lib.exists() {
+            return Ok(Holder::Built);
+        }
+        if cancel.load(Ordering::Acquire) {
+            return Err(cancelled(lib));
+        }
+        match lock.try_lock() {
+            // (Only this library's slot: the holder exited without one.)
+            Ok(()) => return Ok(Holder::Failed),
+            Err(TryLockError::WouldBlock) => std::thread::sleep(CANCEL_POLL),
+            Err(TryLockError::Error(e)) => return Err(format!("cannot lock the build of {}: {e}", lib.display())),
+        }
+    }
+}
+
+/// Why a cancelled build returns.
+fn cancelled(what: &Path) -> String {
+    format!("C compilation cancelled ({}): the layout was discarded", what.display())
+}
+
+/// Stop the build of `child` and remove its files: the compiler's process
+/// group is killed, and a child that resists SIGKILL beyond `CANCEL_REAP` is
+/// left with the background reaper instead of being forgotten (a dropped
+/// `Child` stays a zombie on Unix).
+fn cancel_build(mut child: Child, files: &Files) {
+    let Ok(pgid) = i32::try_from(child.id()) else {
+        files.remove();
+        return;
+    };
+    if pgid > 1 {
+        // SAFETY: spawn used process_group(0), so -pgid addresses only the
+        // group of this build. The leader stays unreaped until after the
+        // signal, so its PID (the group ID) cannot be reused meanwhile.
+        // `kill` takes no pointer.
+        unsafe { libc::kill(-pgid, libc::SIGKILL) };
+        // The leader can leave its group; kill its still-owned PID as well,
+        // never a group it may have joined since.
+        let _ = child.kill();
+    }
+    let start = std::time::Instant::now();
+    while start.elapsed() < CANCEL_REAP {
+        match child.try_wait() {
+            Ok(Some(_)) | Err(_) => {
+                files.remove();
+                return;
+            }
+            Ok(None) => std::thread::sleep(CANCEL_POLL),
+        }
+    }
+    // (A kernel task can resist SIGKILL; reap it in the background rather
+    // than wait longer for the cancellation or leave a zombie.)
+    let log = files.log.clone();
+    files.remove();
+    if let Err(e) = reap_child(child, log, |reap| tlx_base::stack::spawn(std::thread::Builder::new().name("tlx-cc-reap".into()), reap)) {
+        eprintln!("cannot start C compiler reaper after a cancellation: {e}");
     }
 }
 
@@ -382,33 +464,6 @@ fn finished(lib: &Path, status: std::process::ExitStatus, files: &Files) -> Resu
         return Err(format!("C compilation failed ({}): {}", files.src.display(), first_error(&diagnostics)));
     }
     Ok(lib.to_path_buf())
-}
-
-/// Stop `child` and everything it started. `start` spawned the shell in a
-/// process group of its own, so one signal to `-pgid` reaches the compiler
-/// and its helpers too.
-fn terminate(child: &mut Child) {
-    let Ok(pgid) = i32::try_from(child.id()) else { return };
-    if pgid <= 1 {
-        // (Cannot be a group we own; leave it to the reaper.)
-        let _ = child.kill();
-        return;
-    }
-    // SAFETY: spawn used process_group(0), so -pgid addresses only the group
-    // of this build. The leader stays unreaped until after the signal, so its
-    // PID (the group ID) cannot be reused meanwhile. `kill` takes no pointer.
-    unsafe { libc::kill(-pgid, libc::SIGKILL) };
-    // The leader can leave its group; kill its still-owned PID as well,
-    // never a group it may have joined since.
-    let _ = child.kill();
-    let start = std::time::Instant::now();
-    while start.elapsed() < CANCEL_REAP {
-        match child.try_wait() {
-            Ok(Some(_)) | Err(_) => return,
-            Ok(None) => std::thread::sleep(CANCEL_POLL),
-        }
-    }
-    eprintln!("cancelled C compiler {} was not reaped within {CANCEL_REAP:?}", child.id());
 }
 
 /// A build dropped while its compiler runs completes into the cache in the
@@ -459,6 +514,8 @@ fn reap_child(
 
 #[cfg(all(test, unix))]
 mod tests {
+    use std::sync::Arc;
+
     use super::*;
 
     unsafe extern "C" {
@@ -558,6 +615,107 @@ mod tests {
         assert!(leftovers.iter().all(|n| n == "build.lock" || n == "tlx_abi.h"), "leftovers: {leftovers:?}");
         assert!(cached(source, &opts).is_none());
         let _ = std::fs::remove_file(dir.join("helper.pid"));
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    /// A holder of the build lock: this process takes the lock and hands its
+    /// open file description to a child (the way `start` passes the lock to
+    /// the compiler shell), so that the child's exit is what releases it.
+    fn lock_holder(lock: &Path, seconds: u32) -> Child {
+        let file = File::options().create(true).truncate(false).write(true).open(lock).unwrap();
+        file.lock().unwrap();
+        let child = Command::new("sh")
+            .args(["-c", &format!("sleep {seconds}")])
+            .stdin(Stdio::from(file.try_clone().unwrap()))
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn()
+            .unwrap();
+        // (The lock lives on the description the child inherited; dropping
+        // ours leaves the child as its only holder.)
+        drop(file);
+        child
+    }
+
+    /// Waiting for another process's build must not block the cancellation:
+    /// a slow or hung holder leaves the waiter able to give up at once, and
+    /// the holder (which is not ours) survives.
+    #[test]
+    fn cancelling_a_waiter_leaves_the_holder_alone() {
+        let dir = scratch("cancel-waiter");
+        let cache = dir.join("cache");
+        let opts = BuildOptions { cc: sleep_compiler(&dir), opt: "-O2".into(), debug: false, cache_dir: cache.clone() };
+        let source = "/* fixture: built elsewhere */\n";
+        let (slot, _lib, _) = cache_slot(source, &opts);
+        std::fs::create_dir_all(&slot).unwrap();
+        let mut holder = lock_holder(&slot.join("build.lock"), 30);
+        let build = start(source, &opts).unwrap();
+        // (The holder has the lock: this process starts no compiler of its
+        // own here, it waits for the holder's build.)
+        assert!(!dir.join("helper.pid").exists(), "the waiter must not start a second compiler beside the holder");
+        let cancel = Arc::new(AtomicBool::new(false));
+        let waiter_cancel = cancel.clone();
+        let waiting = std::thread::spawn(move || build.wait_or_cancel(&cancel));
+        // (The waiter polls the holder's lock while it is held.)
+        std::thread::sleep(Duration::from_millis(200));
+        let t0 = std::time::Instant::now();
+        waiter_cancel.store(true, Ordering::Release);
+        let err = waiting.join().unwrap().unwrap_err();
+        let waited = t0.elapsed();
+        assert!(err.contains("cancelled"), "{err}");
+        assert!(waited < Duration::from_secs(5), "a cancelled wait must not block on the holder ({waited:?})");
+        // (The holder is another process's build: untouched.)
+        assert!(holder.try_wait().unwrap().is_none(), "the holder must survive a cancelled wait");
+        assert!(cached(source, &opts).is_none());
+        let _ = holder.kill();
+        let _ = holder.wait();
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    /// When the holder of the lock goes away without a library, the waiter
+    /// starts the build itself — and that build is cancellable like any
+    /// other (it is the case a layout miss hits after a concurrent run
+    /// failed to build the same library).
+    #[test]
+    fn a_build_started_after_a_failed_holder_can_still_be_cancelled() {
+        let dir = scratch("cancel-after-holder");
+        let cache = dir.join("cache");
+        let opts = BuildOptions { cc: sleep_compiler(&dir), opt: "-O2".into(), debug: false, cache_dir: cache.clone() };
+        let source = "/* fixture: the holder fails, ours starts */\n";
+        let (slot, _lib, _) = cache_slot(source, &opts);
+        std::fs::create_dir_all(&slot).unwrap();
+        let mut holder = lock_holder(&slot.join("build.lock"), 1);
+        let build = start(source, &opts).unwrap();
+        let cancel = Arc::new(AtomicBool::new(false));
+        let waiter_cancel = cancel.clone();
+        let waiting = std::thread::spawn(move || build.wait_or_cancel(&cancel));
+        // The holder exits after a second without a library: the wait takes
+        // the lock and starts this build's own compiler.
+        let helper = dir.join("helper.pid");
+        let until = std::time::Instant::now() + Duration::from_secs(10);
+        let mut pid = None;
+        while std::time::Instant::now() < until {
+            if let Ok(s) = std::fs::read_to_string(&helper) {
+                if let Ok(p) = s.trim().parse::<i32>() {
+                    pid = Some(p);
+                    break;
+                }
+            }
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        let pid = pid.expect("our build must start once the holder is gone");
+        assert!(alive(pid));
+        waiter_cancel.store(true, Ordering::Release);
+        let err = waiting.join().unwrap().unwrap_err();
+        assert!(err.contains("cancelled"), "{err}");
+        let until = std::time::Instant::now() + Duration::from_secs(10);
+        while alive(pid) && std::time::Instant::now() < until {
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        assert!(!alive(pid), "the build that took over the lock must be cancelled too (helper {pid})");
+        let _ = holder.kill();
+        let _ = holder.wait();
+        let _ = std::fs::remove_file(&helper);
         let _ = std::fs::remove_dir_all(&dir);
     }
 
