@@ -5,7 +5,7 @@ use std::sync::Arc;
 use common::*;
 use tlx_value::fingerprint::fingerprint;
 use tlx_value::order::eq_tlc;
-use tlx_value::{ops, CustomSet, LazySet, Sym, Value};
+use tlx_value::{ops, CustomSet, LazySet, Sym, Value, ValueErrorKind};
 
 fn lazy(l: LazySet) -> Value {
     Value::LazySet(Arc::new(l))
@@ -374,6 +374,63 @@ fn subset_enumeration_order() {
     assert_eq!(first.unwrap(), Value::empty_set());
     // SUBSET A \subseteq SUBSET B reduces to A \subseteq B
     assert!(ops::subseteq(&big, &ops::powerset(&nat()).unwrap()).unwrap());
+}
+
+/// TLC's `Enumerable.elements()` never asks a set for its `size()`, so a set
+/// whose size overflows TLC's int is still enumerated element by element:
+/// `Cardinality` (TLC's `Value.size`) and materializing the set error, but the
+/// streaming enumeration visits its elements, and a caller that stops early
+/// never needs the whole set.
+///
+/// `SpanningTree/SpanTreeTest5Nodes` (`Edges \in {E \in SUBSET (SUBSET Nodes) :
+/// ...}`) and `CarTalkPuzzle/.../Model_3` (printing a set filter over
+/// `[1..5 -> 1..121]`) used to fail with the overflow on this path.
+#[test]
+fn enumerating_a_set_whose_size_overflows() {
+    let five = ops::interval(1, 5);
+    let cases: Vec<Value> = vec![
+        // 2^31 subsets of 31 elements.
+        ops::powerset(&ops::interval(1, 31)).unwrap(),
+        // `SUBSET (SUBSET Nodes)` with five nodes: 2^32 subsets (the domain of
+        // `Edges` in `SpanningTree/SpanTreeTest5Nodes`).
+        ops::powerset(&ops::powerset(&five).unwrap()).unwrap(),
+        // `[1..5 -> 1..121]`: 121^5 functions (the domain of `Break` in
+        // `CarTalkPuzzle/.../Model_3`).
+        ops::fcn_set(&five, &ops::interval(1, 121)).unwrap(),
+        // 2^40 functions 1..40 -> {0, 1}.
+        ops::fcn_set(&ops::interval(1, 40), &ints(&[0, 1])).unwrap(),
+    ];
+    for s in &cases {
+        assert!(ops::cardinality(s).is_err_and(|e| e.kind == ValueErrorKind::Overflow), "n({s}) does not overflow");
+        assert!(ops::enumerate(s).is_err_and(|e| e.kind == ValueErrorKind::Overflow), "enumerate({s}) does not overflow");
+        assert!(matches!(ops::materialization_error(s), Some(e) if e.kind == ValueErrorKind::Overflow));
+        assert!(ops::materialization_error(&ops::powerset(&ops::interval(1, 30)).unwrap()).is_none());
+        // The streaming enumeration yields the same elements in the same order
+        // as `for_each_element` (which never had the size check), and it stops
+        // early instead of enumerating the whole set.
+        let mut streamed = Vec::new();
+        ops::for_each_enumerated(s, &mut |e| {
+            streamed.push(e);
+            Ok(streamed.len() < 3)
+        })
+        .unwrap();
+        let mut direct = Vec::new();
+        ops::for_each_element(s, &mut |e| {
+            direct.push(e);
+            Ok(direct.len() < 3)
+        })
+        .unwrap();
+        assert_eq!(streamed, direct);
+        assert_eq!(streamed.len(), 3);
+    }
+    // A tuple or record set materializes its constituents (TLC's
+    // SetOfTuplesValue/SetOfRcdsValue enumerator converts each of them with
+    // `toSetEnum`, which asks for `size()`): a constituent that cannot be
+    // materialized keeps the overflow here, as in TLC.
+    let nested = ops::product(vec![ops::powerset(&ops::interval(1, 31)).unwrap(), five.clone()]).unwrap();
+    assert!(ops::for_each_enumerated(&nested, &mut |_| Ok(true)).is_err());
+    let rec = ops::record_set(vec![(Sym::new("ovf_a"), ops::powerset(&ops::interval(1, 31)).unwrap())]).unwrap();
+    assert!(ops::for_each_enumerated(&rec, &mut |_| Ok(true)).is_err());
 }
 
 #[test]

@@ -267,6 +267,19 @@ tlx: `tlx-eval/src/eval.rs` (`QuantUnbounded` and unbounded CHOOSE produce the s
 - `Nat` and `Int` are `UserValue`s: membership only, not enumerable.
 - Size overflow errors: `SUBSET S` with `|S| >= 31` (`V/SubsetValue.java:182-190`); `[S->T]` and `\X`
   size products over int (`V/SetOfFcnsValue.java:244-265`, `V/SetOfTuplesValue.java:232-246`).
+  These are errors of `size()` (= `Cardinality`): **enumeration does not ask for the size**.
+  `Enumerable.elements()` streams (`V/SubsetValue.java:753-767`, and the enumerators of
+  `SetOfFcnsValue`/`SetOfTuplesValue`/`SetOfRcdsValue` at `:458`/`:473`/`:449`), so a set whose
+  `size()` overflows is still enumerated element by element and a quantifier that stops early never
+  builds it. What raises the overflow is `size()`/`Cardinality`, materializing (`SubsetValue.toSetEnum`
+  asks `size()`, `:304`; the tuple and record enumerators convert every constituent with `toSetEnum`)
+  and the paths that hold a whole set (`CHOOSE` normalizes it, `x' \subseteq S`).
+
+  tlx: `tlx-value/src/ops/enumerate.rs` (`for_each_enumerated` streams such a set; `enumerate`
+  refuses it and `materialization_error` reports the overflow) and `tlx-eval/src/eval.rs::bound_elems`
+  (a bound of one variable is streamed when its domain cannot be materialized: the interpreter
+  materialized it before and failed where the compiled tier's quantifiers already streamed). A
+  `CHOOSE`, a bound of several variables and `x' \subseteq S` still materialize and keep the overflow.
 
 tlx: `tlx_value::arith` (`add`, `sub`, `mul`, `pow`, `neg`, `modulo`, `div_floor`, `div_naturals`;
 values are `i64` with an i32 range check per operation; generated C uses `tlx_add` etc. from

@@ -190,6 +190,17 @@ This is the single source for known limitations ([design.md](design.md) and
   evaluated), nor are the temporal quantifiers `\EE` / `\AA`, nor a few `INSTANCE` corner cases
   (references to declarations through nested parameterized instances, operator-valued instance
   parameters). PlusCal is not translated: tlx checks the TLA+ translation that is in the file.
+- **Sets whose size overflows TLC's int**: `Cardinality` (TLC's `Value.size`) refuses `SUBSET S`
+  with `|S| >= 31` and a `[S -> T]`, `\X` or record set whose product of component sizes does not
+  fit an int; tlx also refuses `CHOOSE x \in S`, `x' \subseteq S` and a bound of several variables
+  (`\E x, y \in S`), which hold the whole set. Enumeration itself needs no size
+  ([tlc-semantics.md](tlc-semantics.md) section 4): tlx streams a single-variable quantifier and
+  `x' \in S` over such a set, like TLC, whose `Enumerable.elements()` never asks for it. Where tlx
+  still reports the overflow, TLC answers for a `SUBSET S` domain (in TLC,
+  `CHOOSE s \in SUBSET (1..31) : s = {}` is `{}`, because `SubsetValue` implements the normalized
+  enumeration by streaming) and reports "too many elements" beyond its `-maxSetSize` bound (default
+  10^6) for the other set types, which TLC materializes in normalized order
+  ([features.md](features.md) section 1 records that tlx does not implement that bound).
 - **Command line** (outside the contract, section 2): TLC's `-continue`, `-difftrace`,
   `-maxSetSize`, `-fp`, `-lncheck`, `-terse` and others are not implemented and give a usage error
   (exit code 2); `-cleanup` and `-noGenerateSpecTE` are accepted without effect; no `*_TTrace_*`

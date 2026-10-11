@@ -5,6 +5,10 @@
 
 use super::*;
 
+use tlx_value::ops;
+
+use crate::eval::BoundElems;
+
 impl<'a> Enumerator<'a> {
     /// `\E x \in S : P`: enumerate `P` once per binding of `x`.
     pub(super) fn exists(&mut self, bounds: &[Bound], body: &Expr, env: &Env, k: &Cont) -> EResult<bool> {
@@ -14,7 +18,30 @@ impl<'a> Enumerator<'a> {
         // (`for_each_binding`'s common case).
         if let ([Bound { vars: BoundVars::Many(ls), set }], false) = (bounds, self.random) {
             if let [l] = ls.as_slice() {
-                let mut elems = ip.bound_elems(set, env, &self.cx())?;
+                let mut elems = match ip.bound_elems(set, env, &self.cx())? {
+                    BoundElems::Elems(elems) => elems,
+                    // The domain cannot be materialized: stream it
+                    // (`for_each_enumerated`, TLC's `Enumerable.elements()`)
+                    // and stop when the continuation does.
+                    BoundElems::Stream(v, _) => {
+                        let mut go_on = true;
+                        let mut err = None;
+                        ops::for_each_enumerated(&v, &mut |x| match self.go(body, &env.bind_val(*l, x), k) {
+                            Ok(cont) => {
+                                go_on = cont;
+                                Ok(cont)
+                            }
+                            Err(e) => {
+                                err = Some(e);
+                                Ok(false)
+                            }
+                        })?;
+                        return match err {
+                            Some(e) => Err(e),
+                            None => Ok(go_on),
+                        };
+                    }
+                };
                 let Some(first) = elems.next() else {
                     return Ok(true);
                 };

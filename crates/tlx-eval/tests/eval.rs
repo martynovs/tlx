@@ -96,6 +96,29 @@ fn constant_expressions() {
 /// LET's value cache of `f` held the function, and the function held the
 /// environment with that cache (a reference cycle that leaked the function,
 /// its memo and the state it was made in on every evaluation).
+/// A quantifier over a set whose `size()` overflows TLC's int streams the set
+/// (`Enumerable.elements()` never calls `size()`): the answer is known as soon
+/// as an element satisfies the body. Materializing such a set still fails,
+/// exactly as `Cardinality` (TLC's `Value.size`) does — `CHOOSE`, a bound of
+/// several variables and `x' \subseteq S` hold the domain as a whole, so they
+/// keep the overflow (TLC streams `CHOOSE` and `x' \subseteq S`; that
+/// difference remains).
+#[test]
+fn quantifiers_stream_domains_whose_size_overflows() {
+    let body = "\
+BigSubset == \\E s \\in SUBSET (1..31) : s = {}\n\
+BigFcn == \\E f \\in [1..5 -> 1..121] : f[1] = 1 /\\ f[5] = 3\n\
+CardinalityOf == Cardinality(SUBSET (1..31))\n\
+Chosen == CHOOSE s \\in SUBSET (1..31) : s = {}\n\
+Pair == \\E x, y \\in SUBSET (1..31) : x = y";
+    let out = eval_defs(body, &["BigSubset", "BigFcn", "CardinalityOf", "Chosen", "Pair"]);
+    assert_eq!(out[0], "TRUE", "{out:?}");
+    assert_eq!(out[1], "TRUE", "{out:?}");
+    for (i, what) in [(2, "Cardinality"), (3, "CHOOSE"), (4, "a bound of two variables")] {
+        assert!(out[i].starts_with("ERROR:") && out[i].contains("Overflow when computing the number of elements in"), "{what}: {}", out[i]);
+    }
+}
+
 #[test]
 fn let_recursive_function_is_freed() {
     let (_dir, path) = write_spec("M", "EXTENDS Naturals\nT == LET f[n \\in 0..5] == IF n = 0 THEN 1 ELSE n * f[n - 1] IN f");

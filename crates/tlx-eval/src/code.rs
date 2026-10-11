@@ -20,7 +20,7 @@ use crate::apply::{apply_tail, field_tail, Cow};
 use crate::builtins::{builtin1, compare2, is_compare2, is_plain1, is_plain2};
 use crate::env::{Binding, Env};
 use crate::error::EResult;
-use crate::eval::{as_bool, fn_domain, Ctx, Elems, AT};
+use crate::eval::{as_bool, fn_domain, BoundElems, Ctx, Elems, AT};
 use crate::except::{self, Unchanged};
 use crate::interp::local::{self, Slot};
 use crate::interp::{ConstVal, Interp};
@@ -886,7 +886,34 @@ impl Interp {
         // (`for_each_binding`'s common case).
         if let [Bound { vars: BoundVars::Many(ls), set }] = bounds {
             if let [l] = ls.as_slice() {
-                let mut elems = self.bound_elems(set, env, cx)?;
+                let mut elems = match self.bound_elems(set, env, cx)? {
+                    BoundElems::Elems(elems) => elems,
+                    // The domain cannot be materialized: stream it
+                    // (`for_each_enumerated`, TLC's `Enumerable.elements()`)
+                    // and stop at the first witness.
+                    BoundElems::Stream(v, _) => {
+                        let mut found = !exists;
+                        let mut err = None;
+                        ops::for_each_enumerated(&v, &mut |x| {
+                            let r = self.exec_bool(body, &env.bind_val(*l, x), cx);
+                            match r {
+                                Ok(want) if want == exists => {
+                                    found = exists;
+                                    Ok(false)
+                                }
+                                Ok(_) => Ok(true),
+                                Err(e) => {
+                                    err = Some(e);
+                                    Ok(false)
+                                }
+                            }
+                        })?;
+                        return match err {
+                            Some(e) => Err(e),
+                            None => Ok(found),
+                        };
+                    }
+                };
                 let Some(first) = elems.next() else {
                     return Ok(!exists);
                 };

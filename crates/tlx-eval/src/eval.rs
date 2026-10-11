@@ -8,7 +8,7 @@ mod tests;
 use std::sync::Arc;
 
 use tlx_sema::hir::*;
-use tlx_value::{ops, LazyFcn, Sym, Value};
+use tlx_value::{ops, LazyFcn, Sym, Value, ValueError};
 
 use crate::apply::{apply_tail, field_tail, Cow};
 use crate::env::{Binding, Env, LetCell, LetFrame, OpVal, Thunk};
@@ -75,6 +75,33 @@ impl Elems {
             Elems::Shared(es, i) => es[i..].into(),
             Elems::Interval(lo, end) => elems(&Value::Interval(lo, end - 1))?,
         })
+    }
+}
+
+/// The elements of a bound variable's domain (`bound_elems`): materialized, or
+/// — for a lazy set that cannot be materialized — a value enumerated on the
+/// fly by the caller (`ops::for_each_enumerated`).
+pub(crate) enum BoundElems {
+    Elems(Elems),
+    /// `ops::materialization_error` of the set, and the set itself. TLC's
+    /// `Enumerable.elements()` never asks a set for its `size()`, so a
+    /// `SUBSET` of 31 or more elements, or a function, record or tuple set
+    /// whose product of component sizes overflows TLC's int, is still
+    /// enumerated element by element: a body that stops early never needs the
+    /// whole set (and the set cannot be held in memory anyway).
+    Stream(Value, ValueError),
+}
+
+impl BoundElems {
+    /// All the elements; a streamed domain keeps the materializing path's
+    /// `size()` overflow error. A bound of several variables (the odometer of
+    /// `for_each_binding`) needs every element at once, exactly as `enumerate`
+    /// does.
+    pub(crate) fn into_shared(self) -> EResult<Arc<[Value]>> {
+        match self {
+            BoundElems::Elems(e) => e.into_shared(),
+            BoundElems::Stream(_, e) => Err(e.into()),
+        }
     }
 }
 
@@ -524,7 +551,26 @@ impl Interp {
         // updated in place unless `f` kept the environment.
         if let [Bound { vars: BoundVars::Many(ls), set }] = bounds {
             if let [l] = ls.as_slice() {
-                let mut elems = self.bound_elems(set, env, cx)?;
+                let mut elems = match self.bound_elems(set, env, cx)? {
+                    BoundElems::Elems(elems) => elems,
+                    // The domain cannot be materialized: stream it
+                    // (`for_each_enumerated`, TLC's `Enumerable.elements()`)
+                    // and stop as soon as `f` does.
+                    BoundElems::Stream(v, _) => {
+                        let mut err = None;
+                        let done = ops::for_each_enumerated(&v, &mut |x| match f(&env.bind_val(*l, x)) {
+                            Ok(go_on) => Ok(go_on),
+                            Err(e) => {
+                                err = Some(e);
+                                Ok(false)
+                            }
+                        })?;
+                        return match err {
+                            Some(e) => Err(e),
+                            None => Ok(done),
+                        };
+                    }
+                };
                 let Some(first) = elems.next() else {
                     return Ok(true);
                 };
@@ -611,28 +657,40 @@ impl Interp {
     /// inside an operator) has the same elements wherever it is evaluated:
     /// each thread enumerates it once (unless it is large). Errors are not
     /// kept.
-    pub(crate) fn bound_elems(self: &Arc<Self>, set: &Expr, env: &Env, cx: &Ctx) -> EResult<Elems> {
+    pub(crate) fn bound_elems(self: &Arc<Self>, set: &Expr, env: &Env, cx: &Ctx) -> EResult<BoundElems> {
         const MAX_CACHED: usize = 1 << 14;
         let i = if self.closed_bounds.is_empty() { None } else { self.closed_bounds.get(&(Arc::as_ptr(&set.kind) as usize)) };
         let Some(&i) = i else {
             let v = self.eval_cow(set, env, cx)?;
-            return Elems::of(&v).map_err(|e| self.bound_error(&v, set, e));
+            return self.bound_elems_of(&v, set);
         };
         // KeepLazy may change the representation of the elements.
         let slot = Slot::Bound(2 * i as usize + cx.keep_lazy as usize);
         match local::peek(self.uid, slot) {
-            Some(Value::Tuple(es)) => return Ok(Elems::Shared(es, 0)),
-            Some(Value::Interval(lo, hi)) => return Elems::of(&Value::Interval(lo, hi)),
+            Some(Value::Tuple(es)) => return Ok(BoundElems::Elems(Elems::Shared(es, 0))),
+            Some(Value::Interval(lo, hi)) => return Ok(BoundElems::Elems(Elems::of(&Value::Interval(lo, hi))?)),
             _ => {}
         }
         let v = self.eval(set, env, cx)?;
-        let elems = Elems::of(&v).map_err(|e| self.bound_error(&v, set, e))?;
-        match &elems {
-            Elems::Shared(es, _) if es.len() <= MAX_CACHED => local::put(self.uid, slot, Value::Tuple(es.clone())),
-            Elems::Interval(lo, end) => local::put(self.uid, slot, Value::Interval(*lo, *end - 1)),
-            _ => {}
+        let elems = self.bound_elems_of(&v, set)?;
+        if let BoundElems::Elems(e) = &elems {
+            match e {
+                Elems::Shared(es, _) if es.len() <= MAX_CACHED => local::put(self.uid, slot, Value::Tuple(es.clone())),
+                Elems::Interval(lo, end) => local::put(self.uid, slot, Value::Interval(*lo, *end - 1)),
+                _ => {}
+            }
         }
         Ok(elems)
+    }
+
+    /// `bound_elems` of an evaluated domain: a set that `enumerate` cannot
+    /// materialize (`ops::materialization_error`) is streamed by the caller
+    /// instead.
+    fn bound_elems_of(&self, v: &Value, set: &Expr) -> EResult<BoundElems> {
+        if let Some(e) = ops::materialization_error(v) {
+            return Ok(BoundElems::Stream(v.clone(), e));
+        }
+        Elems::of(v).map(BoundElems::Elems).map_err(|e| self.bound_error(v, set, e))
     }
 
     /// The error of a quantifier bound `v` (the value of `set`) that cannot

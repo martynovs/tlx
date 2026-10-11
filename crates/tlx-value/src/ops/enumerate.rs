@@ -3,7 +3,7 @@
 use std::sync::Arc;
 
 use super::{cardinality, is_empty_set, is_enumerable, member, next_combination};
-use crate::error::{err, ValueErrorKind};
+use crate::error::{err, ValueError, ValueErrorKind};
 use crate::intern::Sym;
 use crate::lazy::LazySet;
 use crate::repr::{interval_len, set_elems};
@@ -267,19 +267,21 @@ pub fn enumerate(s: &Value) -> Result<Vec<Value>> {
 /// element is reached). Used where `x \in S` enumerates the values of a
 /// variable (Init).
 pub fn for_each_enumerated(s: &Value, f: &mut dyn FnMut(Value) -> Result<bool>) -> Result<bool> {
-    match s {
-        Value::LazySet(l) => match &**l {
-            LazySet::Custom(c) => match c.for_each(f)? {
+    if let Value::LazySet(l) = s {
+        if let LazySet::Custom(c) = &**l {
+            return match c.for_each(f)? {
                 Some(done) => Ok(done),
                 None => Err(c.not_enumerable(s)),
-            },
-            _ => {
-                check_enumerable_size(s)?;
-                for_each_element(s, f)
-            }
-        },
-        _ => for_each_element(s, f),
+            };
+        }
     }
+    // No size check: TLC's `Enumerable.elements()` never asks a set for its
+    // `size()`, so a set whose size overflows the int range (a `SUBSET` of 31
+    // or more elements, a function, record or tuple set whose product of
+    // component sizes does) is still enumerated element by element; a caller
+    // that stops early (a quantifier that found its witness, an `x' \in S`
+    // whose continuation stopped) never needs the whole set.
+    for_each_element(s, f)
 }
 
 /// What `for_each_enumerated_seqs` visits.
@@ -303,7 +305,8 @@ pub fn for_each_enumerated_seqs(s: &Value, v: &mut dyn SeqsVisitor) -> Result<bo
     let Value::LazySet(l) = s else { return for_each_element(s, &mut |x| v.elem(x)) };
     match &**l {
         LazySet::FcnSet(dom, range) => {
-            check_enumerable_size(s)?;
+            // (No size check: as in `for_each_enumerated`, TLC enumerates a
+            // set of sequences element by element whatever its size.)
             seqs_with(s, dom, range, v)
         }
         LazySet::Union(sets) => {
@@ -342,18 +345,31 @@ fn seqs_with(s: &Value, dom: &Value, range: &Value, v: &mut dyn SeqsVisitor) -> 
     for_each_element(s, &mut |x| v.elem(x))
 }
 
-/// `enumerate` refuses to materialize sets whose size overflows TLC's int.
+/// `enumerate` refuses to materialize a set whose TLC int `size()` overflows
+/// (TLC's `Value.size` reports the overflow, and `SubsetValue.toSetEnum` asks
+/// for `size()` too). Enumeration itself does not: `Enumerable.elements()`
+/// never calls `size()`, so `for_each_enumerated` streams such a set.
 fn check_enumerable_size(s: &Value) -> Result<()> {
-    if let Value::LazySet(l) = s {
-        if matches!(**l, LazySet::Subset(_) | LazySet::FcnSet(..) | LazySet::Product(_) | LazySet::RecordSet(_)) {
-            if let Err(e) = cardinality(s) {
-                if e.kind == ValueErrorKind::Overflow {
-                    return Err(e);
-                }
-            }
-        }
+    match materialization_error(s) {
+        Some(e) => Err(e),
+        None => Ok(()),
     }
-    Ok(())
+}
+
+/// The `size()` overflow error of `s`, when `s` is one of the lazy sets that
+/// `enumerate` cannot materialize: a `SUBSET` of 31 or more elements, or a
+/// function, record or tuple set whose product of component sizes exceeds
+/// TLC's int range. The evaluator asks this to decide between materializing a
+/// bound variable's domain and streaming it (`for_each_enumerated`).
+pub fn materialization_error(s: &Value) -> Option<ValueError> {
+    if !matches!(s, Value::LazySet(l) if matches!(**l, LazySet::Subset(_) | LazySet::FcnSet(..) | LazySet::Product(_) | LazySet::RecordSet(_)))
+    {
+        return None;
+    }
+    match cardinality(s) {
+        Err(e) if e.kind == ValueErrorKind::Overflow => Some(e),
+        _ => None,
+    }
 }
 
 /// Enumerate in normalized (sorted, deduplicated) order — used by CHOOSE.
