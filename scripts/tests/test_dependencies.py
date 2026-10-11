@@ -577,6 +577,43 @@ class FetchDepsScript(Layout):
         log = os.path.join(self.tmp.name, "argv.log")
         return {"PATH": bin_dir + os.pathsep + os.environ["PATH"], "FAKE_LOG": log, "FAKE_LIB": lib}, log
 
+    def test_tests_only_uses_verified_bundled_oracle_without_cloning_examples(self):
+        root = self.main
+        script = self.checkout(root)
+        bundled = os.path.join(root, 'tests', 'deps', 'tla2tools.jar')
+        os.makedirs(os.path.dirname(bundled))
+        with open(bundled, 'wb') as out:
+            out.write(self.jar)
+        env, log = self.fake_path()
+        env.update({'FAKE_CURL_JAR': self.jar_path, dependencies.PIN_OVERRIDE_ENV: pin_env(self.jar)})
+        result = subprocess.run(['bash', script, '--tests-only'], cwd=root, capture_output=True,
+                                text=True, env={**os.environ, **env})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertFalse(os.path.exists(os.path.join(root, 'third_party', 'Examples')))
+        with open(log) as source:
+            commands = source.read()
+        self.assertNotIn(dependencies.TLA2TOOLS_PIN['url'], commands)
+        self.assertNotIn('git clone', commands)
+        with open(os.path.join(root, 'third_party', 'tla2tools.jar'), 'rb') as source:
+            self.assertEqual(source.read(), self.jar)
+
+    def test_corrupt_bundled_oracle_is_refused_before_download(self):
+        root = self.main
+        script = self.checkout(root)
+        bundled = os.path.join(root, 'tests', 'deps', 'tla2tools.jar')
+        os.makedirs(os.path.dirname(bundled))
+        with open(bundled, 'wb') as out:
+            out.write(b'not the declared jar')
+        env, log = self.fake_path()
+        env.update({'FAKE_CURL_JAR': self.jar_path, dependencies.PIN_OVERRIDE_ENV: pin_env(self.jar)})
+        result = subprocess.run(['bash', script, '--tests-only'], cwd=root, capture_output=True,
+                                text=True, env={**os.environ, **env})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(os.path.exists(os.path.join(root, 'third_party', 'tla2tools.jar')))
+        if os.path.exists(log):
+            with open(log) as source:
+                self.assertNotIn('curl ', source.read())
+
     def test_fetch_deps_stages_every_artifact_and_publishes_it(self):
         root = self.main
         script = self.checkout(root)

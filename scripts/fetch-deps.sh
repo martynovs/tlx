@@ -7,10 +7,21 @@
 # artifact is staged next to its target and renamed into place, so a failed or
 # interrupted fetch never leaves a partial final file (HARNESS-15).
 set -euo pipefail
+tests_only=false
+case "${1:-}" in
+  "") ;;
+  --tests-only) tests_only=true; shift ;;
+  -h|--help) echo "Usage: scripts/fetch-deps.sh [--tests-only] (omit the Examples corpus for CI/spec tests)"; exit 0 ;;
+  *) echo "Unknown option: $1" >&2; exit 2 ;;
+esac
+[ "$#" -eq 0 ] || { echo "Unexpected arguments: $*" >&2; exit 2; }
 self="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"
 root="$(cd "$(dirname "$self")/.." && pwd)"
 cd "$root"
 if [ -z "${FETCH_DEPS_LOCKED:-}" ]; then
+  if $tests_only; then
+    exec python3 scripts/dependencies.py run -- env FETCH_DEPS_LOCKED=1 bash "$self" --tests-only
+  fi
   exec python3 scripts/dependencies.py run -- env FETCH_DEPS_LOCKED=1 bash "$self"
 fi
 
@@ -50,6 +61,17 @@ tla2tools() {
     fi
     return 0
   fi
+  # The upstream release URL is mutable. The repository retains the exact
+  # oracle bytes used by the cached results; verify them before publication.
+  bundled="$root/tests/deps/tla2tools.jar"
+  if [ -f "$bundled" ]; then
+    deps verify-jar "$bundled"
+    tmp="$(mktemp .tla2tools.XXXXXX)"
+    cp "$bundled" "$tmp"
+    deps verify-jar "$tmp"
+    mv "$tmp" "$file"
+    return
+  fi
   url="$(deps pin url)"
   tmp="$(mktemp "$(dirname "$file")/.$(basename "$file").XXXXXX")"
   if ! curl -sSfL -o "$tmp" "$url" || [ ! -s "$tmp" ]; then
@@ -66,14 +88,17 @@ tla2tools() {
 }
 tla2tools
 
-if [ ! -d Examples ]; then
-  clone="$(mktemp -d .Examples.XXXXXX)"
-  git clone -q --depth 1 https://github.com/tlaplus/Examples.git "$clone"
-  mv "$clone" Examples
+if ! $tests_only; then
+  if [ ! -d Examples ]; then
+    clone="$(mktemp -d .Examples.XXXXXX)"
+    git clone -q --depth 1 https://github.com/tlaplus/Examples.git "$clone"
+    mv "$clone" Examples
+  fi
+  # Examples keeps CCF, azure-cosmos-tla, BlockingQueue and microwave in submodules
+  # (idempotent: also fills a clone made without them).
+  git -C Examples submodule update -q --init --depth 1
+
 fi
-# Examples keeps CCF, azure-cosmos-tla, BlockingQueue and microwave in submodules
-# (idempotent: also fills a clone made without them).
-git -C Examples submodule update -q --init --depth 1
 
 # The Examples models whose manifest runtime is above 700 s (the huge tier of
 # scripts/corpus.py: `corpus.py list --tier huge`) are for the cloud runs only; the

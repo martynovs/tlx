@@ -45,7 +45,7 @@ A row carries the optimization its recorded samples name in the `tlx optimizatio
 (`none` only when every sample records an empty list, `unknown` when the record does not state it),
 so a row whose tlx run was reduced says so without claiming what the TLC baseline was configured with.
 
-To run new measurements, fetch dependencies using `sh scripts/fetch-deps.sh` and
+To run new measurements, fetch dependencies using `bash scripts/fetch-deps.sh` and
 `python3 scripts/fetch-external.py`, then resolve the suite with
 `python3 scripts/bench.py suite-check`. [benchmarking.md](../docs/benchmarking.md) defines the
 measurement protocol and machine requirements. Input and report validation do not measure performance.
