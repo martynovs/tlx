@@ -216,21 +216,30 @@ recorded in the store, so the digests above are recomputed independently (F4) an
 local times of those runs are kept in the diagnostic artifacts but are not quoted here: they come
 from a different machine than every TLC baseline in the store, and no ratio may be formed from them.
 
-| # | configuration | ratio | tlx timed / recorded warm-up s | TLC s | distinct tlx / TLC | status |
-|---:|---|---:|---:|---:|---:|---|
-| 1 | MultiCarElevator/ElevatorLivenessLarge default 1w | 2090.54x | 0.712 / 3.637 | 1488.466 | 50653 / 50653 | supported (F2) |
-| 2 | MisraReachability/MCReachable default 1w | 790.16x | 0.096 / 0.207 | 75.855 | 8 / 8 | supported (phase attributed, 2.2) |
-| 3 | bench/RaftMongoT4 -compile 16w | 310.09x | 6.603 / 8.781 | 2047.532 | 1572408 / 1572408 | supported |
-| 4 | ext/mongo/MCRaftMongo -compile 16w -tlc | 270.96x | 1.660 / 1.794 | 449.796 | 371368 / 371368 | supported |
-| 5 | ext/mongo/MCRaftMongo default 1w | 242.17x | 14.665 / 16.337 | 3551.468 | 371368 / 371368 | supported (shared denominator with #6) |
-| 6 | ext/mongo/MCRaftMongo -compile 1w -tlc | 241.93x | 14.680 / 17.940 | 3551.468 | 371368 / 371368 | supported (duplicate of #5) |
-| 7 | PaxosHowToWinATuringAward/MCPaxosSmall default 1w | 238.97x | 0.552 / 1.857 | 131.910 | 17153 / 185369 | policy-shaped (F3) |
-| 8 | byzpaxos/PConProof default 1w | 180.89x | 9.779 / 11.811 | 1768.963 | 95028 / 1009133 | policy-shaped (F3) |
-| 9 | ext/cassandra/Accord_baseline__deep_chain -compile 1w | 146.60x | 1.111 / 7.568 | 162.878 | 179712 / 179712 | supported (F2) |
-| 10 | ext/cassandra/Accord_baseline__deep_chain default 1w | 146.21x | 1.114 / 1.285 | 162.878 | 179712 / 179712 | supported (duplicate of #9) |
-| 11 | bench/ReprRaftMongo -compile 1w -tlc | 132.22x | 0.491 / 1.898 | 64.921 | 12003 / 12003 | supported (F2) |
-| 12 | MisraReachability/MCParReach default 1w | 111.74x | 0.109 / 0.310 | 12.180 | 393 / 393 | pending (no phase run) |
-| 13 | MultiCarElevator/ElevatorLivenessMedium default 1w | 109.12x | 0.165 / 1.045 | 18.005 | 4122 / 4122 | supported (F2) |
+| # | configuration | ratio | tlx timed / recorded warm-up s | TLC s | distinct tlx / TLC | recorded optimizations (tlx) | status |
+|---:|---|---:|---:|---:|---:|---|---|
+| 1 | MultiCarElevator/ElevatorLivenessLarge default 1w | 2090.54x | 0.712 / 3.637 | 1488.466 | 50653 / 50653 | none | supported (F2) |
+| 2 | MisraReachability/MCReachable default 1w | 790.16x | 0.096 / 0.207 | 75.855 | 8 / 8 | none | supported (phase attributed, 2.2) |
+| 3 | bench/RaftMongoT4 -compile 16w | 310.09x | 6.603 / 8.781 | 2047.532 | 1572408 / 1572408 | none | supported |
+| 4 | ext/mongo/MCRaftMongo -compile 16w -tlc | 270.96x | 1.660 / 1.794 | 449.796 | 371368 / 371368 | unknown | supported |
+| 5 | ext/mongo/MCRaftMongo default 1w | 242.17x | 14.665 / 16.337 | 3551.468 | 371368 / 371368 | none | supported (shared denominator with #6) |
+| 6 | ext/mongo/MCRaftMongo -compile 1w -tlc | 241.93x | 14.680 / 17.940 | 3551.468 | 371368 / 371368 | unknown | supported (duplicate of #5) |
+| 7 | PaxosHowToWinATuringAward/MCPaxosSmall default 1w | 238.97x | 0.552 / 1.857 | 131.910 | 17153 / 185369 | symmetry Permutations(Acceptor) x Permutations(Value) (proven; safety checks only) | policy-shaped (F3) |
+| 8 | byzpaxos/PConProof default 1w | 180.89x | 9.779 / 11.811 | 1768.963 | 95028 / 1009133 | symmetry Permutations(Value) x Permutations(Acceptor) (proven; safety checks only) | policy-shaped (F3) |
+| 9 | ext/cassandra/Accord_baseline__deep_chain -compile 1w | 146.60x | 1.111 / 7.568 | 162.878 | 179712 / 179712 | none | supported (F2) |
+| 10 | ext/cassandra/Accord_baseline__deep_chain default 1w | 146.21x | 1.114 / 1.285 | 162.878 | 179712 / 179712 | none | supported (duplicate of #9) |
+| 11 | bench/ReprRaftMongo -compile 1w -tlc | 132.22x | 0.491 / 1.898 | 64.921 | 12003 / 12003 | unknown | supported (F2) |
+| 12 | MisraReachability/MCParReach default 1w | 111.74x | 0.109 / 0.310 | 12.180 | 393 / 393 | none | pending (no phase run) |
+| 13 | MultiCarElevator/ElevatorLivenessMedium default 1w | 109.12x | 0.165 / 1.045 | 18.005 | 4122 / 4122 | none | supported (F2) |
+
+The `recorded optimizations (tlx)` column is the record's own statement, byte for byte the cell the
+generated report shows (`docs/performance.md`), and never an inference from the counts: only rows 7
+and 8 of these 13 ran with the automatic reduction (tlx's proven symmetry of sets of model values,
+[usage.md](../usage.md) sections 6.2-6.3), which is what makes their ratio compare a reduced tlx
+search with TLC's unreduced one. The three `unknown` rows were recorded without the per-sample
+field; they are `-tlc` runs, and `-tlc` never applies the automatic reduction, so their own mode
+already excludes it - the record simply does not state the optimization list. 39 of the store's 262
+published rows carry a recorded optimization; the appendix lists them.
 
 Records: the tlx row and its TLC baseline for each case are the files named in the report's Evidence
 column; the inventory JSON emits both paths per row. Every row above also carries the raw samples and
@@ -346,3 +355,58 @@ time at the recorded times, and most of it is dominated by four rows):
   reduction rows, and `MCParReach` (whose phase was not attributed) are not yet evidence for the
   *size* of the number they publish, and that the missing TLC repeats (F1) and the unverified
   per-property correctness (F5) are the two items to fix first.
+
+## Appendix: published rows whose records name an optimization
+
+Every row the generated report publishes carries a `tlx optimizations` cell; these are the 39 rows
+whose recorded samples name one (all of them the automatic reduction of `docs/usage.md` section 6.3:
+`proven` groups, or the `runtime guard` group of `transaction_commit/PaxosCommit`). The list is
+produced from the store with the report's own selection, so it is the annotation the report shows,
+not a second inference. Each row's record file is the one named in the report's Evidence column.
+
+| Model | Mode | Workers | Recorded optimization |
+|---|---|---:|---|
+| CigaretteSmokers/CigaretteSmokers | default | 1 | symmetry Permutations(Ingredients) (proven; safety checks only) |
+| Disruptor/MCDisruptor_MPMC | default | 1 | symmetry Permutations(Writers) x Permutations(Readers) (proven; safety checks only) |
+| KeyValueStore/MCKVSSafetySmall | -compile | 1 | symmetry Permutations(Key) x Permutations(Val) x Permutations(TxId) (proven; safety checks only) |
+| KeyValueStore/MCKVSSafetySmall | -compile | 16 | symmetry Permutations(Key) x Permutations(Val) x Permutations(TxId) (proven; safety checks only) |
+| KeyValueStore/MCKVSSafetySmall | default | 1 | symmetry Permutations(Key) x Permutations(Val) x Permutations(TxId) (proven; safety checks only) |
+| MissionariesAndCannibals/MissionariesAndCannibals | default | 1 | symmetry Permutations(Missionaries) x Permutations(Cannibals) (proven; safety checks only) |
+| MultiCarElevator/ElevatorSafetyLarge | default | 1 | symmetry Permutations(Person) (proven; safety checks only) |
+| MultiCarElevator/ElevatorSafetyMedium | default | 1 | symmetry Permutations(Person) (proven; safety checks only) |
+| MultiCarElevator/ElevatorSafetySmall | default | 1 | symmetry Permutations(Person) (proven; safety checks only) |
+| PaxosHowToWinATuringAward/MCConsensus | default | 1 | symmetry Permutations(Value) (proven; safety checks only) |
+| PaxosHowToWinATuringAward/MCPaxosSmall | default | 1 | symmetry Permutations(Acceptor) x Permutations(Value) (proven; safety checks only) |
+| PaxosHowToWinATuringAward/MCPaxosTiny | default | 1 | symmetry Permutations(Acceptor) x Permutations(Value) (proven; safety checks only) |
+| PaxosHowToWinATuringAward/MCVoting | default | 1 | symmetry Permutations(Acceptor) x Permutations(Value) (proven; safety checks only) |
+| SpecifyingSystems/AsynchronousInterface/AsynchInterface | default | 1 | symmetry Permutations(Data) (proven; safety checks only) |
+| SpecifyingSystems/AsynchronousInterface/Channel | default | 1 | symmetry Permutations(Data) (proven; safety checks only) |
+| SpecifyingSystems/CachingMemory/MCInternalMemory | default | 1 | symmetry Permutations(Adr) x Permutations(Val) (proven; safety checks only) |
+| SpecifyingSystems/CachingMemory/MCWriteThroughCache | default | 1 | symmetry Permutations(Val) (proven; safety checks only) |
+| SpecifyingSystems/FIFO/MCInnerFIFO | default | 1 | symmetry Permutations(Message) (proven; safety checks only) |
+| SpecifyingSystems/TLC/ABCorrectness | default | 1 | symmetry Permutations(Data) (proven; safety checks only) |
+| acp/ACP_NB_WRONG_TLC | default | 1 | symmetry Permutations(participants) (proven; safety checks only) |
+| acp/ACP_SB_TLC | default | 1 | symmetry Permutations(participants) (proven; safety checks only) |
+| btree/MCbtree | -compile | 1 | symmetry Permutations(Vals) (proven; safety checks only) |
+| btree/MCbtree | -compile | 16 | symmetry Permutations(Vals) (proven; safety checks only) |
+| btree/MCbtree | default | 1 | symmetry Permutations(Vals) (proven; safety checks only) |
+| btree/kvstore | default | 1 | symmetry Permutations(Vals) (proven; safety checks only) |
+| byihive/VoucherCancel | default | 1 | symmetry Permutations(V) x Permutations(H) x Permutations(I) (proven; safety checks only) |
+| byihive/VoucherIssue | default | 1 | symmetry Permutations(V) x Permutations(H) x Permutations(I) (proven; safety checks only) |
+| byihive/VoucherLifeCycle | default | 1 | symmetry Permutations(V) (proven; safety checks only) |
+| byihive/VoucherRedeem | default | 1 | symmetry Permutations(V) x Permutations(H) x Permutations(C) (proven; safety checks only) |
+| byihive/VoucherTransfer | default | 1 | symmetry Permutations(V) x Permutations(SH) x Permutations(DH) (proven; safety checks only) |
+| byzpaxos/PConProof | default | 1 | symmetry Permutations(Value) x Permutations(Acceptor) (proven; safety checks only) |
+| byzpaxos/VoteProof | default | 1 | symmetry Permutations(Value) x Permutations(Acceptor) (proven; safety checks only) |
+| dijkstra-mutex/DijkstraMutex.toolbox/Safety-4-processors/MC | default | 1 | symmetry Permutations(Proc) (proven; safety checks only) |
+| transaction_commit/2PCwithBTM | default | 1 | symmetry Permutations(RM) (proven; safety checks only) |
+| transaction_commit/PaxosCommit | -compile | 1 | symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only) |
+| transaction_commit/PaxosCommit | -compile | 16 | symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only) |
+| transaction_commit/PaxosCommit | default | 1 | symmetry Permutations(RM) x Permutations(Acceptor) (runtime guard; safety checks only) |
+| transaction_commit/TCommit | default | 1 | symmetry Permutations(RM) (proven; safety checks only) |
+| transaction_commit/TwoPhase | default | 1 | symmetry Permutations(RM) (proven; safety checks only) |
+
+The other 223 published rows are `none` (every recorded sample states an empty list) or `unknown`
+(40 rows recorded without the field, mostly the older compatible samples). A row says nothing about
+its TLC baseline: a TLC baseline may declare its own `SYMMETRY`, so this table labels the tlx side's
+search and not the difference between the two sides.

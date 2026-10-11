@@ -154,6 +154,11 @@ implement:
   says the counts refer to the reduced search;
 - a `-dump` file of a reduced search says so in its header; a `-dumpTrace` counterexample is
   unchanged, because a counterexample is a genuine behavior in every mode;
+- the generated performance report preserves the label per row: `tlx optimizations` carries the
+  optimization the recorded samples name, `none` means every recorded sample states an empty list,
+  and `unknown` means the record does not state it. The column speaks for the tlx side only - a TLC
+  baseline may declare its own `SYMMETRY` - so it does not by itself claim what the other side
+  explored;
 - the label is cleared when a guarded reduction restarts, so a restarted run never claims a reduction
   it no longer has.
 
