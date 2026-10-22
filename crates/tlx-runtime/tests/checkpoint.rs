@@ -585,7 +585,7 @@ fn checkpoints_are_removed_at_the_end() {
 /// after, numbering on from it; recovered again, the search is the
 /// uninterrupted one.
 #[test]
-fn a_recovered_search_links_the_segments_it_recovered() {
+fn recovered_search_links_the_recovered_segments() {
     const RETAIN: Option<usize> = Some(1 << 30);
     let names = |dir: &Path| -> std::collections::BTreeSet<String> {
         std::fs::read_dir(dir.join("checkpoint")).unwrap().map(|e| e.unwrap().file_name().into_string().unwrap()).collect()

@@ -320,7 +320,7 @@ fn layout_miss_after_the_recovery() {
 /// (the segments of every worker, as worker 0's) and writes only the rest:
 /// recovered from it, a layout miss resumes from the whole archive.
 #[test]
-fn a_layout_miss_resumes_from_an_archive_a_recovered_run_linked() {
+fn layout_miss_resumes_from_the_linked_archive() {
     let dir = tlx_testkit::TempDir::with_spec("miss-linked", REG, REG_CFG);
     let env = [("TLX_PRERUN", "1"), ("TLX_RETAIN_MB", "1024")];
     let args = ["-compile", "-workers", "4"];

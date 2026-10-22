@@ -1178,7 +1178,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn a_search_over_budget_stops_near_the_memory_it_can_have() {
+    fn ceilings() {
         const G: usize = 1 << 30;
         // RS_pack_zombie2: 58 GiB held of 58.5, past a 46.8 GiB budget.
         let why = over_ceiling(58 * G, 46 * G, 58 * G + G / 2).expect("stops");
@@ -1192,7 +1192,7 @@ mod tests {
     }
 
     #[test]
-    fn keeping_the_last_checkpoint_says_whether_there_is_one() {
+    fn keep_last_without_a_checkpoint() {
         assert!(!Checkpointer::new(CheckpointConfig::default()).keep_last());
     }
 }
